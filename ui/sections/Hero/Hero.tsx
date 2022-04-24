@@ -5,6 +5,7 @@ import {
   Button,
   Group,
   Title,
+  useMantineTheme,
 } from "@mantine/core";
 
 const useStyles = createStyles((theme) => ({
@@ -82,7 +83,7 @@ const useStyles = createStyles((theme) => ({
 
 export function Hero() {
   const { classes, cx } = useStyles();
-
+  const theme = useMantineTheme();
   return (
     <div className={classes.wrapper}>
       <Container size={700} className={classes.inner}>
@@ -91,7 +92,10 @@ export function Hero() {
           <Text
             component="span"
             variant="gradient"
-            gradient={{ from: "brand", to: "secondary" }}
+            gradient={{
+              from: theme.colors.brand[4],
+              to: theme.colors.secondary[4],
+            }}
             inherit
           >
             one hub
@@ -110,7 +114,10 @@ export function Hero() {
             size="xl"
             className={classes.cta}
             variant="gradient"
-            gradient={{ from: "brand", to: "secondary" }}
+            gradient={{
+              from: theme.colors.brand[4],
+              to: theme.colors.secondary[4],
+            }}
           >
             Browse Links
           </Button>
