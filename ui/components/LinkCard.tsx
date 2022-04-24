@@ -51,7 +51,7 @@ function LinkCard({
             size={16}
             strokeWidth={2}
             color={theme.colors.brand[5]}
-            style={{ margin: 0 }}
+            style={{ margin: 0, marginRight: -12 }}
           />
         )}
 
