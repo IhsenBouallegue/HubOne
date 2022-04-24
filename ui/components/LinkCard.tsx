@@ -8,6 +8,8 @@ import {
 } from "@mantine/core";
 import { Lock } from "tabler-icons-react";
 
+import type { LinkType } from "../types/LinkType";
+
 const useStyles = createStyles((theme) => ({
   card: {
     height: "100%",
@@ -20,21 +22,13 @@ const useStyles = createStyles((theme) => ({
   description: { color: theme.colors.dark[1], lineHeight: 1.5 },
 }));
 
-interface LinkCardProps {
-  title: string;
-  description: string;
-  image: string;
-  link: string;
-  isInternal?: boolean;
-}
-
 function LinkCard({
   title,
   description,
   image,
   link,
   isInternal = false,
-}: LinkCardProps) {
+}: LinkType) {
   const { classes } = useStyles();
   const theme = useMantineTheme();
 
