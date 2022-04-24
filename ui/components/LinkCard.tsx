@@ -19,6 +19,7 @@ const useStyles = createStyles((theme) => ({
     marginBottom: 5,
     marginTop: theme.spacing.sm,
   },
+  image: { padding: 32, minHeight: 160 },
   description: { color: theme.colors.dark[1], lineHeight: 1.5 },
 }));
 
@@ -42,7 +43,7 @@ function LinkCard({
       target="_blank"
     >
       <Card.Section>
-        <Image src={image} height={160} alt={title} />
+        <Image className={classes.image} src={image} alt={title} />
       </Card.Section>
 
       <Group className={classes.title}>
