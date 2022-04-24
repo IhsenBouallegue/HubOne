@@ -1,7 +1,7 @@
-import { Container, createStyles, Grid } from "@mantine/core";
+import { Container, createStyles, Grid, Title } from "@mantine/core";
 
 import LinkCard from "../../components/LinkCard";
-import type { LinkType } from "../../types/LinkType";
+import type { LinkGroupType } from "../../types/LinkGroupType";
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -19,18 +19,18 @@ const useStyles = createStyles((theme) => ({
       paddingTop: 80,
     },
   },
+  groupTitle: { marginBottom: 32 },
 }));
 
-interface LinkGroupType {
-  links: LinkType[];
-}
-
-function LinkGroup({ links }: LinkGroupType) {
+function LinkGroup({ title, links }: LinkGroupType) {
   const { classes } = useStyles();
 
   return (
     <div className={classes.wrapper}>
       <Container size={700} className={classes.inner}>
+        <Title order={2} className={classes.groupTitle}>
+          {title}
+        </Title>
         <Grid columns={4}>
           {links.map((link) => (
             <Grid.Col span={1}>
