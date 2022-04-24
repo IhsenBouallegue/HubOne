@@ -32,9 +32,9 @@ const theme: MantineThemeOverride = {
     ],
   },
   primaryColor: "brand",
-  defaultRadius: "xl",
-  fontFamily: "Baskerville",
-  headings: { fontFamily: "Baskerville", fontWeight: "bold" },
+  defaultRadius: "sm",
+  fontFamily: "Poppins",
+  headings: { fontFamily: "Poppins", fontWeight: "bold" },
 };
 
 export default theme;
