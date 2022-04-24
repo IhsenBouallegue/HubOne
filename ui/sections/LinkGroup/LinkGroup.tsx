@@ -11,8 +11,8 @@ const useStyles = createStyles((theme) => ({
   },
   inner: {
     position: "relative",
-    paddingTop: 200,
-    paddingBottom: 120,
+    paddingTop: 60,
+    paddingBottom: 20,
     margin: "auto",
     [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
       paddingBottom: 80,

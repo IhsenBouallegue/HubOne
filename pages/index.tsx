@@ -1,14 +1,13 @@
 import type { NextPage } from "next";
 
-import { linkGroup } from "../HubOneConfig";
 import Hero from "../ui/sections/Hero";
-import LinkGroup from "../ui/sections/LinkGroup";
+import LinkSection from "../ui/sections/LinkSection";
 
 const Home: NextPage = () => {
   return (
     <div>
       <Hero />
-      <LinkGroup {...linkGroup} />
+      <LinkSection />
     </div>
   );
 };
