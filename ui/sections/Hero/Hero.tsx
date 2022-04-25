@@ -100,7 +100,7 @@ export function Hero() {
           >
             one hub
           </Text>{" "}
-          you will need.
+          you will ever need.
         </Title>
 
         <Text className={classes.description} color="dimmed">
