@@ -13,11 +13,12 @@ const useStyles = createStyles((theme) => ({
     position: "relative",
     boxSizing: "border-box",
     backgroundColor: theme.white,
+    marginTop: 40,
   },
 
   inner: {
     position: "relative",
-    paddingTop: 200,
+    paddingTop: 100,
     paddingBottom: 200,
     margin: "auto",
     [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
