@@ -6,6 +6,7 @@ import {
   Group,
   Header,
   Image,
+  MediaQuery,
   useMantineTheme,
 } from "@mantine/core";
 import { useBooleanToggle } from "@mantine/hooks";
@@ -78,7 +79,12 @@ export function HeaderBar({ linkGroups }: HubOneConfigType) {
             className={classes.burger}
             size="sm"
           />
-          <Image src="/logo/hubone_logo_full.svg" fit="contain" height={40} />
+          <MediaQuery largerThan="sm" styles={{ display: "none" }}>
+            <Image src="/logo/hubone_logo.svg" fit="contain" height={28} />
+          </MediaQuery>
+          <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
+            <Image src="/logo/hubone_logo_full.svg" fit="contain" height={40} />
+          </MediaQuery>
           <X size={20} strokeWidth={1} color="black" />
           <Image src="/logo/hubone_logo.svg" fit="contain" height={28} />
         </Group>
