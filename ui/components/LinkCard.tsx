@@ -13,6 +13,7 @@ import type { LinkType } from "../types/LinkType";
 const useStyles = createStyles((theme) => ({
   card: {
     height: "100%",
+    minWidth: "150px",
     margin: "auto",
   },
   title: {

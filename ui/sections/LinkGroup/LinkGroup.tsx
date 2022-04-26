@@ -33,7 +33,7 @@ function LinkGroup({ title, links }: LinkGroupType) {
         </Title>
         <Grid columns={4}>
           {links.map((link) => (
-            <Grid.Col key={`link_${link.title}`} span={1}>
+            <Grid.Col key={`link_${link.title}`} span={2} xs={1}>
               <LinkCard {...link} />
             </Grid.Col>
           ))}
