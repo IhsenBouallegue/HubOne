@@ -1,6 +1,6 @@
 import type { LinkGroupType } from "./ui/types/LinkGroupType";
 
-interface HubOneConfigType {
+export interface HubOneConfigType {
   heading: string;
   linkGroups: LinkGroupType[];
 }
@@ -11,21 +11,21 @@ const linkGroup0: LinkGroupType = {
     {
       title: "1. Website",
       description: "Description",
-      image: "./logo/hubone_logo.svg",
+      image: undefined,
       link: "",
       isInternal: true,
     },
     {
       title: "2. Website",
       description: "Description",
-      image: "./logo/hubone_logo.svg",
+      image: undefined,
       link: "",
       isInternal: true,
     },
     {
       title: "3. Website",
       description: "Description",
-      image: "./logo/hubone_logo.svg",
+      image: undefined,
       link: "",
       isInternal: true,
     },
@@ -38,35 +38,35 @@ const linkGroup1: LinkGroupType = {
     {
       title: "1. Website",
       description: "Description",
-      image: "./logo/hubone_logo.svg",
+      image: undefined,
       link: "",
       isInternal: true,
     },
     {
       title: "2. Website",
       description: "Description",
-      image: "./logo/hubone_logo.svg",
+      image: undefined,
       link: "",
       isInternal: true,
     },
     {
       title: "3. Website",
       description: "Description",
-      image: "./logo/hubone_logo.svg",
+      image: undefined,
       link: "",
       isInternal: true,
     },
     {
       title: "4. Website",
       description: "Description",
-      image: "./logo/hubone_logo.svg",
+      image: undefined,
       link: "",
       isInternal: false,
     },
     {
       title: "5. Website",
       description: "Description",
-      image: "./logo/hubone_logo.svg",
+      image: undefined,
       link: "",
       isInternal: false,
     },

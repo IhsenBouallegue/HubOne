@@ -26,7 +26,7 @@ const useStyles = createStyles((theme) => ({
 function LinkCard({
   title,
   description,
-  image,
+  image = "./logo/hubone_logo.svg",
   link,
   isInternal = false,
 }: LinkType) {

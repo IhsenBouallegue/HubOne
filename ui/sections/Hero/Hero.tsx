@@ -7,6 +7,7 @@ import {
   Title,
   useMantineTheme,
 } from "@mantine/core";
+import { Link as ScrollLink } from "react-scroll";
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -120,7 +121,13 @@ export function Hero() {
               to: theme.colors.secondary[4],
             }}
           >
-            Browse Links
+            <ScrollLink
+              to="linkSection"
+              smooth="easeInOutQuint"
+              duration={1000}
+            >
+              Browse Links
+            </ScrollLink>
           </Button>
 
           <Button

@@ -3,11 +3,11 @@ import LinkGroup from "../LinkGroup";
 
 function LinkSection() {
   return (
-    <>
+    <div id="linkSection">
       {hubOneConfig.linkGroups.map((linkGroup) => (
-        <LinkGroup {...linkGroup} />
+        <LinkGroup key={`linkGroup_${linkGroup.title}`} {...linkGroup} />
       ))}
-    </>
+    </div>
   );
 }
 

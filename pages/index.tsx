@@ -1,16 +1,16 @@
 import type { NextPage } from "next";
 
+import { hubOneConfig } from "../HubOneConfig";
 import { Footer } from "../ui/components/footer/Footer";
 import { footerLinks } from "../ui/components/footer/FooterLinks";
 import { HeaderBar } from "../ui/components/header/Header";
-import { headerLinks } from "../ui/components/header/headerLinks";
 import Hero from "../ui/sections/Hero";
 import LinkSection from "../ui/sections/LinkSection";
 
 const Home: NextPage = () => {
   return (
     <div>
-      <HeaderBar {...headerLinks} />
+      <HeaderBar {...hubOneConfig} />
       <Hero />
       <LinkSection />
       <Footer {...footerLinks} />

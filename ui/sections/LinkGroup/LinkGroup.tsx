@@ -26,14 +26,14 @@ function LinkGroup({ title, links }: LinkGroupType) {
   const { classes } = useStyles();
 
   return (
-    <div className={classes.wrapper}>
+    <div className={classes.wrapper} id={title}>
       <Container size={700} className={classes.inner}>
         <Title order={2} className={classes.groupTitle}>
           {title}
         </Title>
         <Grid columns={4}>
           {links.map((link) => (
-            <Grid.Col span={1}>
+            <Grid.Col key={`link_${link.title}`} span={1}>
               <LinkCard {...link} />
             </Grid.Col>
           ))}
