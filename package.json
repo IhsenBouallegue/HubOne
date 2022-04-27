@@ -20,6 +20,7 @@
     "@mantine/core": "^4.1.4",
     "@mantine/hooks": "^4.1.4",
     "@mantine/next": "^4.1.4",
+    "framer-motion": "^6.3.2",
     "next": "12.1.5",
     "prettier": "^2.6.2",
     "react": "18.0.0",
