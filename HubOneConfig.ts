@@ -1,6 +1,7 @@
 import type { LinkGroupType } from "./ui/types/LinkGroupType";
 
 export interface HubOneConfigType {
+  companyLogo: string;
   heading: string;
   linkGroups: LinkGroupType[];
 }
@@ -74,6 +75,7 @@ const linkGroup1: LinkGroupType = {
 };
 
 export const hubOneConfig: HubOneConfigType = {
+  companyLogo: "/logo/hubone_logo.svg",
   heading: "company",
   linkGroups: [linkGroup0, linkGroup1],
 };

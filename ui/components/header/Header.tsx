@@ -43,15 +43,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export interface HeaderActionProps {
-  links: {
-    link: string;
-    label: string;
-    links?: { link: string; label: string }[];
-  }[];
-}
-
-export function HeaderBar({ linkGroups }: HubOneConfigType) {
+export function HeaderBar({ linkGroups, companyLogo }: HubOneConfigType) {
   const { classes } = useStyles();
   const theme = useMantineTheme();
   const [opened, toggleOpened] = useBooleanToggle(false);
@@ -85,8 +77,12 @@ export function HeaderBar({ linkGroups }: HubOneConfigType) {
           <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
             <Image src="/logo/hubone_logo_full.svg" fit="contain" height={40} />
           </MediaQuery>
-          <X size={20} strokeWidth={1} color="black" />
-          <Image src="/logo/hubone_logo.svg" fit="contain" height={28} />
+          {companyLogo && (
+            <>
+              <X size={20} strokeWidth={1} color="black" />
+              <Image src={companyLogo} fit="contain" height={28} />
+            </>
+          )}
         </Group>
         <Group spacing={5} className={classes.links}>
           {items}
@@ -107,3 +103,5 @@ export function HeaderBar({ linkGroups }: HubOneConfigType) {
     </Header>
   );
 }
+
+export default HeaderBar;
