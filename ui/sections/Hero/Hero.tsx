@@ -65,9 +65,15 @@ const useStyles = createStyles((theme) => ({
     paddingRight: 38,
 
     [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
-      height: 54,
       paddingLeft: 18,
       paddingRight: 18,
+      width: "100%",
+      flex: 1,
+    },
+  },
+
+  ctaContainer: {
+    [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
       flex: 1,
     },
   },
@@ -112,7 +118,12 @@ export function Hero() {
         </Text>
 
         <Group className={classes.controls}>
-          <ScrollLink to="linkSection" smooth="easeInOutQuint" duration={1000}>
+          <ScrollLink
+            className={classes.ctaContainer}
+            to="linkSection"
+            smooth="easeInOutQuint"
+            duration={1000}
+          >
             <Button
               size="xl"
               className={classes.cta}
