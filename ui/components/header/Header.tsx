@@ -27,6 +27,9 @@ const useStyles = createStyles((theme) => ({
   },
 
   links: {
+    position: "absolute",
+    left: "50%",
+    transform: "translate(-50%, 0)",
     [theme.fn.smallerThan("sm")]: {
       display: "none",
     },

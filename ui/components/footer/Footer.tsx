@@ -19,6 +19,11 @@ const useStyles = createStyles((theme) => ({
   },
 
   links: {
+    [theme.fn.largerThan("sm")]: {
+      left: "50%",
+      transform: "translate(-50%, 0)",
+    },
+
     [theme.fn.smallerThan("sm")]: {
       marginTop: theme.spacing.lg,
       marginBottom: theme.spacing.sm,
@@ -48,7 +53,7 @@ export function Footer({ links }: FooterCenteredProps) {
   return (
     <div className={classes.footer}>
       <div className={classes.inner}>
-        <Image src="/logo/hubone_logo_full.svg" fit="contain" height={50} />
+        <Image src="/logo/hubone_logo_full.svg" fit="contain" height={36} />
 
         <Group className={classes.links}>{items}</Group>
 
