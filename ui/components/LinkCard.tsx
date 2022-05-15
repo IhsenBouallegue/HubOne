@@ -42,6 +42,7 @@ function LinkCard({
         transition: { duration: 0.2 },
       }}
       whileTap={{ scale: 0.94 }}
+      className={classes.card}
     >
       <Card
         className={classes.card}
