@@ -52,10 +52,13 @@ export function HeaderBar({ linkGroups, companyLogo }: HubOneConfigType) {
   const [opened, toggleOpened] = useBooleanToggle(false);
   const items = linkGroups?.map((linkGroup) => {
     return (
-      <ScrollLink to={linkGroup.title} smooth="easeInOutQuint" duration={1000}>
-        <Button key={linkGroup.title} variant="subtle">
-          {linkGroup.title}
-        </Button>
+      <ScrollLink
+        key={linkGroup.title}
+        to={linkGroup.title}
+        smooth="easeInOutQuint"
+        duration={1000}
+      >
+        <Button variant="subtle">{linkGroup.title}</Button>
       </ScrollLink>
     );
   });
