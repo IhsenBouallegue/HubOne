@@ -21,7 +21,15 @@ const useStyles = createStyles((theme) => ({
     marginBottom: 5,
     marginTop: theme.spacing.sm,
   },
-  image: { padding: 32, minHeight: 160 },
+  image: {
+    padding: 32,
+    minHeight: 160,
+    left: "0%",
+    top: "0%",
+    height: "100%",
+    width: "100%",
+  },
+  icon: { top: "10%", left: "10%", position: "absolute" },
   description: { color: theme.colors.dark[1], lineHeight: 1.5 },
 }));
 
@@ -53,23 +61,22 @@ function LinkCard({
         target="_blank"
       >
         <Card.Section>
-          <Image className={classes.image} src={image} alt={title} />
+          <Group style={{ position: "relative", width: "100%" }}>
+            {isInternal && (
+              <Lock
+                className={classes.icon}
+                size={16}
+                strokeWidth={2}
+                color={theme.colors.brand[5]}
+              />
+            )}
+            <Image className={classes.image} src={image} alt={title} />
+          </Group>
         </Card.Section>
 
-        <Group className={classes.title}>
-          {isInternal && (
-            <Lock
-              size={16}
-              strokeWidth={2}
-              color={theme.colors.brand[5]}
-              style={{ margin: 0, marginRight: -12 }}
-            />
-          )}
-
-          <Text weight={600} size="lg">
-            {title}
-          </Text>
-        </Group>
+        <Text className={classes.title} weight={600} size="lg">
+          {title}
+        </Text>
 
         <Text className={classes.description} size="sm" color="dimmed">
           {description}
