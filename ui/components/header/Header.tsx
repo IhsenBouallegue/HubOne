@@ -49,15 +49,11 @@ export function HeaderBar({ linkGroups, companyLogo }: HubOneConfigType) {
   const [opened, toggleOpened] = useBooleanToggle(false);
   const items = linkGroups?.map((linkGroup) => {
     return (
-      <Button key={linkGroup.title} variant="subtle">
-        <ScrollLink
-          to={linkGroup.title}
-          smooth="easeInOutQuint"
-          duration={1000}
-        >
+      <ScrollLink to={linkGroup.title} smooth="easeInOutQuint" duration={1000}>
+        <Button key={linkGroup.title} variant="subtle">
           {linkGroup.title}
-        </ScrollLink>
-      </Button>
+        </Button>
+      </ScrollLink>
     );
   });
 
@@ -87,18 +83,18 @@ export function HeaderBar({ linkGroups, companyLogo }: HubOneConfigType) {
         <Group spacing={5} className={classes.links}>
           {items}
         </Group>
-        <Button
-          variant="gradient"
-          gradient={{
-            from: theme.colors.brand[4],
-            to: theme.colors.secondary[4],
-          }}
-          sx={{ height: 30 }}
-        >
-          <ScrollLink to="linkSection" smooth="easeInOutQuint" duration={1000}>
+        <ScrollLink to="linkSection" smooth="easeInOutQuint" duration={1000}>
+          <Button
+            variant="gradient"
+            gradient={{
+              from: theme.colors.brand[4],
+              to: theme.colors.secondary[4],
+            }}
+            sx={{ height: 30 }}
+          >
             Browse Links
-          </ScrollLink>
-        </Button>
+          </Button>
+        </ScrollLink>
       </Container>
     </Header>
   );

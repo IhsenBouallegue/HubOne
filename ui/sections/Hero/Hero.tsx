@@ -112,23 +112,19 @@ export function Hero() {
         </Text>
 
         <Group className={classes.controls}>
-          <Button
-            size="xl"
-            className={classes.cta}
-            variant="gradient"
-            gradient={{
-              from: theme.colors.brand[4],
-              to: theme.colors.secondary[4],
-            }}
-          >
-            <ScrollLink
-              to="linkSection"
-              smooth="easeInOutQuint"
-              duration={1000}
+          <ScrollLink to="linkSection" smooth="easeInOutQuint" duration={1000}>
+            <Button
+              size="xl"
+              className={classes.cta}
+              variant="gradient"
+              gradient={{
+                from: theme.colors.brand[4],
+                to: theme.colors.secondary[4],
+              }}
             >
               Browse Links
-            </ScrollLink>
-          </Button>
+            </Button>
+          </ScrollLink>
 
           <Button
             component="a"
