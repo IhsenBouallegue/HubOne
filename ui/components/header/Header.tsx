@@ -40,7 +40,11 @@ const useStyles = createStyles((theme) => ({
       display: "none",
     },
   },
-
+  image: {
+    margin: 0,
+    padding: 0,
+    width: 10,
+  },
   linkLabel: {
     marginRight: 5,
   },
@@ -74,15 +78,15 @@ export function HeaderBar({ linkGroups, companyLogo }: HubOneConfigType) {
             size="sm"
           />
           <MediaQuery largerThan="sm" styles={{ display: "none" }}>
-            <Image src="/logo/hubone_logo.svg" fit="contain" height={28} />
+            <Image src="/logo/hubone_logo.svg" height={28} width={28} />
           </MediaQuery>
           <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
-            <Image src="/logo/hubone_logo_full.svg" fit="contain" height={40} />
+            <Image src="/logo/hubone_logo_full.svg" width={126} />
           </MediaQuery>
           {companyLogo && (
             <>
               <X size={20} strokeWidth={1} color="black" />
-              <Image src={companyLogo} fit="contain" height={28} />
+              <Image src={companyLogo} height={28} width={28} />
             </>
           )}
         </Group>
