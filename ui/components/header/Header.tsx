@@ -7,6 +7,8 @@ import {
   Header,
   Image,
   MediaQuery,
+  Paper,
+  Transition,
   useMantineTheme,
 } from "@mantine/core";
 import { useBooleanToggle } from "@mantine/hooks";
@@ -40,11 +42,23 @@ const useStyles = createStyles((theme) => ({
       display: "none",
     },
   },
-  image: {
-    margin: 0,
-    padding: 0,
-    width: 10,
+
+  dropdown: {
+    position: "absolute",
+    top: HEADER_HEIGHT,
+    left: 0,
+    right: 0,
+    zIndex: 0,
+    borderTopRightRadius: 0,
+    borderTopLeftRadius: 0,
+    borderTopWidth: 0,
+    overflow: "hidden",
+
+    [theme.fn.largerThan("sm")]: {
+      display: "none",
+    },
   },
+
   linkLabel: {
     marginRight: 5,
   },
@@ -62,13 +76,23 @@ export function HeaderBar({ linkGroups, companyLogo }: HubOneConfigType) {
         smooth="easeInOutQuint"
         duration={1000}
       >
-        <Button variant="subtle">{linkGroup.title}</Button>
+        <Button
+          variant="subtle"
+          onClick={() => {
+            toggleOpened(false);
+          }}
+        >
+          {linkGroup.title}
+        </Button>
       </ScrollLink>
     );
   });
 
   return (
-    <Header height={HEADER_HEIGHT} sx={{ borderBottom: 0 }}>
+    <Header
+      height={HEADER_HEIGHT}
+      sx={{ borderBottom: 0, position: "relative", zIndex: 1 }}
+    >
       <Container px="xl" className={classes.inner} fluid>
         <Group>
           <Burger
@@ -77,6 +101,7 @@ export function HeaderBar({ linkGroups, companyLogo }: HubOneConfigType) {
             className={classes.burger}
             size="sm"
           />
+
           <MediaQuery largerThan="sm" styles={{ display: "none" }}>
             <Image src="/logo/hubone_logo.svg" height={28} width={28} />
           </MediaQuery>
@@ -90,9 +115,19 @@ export function HeaderBar({ linkGroups, companyLogo }: HubOneConfigType) {
             </>
           )}
         </Group>
+
         <Group spacing={5} className={classes.links}>
           {items}
         </Group>
+
+        <Transition transition="scale-y" duration={200} mounted={opened}>
+          {(styles) => (
+            <Paper className={classes.dropdown} withBorder style={styles}>
+              {items}
+            </Paper>
+          )}
+        </Transition>
+
         <ScrollLink to="linkSection" smooth="easeInOutQuint" duration={1000}>
           <Button
             variant="gradient"
