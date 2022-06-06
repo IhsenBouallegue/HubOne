@@ -1,4 +1,4 @@
-import type { FooterProps } from "./ui/components/footer/Footer";
+import type { FooterProps } from "./ui/components/Footer";
 import type { LinkGroupType } from "./ui/types/LinkGroupType";
 
 export interface HubOneConfigType {

@@ -15,7 +15,7 @@ import { useBooleanToggle } from "@mantine/hooks";
 import { Link as ScrollLink } from "react-scroll";
 import { X } from "tabler-icons-react";
 
-import type { HubOneConfigType } from "../../../HubOneConfig";
+import type { HubOneConfigType } from "../../HubOneConfig";
 
 const HEADER_HEIGHT = 60;
 

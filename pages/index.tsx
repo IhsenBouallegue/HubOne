@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
 
 import { footerLinks, hubOneConfig } from "../HubOneConfig";
-import { Footer } from "../ui/components/footer/Footer";
-import { HeaderBar } from "../ui/components/header/Header";
+import { Footer } from "../ui/components/Footer";
+import { HeaderBar } from "../ui/components/Header";
 import Hero from "../ui/sections/Hero";
 import LinkSection from "../ui/sections/LinkSection";
 
