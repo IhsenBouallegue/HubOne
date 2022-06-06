@@ -6,6 +6,7 @@ import {
   Group,
   Title,
   useMantineTheme,
+  Image,
 } from "@mantine/core";
 import { Link as ScrollLink } from "react-scroll";
 
@@ -87,6 +88,13 @@ const useStyles = createStyles((theme) => ({
       backgroundColor: `${theme.colors.gray[0]} !important`,
     },
   },
+
+  background: {
+    position: "absolute",
+    width: "35vh",
+    left: "52%",
+    bottom: "0",
+  },
 }));
 
 export function Hero({ companyName }: { companyName?: string }) {
@@ -113,6 +121,7 @@ export function Hero({ companyName }: { companyName?: string }) {
   };
   return (
     <div className={classes.wrapper}>
+      <Image src="background.svg" className={classes.background} />
       <Container size={800} className={classes.inner}>
         <Title order={1} className={classes.title}>
           The{" "}
