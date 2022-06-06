@@ -31,16 +31,17 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export interface FooterCenteredProps {
+export interface FooterProps {
   links: { link: string; label: string }[];
+  socialLinks?: { instagram?: string; twitter?: string; youtube?: string };
 }
 
-export function Footer({ links }: FooterCenteredProps) {
+export function Footer({ links, socialLinks }: FooterProps) {
   const { classes } = useStyles();
   const items = links.map((link) => (
     <Anchor<"a">
       color="dimmed"
-      key={link.label}
+      key={`footer_link_${link.label}`}
       href={link.link}
       sx={{ lineHeight: 1 }}
       onClick={(event) => event.preventDefault()}
@@ -57,17 +58,37 @@ export function Footer({ links }: FooterCenteredProps) {
 
         <Group className={classes.links}>{items}</Group>
 
-        <Group spacing={0} position="right" noWrap>
-          <ActionIcon size="lg">
-            <BrandTwitter size={18} />
-          </ActionIcon>
-          <ActionIcon size="lg">
-            <BrandYoutube size={18} />
-          </ActionIcon>
-          <ActionIcon size="lg">
-            <BrandInstagram size={18} />
-          </ActionIcon>
-        </Group>
+        {socialLinks && (
+          <Group spacing={0} position="right" noWrap>
+            {socialLinks.twitter && (
+              <ActionIcon<"a">
+                component="a"
+                href={socialLinks.twitter}
+                size="lg"
+              >
+                <BrandTwitter size={18} />
+              </ActionIcon>
+            )}
+            {socialLinks.youtube && (
+              <ActionIcon<"a">
+                component="a"
+                href={socialLinks.youtube}
+                size="lg"
+              >
+                <BrandYoutube size={18} />
+              </ActionIcon>
+            )}
+            {socialLinks.instagram && (
+              <ActionIcon<"a">
+                component="a"
+                href={socialLinks.instagram}
+                size="lg"
+              >
+                <BrandInstagram size={18} />
+              </ActionIcon>
+            )}
+          </Group>
+        )}
       </div>
     </div>
   );
