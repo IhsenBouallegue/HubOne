@@ -31,7 +31,7 @@ const useStyles = createStyles((theme) => ({
   title: {
     fontSize: 62,
     fontWeight: 900,
-    lineHeight: 1.1,
+    lineHeight: 1.25,
     margin: 0,
     padding: 0,
     color: theme.black,
@@ -43,7 +43,7 @@ const useStyles = createStyles((theme) => ({
   },
 
   description: {
-    marginTop: theme.spacing.xl,
+    marginTop: 2 * theme.spacing.xl,
     fontSize: 24,
 
     [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
@@ -52,7 +52,7 @@ const useStyles = createStyles((theme) => ({
   },
 
   controls: {
-    marginTop: theme.spacing.xl * 2,
+    marginTop: 3 * theme.spacing.xl,
 
     [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
       marginTop: theme.spacing.xl,
@@ -89,12 +89,31 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export function Hero() {
+export function Hero({ companyName }: { companyName?: string }) {
   const { classes, cx } = useStyles();
   const theme = useMantineTheme();
+  const name = () => {
+    return (
+      <Text component="span" inherit>
+        {" for "}
+        <Text
+          component="span"
+          variant="gradient"
+          gradient={{
+            from: "#ff008c",
+            to: "#0cd4f7",
+          }}
+          inherit
+        >
+          {companyName}
+        </Text>
+        .
+      </Text>
+    );
+  };
   return (
     <div className={classes.wrapper}>
-      <Container size={700} className={classes.inner}>
+      <Container size={800} className={classes.inner}>
         <Title order={1} className={classes.title}>
           The{" "}
           <Text
@@ -108,7 +127,8 @@ export function Hero() {
           >
             one hub
           </Text>{" "}
-          you will ever need.
+          you will ever need
+          {companyName ? name() : "."}
         </Title>
 
         <Text className={classes.description} color="dimmed">

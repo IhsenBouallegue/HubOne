@@ -11,7 +11,7 @@ const Home: NextPage = () => {
   return (
     <div>
       <HeaderBar {...hubOneConfig} />
-      <Hero />
+      <Hero companyName={hubOneConfig.companyName} />
       <LinkSection />
       <Footer {...footerLinks} />
     </div>
