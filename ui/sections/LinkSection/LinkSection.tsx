@@ -1,4 +1,4 @@
-import { Accordion, Title } from "@mantine/core";
+import { Accordion, Container, Title } from "@mantine/core";
 
 import { hubOneConfig } from "../../../HubOneConfig";
 import LinkGroup from "../LinkGroup";
@@ -14,13 +14,19 @@ function AccordionLabel({ title }: { title: string }) {
 function LinkSection() {
   return (
     <div id="linkSection">
-      <Accordion multiple sx={{ width: "60%", margin: "auto" }} initialItem={0}>
-        {hubOneConfig.linkGroups.map((linkGroup) => (
-          <Accordion.Item label={<AccordionLabel title={linkGroup.title} />}>
-            <LinkGroup key={`linkGroup_${linkGroup.title}`} {...linkGroup} />
-          </Accordion.Item>
-        ))}
-      </Accordion>
+      <Container size={800} px={0}>
+        <Accordion
+          multiple
+          initialItem={0}
+          styles={{ content: { padding: 0 } }}
+        >
+          {hubOneConfig.linkGroups.map((linkGroup) => (
+            <Accordion.Item label={<AccordionLabel title={linkGroup.title} />}>
+              <LinkGroup key={`linkGroup_${linkGroup.title}`} {...linkGroup} />
+            </Accordion.Item>
+          ))}
+        </Accordion>
+      </Container>
     </div>
   );
 }
