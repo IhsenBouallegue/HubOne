@@ -1,10 +1,10 @@
-version: '3'
+version: "3"
 
 services:
   app:
     image: hubone-docker-dev
     build: .
-    ports: 
+    ports:
       - 3000:3000
     volumes:
       - ./pages:/app/pages
