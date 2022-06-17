@@ -1,9 +1,17 @@
 version: "3"
 
+volumes:
+  data:
+
 services:
   app:
     image: hubone-docker-dev
+    depends_on:
+      - mongodb
     build: .
+    env_file: ./.env
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/hubone?schema=public
     ports:
       - 3000:3000
     volumes:
@@ -13,3 +21,17 @@ services:
       - ./ui:/app/ui
       - ./theme.ts:/app/theme.ts
       - ./HubOneConfig.ts:/app/HubOneConfig.ts
+      - ./lib:/app/lib
+      - ./prisma:/app/prisma
+
+  db:
+    image: "postgres"
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_DB: "hubone"
+    env_file: ./.env
+    volumes:
+      - data:/var/lib/postgresql/data
