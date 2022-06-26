@@ -1,0 +1,28 @@
+version: "3"
+
+volumes:
+  data:
+
+services:
+  app:
+    image: hubone-docker-production
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/hubone?schema=public
+    build:
+      context: ../
+      dockerfile: ./docker/Dockerfile.production
+    ports:
+      - 3000:3000
+
+  db:
+    image: "postgres"
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_DB: "hubone"
+    volumes:
+      - data:/var/lib/postgresql/data

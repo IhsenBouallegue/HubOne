@@ -11,8 +11,8 @@
     "typecheck": "tsc --noEmit",
     "prettier:check": "prettier --check \"**/*.{ts,tsx}\"",
     "format": "prettier --write \"**/*.{ts,tsx}\"",
-    "up": "docker-compose up --build --force-recreate",
-    "up:prod": "docker-compose -f docker-compose.production.yml up --build --force-recreate"
+    "up": "docker-compose -f docker/docker-compose.yml up --build --force-recreate",
+    "up:prod": "docker-compose -f docker/docker-compose.production.yml up --build --force-recreate"
   },
   "dependencies": {
     "@mantine/core": "^4.1.4",
