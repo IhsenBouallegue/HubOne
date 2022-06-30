@@ -50,40 +50,53 @@ Hub One is a self hosted web app that aims to solve the problem of syncing tools
 <summary>Screenshots</summary>
 <br>
 
-> **[?]**
-> Please provide your screenshots here.
-
-|                               Home Page                               |                               Login Page                               |
-| :-------------------------------------------------------------------: | :--------------------------------------------------------------------: |
-| <img src="docs/images/screenshot.png" title="Home Page" width="100%"> | <img src="docs/images/screenshot.png" title="Login Page" width="100%"> |
+|                                   Hero Section                                    |                                   Links Section                                    |
+| :-------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------: |
+| <img src="docs/images/hubone_screenshot_1.png" title="Hero Section" width="100%"> | <img src="docs/images/hubone_screenshot_2.png" title="Links Section" width="100%"> |
 
 </details>
 
 ### Built With
 
-> **[?]**
-> Please provide the technologies that are used in the project.
+Hub One is built with the amazing [Nextjs]() framework that in turn is based on [React](). It uses [PostgresSQL]() as a database for all the links and bookmarks. With the help of [Prisma]() -an ORM- quereying is a breeze and totally database-agnostic.
+For deployment we used [Docker]() to create containers that are easily deployable (for development and prodcution).
 
-Nextjs
+---
 
 ## Getting Started
 
 ### Prerequisites
 
-> **[?]**
-> What are the project requirements/dependencies?
+To run Hub One locally you will need:
 
-Docker, Node
+- [Nodejs](): A JavaScript runtime.
+- [Yarn](): A package manager for JavaScript.
+- [Docker](): For delivering the software in containers.
+
 ### Installation
 
-> **[?]**
-> Describe how to install and get started with the project.
+```bash
+# Clone the github repo
+git clone https://github.com/IhsenBouallegue/hub-one
+# Install the dependencies
+yarn install
+```
+
+---
 
 ## Usage
 
-> **[?]**
-> How does one go about using it?
-> Provide various use cases and code examples here.
+We have set up yarn scripts that will use docker compose files to launch the Hub One container and the PostgreSQL Database.
+
+```bash
+# Laucnh development containers
+yarn up
+```
+
+```bash
+# Launch production containers
+yarn up:prod
+```
 
 ## Roadmap
 
@@ -114,7 +127,6 @@ Together, we can make Hub One **better**!
 
 First off, thanks for taking the time to contribute! Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make will benefit everybody else and are **greatly appreciated**.
 
-
 Please read [our contribution guidelines](docs/CONTRIBUTING.md), and thank you for being involved!
 
 ## Authors & contributors
@@ -122,7 +134,6 @@ Please read [our contribution guidelines](docs/CONTRIBUTING.md), and thank you f
 The original setup of this repository is by [Ihsen Bouallegue](https://github.com/IhsenBouallegue).
 
 For a full list of all authors and contributors, see [the contributors page](https://github.com/IhsenBouallegue/hub-one/contributors).
-
 
 ## License
 
