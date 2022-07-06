@@ -46,9 +46,8 @@ bookmarks every few weeks if not days? Access all bookmarks from this one page.
 Everything is up to date. No need to clutter your life anymore!
 Hub One is a self hosted web app that aims to solve the problem of syncing tools and useful links between team members. It does one thing really really well!
 
-<details>
-<summary>Screenshots</summary>
-<br>
+
+### Screenshots
 
 |                                   Hero Section                                    |                                   Links Section                                    |
 | :-------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------: |
@@ -58,20 +57,19 @@ Hub One is a self hosted web app that aims to solve the problem of syncing tools
 
 ### Built With
 
-Hub One is built with the amazing [Nextjs]() framework that in turn is based on [React](). It uses [PostgresSQL]() as a database for all the links and bookmarks. With the help of [Prisma]() -an ORM- quereying is a breeze and totally database-agnostic.
-For deployment we used [Docker]() to create containers that are easily deployable (for development and prodcution).
+Hub One is built with the amazing [Nextjs](https://nextjs.org/) framework that in turn is based on [React](https://reactjs.org/). The beautiful UI components are built using [Mantine UI](https://mantine.dev/). It uses [PostgresSQL](https://www.postgresql.org/) as a database for all the links and bookmarks. With the help of [Prisma](https://www.prisma.io/) -a database ORM- quereying is a breeze and totally database-agnostic.
+For deployment we used [Docker](https://www.docker.com/) to create containers that are easily deployable (for development and prodcution).
 
----
 
 ## Getting Started
 
 ### Prerequisites
 
-To run Hub One locally you will need:
+To run Hub One **locally** you will need:
 
-- [Nodejs](): A JavaScript runtime.
-- [Yarn](): A package manager for JavaScript.
-- [Docker](): For delivering the software in containers.
+- [Nodejs](https://nodejs.org/): A JavaScript runtime.
+- [Yarn](https://yarnpkg.com/): A package manager for JavaScript.
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/): For running the containers locally.
 
 ### Installation
 
@@ -82,8 +80,6 @@ git clone https://github.com/IhsenBouallegue/hub-one
 yarn install
 ```
 
----
-
 ## Usage
 
 We have set up yarn scripts that will use docker compose files to launch the Hub One container and the PostgreSQL Database.
@@ -92,7 +88,6 @@ We have set up yarn scripts that will use docker compose files to launch the Hub
 # Laucnh development containers
 yarn up
 ```
-
 ```bash
 # Launch production containers
 yarn up:prod
