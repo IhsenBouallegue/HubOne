@@ -16,7 +16,21 @@ To set up a development environment, please follow these steps:
    git clone https://github.com/IhsenBouallegue/hub-one
    ```
 
-2. TODO
+2. Install the dependencies
+
+   ```sh
+   yarn install
+   ```
+
+3. Start containers (HubOne + PostgreSQL) 
+   - Development
+   ```sh
+   yarn up
+   ```
+   - Local Production Build
+   ```sh
+   yarn up:prod
+   ```
 
 ## Issues and feature requests
 
@@ -36,7 +50,7 @@ Please try to create bug reports that are:
 1. Search our repository for open or closed
    [Pull Requests](https://github.com/IhsenBouallegue/hub-one/pulls)
    that relate to your submission. You don't want to duplicate effort.
-2. Fork the project
+2. Clone the project
 3. Create your feature branch (`git checkout -b feat/amazing_feature`)
 4. Commit your changes (`git commit -m 'feat: add amazing_feature'`) 
 5. Push to the branch (`git push origin feat/amazing_feature`)
