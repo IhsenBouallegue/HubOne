@@ -73,7 +73,7 @@ To run Hub One **locally** you will need:
 
 ### Installation
 
-```bash
+```sh
 # Clone the github repo
 git clone https://github.com/IhsenBouallegue/hub-one
 # Install the dependencies
@@ -84,11 +84,11 @@ yarn install
 
 We have set up yarn scripts that will use docker compose files to launch the Hub One container and the PostgreSQL Database.
 
-```bash
+```sh
 # Laucnh development containers
 yarn up
 ```
-```bash
+```sh
 # Launch production containers
 yarn up:prod
 ```
