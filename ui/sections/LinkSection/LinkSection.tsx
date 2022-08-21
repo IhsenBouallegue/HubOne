@@ -17,15 +17,20 @@ function LinkSection() {
       <Container size={800} px={0}>
         <Accordion
           multiple
-          initialItem={0}
+          defaultValue={[hubOneConfig.linkGroups[0].title]}
           styles={{ content: { padding: 0 } }}
         >
           {hubOneConfig.linkGroups.map((linkGroup) => (
             <Accordion.Item
+              value={linkGroup.title}
               key={`linkGroup_${linkGroup.title}`}
-              label={<AccordionLabel title={linkGroup.title} />}
             >
-              <LinkGroup {...linkGroup} />
+              <Accordion.Control>
+                <AccordionLabel title={linkGroup.title} />
+              </Accordion.Control>
+              <Accordion.Panel>
+                <LinkGroup {...linkGroup} />
+              </Accordion.Panel>
             </Accordion.Item>
           ))}
         </Accordion>

@@ -11,7 +11,7 @@ import {
   Transition,
   useMantineTheme,
 } from "@mantine/core";
-import { useBooleanToggle } from "@mantine/hooks";
+import { useToggle } from "@mantine/hooks";
 import { Link as ScrollLink } from "react-scroll";
 import { X } from "tabler-icons-react";
 
@@ -67,7 +67,7 @@ const useStyles = createStyles((theme) => ({
 export function HeaderBar({ linkGroups, companyLogo }: HubOneConfigType) {
   const { classes } = useStyles();
   const theme = useMantineTheme();
-  const [opened, toggleOpened] = useBooleanToggle(false);
+  const [opened, toggleOpened] = useToggle();
   const items = linkGroups?.map((linkGroup) => {
     return (
       <ScrollLink
