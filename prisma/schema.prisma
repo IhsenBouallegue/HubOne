@@ -10,22 +10,25 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model config {
-  id   Int @default(autoincrement()) @id
-  text String
+model GeneralSettings {
+  id      Int    @id @default(autoincrement())
+  hubName String
+  hubLogo String
 }
 
 model LinkGroup {
-  id  Int @default(autoincrement()) @id
+  id    Int    @id @default(autoincrement())
   title String
+  links Link[]
 }
+
 model Link {
-  id  Int @default(autoincrement()) @id
-  title String
+  id          Int        @id @default(autoincrement())
+  title       String
   description String
-  image String @default("")
-  link String
-  isInternal Boolean @default(false)
+  image       String     @default("")
+  link        String
+  isInternal  Boolean    @default(false)
+  LinkGroup   LinkGroup? @relation(fields: [linkGroupId], references: [id])
+  linkGroupId Int?
 }
-
-
