@@ -1,0 +1,90 @@
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
+
+const run = async () => {
+  // General Settings
+  if ((await prisma.generalSettings.count()) === 0) {
+    await prisma.generalSettings.createMany({
+      data: [
+        {
+          hubName: "Company",
+          hubLogo: "/logo/hubone_logo.svg",
+        },
+      ],
+    });
+  } else {
+    console.log("Default generalSettings already created");
+  }
+  // Link Groups
+  if ((await prisma.linkGroup.count()) === 0) {
+    await prisma.linkGroup.createMany({
+      data: [
+        {
+          title: "Link Group 1",
+        },
+        {
+          title: "Link Group 2",
+        },
+      ],
+    });
+  } else {
+    console.log("Default linkGroup already created");
+  }
+  // Links
+  if ((await prisma.link.count()) === 0) {
+    await prisma.link.createMany({
+      data: [
+        {
+          title: "1. Website",
+          description: "Description",
+          image: undefined,
+          link: "",
+          isInternal: true,
+          linkGroupId: 1,
+        },
+        {
+          title: "2. Website",
+          description: "Description",
+          image: undefined,
+          link: "",
+          isInternal: true,
+          linkGroupId: 1,
+        },
+        {
+          title: "3. Website",
+          description: "Description",
+          image: undefined,
+          link: "",
+          linkGroupId: 1,
+        },
+        {
+          title: "4. Website",
+          description: "Description",
+          image: undefined,
+          link: "",
+          isInternal: true,
+          linkGroupId: 2,
+        },
+        {
+          title: "5. Website",
+          description: "Description",
+          image: undefined,
+          link: "",
+          linkGroupId: 2,
+        },
+      ],
+    });
+  } else {
+    console.log("Default links already created");
+  }
+};
+
+run()
+  .then(async () => {
+    await prisma.$disconnect();
+  })
+  .catch(async (e) => {
+    console.error(e);
+    await prisma.$disconnect();
+    process.exit(1);
+  });
