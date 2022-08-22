@@ -1,6 +1,6 @@
-import { Accordion, Container, Title } from "@mantine/core";
+import { Accordion, Container, Text, Title } from "@mantine/core";
 
-import { hubOneConfig } from "../../../HubOneConfig";
+import type { LinkGroupType } from "../../types/LinkGroupType";
 import LinkGroup from "../LinkGroup";
 
 function AccordionLabel({ title }: { title: string }) {
@@ -11,29 +11,33 @@ function AccordionLabel({ title }: { title: string }) {
   );
 }
 
-function LinkSection() {
+function LinkSection({ linkGroups }: { linkGroups: LinkGroupType[] }) {
   return (
     <div id="linkSection">
       <Container size={800} px={0}>
-        <Accordion
-          multiple
-          defaultValue={[hubOneConfig.linkGroups[0].title]}
-          styles={{ content: { padding: 0 } }}
-        >
-          {hubOneConfig.linkGroups.map((linkGroup) => (
-            <Accordion.Item
-              value={linkGroup.title}
-              key={`linkGroup_${linkGroup.title}`}
-            >
-              <Accordion.Control>
-                <AccordionLabel title={linkGroup.title} />
-              </Accordion.Control>
-              <Accordion.Panel>
-                <LinkGroup {...linkGroup} />
-              </Accordion.Panel>
-            </Accordion.Item>
-          ))}
-        </Accordion>
+        {linkGroups ? (
+          <Accordion
+            multiple
+            defaultValue={[linkGroups[0].title]}
+            styles={{ content: { padding: 0 } }}
+          >
+            {linkGroups.map((linkGroup) => (
+              <Accordion.Item
+                value={linkGroup.title}
+                key={`linkGroup_${linkGroup.title}`}
+              >
+                <Accordion.Control>
+                  <AccordionLabel title={linkGroup.title} />
+                </Accordion.Control>
+                <Accordion.Panel>
+                  <LinkGroup {...linkGroup} />
+                </Accordion.Panel>
+              </Accordion.Item>
+            ))}
+          </Accordion>
+        ) : (
+          <Text align="center">No links to display.</Text>
+        )}
       </Container>
     </div>
   );
