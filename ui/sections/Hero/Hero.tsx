@@ -91,7 +91,6 @@ const useStyles = createStyles((theme) => ({
 
   background: {
     position: "absolute",
-    width: "35vh",
     left: "52%",
     bottom: "0",
   },
@@ -121,7 +120,11 @@ export function Hero({ companyName }: { companyName?: string }) {
   };
   return (
     <div className={classes.wrapper}>
-      <Image src="background.svg" className={classes.background} />
+      <Image
+        src="background.svg"
+        width={"35vh"}
+        className={classes.background}
+      />
       <Container size={800} className={classes.inner}>
         <Title order={1} className={classes.title}>
           The{" "}
