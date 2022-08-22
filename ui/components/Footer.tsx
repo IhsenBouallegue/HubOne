@@ -20,6 +20,7 @@ const useStyles = createStyles((theme) => ({
 
   links: {
     [theme.fn.largerThan("sm")]: {
+      position: "absolute",
       left: "50%",
       transform: "translate(-50%, 0)",
     },
@@ -54,7 +55,12 @@ export function Footer({ links, socialLinks }: FooterProps) {
   return (
     <div className={classes.footer}>
       <div className={classes.inner}>
-        <Image src="/logo/hubone_logo_full.svg" fit="contain" height={36} />
+        <Image
+          src="logo/hubone_logo_full.svg"
+          fit="contain"
+          height={36}
+          width={150}
+        />
 
         <Group className={classes.links}>{items}</Group>
 
