@@ -16,6 +16,7 @@ const useStyles = createStyles((theme) => ({
     boxSizing: "border-box",
     backgroundColor: theme.white,
     marginTop: 40,
+    overflowX: "clip",
   },
 
   inner: {
@@ -23,7 +24,7 @@ const useStyles = createStyles((theme) => ({
     paddingTop: 100,
     paddingBottom: 200,
     margin: "auto",
-    [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
+    [theme.fn.smallerThan("sm")]: {
       paddingBottom: 80,
       paddingTop: 80,
     },
@@ -37,7 +38,7 @@ const useStyles = createStyles((theme) => ({
     padding: 0,
     color: theme.black,
 
-    [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
+    [theme.fn.smallerThan("sm")]: {
       fontSize: 42,
       lineHeight: 1.2,
     },
@@ -47,7 +48,7 @@ const useStyles = createStyles((theme) => ({
     marginTop: 2 * theme.spacing.xl,
     fontSize: 24,
 
-    [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
+    [theme.fn.smallerThan("sm")]: {
       fontSize: 18,
     },
   },
@@ -55,7 +56,7 @@ const useStyles = createStyles((theme) => ({
   controls: {
     marginTop: 3 * theme.spacing.xl,
 
-    [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
+    [theme.fn.smallerThan("sm")]: {
       marginTop: theme.spacing.xl,
     },
   },
@@ -65,7 +66,7 @@ const useStyles = createStyles((theme) => ({
     paddingLeft: 38,
     paddingRight: 38,
 
-    [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
+    [theme.fn.smallerThan("sm")]: {
       paddingLeft: 18,
       paddingRight: 18,
       width: "100%",
@@ -74,7 +75,7 @@ const useStyles = createStyles((theme) => ({
   },
 
   ctaContainer: {
-    [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
+    [theme.fn.smallerThan("sm")]: {
       flex: 1,
     },
   },
@@ -93,6 +94,11 @@ const useStyles = createStyles((theme) => ({
     position: "absolute",
     left: "52%",
     bottom: "0",
+    objectFit: "contain",
+    [theme.fn.smallerThan("sm")]: {
+      bottom: "-35%",
+      left: "45%",
+    },
   },
 }));
 
