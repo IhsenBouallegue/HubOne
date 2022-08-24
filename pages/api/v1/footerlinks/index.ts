@@ -5,7 +5,7 @@ import { prisma } from "../../../../lib/prisma";
 // GET
 async function handleGET(res: NextApiResponse) {
   try {
-    const items = await prisma.link.findMany();
+    const items = await prisma.footerLink.findMany();
     res.json(items);
   } catch (error) {
     res.status(500).json({ error });
@@ -15,7 +15,7 @@ async function handleGET(res: NextApiResponse) {
 // DELETE
 async function handleDELETE(res: NextApiResponse) {
   try {
-    const deletedItem = await prisma.link.deleteMany();
+    const deletedItem = await prisma.footerLink.deleteMany();
     res.json(deletedItem);
   } catch (error) {
     res.status(400).json({ error });
@@ -25,7 +25,7 @@ async function handleDELETE(res: NextApiResponse) {
 // POST
 async function handlePOST(req: NextApiRequest, res: NextApiResponse) {
   try {
-    const createdItem = await prisma.link.create({
+    const createdItem = await prisma.footerLink.create({
       data: { ...req.body },
     });
     res.json(createdItem);
@@ -54,7 +54,7 @@ export default async function handle(
   }
 }
 
-export const config = {
+export const footerLink = {
   api: {
     externalResolver: true,
   },

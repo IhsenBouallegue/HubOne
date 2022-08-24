@@ -5,7 +5,7 @@ import { prisma } from "../../../../lib/prisma";
 // GET
 async function handleGET(itemId: number, res: NextApiResponse) {
   try {
-    const item = await prisma.linkGroup.findUnique({
+    const item = await prisma.footerLink.findUnique({
       where: { id: itemId },
     });
     res.json(item);
@@ -16,7 +16,7 @@ async function handleGET(itemId: number, res: NextApiResponse) {
 // DELETE
 async function handleDELETE(itemId: number, res: NextApiResponse) {
   try {
-    const deletedItem = await prisma.linkGroup.delete({
+    const deletedItem = await prisma.footerLink.delete({
       where: { id: itemId },
     });
     res.json(deletedItem);
@@ -32,7 +32,7 @@ async function handlePATCH(
   res: NextApiResponse
 ) {
   try {
-    const updatedItem = await prisma.linkGroup.update({
+    const updatedItem = await prisma.footerLink.update({
       where: { id: itemId },
       data: { ...req.body },
     });

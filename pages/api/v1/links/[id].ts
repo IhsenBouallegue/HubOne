@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 import { prisma } from "../../../../lib/prisma";
 
-// GET /api/links/:id
+// GET
 async function handleGET(itemId: number, res: NextApiResponse) {
   try {
     const item = await prisma.link.findUnique({
@@ -13,7 +13,7 @@ async function handleGET(itemId: number, res: NextApiResponse) {
     res.json({ error });
   }
 }
-// DELETE /api/links/:id
+// DELETE
 async function handleDELETE(itemId: number, res: NextApiResponse) {
   try {
     const deletedItem = await prisma.link.delete({
@@ -24,7 +24,7 @@ async function handleDELETE(itemId: number, res: NextApiResponse) {
     res.json({ error });
   }
 }
-// PATCH /api/links/:id
+// PATCH
 async function handlePATCH(
   itemId: number,
   req: NextApiRequest,

@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
 import { prisma } from "../../../../lib/prisma";
-// GET /api/linkGroups
+// GET
 async function handleGET(res: NextApiResponse) {
   try {
     const items = await prisma.linkGroup.findMany();
@@ -11,7 +11,7 @@ async function handleGET(res: NextApiResponse) {
   }
 }
 
-// DELETE /api/linkGroups
+// DELETE
 async function handleDELETE(res: NextApiResponse) {
   try {
     const deletedItem = await prisma.linkGroup.deleteMany();
@@ -21,7 +21,7 @@ async function handleDELETE(res: NextApiResponse) {
   }
 }
 
-// POST /api/linkGroups
+// POST
 async function handlePOST(req: NextApiRequest, res: NextApiResponse) {
   try {
     const createdItem = await prisma.linkGroup.create({

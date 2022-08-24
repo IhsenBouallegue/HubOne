@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 import { prisma } from "../../../../lib/prisma";
 
-// GET /api/hubs
+// GET
 async function handleGET(res: NextApiResponse) {
   try {
     const items = await prisma.hub.findMany();
@@ -12,7 +12,7 @@ async function handleGET(res: NextApiResponse) {
   }
 }
 
-// DELETE /api/hubs
+// DELETE
 async function handleDELETE(res: NextApiResponse) {
   try {
     const deletedItem = await prisma.hub.deleteMany();
@@ -22,7 +22,7 @@ async function handleDELETE(res: NextApiResponse) {
   }
 }
 
-// POST /api/hubs
+// POST
 async function handlePOST(req: NextApiRequest, res: NextApiResponse) {
   try {
     const createdItem = await prisma.hub.create({
