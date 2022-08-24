@@ -102,7 +102,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export function Hero({ companyName }: { companyName?: string }) {
+export function Hero({ hubName }: { hubName?: string }) {
   const { classes, cx } = useStyles();
   const theme = useMantineTheme();
   const name = () => {
@@ -118,7 +118,7 @@ export function Hero({ companyName }: { companyName?: string }) {
           }}
           inherit
         >
-          {companyName}
+          {hubName}
         </Text>
         .
       </Text>
@@ -126,11 +126,7 @@ export function Hero({ companyName }: { companyName?: string }) {
   };
   return (
     <div className={classes.wrapper}>
-      <Image
-        src="background.svg"
-        width={"35vh"}
-        className={classes.background}
-      />
+      <Image src="background.svg" width="35vh" className={classes.background} />
       <Container size={800} className={classes.inner}>
         <Title order={1} className={classes.title}>
           The{" "}
@@ -146,7 +142,7 @@ export function Hero({ companyName }: { companyName?: string }) {
             one hub
           </Text>{" "}
           you will ever need
-          {companyName ? name() : "."}
+          {hubName ? name() : "."}
         </Title>
 
         <Text className={classes.description} color="dimmed">

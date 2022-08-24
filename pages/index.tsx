@@ -16,7 +16,7 @@ export default function Home({
   return (
     <div>
       <HeaderBar {...hubOneConfig} />
-      <Hero companyName={hubOneConfig.hub.hubName} />
+      <Hero hubName={hubOneConfig.hub.hubName} />
       <LinkSection {...hubOneConfig} />
       <Footer {...footerLinks} />
     </div>
