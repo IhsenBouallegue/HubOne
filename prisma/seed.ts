@@ -13,6 +13,11 @@ const run = async () => {
           hubLogo: "/logo/hubone_logo.svg",
           hubPath: "",
         },
+        {
+          hubName: "Sub Hub",
+          hubLogo: "/logo/hubone_logo.svg",
+          hubPath: "subhub",
+        },
       ],
     });
   } else {

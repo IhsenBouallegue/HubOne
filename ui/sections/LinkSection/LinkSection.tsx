@@ -21,7 +21,7 @@ function LinkSection({
   return (
     <div id="linkSection">
       <Container size={800} px={0}>
-        {linkGroups ? (
+        {linkGroups && linkGroups.length > 0 ? (
           <Accordion
             multiple
             defaultValue={[linkGroups[0].title]}

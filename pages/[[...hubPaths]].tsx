@@ -1,3 +1,5 @@
+import type { FooterLink, Link, LinkGroup } from "@prisma/client";
+
 import type { HubOneConfigType } from "../HubOneConfig";
 import getFooterLinks from "../lib/requests/footerLink/getFooterLinks";
 import getHubs from "../lib/requests/hub/getHubs";
@@ -27,7 +29,7 @@ export async function getStaticPaths() {
   const hubs = await getHubs();
   const hubPaths = hubs.map((hub) => ({
     params: {
-      hubPath: [hub.hubPath],
+      hubPaths: [hub.hubPath],
     },
   }));
 
@@ -37,13 +39,23 @@ export async function getStaticPaths() {
   };
 }
 
-export async function getStaticProps({ params: { hubPath = "" } }) {
+export async function getStaticProps({ params: { hubPaths = [""] } }) {
   const hubs = await getHubs();
-  const hub = hubs.find((hubElement) => hubElement.hubPath === hubPath);
-  const linkGroups = await getLinkGroups();
-  const links = await getLinks();
-  const footerLinks = await getFooterLinks();
+  const hub = hubs.find((_hub) => _hub.hubPath === hubPaths[0]);
 
+  const linkGroups = await getLinkGroups().then((_linkGroups: LinkGroup[]) => {
+    return _linkGroups.filter((linkGroup) => linkGroup.hubId === hub?.id);
+  });
+
+  const links = await getLinks().then((_links: Link[]) => {
+    return _links.filter((link) => link.hubId === hub?.id);
+  });
+
+  const footerLinks = await getFooterLinks().then(
+    (_footerLinks: FooterLink[]) => {
+      return _footerLinks.filter((footerLink) => footerLink.hubId === hub?.id);
+    }
+  );
   return {
     props: {
       hubOneConfig: {
