@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,22 +7,41 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model config {
-  id   Int @default(autoincrement()) @id
-  text String
+model Hub {
+  id         Int          @id @default(autoincrement())
+  hubName    String
+  hubLogo    String
+  hubPath    String
+  LinkGroup  LinkGroup[]
+  Link       Link[]
+  footerLink FooterLink[]
 }
 
 model LinkGroup {
-  id  Int @default(autoincrement()) @id
+  id    Int    @id @default(autoincrement())
   title String
+  links Link[]
+  hub   Hub    @relation(fields: [hubId], references: [id])
+  hubId Int
 }
+
 model Link {
-  id  Int @default(autoincrement()) @id
-  title String
+  id          Int        @id @default(autoincrement())
+  title       String
   description String
-  image String @default("")
-  link String
-  isInternal Boolean @default(false)
+  image       String     @default("")
+  link        String
+  isInternal  Boolean    @default(false)
+  LinkGroup   LinkGroup? @relation(fields: [linkGroupId], references: [id])
+  linkGroupId Int?
+  hub         Hub        @relation(fields: [hubId], references: [id])
+  hubId       Int
 }
 
-
+model FooterLink {
+  id    Int    @id @default(autoincrement())
+  title String
+  link  String
+  hub   Hub    @relation(fields: [hubId], references: [id])
+  hubId Int
+}

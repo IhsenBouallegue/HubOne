@@ -16,6 +16,7 @@ const useStyles = createStyles((theme) => ({
     boxSizing: "border-box",
     backgroundColor: theme.white,
     marginTop: 40,
+    overflowX: "clip",
   },
 
   inner: {
@@ -23,7 +24,7 @@ const useStyles = createStyles((theme) => ({
     paddingTop: 100,
     paddingBottom: 200,
     margin: "auto",
-    [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
+    [theme.fn.smallerThan("sm")]: {
       paddingBottom: 80,
       paddingTop: 80,
     },
@@ -37,7 +38,7 @@ const useStyles = createStyles((theme) => ({
     padding: 0,
     color: theme.black,
 
-    [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
+    [theme.fn.smallerThan("sm")]: {
       fontSize: 42,
       lineHeight: 1.2,
     },
@@ -47,7 +48,7 @@ const useStyles = createStyles((theme) => ({
     marginTop: 2 * theme.spacing.xl,
     fontSize: 24,
 
-    [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
+    [theme.fn.smallerThan("sm")]: {
       fontSize: 18,
     },
   },
@@ -55,7 +56,7 @@ const useStyles = createStyles((theme) => ({
   controls: {
     marginTop: 3 * theme.spacing.xl,
 
-    [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
+    [theme.fn.smallerThan("sm")]: {
       marginTop: theme.spacing.xl,
     },
   },
@@ -65,7 +66,7 @@ const useStyles = createStyles((theme) => ({
     paddingLeft: 38,
     paddingRight: 38,
 
-    [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
+    [theme.fn.smallerThan("sm")]: {
       paddingLeft: 18,
       paddingRight: 18,
       width: "100%",
@@ -74,7 +75,7 @@ const useStyles = createStyles((theme) => ({
   },
 
   ctaContainer: {
-    [`@media (max-width: ${theme.breakpoints.sm}px)`]: {
+    [theme.fn.smallerThan("sm")]: {
       flex: 1,
     },
   },
@@ -91,13 +92,17 @@ const useStyles = createStyles((theme) => ({
 
   background: {
     position: "absolute",
-    width: "35vh",
     left: "52%",
     bottom: "0",
+    objectFit: "contain",
+    [theme.fn.smallerThan("sm")]: {
+      bottom: "-35%",
+      left: "45%",
+    },
   },
 }));
 
-export function Hero({ companyName }: { companyName?: string }) {
+export function Hero({ hubName }: { hubName?: string }) {
   const { classes, cx } = useStyles();
   const theme = useMantineTheme();
   const name = () => {
@@ -113,7 +118,7 @@ export function Hero({ companyName }: { companyName?: string }) {
           }}
           inherit
         >
-          {companyName}
+          {hubName}
         </Text>
         .
       </Text>
@@ -121,7 +126,7 @@ export function Hero({ companyName }: { companyName?: string }) {
   };
   return (
     <div className={classes.wrapper}>
-      <Image src="background.svg" className={classes.background} />
+      <Image src="background.svg" width="35vh" className={classes.background} />
       <Container size={800} className={classes.inner}>
         <Title order={1} className={classes.title}>
           The{" "}
@@ -137,7 +142,7 @@ export function Hero({ companyName }: { companyName?: string }) {
             one hub
           </Text>{" "}
           you will ever need
-          {companyName ? name() : "."}
+          {hubName ? name() : "."}
         </Title>
 
         <Text className={classes.description} color="dimmed">
