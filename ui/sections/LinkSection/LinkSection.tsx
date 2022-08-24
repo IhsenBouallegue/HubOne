@@ -1,7 +1,7 @@
 import { Accordion, Container, Text, Title } from "@mantine/core";
+import type { Link, LinkGroup } from "@prisma/client";
 
-import type { LinkGroupType } from "../../types/LinkGroupType";
-import LinkGroup from "../LinkGroup";
+import LinkGroupUI from "../LinkGroup";
 
 function AccordionLabel({ title }: { title: string }) {
   return (
@@ -11,7 +11,13 @@ function AccordionLabel({ title }: { title: string }) {
   );
 }
 
-function LinkSection({ linkGroups }: { linkGroups: LinkGroupType[] }) {
+function LinkSection({
+  linkGroups,
+  links,
+}: {
+  linkGroups: LinkGroup[];
+  links: Link[];
+}) {
   return (
     <div id="linkSection">
       <Container size={800} px={0}>
@@ -30,7 +36,11 @@ function LinkSection({ linkGroups }: { linkGroups: LinkGroupType[] }) {
                   <AccordionLabel title={linkGroup.title} />
                 </Accordion.Control>
                 <Accordion.Panel>
-                  <LinkGroup {...linkGroup} />
+                  <LinkGroupUI
+                    links={links.filter(
+                      (link) => link.linkGroupId === linkGroup.id
+                    )}
+                  />
                 </Accordion.Panel>
               </Accordion.Item>
             ))}

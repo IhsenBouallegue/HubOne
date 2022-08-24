@@ -1,7 +1,7 @@
 import { Container, createStyles, Grid } from "@mantine/core";
+import type { Link } from "@prisma/client";
 
 import LinkCard from "../../components/LinkCard";
-import type { LinkGroupType } from "../../types/LinkGroupType";
 
 const useStyles = createStyles((theme) => ({
   inner: {
@@ -15,7 +15,7 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-function LinkGroup({ links }: LinkGroupType) {
+function LinkGroup({ links }: { links: Link[] }) {
   const { classes } = useStyles();
 
   return (

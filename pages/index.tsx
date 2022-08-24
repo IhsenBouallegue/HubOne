@@ -1,5 +1,8 @@
 import type { HubOneConfigType } from "../HubOneConfig";
 import { footerLinks } from "../HubOneConfig";
+import getGeneralSettings from "../lib/requests/generalSettings/getGeneralSettings";
+import getLinkGroups from "../lib/requests/linkGroups/getLinkGroups";
+import getLinks from "../lib/requests/links/getLinks";
 import { Footer } from "../ui/components/Footer";
 import { HeaderBar } from "../ui/components/Header";
 import Hero from "../ui/sections/Hero";
@@ -13,7 +16,7 @@ export default function Home({
   return (
     <div>
       <HeaderBar {...hubOneConfig} />
-      <Hero companyName={hubOneConfig.companyName} />
+      <Hero companyName={hubOneConfig.generalSettings.hubName} />
       <LinkSection {...hubOneConfig} />
       <Footer {...footerLinks} />
     </div>
@@ -21,12 +24,16 @@ export default function Home({
 }
 
 export async function getStaticProps() {
+  const generalSettings = await getGeneralSettings();
+  const linkGroups = await getLinkGroups();
+  const links = await getLinks();
+
   return {
     props: {
       hubOneConfig: {
-        companyLogo: "/logo/hubone_logo.svg",
-        companyName: "company",
-        linkGroups: null,
+        generalSettings: generalSettings[0],
+        linkGroups,
+        links,
       },
     },
   };

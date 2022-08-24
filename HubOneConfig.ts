@@ -1,10 +1,12 @@
+import type { GeneralSettings, Link, LinkGroup } from "@prisma/client";
+
 import type { FooterProps } from "./ui/components/Footer";
 import type { LinkGroupType } from "./ui/types/LinkGroupType";
 
 export interface HubOneConfigType {
-  companyLogo: string;
-  companyName: string;
-  linkGroups: LinkGroupType[];
+  generalSettings: GeneralSettings;
+  links: Link[];
+  linkGroups: LinkGroup[];
 }
 
 const linkGroup0: LinkGroupType = {
@@ -75,11 +77,11 @@ const linkGroup1: LinkGroupType = {
   ],
 };
 
-export const hubOneConfig: HubOneConfigType = {
-  companyLogo: "/logo/hubone_logo.svg",
-  companyName: "company",
-  linkGroups: [linkGroup0, linkGroup1],
-};
+// export const hubOneConfig: HubOneConfigType = {
+//   companyLogo: "/logo/hubone_logo.svg",
+//   companyName: "company",
+//   linkGroups: [linkGroup0, linkGroup1],
+// };
 
 export const footerLinks: FooterProps = {
   links: [
@@ -90,4 +92,4 @@ export const footerLinks: FooterProps = {
   socialLinks: { instagram: "/", twitter: "/", youtube: "/" },
 };
 
-export default hubOneConfig;
+// export default hubOneConfig;
