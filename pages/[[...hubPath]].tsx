@@ -23,8 +23,23 @@ export default function Home({
   );
 }
 
-export async function getStaticProps() {
+export async function getStaticPaths() {
   const hubs = await getHubs();
+  const hubPaths = hubs.map((hub) => ({
+    params: {
+      hubPath: [hub.hubPath],
+    },
+  }));
+
+  return {
+    paths: hubPaths,
+    fallback: false,
+  };
+}
+
+export async function getStaticProps({ params: { hubPath = "" } }) {
+  const hubs = await getHubs();
+  const hub = hubs.find((hubElement) => hubElement.hubPath === hubPath);
   const linkGroups = await getLinkGroups();
   const links = await getLinks();
   const footerLinks = await getFooterLinks();
@@ -32,7 +47,7 @@ export async function getStaticProps() {
   return {
     props: {
       hubOneConfig: {
-        hub: hubs[0],
+        hub,
         linkGroups,
         links,
         footerLinks,

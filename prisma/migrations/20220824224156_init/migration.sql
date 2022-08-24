@@ -3,7 +3,7 @@ CREATE TABLE "Hub" (
     "id" SERIAL NOT NULL,
     "hubName" TEXT NOT NULL,
     "hubLogo" TEXT NOT NULL,
-    "hubLink" TEXT NOT NULL,
+    "hubPath" TEXT NOT NULL,
 
     CONSTRAINT "Hub_pkey" PRIMARY KEY ("id")
 );

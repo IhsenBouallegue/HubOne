@@ -11,12 +11,12 @@ const run = async () => {
         {
           hubName: "Company",
           hubLogo: "/logo/hubone_logo.svg",
-          hubLink: "/",
+          hubPath: "",
         },
       ],
     });
   } else {
-    console.log("Default hub already created");
+    console.log("Default hubs already created");
   }
   // Link Groups
   if ((await prisma.linkGroup.count()) === 0) {
@@ -33,7 +33,7 @@ const run = async () => {
       ],
     });
   } else {
-    console.log("Default linkGroup already created");
+    console.log("Default linkGroups already created");
   }
   // Links
   if ((await prisma.link.count()) === 0) {
@@ -109,7 +109,7 @@ const run = async () => {
       ],
     });
   } else {
-    console.log("Default linkGroup already created");
+    console.log("Default footerLinks already created");
   }
 };
 
