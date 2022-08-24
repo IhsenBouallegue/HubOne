@@ -1,8 +1,8 @@
 import type { HubOneConfigType } from "../HubOneConfig";
 import { footerLinks } from "../HubOneConfig";
-import getHub from "../lib/requests/hub/getHub";
-import getLinkGroups from "../lib/requests/linkGroups/getLinkGroups";
-import getLinks from "../lib/requests/links/getLinks";
+import getHubs from "../lib/requests/hub/getHubs";
+import getLinks from "../lib/requests/link/getLinks";
+import getLinkGroups from "../lib/requests/linkGroup/getLinkGroups";
 import { Footer } from "../ui/components/Footer";
 import { HeaderBar } from "../ui/components/Header";
 import Hero from "../ui/sections/Hero";
@@ -24,14 +24,14 @@ export default function Home({
 }
 
 export async function getStaticProps() {
-  const hub = await getHub();
+  const hubs = await getHubs();
   const linkGroups = await getLinkGroups();
   const links = await getLinks();
 
   return {
     props: {
       hubOneConfig: {
-        hub: hub[0],
+        hub: hubs[0],
         linkGroups,
         links,
       },
