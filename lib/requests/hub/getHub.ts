@@ -1,9 +1,9 @@
-import type { GeneralSettings } from "@prisma/client";
+import type { Hub } from "@prisma/client";
 
 import axios from "../../axios";
 
 export default async () => {
-  const { data } = await axios.get<GeneralSettings[]>("generalsettings", {
+  const { data } = await axios.get<Hub[]>("hub", {
     headers: {
       Accept: "application/json",
     },

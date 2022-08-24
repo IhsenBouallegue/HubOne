@@ -1,19 +1,22 @@
+/* eslint-disable no-console */
 import { PrismaClient } from "@prisma/client";
+
 const prisma = new PrismaClient();
 
 const run = async () => {
-  // General Settings
-  if ((await prisma.generalSettings.count()) === 0) {
-    await prisma.generalSettings.createMany({
+  // Hub
+  if ((await prisma.hub.count()) === 0) {
+    await prisma.hub.createMany({
       data: [
         {
           hubName: "Company",
           hubLogo: "/logo/hubone_logo.svg",
+          hubLink: "/",
         },
       ],
     });
   } else {
-    console.log("Default generalSettings already created");
+    console.log("Default hub already created");
   }
   // Link Groups
   if ((await prisma.linkGroup.count()) === 0) {
@@ -21,9 +24,11 @@ const run = async () => {
       data: [
         {
           title: "Link Group 1",
+          hubId: 1,
         },
         {
           title: "Link Group 2",
+          hubId: 1,
         },
       ],
     });
@@ -41,6 +46,7 @@ const run = async () => {
           link: "",
           isInternal: true,
           linkGroupId: 1,
+          hubId: 1,
         },
         {
           title: "2. Website",
@@ -49,6 +55,7 @@ const run = async () => {
           link: "",
           isInternal: true,
           linkGroupId: 1,
+          hubId: 1,
         },
         {
           title: "3. Website",
@@ -56,6 +63,7 @@ const run = async () => {
           image: undefined,
           link: "",
           linkGroupId: 1,
+          hubId: 1,
         },
         {
           title: "4. Website",
@@ -64,6 +72,7 @@ const run = async () => {
           link: "",
           isInternal: true,
           linkGroupId: 2,
+          hubId: 1,
         },
         {
           title: "5. Website",
@@ -71,11 +80,36 @@ const run = async () => {
           image: undefined,
           link: "",
           linkGroupId: 2,
+          hubId: 1,
         },
       ],
     });
   } else {
     console.log("Default links already created");
+  }
+  // FooterLinks
+  if ((await prisma.footerLink.count()) === 0) {
+    await prisma.footerLink.createMany({
+      data: [
+        {
+          title: "Website",
+          link: "/",
+          hubId: 1,
+        },
+        {
+          title: "About",
+          link: "/",
+          hubId: 1,
+        },
+        {
+          title: "Contact",
+          link: "/",
+          hubId: 1,
+        },
+      ],
+    });
+  } else {
+    console.log("Default linkGroup already created");
   }
 };
 

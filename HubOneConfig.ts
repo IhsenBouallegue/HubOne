@@ -1,10 +1,10 @@
-import type { GeneralSettings, Link, LinkGroup } from "@prisma/client";
+import type { Hub, Link, LinkGroup } from "@prisma/client";
 
 import type { FooterProps } from "./ui/components/Footer";
 import type { LinkGroupType } from "./ui/types/LinkGroupType";
 
 export interface HubOneConfigType {
-  generalSettings: GeneralSettings;
+  hub: Hub;
   links: Link[];
   linkGroups: LinkGroup[];
 }
