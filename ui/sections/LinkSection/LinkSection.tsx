@@ -1,7 +1,7 @@
-import { Accordion, Container, Title } from "@mantine/core";
+import { Accordion, Container, Text, Title } from "@mantine/core";
+import type { Link, LinkGroup } from "@prisma/client";
 
-import { hubOneConfig } from "../../../HubOneConfig";
-import LinkGroup from "../LinkGroup";
+import LinkGroupUI from "../LinkGroup";
 
 function AccordionLabel({ title }: { title: string }) {
   return (
@@ -11,24 +11,43 @@ function AccordionLabel({ title }: { title: string }) {
   );
 }
 
-function LinkSection() {
+function LinkSection({
+  linkGroups,
+  links,
+}: {
+  linkGroups: LinkGroup[];
+  links: Link[];
+}) {
   return (
     <div id="linkSection">
       <Container size={800} px={0}>
-        <Accordion
-          multiple
-          initialItem={0}
-          styles={{ content: { padding: 0 } }}
-        >
-          {hubOneConfig.linkGroups.map((linkGroup) => (
-            <Accordion.Item
-              key={`linkGroup_${linkGroup.title}`}
-              label={<AccordionLabel title={linkGroup.title} />}
-            >
-              <LinkGroup {...linkGroup} />
-            </Accordion.Item>
-          ))}
-        </Accordion>
+        {linkGroups && linkGroups.length > 0 ? (
+          <Accordion
+            multiple
+            defaultValue={[linkGroups[0].title]}
+            styles={{ content: { padding: 0 } }}
+          >
+            {linkGroups.map((linkGroup) => (
+              <Accordion.Item
+                value={linkGroup.title}
+                key={`linkGroup_${linkGroup.title}`}
+              >
+                <Accordion.Control>
+                  <AccordionLabel title={linkGroup.title} />
+                </Accordion.Control>
+                <Accordion.Panel>
+                  <LinkGroupUI
+                    links={links.filter(
+                      (link) => link.linkGroupId === linkGroup.id
+                    )}
+                  />
+                </Accordion.Panel>
+              </Accordion.Item>
+            ))}
+          </Accordion>
+        ) : (
+          <Text align="center">No links to display.</Text>
+        )}
       </Container>
     </div>
   );

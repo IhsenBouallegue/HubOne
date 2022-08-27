@@ -1,5 +1,5 @@
-import { createStyles, Anchor, Group, ActionIcon, Image } from "@mantine/core";
-import { BrandTwitter, BrandYoutube, BrandInstagram } from "tabler-icons-react";
+import { createStyles, Anchor, Group, Image } from "@mantine/core";
+import type { FooterLink } from "@prisma/client";
 
 const useStyles = createStyles((theme) => ({
   footer: {
@@ -20,6 +20,7 @@ const useStyles = createStyles((theme) => ({
 
   links: {
     [theme.fn.largerThan("sm")]: {
+      position: "absolute",
       left: "50%",
       transform: "translate(-50%, 0)",
     },
@@ -31,65 +32,34 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export interface FooterProps {
-  links: { link: string; label: string }[];
-  socialLinks?: { instagram?: string; twitter?: string; youtube?: string };
-}
-
-export function Footer({ links, socialLinks }: FooterProps) {
+export function Footer({ footerLinks }: { footerLinks: FooterLink[] }) {
   const { classes } = useStyles();
-  const items = links.map((link) => (
+  const items = footerLinks.map(({ title, link }) => (
     <Anchor<"a">
       color="dimmed"
-      key={`footer_link_${link.label}`}
-      href={link.link}
+      key={`footer_link_${title}`}
+      href={link}
       sx={{ lineHeight: 1 }}
       onClick={(event) => event.preventDefault()}
       size="sm"
     >
-      {link.label}
+      {title}
     </Anchor>
   ));
 
   return (
     <div className={classes.footer}>
       <div className={classes.inner}>
-        <Image src="/logo/hubone_logo_full.svg" fit="contain" height={36} />
-
+        <Image
+          src="logo/hubone_logo_full.svg"
+          fit="contain"
+          height={36}
+          width={150}
+        />
         <Group className={classes.links}>{items}</Group>
-
-        {socialLinks && (
-          <Group spacing={0} position="right" noWrap>
-            {socialLinks.twitter && (
-              <ActionIcon<"a">
-                component="a"
-                href={socialLinks.twitter}
-                size="lg"
-              >
-                <BrandTwitter size={18} />
-              </ActionIcon>
-            )}
-            {socialLinks.youtube && (
-              <ActionIcon<"a">
-                component="a"
-                href={socialLinks.youtube}
-                size="lg"
-              >
-                <BrandYoutube size={18} />
-              </ActionIcon>
-            )}
-            {socialLinks.instagram && (
-              <ActionIcon<"a">
-                component="a"
-                href={socialLinks.instagram}
-                size="lg"
-              >
-                <BrandInstagram size={18} />
-              </ActionIcon>
-            )}
-          </Group>
-        )}
       </div>
     </div>
   );
 }
+
+export default Footer;

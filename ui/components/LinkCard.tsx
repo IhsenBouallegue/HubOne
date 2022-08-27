@@ -6,10 +6,9 @@ import {
   Text,
   useMantineTheme,
 } from "@mantine/core";
+import type { Link } from "@prisma/client";
 import { motion } from "framer-motion";
 import { Lock } from "tabler-icons-react";
-
-import type { LinkType } from "../types/LinkType";
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -39,7 +38,7 @@ function LinkCard({
   image = "./logo/hubone_logo.svg",
   link,
   isInternal = false,
-}: LinkType) {
+}: Link) {
   const { classes } = useStyles();
   const theme = useMantineTheme();
 
@@ -70,7 +69,11 @@ function LinkCard({
                 color={theme.colors.brand[5]}
               />
             )}
-            <Image className={classes.image} src={image} alt={title} />
+            <Image
+              className={classes.image}
+              src={image || "./logo/hubone_logo.svg"}
+              alt={title}
+            />
           </Group>
         </Card.Section>
 
