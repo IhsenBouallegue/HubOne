@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "../../../../lib/prisma";
 
 // GET
-async function handleGET(res: NextApiResponse) {
+export async function handleGET(res: NextApiResponse) {
   try {
     const items = await prisma.hub.findMany();
     res.json(items);
