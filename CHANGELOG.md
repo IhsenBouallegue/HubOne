@@ -1,3 +1,18 @@
+# [2.0.0](https://github.com/IhsenBouallegue/hub-one/compare/v1.0.0...v2.0.0) (2022-08-27)
+
+
+### Bug Fixes
+
+* fix production database deployment and url ([#19](https://github.com/IhsenBouallegue/hub-one/issues/19)) ([907e8b3](https://github.com/IhsenBouallegue/hub-one/commit/907e8b3ca3a4f93779132ff13bf09360c2029f0c))
+
+
+* feat!: store and fetch config from database (#18) ([0297516](https://github.com/IhsenBouallegue/hub-one/commit/0297516a466994ab03ca108ec7d254c16699d3e3)), closes [#18](https://github.com/IhsenBouallegue/hub-one/issues/18)
+
+
+### BREAKING CHANGES
+
+* reliance on data storage in file has been removed.
+
 # 1.0.0 (2022-08-14)
 
 
