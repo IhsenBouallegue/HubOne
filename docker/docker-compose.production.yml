@@ -10,6 +10,7 @@ services:
       - db
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/hubone?schema=public
+      - NEXT_PUBLIC_SERVER_BASE_URL=http://localhost:3000/
     build:
       context: ../
       dockerfile: ./docker/Dockerfile.production

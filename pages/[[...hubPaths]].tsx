@@ -1,10 +1,7 @@
 import type { FooterLink, Link, LinkGroup } from "@prisma/client";
 
 import type { HubOneConfigType } from "../HubOneConfig";
-import getFooterLinks from "../lib/requests/footerLink/getFooterLinks";
-import getHubs from "../lib/requests/hub/getHubs";
-import getLinks from "../lib/requests/link/getLinks";
-import getLinkGroups from "../lib/requests/linkGroup/getLinkGroups";
+import { prisma } from "../lib/prisma";
 import { Footer } from "../ui/components/Footer";
 import { HeaderBar } from "../ui/components/Header";
 import Hero from "../ui/sections/Hero";
@@ -15,6 +12,8 @@ export default function Home({
 }: {
   hubOneConfig: HubOneConfigType;
 }) {
+  // eslint-disable-next-line no-console
+  console.log(hubOneConfig.hub);
   return (
     <div>
       <HeaderBar {...hubOneConfig} />
@@ -26,7 +25,7 @@ export default function Home({
 }
 
 export async function getStaticPaths() {
-  const hubs = await getHubs();
+  const hubs = await prisma.hub.findMany();
   const hubPaths = hubs.map((hub) => ({
     params: {
       hubPaths: [hub.hubPath],
@@ -40,22 +39,25 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params: { hubPaths = [""] } }) {
-  const hubs = await getHubs();
+  const hubs = await prisma.hub.findMany();
+
   const hub = hubs.find((_hub) => _hub.hubPath === hubPaths[0]);
 
-  const linkGroups = await getLinkGroups().then((_linkGroups: LinkGroup[]) => {
-    return _linkGroups.filter((linkGroup) => linkGroup.hubId === hub?.id);
-  });
+  const linkGroups = await prisma.linkGroup
+    .findMany()
+    .then((_linkGroups: LinkGroup[]) => {
+      return _linkGroups.filter((linkGroup) => linkGroup.hubId === hub?.id);
+    });
 
-  const links = await getLinks().then((_links: Link[]) => {
+  const links = await prisma.link.findMany().then((_links: Link[]) => {
     return _links.filter((link) => link.hubId === hub?.id);
   });
 
-  const footerLinks = await getFooterLinks().then(
-    (_footerLinks: FooterLink[]) => {
+  const footerLinks = await prisma.footerLink
+    .findMany()
+    .then((_footerLinks: FooterLink[]) => {
       return _footerLinks.filter((footerLink) => footerLink.hubId === hub?.id);
-    }
-  );
+    });
   return {
     props: {
       hubOneConfig: {
