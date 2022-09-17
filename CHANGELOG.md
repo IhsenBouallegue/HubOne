@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/IhsenBouallegue/hub-one/compare/v2.0.0...v2.0.1) (2022-09-17)
+
+
+### Bug Fixes
+
+* use client side rendering ([de2a461](https://github.com/IhsenBouallegue/hub-one/commit/de2a4615bd65362f2a383d520a3eeb7f26ae9a22))
+
 # [2.0.0](https://github.com/IhsenBouallegue/hub-one/compare/v1.0.0...v2.0.0) (2022-08-27)
 
 
