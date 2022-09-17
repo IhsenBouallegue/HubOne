@@ -11,7 +11,7 @@ model Hub {
   id         Int          @id @default(autoincrement())
   hubName    String
   hubLogo    String
-  hubPath    String
+  hubPath    String       @unique
   LinkGroup  LinkGroup[]
   Link       Link[]
   footerLink FooterLink[]

@@ -1,71 +1,56 @@
-import type { FooterLink, Link, LinkGroup } from "@prisma/client";
+import { Text, Title } from "@mantine/core";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 import type { HubOneConfigType } from "../HubOneConfig";
-import { prisma } from "../lib/prisma";
+import { getFooterLinksByHubId } from "../lib/requests/footerLink/getFooterLinksByHubId";
+import { getHub } from "../lib/requests/hub/getHub";
+import { getLinksByHubId } from "../lib/requests/link/getLinksByHubId";
+import { getLinkGroupsByHubId } from "../lib/requests/linkGroup/getLinkGroupsByHubId";
 import { Footer } from "../ui/components/Footer";
 import { HeaderBar } from "../ui/components/Header";
 import Hero from "../ui/sections/Hero";
 import LinkSection from "../ui/sections/LinkSection";
 
-export default function Home({
-  hubOneConfig,
-}: {
-  hubOneConfig: HubOneConfigType;
-}) {
-  // eslint-disable-next-line no-console
-  console.log(hubOneConfig.hub);
+export default function Home() {
+  const router = useRouter();
+  const [hubOneConfig, setHubOneConfig] = useState<HubOneConfigType>(
+    {} as HubOneConfigType
+  );
+  // use `|| [""]` for root hub that has no set path by the router
+  const hubPaths = (router.query.hubPaths as string[]) || [""];
+  useEffect(() => {
+    if (!router.isReady) return;
+    const getData = async () => {
+      const hub = await getHub(hubPaths[0]);
+      if (hub) {
+        setHubOneConfig({
+          hub,
+          linkGroups: await getLinkGroupsByHubId(hub.id),
+          links: await getLinksByHubId(hub.id),
+          footerLinks: await getFooterLinksByHubId(hub.id),
+        } as HubOneConfigType);
+      }
+    };
+    getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router.isReady]);
+
   return (
     <div>
-      <HeaderBar {...hubOneConfig} />
-      <Hero hubName={hubOneConfig.hub.hubName} />
-      <LinkSection {...hubOneConfig} />
-      <Footer footerLinks={hubOneConfig.footerLinks} />
+      {hubOneConfig.hub ? (
+        <>
+          <HeaderBar {...hubOneConfig} />
+          <Hero hubName={hubOneConfig.hub.hubName} />
+          <LinkSection {...hubOneConfig} />
+          <Footer footerLinks={hubOneConfig.footerLinks} />
+        </>
+      ) : (
+        <>
+          <Title> No Hub was found</Title>
+          <Text> Please make sure you entered a valid Hub</Text>
+        </>
+      )}
     </div>
   );
-}
-
-export async function getStaticPaths() {
-  const hubs = await prisma.hub.findMany();
-  const hubPaths = hubs.map((hub) => ({
-    params: {
-      hubPaths: [hub.hubPath],
-    },
-  }));
-
-  return {
-    paths: hubPaths,
-    fallback: false,
-  };
-}
-
-export async function getStaticProps({ params: { hubPaths = [""] } }) {
-  const hubs = await prisma.hub.findMany();
-
-  const hub = hubs.find((_hub) => _hub.hubPath === hubPaths[0]);
-
-  const linkGroups = await prisma.linkGroup
-    .findMany()
-    .then((_linkGroups: LinkGroup[]) => {
-      return _linkGroups.filter((linkGroup) => linkGroup.hubId === hub?.id);
-    });
-
-  const links = await prisma.link.findMany().then((_links: Link[]) => {
-    return _links.filter((link) => link.hubId === hub?.id);
-  });
-
-  const footerLinks = await prisma.footerLink
-    .findMany()
-    .then((_footerLinks: FooterLink[]) => {
-      return _footerLinks.filter((footerLink) => footerLink.hubId === hub?.id);
-    });
-  return {
-    props: {
-      hubOneConfig: {
-        hub,
-        linkGroups,
-        links,
-        footerLinks,
-      },
-    },
-  };
 }

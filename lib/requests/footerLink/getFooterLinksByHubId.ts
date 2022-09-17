@@ -2,8 +2,8 @@ import type { FooterLink } from "@prisma/client";
 
 import axios from "../../axios";
 
-export const getFooterLinks = async () => {
-  const { data } = await axios.get<FooterLink[]>("footerlinks", {
+export const getFooterLinksByHubId = async (hubId: number) => {
+  const { data } = await axios.get<FooterLink[]>(`footerlinks?hubId=${hubId}`, {
     headers: {
       Accept: "application/json",
     },

@@ -1,10 +1,16 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
 import { prisma } from "../../../../lib/prisma";
+
 // GET
-async function handleGET(res: NextApiResponse) {
+async function handleGET(res: NextApiResponse, hubId: number) {
   try {
-    const items = await prisma.linkGroup.findMany();
+    let items;
+    if (hubId && !Number.isNaN(hubId)) {
+      items = await prisma.linkGroup.findMany({ where: { hubId } });
+    } else {
+      items = await prisma.linkGroup.findMany();
+    }
     res.json(items);
   } catch (error) {
     res.status(500).json({ error });
@@ -37,9 +43,10 @@ export default async function handle(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  const hubId = Number(req.query.hubId);
   switch (req.method) {
     case "GET":
-      handleGET(res);
+      handleGET(res, hubId);
       break;
     case "DELETE":
       handleDELETE(res);
