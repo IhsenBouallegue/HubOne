@@ -2,6 +2,7 @@ import { MantineProvider } from "@mantine/core";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 
+import { HubOneContextProvider } from "../lib/context/HubOneContext";
 import "../styles/globals.css";
 import theme from "../theme";
 
@@ -19,7 +20,9 @@ export default function App(props: AppProps) {
       </Head>
 
       <MantineProvider withGlobalStyles withNormalizeCSS theme={theme}>
-        <Component {...pageProps} />
+        <HubOneContextProvider>
+          <Component {...pageProps} />
+        </HubOneContextProvider>
       </MantineProvider>
     </>
   );
