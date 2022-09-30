@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 
-type Settings = {
+export type Settings = {
   editMode: boolean;
 };
 

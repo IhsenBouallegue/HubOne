@@ -1,4 +1,5 @@
 import {
+  ActionIcon,
   Burger,
   Button,
   Container,
@@ -13,9 +14,10 @@ import {
 } from "@mantine/core";
 import { useToggle } from "@mantine/hooks";
 import { Link as ScrollLink } from "react-scroll";
-import { X } from "tabler-icons-react";
+import { X, Settings } from "tabler-icons-react";
 
 import type { HubOneConfigType } from "../../HubOneConfig";
+import { useHubOneContext } from "../../lib/context/HubOneContext";
 
 const HEADER_HEIGHT = 60;
 
@@ -68,6 +70,7 @@ export function HeaderBar({ linkGroups, hub }: HubOneConfigType) {
   const { classes } = useStyles();
   const theme = useMantineTheme();
   const [opened, toggleOpened] = useToggle();
+  const { editMode } = useHubOneContext();
   const items = linkGroups?.map((linkGroup) => {
     return (
       <ScrollLink
@@ -127,7 +130,16 @@ export function HeaderBar({ linkGroups, hub }: HubOneConfigType) {
             </Paper>
           )}
         </Transition>
-
+        {editMode && (
+          <ActionIcon
+            ml="auto"
+            mr="12px"
+            variant="light"
+            color={theme.colorScheme}
+          >
+            <Settings size={30} />
+          </ActionIcon>
+        )}
         <ScrollLink to="linkSection" smooth="easeInOutQuint" duration={1000}>
           <Button
             variant="gradient"
