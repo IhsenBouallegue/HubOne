@@ -183,7 +183,7 @@ export function Hero({ hubName }: { hubName?: string }) {
             color="dark"
             onClick={() => setSettings({ editMode: !editMode } as Settings)}
           >
-            Add Yours
+            {editMode ? "View Mode" : "Edit Mode"}
           </Button>
         </Group>
       </Container>

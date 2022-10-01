@@ -1,6 +1,8 @@
+import type { AccordionControlProps } from "@mantine/core";
 import {
   Accordion,
   ActionIcon,
+  Box,
   Container,
   Group,
   Text,
@@ -15,30 +17,41 @@ import { useHubOneContext } from "../../../lib/context/HubOneContext";
 import AddLinkGroupCard from "../../components/AddLinkGroupCard";
 import LinkGroupUI from "../LinkGroup";
 
+function AccordionControl(props: AccordionControlProps) {
+  const theme = useMantineTheme();
+  const { editMode } = useHubOneContext();
+
+  return (
+    <Box sx={{ display: "flex", alignItems: "center" }}>
+      <Accordion.Control {...props} />
+      {editMode && (
+        <ActionIcon
+          mx={12}
+          onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+            e.stopPropagation();
+          }}
+        >
+          <Trash strokeWidth={2} color={theme.colors.secondary[4]} />
+        </ActionIcon>
+      )}
+    </Box>
+  );
+}
+
 function AccordionLabel({ title }: { title: string }) {
   const { editMode } = useHubOneContext();
-  const theme = useMantineTheme();
 
   return (
     <Group>
       {editMode ? (
-        <>
-          <TextInput
-            defaultValue={title}
-            id={title}
-            size="xl"
-            onClick={(e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
-              e.stopPropagation();
-            }}
-          />
-          <ActionIcon
-            onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-              e.stopPropagation();
-            }}
-          >
-            <Trash strokeWidth={2} color={theme.colors.secondary[4]} />
-          </ActionIcon>
-        </>
+        <TextInput
+          defaultValue={title}
+          id={title}
+          size="lg"
+          onClick={(e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
+            e.stopPropagation();
+          }}
+        />
       ) : (
         <Title order={2} id={title}>
           {title}
@@ -72,9 +85,9 @@ function LinkSection({
                   value={linkGroup.title}
                   key={`linkGroup_${linkGroup.title}`}
                 >
-                  <Accordion.Control>
+                  <AccordionControl>
                     <AccordionLabel title={linkGroup.title} />
-                  </Accordion.Control>
+                  </AccordionControl>
                   <Accordion.Panel>
                     <LinkGroupUI
                       links={links.filter(

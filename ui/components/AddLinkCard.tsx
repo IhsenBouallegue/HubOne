@@ -1,6 +1,9 @@
 import { Card, createStyles, Stack, Text } from "@mantine/core";
 import { motion } from "framer-motion";
+import { useState } from "react";
 import { Plus } from "tabler-icons-react";
+
+import AddLinkModal from "./LinkModals";
 
 const useStyles = createStyles(() => ({
   card: {
@@ -14,6 +17,7 @@ const useStyles = createStyles(() => ({
 
 function EditLinkCard() {
   const { classes } = useStyles();
+  const [opened, setOpened] = useState(false);
 
   return (
     <motion.div
@@ -26,7 +30,12 @@ function EditLinkCard() {
       whileTap={{ scale: 0.94 }}
       className={classes.card}
     >
-      <Card className={classes.card} shadow="sm" p="lg">
+      <Card
+        className={classes.card}
+        shadow="sm"
+        p="lg"
+        onClick={() => setOpened(true)}
+      >
         <Stack
           align="center"
           justify="center"
@@ -36,6 +45,7 @@ function EditLinkCard() {
           <Text align="center">Add Link</Text>
         </Stack>
       </Card>
+      <AddLinkModal opened={opened} setOpened={setOpened} />
     </motion.div>
   );
 }

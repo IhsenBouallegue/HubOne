@@ -13,11 +13,15 @@ import {
   useMantineTheme,
 } from "@mantine/core";
 import { useToggle } from "@mantine/hooks";
+import { useState } from "react";
 import { Link as ScrollLink } from "react-scroll";
-import { X, Settings } from "tabler-icons-react";
+import { X, Settings, Plus } from "tabler-icons-react";
 
 import type { HubOneConfigType } from "../../HubOneConfig";
 import { useHubOneContext } from "../../lib/context/HubOneContext";
+
+import EditHubModal from "./HubModals";
+import AddHubModal from "./HubModals/AddHubModal";
 
 const HEADER_HEIGHT = 60;
 
@@ -71,6 +75,8 @@ export function HeaderBar({ linkGroups, hub }: HubOneConfigType) {
   const theme = useMantineTheme();
   const [opened, toggleOpened] = useToggle();
   const { editMode } = useHubOneContext();
+  const [editModalOpened, setEditModalOpened] = useState(false);
+  const [addModalOpened, setAddModalOpened] = useState(false);
   const items = linkGroups?.map((linkGroup) => {
     return (
       <ScrollLink
@@ -131,14 +137,22 @@ export function HeaderBar({ linkGroups, hub }: HubOneConfigType) {
           )}
         </Transition>
         {editMode && (
-          <ActionIcon
-            ml="auto"
-            mr="12px"
-            variant="light"
-            color={theme.colorScheme}
-          >
-            <Settings size={30} />
-          </ActionIcon>
+          <Group ml="auto" mr="12px">
+            <ActionIcon
+              variant="light"
+              color="secondary.6"
+              onClick={() => setAddModalOpened(true)}
+            >
+              <Plus size={30} />
+            </ActionIcon>
+            <ActionIcon
+              variant="light"
+              color="brand.6"
+              onClick={() => setEditModalOpened(true)}
+            >
+              <Settings size={30} />
+            </ActionIcon>
+          </Group>
         )}
         <ScrollLink to="linkSection" smooth="easeInOutQuint" duration={1000}>
           <Button
@@ -153,6 +167,12 @@ export function HeaderBar({ linkGroups, hub }: HubOneConfigType) {
           </Button>
         </ScrollLink>
       </Container>
+      <AddHubModal opened={addModalOpened} setOpened={setAddModalOpened} />
+      <EditHubModal
+        opened={editModalOpened}
+        setOpened={setEditModalOpened}
+        {...hub}
+      />
     </Header>
   );
 }

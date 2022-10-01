@@ -8,7 +8,12 @@ import {
 } from "@mantine/core";
 import type { Link } from "@prisma/client";
 import { motion } from "framer-motion";
+import { useState } from "react";
 import { Lock } from "tabler-icons-react";
+
+import { useHubOneContext } from "../../lib/context/HubOneContext";
+
+import EditLinkModal from "./LinkModals/EditLinkModal";
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -41,7 +46,8 @@ function LinkCard({
 }: Link) {
   const { classes } = useStyles();
   const theme = useMantineTheme();
-
+  const editMode = useHubOneContext();
+  const [opened, setOpened] = useState(false);
   return (
     <motion.div
       whileHover={{
@@ -58,6 +64,12 @@ function LinkCard({
         component="a"
         href={link}
         target="_blank"
+        onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+          if (editMode) {
+            e.preventDefault();
+            setOpened(true);
+          }
+        }}
       >
         <Card.Section>
           <Group style={{ position: "relative", width: "100%" }}>
@@ -85,6 +97,15 @@ function LinkCard({
           {description}
         </Text>
       </Card>
+      <EditLinkModal
+        opened={opened}
+        setOpened={setOpened}
+        title={title}
+        description={description}
+        image={image}
+        link={link}
+        isInternal={isInternal}
+      />
     </motion.div>
   );
 }
