@@ -46,7 +46,7 @@ function LinkCard({
 }: Link) {
   const { classes } = useStyles();
   const theme = useMantineTheme();
-  const editMode = useHubOneContext();
+  const { editMode } = useHubOneContext();
   const [opened, setOpened] = useState(false);
   return (
     <motion.div
