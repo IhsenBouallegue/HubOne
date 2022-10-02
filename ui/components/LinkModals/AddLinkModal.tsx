@@ -2,7 +2,7 @@ import { Modal } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import type { Link } from "@prisma/client";
 
-import { postLinks } from "../../../lib/requests/link/postLinks";
+import { postLink } from "../../../lib/requests/link/postLink";
 
 import LinkFormFields from "./LinkFormFields";
 
@@ -28,7 +28,7 @@ function AddLinkModal({
   });
   type FormValues = typeof form.values;
   const handleSubmit = (values: FormValues) => {
-    postLinks(values);
+    postLink(values);
     form.reset();
     setOpened(false);
   };

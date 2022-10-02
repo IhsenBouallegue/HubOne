@@ -102,7 +102,7 @@ function LinkSection({
                 </Accordion.Item>
               ))}
             </Accordion>
-            {editMode && <AddLinkGroupCard />}
+            {editMode && <AddLinkGroupCard hubId={hub.id} />}
           </>
         ) : (
           <Text align="center">No links to display.</Text>

@@ -14,7 +14,7 @@ const useStyles = createStyles(() => ({
   },
 }));
 
-function AddLinkGroupCard() {
+function AddLinkGroupCard({ hubId }: { hubId: number }) {
   const { classes } = useStyles();
   const [opened, setOpened] = useState(false);
 
@@ -47,7 +47,7 @@ function AddLinkGroupCard() {
           <Text align="center">Add Link Group</Text>
         </Group>
       </Card>
-      <AddLinkGroupModal opened={opened} setOpened={setOpened} />
+      <AddLinkGroupModal opened={opened} setOpened={setOpened} hubId={hubId} />
     </motion.div>
   );
 }

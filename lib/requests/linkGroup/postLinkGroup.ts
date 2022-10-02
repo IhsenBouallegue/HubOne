@@ -1,10 +1,10 @@
-import type { Link } from "@prisma/client";
+import type { LinkGroup } from "@prisma/client";
 
 import axios from "../../axios";
 
-export const postLinks = async (link: Partial<Link>) => {
+export const postLinkGroup = async (linkGroup: Partial<LinkGroup>) => {
   axios
-    .post<Link>("links", link, {
+    .post<LinkGroup>("linkgroups", linkGroup, {
       headers: {
         Accept: "application/json",
       },
