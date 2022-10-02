@@ -15,7 +15,13 @@ const useStyles = createStyles(() => ({
   },
 }));
 
-function EditLinkCard() {
+function AddLinkCard({
+  hubId,
+  linkGroupId,
+}: {
+  hubId: number;
+  linkGroupId: number;
+}) {
   const { classes } = useStyles();
   const [opened, setOpened] = useState(false);
 
@@ -45,9 +51,14 @@ function EditLinkCard() {
           <Text align="center">Add Link</Text>
         </Stack>
       </Card>
-      <AddLinkModal opened={opened} setOpened={setOpened} />
+      <AddLinkModal
+        opened={opened}
+        setOpened={setOpened}
+        hubId={hubId}
+        linkGroupId={linkGroupId}
+      />
     </motion.div>
   );
 }
 
-export default EditLinkCard;
+export default AddLinkCard;

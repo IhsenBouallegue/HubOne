@@ -17,7 +17,15 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-function LinkGroup({ links }: { links: Link[] }) {
+function LinkGroup({
+  links,
+  hubId,
+  linkGroupId,
+}: {
+  links: Link[];
+  hubId: number;
+  linkGroupId: number;
+}) {
   const { classes } = useStyles();
   const { editMode } = useHubOneContext();
   return (
@@ -29,7 +37,7 @@ function LinkGroup({ links }: { links: Link[] }) {
           </Grid.Col>
         ))}
         <Grid.Col span={2} xs={1}>
-          {editMode && <AddLinkCard />}
+          {editMode && <AddLinkCard hubId={hubId} linkGroupId={linkGroupId} />}
         </Grid.Col>
       </Grid>
     </Container>

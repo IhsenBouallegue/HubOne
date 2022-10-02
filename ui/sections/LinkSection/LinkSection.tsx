@@ -10,7 +10,7 @@ import {
   Title,
   useMantineTheme,
 } from "@mantine/core";
-import type { Link, LinkGroup } from "@prisma/client";
+import type { Hub, Link, LinkGroup } from "@prisma/client";
 import { Trash } from "tabler-icons-react";
 
 import { useHubOneContext } from "../../../lib/context/HubOneContext";
@@ -62,9 +62,11 @@ function AccordionLabel({ title }: { title: string }) {
 }
 
 function LinkSection({
+  hub,
   linkGroups,
   links,
 }: {
+  hub: Hub;
   linkGroups: LinkGroup[];
   links: Link[];
 }) {
@@ -93,6 +95,8 @@ function LinkSection({
                       links={links.filter(
                         (link) => link.linkGroupId === linkGroup.id
                       )}
+                      hubId={hub.id}
+                      linkGroupId={linkGroup.id}
                     />
                   </Accordion.Panel>
                 </Accordion.Item>
