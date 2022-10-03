@@ -105,8 +105,9 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export function Hero({ hubName }: { hubName?: string }) {
-  const { setSettings, editMode } = useHubOneContext();
+export function Hero() {
+  const { setSettings, editMode, hub } = useHubOneContext();
+  const { hubName } = hub;
   const { classes, cx } = useStyles();
   const theme = useMantineTheme();
   const name = () => {

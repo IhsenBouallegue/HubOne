@@ -1,17 +1,31 @@
+/* eslint-disable @typescript-eslint/no-use-before-define */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import type { FooterLink, Hub, Link, LinkGroup } from "@prisma/client";
 import React, { useContext, useState } from "react";
 
 export type Settings = {
   editMode: boolean;
+  hub: Hub;
+  links: Link[];
+  linkGroups: LinkGroup[];
+  footerLinks: FooterLink[];
 };
 
 const defaultSettings: Settings = {
   editMode: false,
+  hub: {} as Hub,
+  links: [],
+  linkGroups: [],
+  footerLinks: [],
 };
 
 const HubOneContext = React.createContext({
   ...defaultSettings,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   setSettings: (settings: Settings) => {},
+  setHub: (hub: Hub) => {},
+  setLinks: (link: Link[]) => {},
+  setLinkGroups: (linkGroups: LinkGroup[]) => {},
+  setFooterLinks: (footerLinks: FooterLink[]) => {},
 });
 
 export const useHubOneContext = () => {
@@ -24,16 +38,44 @@ export const HubOneContextProvider = ({
   children: React.ReactNode;
 }) => {
   const setSettings = (settings: Settings) => {
-    // eslint-disable-next-line @typescript-eslint/no-use-before-define
     setState((prevState) => ({
       ...prevState,
       ...settings,
+    }));
+  };
+  const setHub = (hub: Hub) => {
+    setState((prevState) => ({
+      ...prevState,
+      hub,
+    }));
+  };
+  const setLinks = (links: Link[]) => {
+    setState((prevState) => ({
+      ...prevState,
+      links,
+    }));
+  };
+  const setLinkGroups = (linkGroups: LinkGroup[]) => {
+    setState((prevState) => ({
+      ...prevState,
+      linkGroups,
+    }));
+  };
+  const setFooterLinks = (footerLinks: FooterLink[]) => {
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
+    setState((prevState) => ({
+      ...prevState,
+      footerLinks,
     }));
   };
 
   const initState = {
     ...defaultSettings,
     setSettings,
+    setHub,
+    setLinks,
+    setLinkGroups,
+    setFooterLinks,
   };
 
   const [state, setState] = useState(initState);

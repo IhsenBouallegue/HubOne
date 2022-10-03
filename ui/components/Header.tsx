@@ -17,7 +17,6 @@ import { useState } from "react";
 import { Link as ScrollLink } from "react-scroll";
 import { X, Settings, Plus } from "tabler-icons-react";
 
-import type { HubOneConfigType } from "../../HubOneConfig";
 import { useHubOneContext } from "../../lib/context/HubOneContext";
 
 import EditHubModal from "./HubModals";
@@ -70,8 +69,9 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export function HeaderBar({ linkGroups, hub }: HubOneConfigType) {
+export function HeaderBar() {
   const { classes } = useStyles();
+  const { hub, linkGroups } = useHubOneContext();
   const theme = useMantineTheme();
   const [opened, toggleOpened] = useToggle();
   const { editMode } = useHubOneContext();

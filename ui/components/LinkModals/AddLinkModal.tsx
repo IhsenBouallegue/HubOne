@@ -1,6 +1,7 @@
 import { Modal } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import type { Link } from "@prisma/client";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { postLink } from "../../../lib/requests/link/postLink";
 
@@ -27,10 +28,25 @@ function AddLinkModal({
     },
   });
   type FormValues = typeof form.values;
+  const queryClient = useQueryClient();
+  const mutation = useMutation(
+    (formData: Partial<Link>) => {
+      return postLink(formData);
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["links"]);
+      },
+    }
+  );
   const handleSubmit = (values: FormValues) => {
-    postLink(values);
-    form.reset();
-    setOpened(false);
+    try {
+      mutation.mutate(values);
+      form.reset();
+      setOpened(false);
+    } catch (error) {
+      // TODO: error handling
+    }
   };
 
   return (
