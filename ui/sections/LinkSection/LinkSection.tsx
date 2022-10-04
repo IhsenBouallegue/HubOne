@@ -13,12 +13,17 @@ import {
 import { Trash } from "tabler-icons-react";
 
 import { useHubOneContext } from "../../../lib/context/HubOneContext";
+import { useDelete } from "../../../lib/useQueries";
 import AddLinkGroupCard from "../../components/AddLinkGroupCard";
 import LinkGroupUI from "../LinkGroup";
 
-function AccordionControl(props: AccordionControlProps) {
+function AccordionControl({
+  itemId,
+  ...props
+}: AccordionControlProps & { itemId: number }) {
   const theme = useMantineTheme();
   const { editMode } = useHubOneContext();
+  const deleteItem = useDelete("linkgroups");
 
   return (
     <Box sx={{ display: "flex", alignItems: "center" }}>
@@ -30,7 +35,11 @@ function AccordionControl(props: AccordionControlProps) {
             e.stopPropagation();
           }}
         >
-          <Trash strokeWidth={2} color={theme.colors.secondary[4]} />
+          <Trash
+            strokeWidth={2}
+            color={theme.colors.secondary[4]}
+            onClick={() => deleteItem(itemId)}
+          />
         </ActionIcon>
       )}
     </Box>
@@ -76,9 +85,9 @@ function LinkSection() {
               {linkGroups.map((linkGroup) => (
                 <Accordion.Item
                   value={linkGroup.title}
-                  key={`linkGroup_${linkGroup.title}`}
+                  key={`linkGroup_${linkGroup.id}`}
                 >
-                  <AccordionControl>
+                  <AccordionControl itemId={linkGroup.id}>
                     <AccordionLabel title={linkGroup.title} />
                   </AccordionControl>
                   <Accordion.Panel>

@@ -38,6 +38,7 @@ const useStyles = createStyles((theme) => ({
 }));
 
 function LinkCard({
+  id,
   title,
   description,
   image = "./logo/hubone_logo.svg",
@@ -100,6 +101,7 @@ function LinkCard({
       <EditLinkModal
         opened={opened}
         setOpened={setOpened}
+        id={id}
         title={title}
         description={description}
         image={image}

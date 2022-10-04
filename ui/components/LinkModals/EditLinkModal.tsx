@@ -2,11 +2,14 @@ import { Modal } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import type { Link } from "@prisma/client";
 
+import { useUpdate } from "../../../lib/useQueries";
+
 import LinkFormFields from "./LinkFormFields";
 
 function EditLinkModal({
   opened,
   setOpened,
+  id,
   title,
   description,
   image,
@@ -18,6 +21,7 @@ function EditLinkModal({
 } & Partial<Link>) {
   const form = useForm<Partial<Link>>({
     initialValues: {
+      id,
       title,
       description,
       image,
@@ -26,8 +30,12 @@ function EditLinkModal({
     },
   });
   type FormValues = typeof form.values;
-  // eslint-disable-next-line no-console
-  const handleSubmit = (values: FormValues) => console.log(values);
+  const update = useUpdate<Link>("links");
+  const handleSubmit = (values: FormValues) => {
+    update({ newItem: values as Link, itemID: id as number });
+    form.reset();
+    setOpened(false);
+  };
 
   return (
     <Modal opened={opened} onClose={() => setOpened(false)} title="Edit link">

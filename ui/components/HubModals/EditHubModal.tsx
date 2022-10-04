@@ -24,6 +24,19 @@ function EditHubModal({
   type FormValues = typeof form.values;
   // eslint-disable-next-line no-console
   const handleSubmit = (values: FormValues) => console.log(values);
+  // const mutation = useMutation(
+  //   (formData: Partial<Hub>) => {
+  //     return postHub(formData);
+  //   },
+  //   {
+  //     onSuccess: () => {
+  //       // add delay to give the db time to save the values before refetching
+  //       setTimeout(() => {
+  //         queryClient.invalidateQueries(["hubs"]);
+  //       }, 300);
+  //     },
+  //   }
+  // );
 
   return (
     <Modal

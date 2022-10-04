@@ -50,6 +50,9 @@ export const HubOneContextProvider = ({
     }));
   };
   const setLinks = (links: Link[]) => {
+    // console.log("setting links");
+    // console.log(links == undefined);
+
     setState((prevState) => ({
       ...prevState,
       links,

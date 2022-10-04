@@ -32,7 +32,7 @@ function LinkGroup({
     <Container size={700} className={classes.inner}>
       <Grid columns={4}>
         {links.map((link) => (
-          <Grid.Col key={`link_${link.title}`} span={2} xs={1}>
+          <Grid.Col key={`link_${link.id}`} span={2} xs={1}>
             <LinkCard {...link} />
           </Grid.Col>
         ))}

@@ -8,6 +8,7 @@ import AddLinkModal from "./LinkModals";
 const useStyles = createStyles(() => ({
   card: {
     height: "100%",
+    minHeight: 245,
     minWidth: "150px",
     margin: "auto",
     alignItems: "center",
