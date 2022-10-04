@@ -28,7 +28,7 @@ function EditHubModal({
   type FormValues = typeof form.values;
   const update = useUpdate<Hub>("hubs");
   const handleSubmit = (values: FormValues) => {
-    update({ newItem: values as Hub, itemID: id as number });
+    update({ newItem: values as Hub, itemId: id as number });
     setOpened(false);
   };
 

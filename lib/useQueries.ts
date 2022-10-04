@@ -64,8 +64,8 @@ export function usePost<T>(QUERY_NAME: string) {
 export function useUpdate<T>(QUERY_NAME: string) {
   const queryClient = useQueryClient();
   const { mutate } = useMutation(
-    ({ newItem, itemID }: { newItem: T; itemID: number }) => {
-      return axios.patch<T>(`${QUERY_NAME}/${itemID}`, {
+    ({ newItem, itemId }: { newItem: T; itemId: number }) => {
+      return axios.patch<T>(`${QUERY_NAME}/${itemId}`, {
         ...newItem,
       });
     },
@@ -82,8 +82,8 @@ export function useUpdate<T>(QUERY_NAME: string) {
 export function useDelete(QUERY_NAME: string) {
   const queryClient = useQueryClient();
   const { mutate } = useMutation(
-    (itemID: number) => {
-      return axios.delete(`${QUERY_NAME}/${itemID}`, { data: { itemID } });
+    (itemId: number) => {
+      return axios.delete(`${QUERY_NAME}/${itemId}`, { data: { itemId } });
     },
     {
       onSuccess: defaultSuccess(queryClient, QUERY_NAME),

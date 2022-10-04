@@ -10,31 +10,27 @@ import {
   Title,
   useMantineTheme,
 } from "@mantine/core";
+import type { LinkGroup } from "@prisma/client";
 import { Trash } from "tabler-icons-react";
 
 import { useHubOneContext } from "../../../lib/context/HubOneContext";
-import { useDelete } from "../../../lib/useQueries";
+import { useDelete, useUpdate } from "../../../lib/useQueries";
 import AddLinkGroupCard from "../../components/AddLinkGroupCard";
 import LinkGroupUI from "../LinkGroup";
 
 function AccordionControl({
   itemId,
+  editMode,
   ...props
-}: AccordionControlProps & { itemId: number }) {
+}: AccordionControlProps & { itemId: number; editMode: boolean }) {
   const theme = useMantineTheme();
-  const { editMode } = useHubOneContext();
   const deleteItem = useDelete("linkgroups");
 
   return (
     <Box sx={{ display: "flex", alignItems: "center" }}>
       <Accordion.Control {...props} />
       {editMode && (
-        <ActionIcon
-          mx={12}
-          onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-            e.stopPropagation();
-          }}
-        >
+        <ActionIcon mx={12}>
           <Trash
             strokeWidth={2}
             color={theme.colors.secondary[4]}
@@ -46,9 +42,13 @@ function AccordionControl({
   );
 }
 
-function AccordionLabel({ title }: { title: string }) {
-  const { editMode } = useHubOneContext();
-
+function AccordionLabel({
+  editMode,
+  id,
+  title,
+  hubId,
+}: { editMode: boolean } & LinkGroup) {
+  const updateLinkGroup = useUpdate<LinkGroup>("linkgroups");
   return (
     <Group>
       {editMode ? (
@@ -59,6 +59,16 @@ function AccordionLabel({ title }: { title: string }) {
           onClick={(e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
             e.stopPropagation();
           }}
+          onBlur={(event) =>
+            updateLinkGroup({
+              newItem: {
+                id,
+                title: event.currentTarget.value,
+                hubId,
+              } as LinkGroup,
+              itemId: id,
+            })
+          }
         />
       ) : (
         <Title order={2} id={title}>
@@ -87,8 +97,8 @@ function LinkSection() {
                   value={linkGroup.title}
                   key={`linkGroup_${linkGroup.id}`}
                 >
-                  <AccordionControl itemId={linkGroup.id}>
-                    <AccordionLabel title={linkGroup.title} />
+                  <AccordionControl editMode={editMode} itemId={linkGroup.id}>
+                    <AccordionLabel editMode={editMode} {...linkGroup} />
                   </AccordionControl>
                   <Accordion.Panel>
                     <LinkGroupUI

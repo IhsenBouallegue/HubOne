@@ -32,7 +32,7 @@ function EditLinkModal({
   type FormValues = typeof form.values;
   const update = useUpdate<Link>("links");
   const handleSubmit = (values: FormValues) => {
-    update({ newItem: values as Link, itemID: id as number });
+    update({ newItem: values as Link, itemId: id as number });
     form.reset();
     setOpened(false);
   };
