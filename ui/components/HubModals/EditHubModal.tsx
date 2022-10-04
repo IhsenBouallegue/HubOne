@@ -2,11 +2,14 @@ import { Modal } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import type { Hub } from "@prisma/client";
 
+import { useUpdate } from "../../../lib/useQueries";
+
 import HubFormFields from "./HubFormFields";
 
 function EditHubModal({
   opened,
   setOpened,
+  id,
   hubName,
   hubLogo,
   hubPath,
@@ -16,27 +19,18 @@ function EditHubModal({
 } & Partial<Hub>) {
   const form = useForm<Partial<Hub>>({
     initialValues: {
+      id,
       hubName,
       hubLogo,
       hubPath,
     },
   });
   type FormValues = typeof form.values;
-  // eslint-disable-next-line no-console
-  const handleSubmit = (values: FormValues) => console.log(values);
-  // const mutation = useMutation(
-  //   (formData: Partial<Hub>) => {
-  //     return postHub(formData);
-  //   },
-  //   {
-  //     onSuccess: () => {
-  //       // add delay to give the db time to save the values before refetching
-  //       setTimeout(() => {
-  //         queryClient.invalidateQueries(["hubs"]);
-  //       }, 300);
-  //     },
-  //   }
-  // );
+  const update = useUpdate<Hub>("hubs");
+  const handleSubmit = (values: FormValues) => {
+    update({ newItem: values as Hub, itemID: id as number });
+    setOpened(false);
+  };
 
   return (
     <Modal

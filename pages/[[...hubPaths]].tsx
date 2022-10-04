@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 
 import { useHubOneContext } from "../lib/context/HubOneContext";
-import { getHub } from "../lib/requests/hub/getHub";
+import { getHubWithPath } from "../lib/requests/hub/getHub";
 import { useFetchByHubId } from "../lib/useQueries";
 import { Footer } from "../ui/components/Footer";
 import { HeaderBar } from "../ui/components/Header";
@@ -19,28 +19,20 @@ export default function Home() {
   const hubPaths = (router.query.hubPaths as string[]) || [""];
   const { data: hub } = useQuery<Hub>(
     ["hubs", hubPaths[0]],
-    () => getHub(hubPaths[0]),
-    { onSuccess: setHub }
+    () => getHubWithPath(hubPaths[0]),
+    {
+      onSuccess: setHub,
+    }
   );
-
-  const hubId = hub?.id;
+  const hubId = Number(hub?.id);
 
   const config = <T,>(onSuccess: (data: T) => void) => ({
     enabled: !!hubId,
     onSuccess,
   });
-
-  useFetchByHubId<Link>("links", hubId as number, config(setLinks));
-  useFetchByHubId<LinkGroup>(
-    "linkgroups",
-    hubId as number,
-    config(setLinkGroups)
-  );
-  useFetchByHubId<FooterLink>(
-    "footerlinks",
-    hubId as number,
-    config(setFooterLinks)
-  );
+  useFetchByHubId<Link>("links", hubId, config(setLinks));
+  useFetchByHubId<LinkGroup>("linkgroups", hubId, config(setLinkGroups));
+  useFetchByHubId<FooterLink>("footerlinks", hubId, config(setFooterLinks));
 
   return (
     <div>

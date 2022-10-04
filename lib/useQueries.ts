@@ -25,6 +25,18 @@ export function useFetchByHubId<T>(
   );
 }
 
+export function useFetchItem<T>(
+  QUERY_NAME: string,
+  itemId: number,
+  config?: { onSuccess: (data: T) => void }
+) {
+  return useQuery<T>(
+    [QUERY_NAME],
+    () => axios.get<T>(`${QUERY_NAME}/${itemId}`).then(({ data }) => data as T),
+    config
+  );
+}
+
 const defaultSuccess = (queryClient: QueryClient, QUERY_NAME: string) => {
   return () => {
     setTimeout(() => {

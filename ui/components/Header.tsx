@@ -168,11 +168,13 @@ export function HeaderBar() {
         </ScrollLink>
       </Container>
       <AddHubModal opened={addModalOpened} setOpened={setAddModalOpened} />
-      <EditHubModal
-        opened={editModalOpened}
-        setOpened={setEditModalOpened}
-        {...hub}
-      />
+      {hub.id && (
+        <EditHubModal
+          opened={editModalOpened}
+          setOpened={setEditModalOpened}
+          {...hub}
+        />
+      )}
     </Header>
   );
 }
