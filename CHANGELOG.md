@@ -1,3 +1,11 @@
+## [2.1.1](https://github.com/IhsenBouallegue/hub-one/compare/v2.1.0...v2.1.1) (2022-10-06)
+
+
+### Bug Fixes
+
+* change vercel env variable ([9dc74ff](https://github.com/IhsenBouallegue/hub-one/commit/9dc74ff489c0a325020600737a2f542a6ab67e45))
+* remove vercel base url ([c12e8b9](https://github.com/IhsenBouallegue/hub-one/commit/c12e8b9807ef6ab91bba828b9c4760c1011231bb))
+
 # [2.1.0](https://github.com/IhsenBouallegue/hub-one/compare/v2.0.1...v2.1.0) (2022-10-06)
 
 
