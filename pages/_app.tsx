@@ -1,13 +1,17 @@
 import { MantineProvider } from "@mantine/core";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 
+import { HubOneContextProvider } from "../lib/context/HubOneContext";
 import "../styles/globals.css";
 import theme from "../theme";
 
+const queryClient = new QueryClient();
+
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
-
   return (
     <>
       <Head>
@@ -18,9 +22,14 @@ export default function App(props: AppProps) {
         />
       </Head>
 
-      <MantineProvider withGlobalStyles withNormalizeCSS theme={theme}>
-        <Component {...pageProps} />
-      </MantineProvider>
+      <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools />
+        <MantineProvider withGlobalStyles withNormalizeCSS theme={theme}>
+          <HubOneContextProvider>
+            <Component {...pageProps} />
+          </HubOneContextProvider>
+        </MantineProvider>
+      </QueryClientProvider>
     </>
   );
 }
