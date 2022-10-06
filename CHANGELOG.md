@@ -1,3 +1,25 @@
+# [2.1.0](https://github.com/IhsenBouallegue/hub-one/compare/v2.0.1...v2.1.0) (2022-10-06)
+
+
+### Bug Fixes
+
+* click on link card in view mode opens link ([330a127](https://github.com/IhsenBouallegue/hub-one/commit/330a127ee23f5a7b6003298acb38099e7a5222ce))
+* fix hub edit ([2882baf](https://github.com/IhsenBouallegue/hub-one/commit/2882baf2b2fe3ecb277c5c12b43625790b1b69f0))
+* refactor mutations and queries ([da1dbf5](https://github.com/IhsenBouallegue/hub-one/commit/da1dbf517a1762dcdaf7ea312d3ac2c586b8e05f))
+
+
+### Features
+
+* add context provider ([96041c4](https://github.com/IhsenBouallegue/hub-one/commit/96041c4d7e9b44c02106e175d0d77ee6bbba4914))
+* add delete button to link in edit mode ([3bee561](https://github.com/IhsenBouallegue/hub-one/commit/3bee561c3b3efe563a4866fde463690820a4889b))
+* add edit calls on blur for link groups ([0559baa](https://github.com/IhsenBouallegue/hub-one/commit/0559baa02834ac57244096591cbc0c3a2189d178))
+* add edit modals for hub, link and linkGroup ([8cf00ea](https://github.com/IhsenBouallegue/hub-one/commit/8cf00ea6ccf22a8b82d37905ba2035af1485469d))
+* add footer link edit ([2426cad](https://github.com/IhsenBouallegue/hub-one/commit/2426cad8f94cea8af136a2ef2b25440173a74ca8))
+* add link in db when add link card clicked ([c423ac7](https://github.com/IhsenBouallegue/hub-one/commit/c423ac7b6f445f67a861c6ba6e251920da318dba))
+* add linkgroup in db when add link group is clicked ([1850edc](https://github.com/IhsenBouallegue/hub-one/commit/1850edcfce5839e3e4e728442f630b10d791757e))
+* add react query and mutations ([2d2e543](https://github.com/IhsenBouallegue/hub-one/commit/2d2e543e5238273ff276697f231a54d4ce32fa20))
+* add the add link groups and link cards ([a179e25](https://github.com/IhsenBouallegue/hub-one/commit/a179e25bbdaf83fb80776eb627fa81deb05c9e7b))
+
 ## [2.0.1](https://github.com/IhsenBouallegue/hub-one/compare/v2.0.0...v2.0.1) (2022-09-17)
 
 
