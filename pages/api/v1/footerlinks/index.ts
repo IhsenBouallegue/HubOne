@@ -6,9 +6,18 @@ async function handleGET(res: NextApiResponse, hubId: number) {
   try {
     let items;
     if (hubId && !Number.isNaN(hubId)) {
-      items = await prisma.footerLink.findMany({ where: { hubId } });
+      items = await prisma.footerLink.findMany({
+        where: { hubId },
+        orderBy: {
+          id: "asc",
+        },
+      });
     } else {
-      items = await prisma.footerLink.findMany();
+      items = await prisma.footerLink.findMany({
+        orderBy: {
+          id: "asc",
+        },
+      });
     }
     res.json(items);
   } catch (error) {

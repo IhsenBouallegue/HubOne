@@ -10,6 +10,9 @@ import {
 } from "@mantine/core";
 import { Link as ScrollLink } from "react-scroll";
 
+import type { Settings } from "../../../lib/context/HubOneContext";
+import { useHubOneContext } from "../../../lib/context/HubOneContext";
+
 const useStyles = createStyles((theme) => ({
   wrapper: {
     position: "relative",
@@ -102,7 +105,9 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export function Hero({ hubName }: { hubName?: string }) {
+export function Hero() {
+  const { setSettings, editMode, hub } = useHubOneContext();
+  const { hubName } = hub;
   const { classes, cx } = useStyles();
   const theme = useMantineTheme();
   const name = () => {
@@ -177,8 +182,9 @@ export function Hero({ hubName }: { hubName?: string }) {
             variant="outline"
             className={cx(classes.cta, classes.secondaryCta)}
             color="dark"
+            onClick={() => setSettings({ editMode: !editMode } as Settings)}
           >
-            Add Yours
+            {editMode ? "View Mode" : "Edit Mode"}
           </Button>
         </Group>
       </Container>

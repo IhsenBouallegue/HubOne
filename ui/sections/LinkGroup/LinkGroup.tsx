@@ -1,6 +1,8 @@
 import { Container, createStyles, Grid } from "@mantine/core";
 import type { Link } from "@prisma/client";
 
+import { useHubOneContext } from "../../../lib/context/HubOneContext";
+import AddLinkCard from "../../components/AddLinkCard";
 import LinkCard from "../../components/LinkCard";
 
 const useStyles = createStyles((theme) => ({
@@ -15,17 +17,28 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-function LinkGroup({ links }: { links: Link[] }) {
+function LinkGroup({
+  links,
+  hubId,
+  linkGroupId,
+}: {
+  links: Link[];
+  hubId: number;
+  linkGroupId: number;
+}) {
   const { classes } = useStyles();
-
+  const { editMode } = useHubOneContext();
   return (
     <Container size={700} className={classes.inner}>
       <Grid columns={4}>
         {links.map((link) => (
-          <Grid.Col key={`link_${link.title}`} span={2} xs={1}>
+          <Grid.Col key={`link_${link.id}`} span={2} xs={1}>
             <LinkCard {...link} />
           </Grid.Col>
         ))}
+        <Grid.Col span={2} xs={1}>
+          {editMode && <AddLinkCard hubId={hubId} linkGroupId={linkGroupId} />}
+        </Grid.Col>
       </Grid>
     </Container>
   );

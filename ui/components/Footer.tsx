@@ -1,5 +1,6 @@
 import { createStyles, Anchor, Group, Image } from "@mantine/core";
-import type { FooterLink } from "@prisma/client";
+
+import { useHubOneContext } from "../../lib/context/HubOneContext";
 
 const useStyles = createStyles((theme) => ({
   footer: {
@@ -32,7 +33,8 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export function Footer({ footerLinks }: { footerLinks: FooterLink[] }) {
+export function Footer() {
+  const { footerLinks } = useHubOneContext();
   const { classes } = useStyles();
   const items = footerLinks.map(({ title, link }) => (
     <Anchor<"a">

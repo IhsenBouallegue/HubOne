@@ -2,22 +2,21 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 import { prisma } from "../../../../lib/prisma";
 
-// GET
-async function handleGET(path: string, res: NextApiResponse) {
+async function handleGET(id: number, res: NextApiResponse) {
   try {
     const item = await prisma.hub.findUnique({
-      where: { hubPath: path },
+      where: { id },
     });
     res.json(item);
   } catch (error) {
     res.json({ error });
   }
 }
-// DELETE
-async function handleDELETE(path: string, res: NextApiResponse) {
+
+async function handleDELETE(id: number, res: NextApiResponse) {
   try {
     const deletedItem = await prisma.hub.delete({
-      where: { hubPath: path },
+      where: { id },
     });
     res.json(deletedItem);
   } catch (error) {
@@ -25,15 +24,14 @@ async function handleDELETE(path: string, res: NextApiResponse) {
   }
 }
 
-// PATCH
 async function handlePATCH(
-  path: string,
+  id: number,
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   try {
     const updatedItem = await prisma.hub.update({
-      where: { hubPath: path },
+      where: { id },
       data: { ...req.body },
     });
     res.json(updatedItem);
@@ -46,19 +44,19 @@ export default async function handle(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const path: string = Array.isArray(req.query.path)
-    ? String(req.query.path[0])
-    : String(req.query.path);
+  const id: number = Array.isArray(req.query.id)
+    ? Number(req.query.id[0])
+    : Number(req.query.id);
 
   switch (req.method) {
     case "GET":
-      handleGET(path, res);
+      handleGET(id, res);
       break;
     case "DELETE":
-      handleDELETE(path, res);
+      handleDELETE(id, res);
       break;
     case "PATCH":
-      handlePATCH(path, req, res);
+      handlePATCH(id, req, res);
       break;
     default: // Method Not Allowed
       res.status(405).end();
