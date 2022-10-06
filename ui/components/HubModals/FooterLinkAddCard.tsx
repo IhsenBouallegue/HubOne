@@ -1,0 +1,48 @@
+import { Card, createStyles, Group, Text } from "@mantine/core";
+import type { FooterLink } from "@prisma/client";
+import { motion } from "framer-motion";
+import { Plus } from "tabler-icons-react";
+
+import { usePost } from "../../../lib/useQueries";
+
+function FooterLinkAddCard({ hubId }: { hubId: number }) {
+  const { classes } = useStyles();
+  const mutate = usePost<FooterLink>("footerlinks");
+  const handleAdd = () => {
+    try {
+      mutate({ hubId, title: "change me", link: "/" } as FooterLink);
+    } catch (error) {
+      // TODO: error handling
+    }
+  };
+  return (
+    <motion.div
+      whileHover={{
+        scale: 1.04,
+        transition: { duration: 0.2 },
+      }}
+      whileTap={{ scale: 0.98 }}
+      className={classes.card}
+      onClick={handleAdd}
+    >
+      <Card className={classes.card} shadow="sm" p="lg" onClick={() => {}}>
+        <Group my="auto" position="center">
+          <Plus size={24} strokeWidth={2} color="black" />
+          <Text align="center">Add Footer Link</Text>
+        </Group>
+      </Card>
+    </motion.div>
+  );
+}
+
+const useStyles = createStyles(() => ({
+  card: {
+    alignItems: "center",
+    justifyContent: "center",
+    display: "flex",
+    width: "100%",
+    minHeight: "5rem",
+  },
+}));
+
+export default FooterLinkAddCard;

@@ -8,7 +8,6 @@ import {
   Text,
   TextInput,
   Title,
-  useMantineTheme,
 } from "@mantine/core";
 import type { LinkGroup } from "@prisma/client";
 import { Trash } from "tabler-icons-react";
@@ -23,7 +22,6 @@ function AccordionControl({
   editMode,
   ...props
 }: AccordionControlProps & { itemId: number; editMode: boolean }) {
-  const theme = useMantineTheme();
   const deleteItem = useDelete("linkgroups");
 
   return (
@@ -31,11 +29,7 @@ function AccordionControl({
       <Accordion.Control {...props} />
       {editMode && (
         <ActionIcon mx={12}>
-          <Trash
-            strokeWidth={2}
-            color={theme.colors.secondary[4]}
-            onClick={() => deleteItem(itemId)}
-          />
+          <Trash strokeWidth={2} onClick={() => deleteItem(itemId)} />
         </ActionIcon>
       )}
     </Box>

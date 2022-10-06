@@ -5,15 +5,6 @@ import { Plus } from "tabler-icons-react";
 
 import AddLinkGroupModal from "./LinkGroupModals";
 
-const useStyles = createStyles(() => ({
-  card: {
-    height: "6em",
-    marginTop: "1em",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-}));
-
 function AddLinkGroupCard({ hubId }: { hubId: number }) {
   const { classes } = useStyles();
   const [opened, setOpened] = useState(false);
@@ -51,5 +42,15 @@ function AddLinkGroupCard({ hubId }: { hubId: number }) {
     </motion.div>
   );
 }
+
+const useStyles = createStyles(() => ({
+  card: {
+    height: "6rem",
+    width: "100%",
+    marginTop: "1em",
+    justifyContent: "center",
+    display: "flex",
+  },
+}));
 
 export default AddLinkGroupCard;

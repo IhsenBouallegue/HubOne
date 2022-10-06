@@ -71,7 +71,7 @@ const useStyles = createStyles((theme) => ({
 
 export function HeaderBar() {
   const { classes } = useStyles();
-  const { hub, linkGroups } = useHubOneContext();
+  const { hub, linkGroups, footerLinks } = useHubOneContext();
   const theme = useMantineTheme();
   const [opened, toggleOpened] = useToggle();
   const { editMode } = useHubOneContext();
@@ -172,6 +172,7 @@ export function HeaderBar() {
         <EditHubModal
           opened={editModalOpened}
           setOpened={setEditModalOpened}
+          footerLinks={footerLinks}
           {...hub}
         />
       )}
