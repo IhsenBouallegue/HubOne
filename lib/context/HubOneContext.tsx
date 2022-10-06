@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-use-before-define */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import type { FooterLink, Hub, Link, LinkGroup } from "@prisma/client";
 import React, { useContext, useState } from "react";
@@ -50,9 +49,6 @@ export const HubOneContextProvider = ({
     }));
   };
   const setLinks = (links: Link[]) => {
-    // console.log("setting links");
-    // console.log(links == undefined);
-
     setState((prevState) => ({
       ...prevState,
       links,
@@ -65,7 +61,6 @@ export const HubOneContextProvider = ({
     }));
   };
   const setFooterLinks = (footerLinks: FooterLink[]) => {
-    // eslint-disable-next-line @typescript-eslint/no-use-before-define
     setState((prevState) => ({
       ...prevState,
       footerLinks,
