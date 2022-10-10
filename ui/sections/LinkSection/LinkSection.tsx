@@ -72,6 +72,19 @@ function AccordionLabel({
     </Group>
   );
 }
+function EmptyLinkSection({
+  editMode,
+  hubId,
+}: {
+  editMode: boolean;
+  hubId: number;
+}) {
+  return editMode ? (
+    <AddLinkGroupCard hubId={hubId} />
+  ) : (
+    <Text align="center">No links to display.</Text>
+  );
+}
 
 function LinkSection() {
   const { editMode, hub, linkGroups, links } = useHubOneContext();
@@ -80,36 +93,33 @@ function LinkSection() {
     <div id="linkSection">
       <Container size={800} px={0}>
         {linkGroups && linkGroups.length > 0 ? (
-          <>
-            <Accordion
-              multiple
-              defaultValue={[linkGroups[0].title]}
-              styles={{ content: { padding: 0 } }}
-            >
-              {linkGroups.map((linkGroup) => (
-                <Accordion.Item
-                  value={linkGroup.title}
-                  key={`linkGroup_${linkGroup.id}`}
-                >
-                  <AccordionControl editMode={editMode} itemId={linkGroup.id}>
-                    <AccordionLabel editMode={editMode} {...linkGroup} />
-                  </AccordionControl>
-                  <Accordion.Panel>
-                    <LinkGroupUI
-                      links={links.filter(
-                        (link) => link.linkGroupId === linkGroup.id
-                      )}
-                      hubId={hub.id}
-                      linkGroupId={linkGroup.id}
-                    />
-                  </Accordion.Panel>
-                </Accordion.Item>
-              ))}
-            </Accordion>
-            {editMode && <AddLinkGroupCard hubId={hub.id} />}
-          </>
+          <Accordion
+            multiple
+            defaultValue={[linkGroups[0].title]}
+            styles={{ content: { padding: 0 } }}
+          >
+            {linkGroups.map((linkGroup) => (
+              <Accordion.Item
+                value={linkGroup.title}
+                key={`linkGroup_${linkGroup.id}`}
+              >
+                <AccordionControl editMode={editMode} itemId={linkGroup.id}>
+                  <AccordionLabel editMode={editMode} {...linkGroup} />
+                </AccordionControl>
+                <Accordion.Panel>
+                  <LinkGroupUI
+                    links={links.filter(
+                      (link) => link.linkGroupId === linkGroup.id
+                    )}
+                    hubId={hub.id}
+                    linkGroupId={linkGroup.id}
+                  />
+                </Accordion.Panel>
+              </Accordion.Item>
+            ))}
+          </Accordion>
         ) : (
-          <Text align="center">No links to display.</Text>
+          <EmptyLinkSection editMode={editMode} hubId={hub.id} />
         )}
       </Container>
     </div>
