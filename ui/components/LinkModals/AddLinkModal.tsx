@@ -1,4 +1,4 @@
-import { Modal } from "@mantine/core";
+import { Button, Group, Modal } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import type { Link } from "@prisma/client";
 
@@ -47,6 +47,11 @@ function AddLinkModal({
     >
       <form onSubmit={form.onSubmit(handleSubmit)}>
         <LinkFormFields form={form} />
+        <Group position="center" mt="xl">
+          <Button variant="filled" type="submit">
+            Save
+          </Button>
+        </Group>
       </form>
     </Modal>
   );

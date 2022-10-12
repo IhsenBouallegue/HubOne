@@ -1,15 +1,8 @@
-import { Button, Group, Switch, TextInput } from "@mantine/core";
+import { Switch, TextInput } from "@mantine/core";
 import type { UseFormReturnType } from "@mantine/form";
 import type { Link } from "@prisma/client";
-import { Trash } from "tabler-icons-react";
 
-function LinkFormFields({
-  form,
-  deleteItem,
-}: {
-  form: UseFormReturnType<Partial<Link>>;
-  deleteItem: () => void;
-}) {
+function LinkFormFields({ form }: { form: UseFormReturnType<Partial<Link>> }) {
   return (
     <>
       <TextInput
@@ -38,21 +31,6 @@ function LinkFormFields({
         {...form.getInputProps("link")}
       />
       <Switch mt="md" label="Internal" {...form.getInputProps("isInternal")} />
-
-      <Group position="center" mt="xl">
-        <Button
-          leftIcon={<Trash />}
-          variant="outline"
-          type="submit"
-          color="secondary"
-          onClick={deleteItem}
-        >
-          Delete
-        </Button>
-        <Button variant="filled" type="submit">
-          Save
-        </Button>
-      </Group>
     </>
   );
 }
