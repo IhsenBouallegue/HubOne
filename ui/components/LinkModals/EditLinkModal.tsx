@@ -2,7 +2,7 @@ import { Modal } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import type { Link } from "@prisma/client";
 
-import { useUpdate } from "../../../lib/useQueries";
+import { useDelete, useUpdate } from "../../../lib/useQueries";
 
 import LinkFormFields from "./LinkFormFields";
 
@@ -31,6 +31,7 @@ function EditLinkModal({
   });
   type FormValues = typeof form.values;
   const update = useUpdate<Link>("links");
+  const deleteItem = useDelete("links");
   const handleSubmit = (values: FormValues) => {
     update({ newItem: values as Link, itemId: id as number });
     form.reset();
@@ -40,7 +41,10 @@ function EditLinkModal({
   return (
     <Modal opened={opened} onClose={() => setOpened(false)} title="Edit link">
       <form onSubmit={form.onSubmit(handleSubmit)}>
-        <LinkFormFields form={form} />
+        <LinkFormFields
+          form={form}
+          deleteItem={() => deleteItem(id as number)}
+        />
       </form>
     </Modal>
   );

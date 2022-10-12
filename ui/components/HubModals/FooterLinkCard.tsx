@@ -6,7 +6,6 @@ import {
   Stack,
   Text,
   TextInput,
-  useMantineTheme,
 } from "@mantine/core";
 import { useDebouncedValue } from "@mantine/hooks";
 import type { FooterLink } from "@prisma/client";
@@ -18,7 +17,6 @@ import { useDelete, useUpdate } from "../../../lib/useQueries";
 
 function FooterLinkCard({ id, title, link, hubId }: FooterLink) {
   const { classes } = useStyles();
-  const theme = useMantineTheme();
   const [isEditing, setIsEditing] = useState(false);
   const deleteItem = useDelete("footerlinks");
   const updateItem = useUpdate("footerlinks");
@@ -104,8 +102,8 @@ function FooterLinkCard({ id, title, link, hubId }: FooterLink) {
           )}
           <ActionIcon
             size={24}
+            color="secondary"
             variant="light"
-            color={theme.colors.secondary[4]}
             onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
               e.preventDefault();
               e.stopPropagation();

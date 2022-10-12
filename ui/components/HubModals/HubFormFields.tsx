@@ -25,7 +25,7 @@ function HubFormFields({ form }: { form: UseFormReturnType<Partial<Hub>> }) {
       />
       <Group position="center" mt="xl">
         <Button variant="outline" type="submit">
-          Submit
+          Save
         </Button>
       </Group>
     </>

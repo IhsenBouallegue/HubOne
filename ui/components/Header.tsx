@@ -136,36 +136,39 @@ export function HeaderBar() {
             </Paper>
           )}
         </Transition>
-        {editMode && (
+        {editMode ? (
           <Group ml="auto" mr="12px">
-            <ActionIcon
-              variant="light"
-              color="secondary.6"
+            <Button
+              leftIcon={<Plus />}
+              variant="outline"
+              color="brand"
+              sx={{ height: 30 }}
               onClick={() => setAddModalOpened(true)}
             >
-              <Plus size={30} />
-            </ActionIcon>
+              Create Sub Hub
+            </Button>
             <ActionIcon
               variant="light"
-              color="brand.6"
+              color="brand"
               onClick={() => setEditModalOpened(true)}
             >
               <Settings size={30} />
             </ActionIcon>
           </Group>
+        ) : (
+          <ScrollLink to="linkSection" smooth="easeInOutQuint" duration={1000}>
+            <Button
+              variant="gradient"
+              gradient={{
+                from: theme.colors.brand[4],
+                to: theme.colors.secondary[4],
+              }}
+              sx={{ height: 30 }}
+            >
+              Browse Links
+            </Button>
+          </ScrollLink>
         )}
-        <ScrollLink to="linkSection" smooth="easeInOutQuint" duration={1000}>
-          <Button
-            variant="gradient"
-            gradient={{
-              from: theme.colors.brand[4],
-              to: theme.colors.secondary[4],
-            }}
-            sx={{ height: 30 }}
-          >
-            Browse Links
-          </Button>
-        </ScrollLink>
       </Container>
       <AddHubModal opened={addModalOpened} setOpened={setAddModalOpened} />
       {hub.id && (
