@@ -18,7 +18,7 @@ function LinkGroupFormFields({
 
       <Group position="center" mt="xl">
         <Button variant="outline" type="submit">
-          Submit
+          Save
         </Button>
       </Group>
     </>

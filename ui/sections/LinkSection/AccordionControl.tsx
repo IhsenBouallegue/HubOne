@@ -10,13 +10,17 @@ export default function AccordionControl({
   ...props
 }: AccordionControlProps & { itemId: number; editMode: boolean }) {
   const deleteItem = useDelete("linkgroups");
-
   return (
     <Box sx={{ display: "flex", alignItems: "center" }}>
       <Accordion.Control {...props} />
       {editMode && (
-        <ActionIcon mx={12}>
-          <Trash strokeWidth={2} onClick={() => deleteItem(itemId)} />
+        <ActionIcon
+          mx={12}
+          variant="light"
+          color="secondary"
+          onClick={() => deleteItem(itemId)}
+        >
+          <Trash strokeWidth={2} />
         </ActionIcon>
       )}
     </Box>
