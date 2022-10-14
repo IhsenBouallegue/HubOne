@@ -2,7 +2,7 @@ import { Switch, TextInput } from "@mantine/core";
 import type { UseFormReturnType } from "@mantine/form";
 import type { Link } from "@prisma/client";
 
-function LinkFormFields({ form }: { form: UseFormReturnType<Partial<Link>> }) {
+function LinkFormFields({ form }: { form: UseFormReturnType<Link> }) {
   return (
     <>
       <TextInput

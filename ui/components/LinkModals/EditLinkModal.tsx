@@ -20,7 +20,7 @@ function EditLinkModal({
   opened: boolean;
   setOpened: (open: boolean) => void;
 } & Partial<Link>) {
-  const form = useForm<Partial<Link>>({
+  const form = useForm<Link>({
     initialValues: {
       id,
       title,
@@ -28,14 +28,12 @@ function EditLinkModal({
       image,
       isInternal,
       link,
-    },
+    } as Link,
   });
-  type FormValues = typeof form.values;
   const update = useUpdate<Link>("links");
   const deleteItem = useDelete("links");
-  const handleSubmit = (values: FormValues) => {
-    update({ newItem: values as Link, itemId: id as number });
-    form.reset();
+  const handleSubmit = (values: Link) => {
+    update(values);
     setOpened(false);
   };
 
@@ -53,7 +51,7 @@ function EditLinkModal({
           >
             Delete
           </Button>
-          <Button variant="filled" type="submit">
+          <Button variant="filled" type="submit" data-autofocus>
             Save
           </Button>
         </Group>

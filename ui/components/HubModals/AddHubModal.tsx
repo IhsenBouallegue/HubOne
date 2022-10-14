@@ -1,9 +1,8 @@
 import { Modal } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import type { Hub } from "@prisma/client";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { postHub } from "../../../lib/requests/hub/postHub";
+import { usePost } from "../../../lib/useQueries";
 
 import HubFormFields from "./HubFormFields";
 
@@ -14,39 +13,21 @@ function EditHubModal({
   opened: boolean;
   setOpened: (open: boolean) => void;
 }) {
-  const form = useForm<Partial<Hub>>({
+  const form = useForm<Hub>({
     initialValues: {
       hubName: "",
       hubLogo: "",
       hubPath: "",
-    },
+    } as Hub,
   });
-  type FormValues = typeof form.values;
 
-  const queryClient = useQueryClient();
-  const mutation = useMutation(
-    (formData: Partial<Hub>) => {
-      return postHub(formData);
-    },
-    {
-      onSuccess: () => {
-        // add delay to give the db time to save the values before refetching
-        setTimeout(() => {
-          queryClient.invalidateQueries(["hubs"]);
-        }, 300);
-      },
-    }
-  );
-
-  const handleSubmit = (values: FormValues) => {
-    try {
-      mutation.mutate(values);
-      form.reset();
-      setOpened(false);
-    } catch (error) {
-      // TODO: error handling
-    }
+  const mutate = usePost<Hub>("hubs");
+  const handleSubmit = (values: Hub) => {
+    mutate(values);
+    form.reset();
+    setOpened(false);
   };
+
   return (
     <Modal
       opened={opened}
