@@ -10,6 +10,7 @@ export const getHubWithPath = (hubPath: string): Promise<Hub> => {
       },
     })
     .then(({ data }) => {
+      if (!data) throw new Error();
       if (!hubPath && Array.isArray(data)) {
         return data[0] as Hub;
       }
