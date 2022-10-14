@@ -16,6 +16,8 @@ function EditHubModal({
   hubName,
   hubLogo,
   hubPath,
+  primaryColor,
+  secondaryColor,
 }: {
   opened: boolean;
   setOpened: (open: boolean) => void;
@@ -27,6 +29,8 @@ function EditHubModal({
       hubName,
       hubLogo,
       hubPath,
+      primaryColor,
+      secondaryColor,
     } as Hub,
   });
   const update = useUpdate<Hub>("hubs");
@@ -41,7 +45,7 @@ function EditHubModal({
       onClose={() => setOpened(false)}
       title="Edit Current Hub"
     >
-      <Tabs defaultValue="Hub" variant="pills">
+      <Tabs defaultValue="Hub" variant="outline">
         <Tabs.List>
           <Tabs.Tab value="Hub">Hub</Tabs.Tab>
           <Tabs.Tab value="Footer Links">Footer Links</Tabs.Tab>

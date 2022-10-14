@@ -1,10 +1,10 @@
-import { Button, Group, TextInput } from "@mantine/core";
+import { Button, ColorInput, Group, Stack, TextInput } from "@mantine/core";
 import type { UseFormReturnType } from "@mantine/form";
 import type { Hub } from "@prisma/client";
 
 function HubFormFields({ form }: { form: UseFormReturnType<Hub> }) {
   return (
-    <>
+    <Stack spacing="md">
       <TextInput
         required
         label="Hub Name"
@@ -12,23 +12,30 @@ function HubFormFields({ form }: { form: UseFormReturnType<Hub> }) {
         {...form.getInputProps("hubName")}
       />
       <TextInput
-        mt="md"
         label="Hub Logo"
         placeholder="Hub Logo"
         {...form.getInputProps("hubLogo")}
       />
       <TextInput
-        mt="md"
         label="Hub Path"
         placeholder="Hub Path"
         {...form.getInputProps("hubPath")}
       />
+      <ColorInput
+        placeholder="Pick color"
+        label="Hub Primary Color"
+        {...form.getInputProps("primaryColor")}
+      />
+      <ColorInput
+        placeholder="Pick color"
+        label="Hub Primary Color"
+        {...form.getInputProps("secondaryColor")}
+      />
+
       <Group position="center" mt="xl">
-        <Button variant="outline" type="submit">
-          Save
-        </Button>
+        <Button type="submit">Save</Button>
       </Group>
-    </>
+    </Stack>
   );
 }
 

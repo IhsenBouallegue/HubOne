@@ -118,8 +118,8 @@ export function Hero() {
           component="span"
           variant="gradient"
           gradient={{
-            from: "#ff008c",
-            to: "#0cd4f7",
+            from: hub.primaryColor,
+            to: hub.secondaryColor,
           }}
           inherit
         >
