@@ -2,11 +2,7 @@ import { Button, Group, TextInput } from "@mantine/core";
 import type { UseFormReturnType } from "@mantine/form";
 import type { LinkGroup } from "@prisma/client";
 
-function LinkGroupFormFields({
-  form,
-}: {
-  form: UseFormReturnType<Partial<LinkGroup>>;
-}) {
+function LinkGroupFormFields({ form }: { form: UseFormReturnType<LinkGroup> }) {
   return (
     <>
       <TextInput

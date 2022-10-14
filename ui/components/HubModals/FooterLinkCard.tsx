@@ -19,15 +19,12 @@ function FooterLinkCard({ id, title, link, hubId }: FooterLink) {
   const { classes } = useStyles();
   const [isEditing, setIsEditing] = useState(false);
   const deleteItem = useDelete("footerlinks");
-  const updateItem = useUpdate("footerlinks");
+  const updateItem = useUpdate<FooterLink>("footerlinks");
   const [state, setState] = useState({ title, link });
   const [debouncedState] = useDebouncedValue(state, 50);
 
   useEffect(() => {
-    updateItem({
-      newItem: { id, hubId, ...debouncedState },
-      itemId: id,
-    });
+    updateItem({ id, hubId, ...debouncedState });
   }, [debouncedState, hubId, id, updateItem]);
   return (
     <motion.div

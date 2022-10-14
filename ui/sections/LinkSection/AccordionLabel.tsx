@@ -22,12 +22,9 @@ export default function AccordionLabel({
           }}
           onBlur={(event) =>
             updateLinkGroup({
-              newItem: {
-                id,
-                title: event.currentTarget.value,
-                hubId,
-              } as LinkGroup,
-              itemId: id,
+              id,
+              title: event.currentTarget.value,
+              hubId,
             })
           }
         />

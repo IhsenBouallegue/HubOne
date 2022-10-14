@@ -2,7 +2,7 @@ import { Button, Group, TextInput } from "@mantine/core";
 import type { UseFormReturnType } from "@mantine/form";
 import type { Hub } from "@prisma/client";
 
-function HubFormFields({ form }: { form: UseFormReturnType<Partial<Hub>> }) {
+function HubFormFields({ form }: { form: UseFormReturnType<Hub> }) {
   return (
     <>
       <TextInput

@@ -20,19 +20,18 @@ function EditHubModal({
   opened: boolean;
   setOpened: (open: boolean) => void;
   footerLinks: FooterLink[];
-} & Partial<Hub>) {
-  const form = useForm<Partial<Hub>>({
+} & Hub) {
+  const form = useForm<Hub>({
     initialValues: {
       id,
       hubName,
       hubLogo,
       hubPath,
-    },
+    } as Hub,
   });
-  type FormValues = typeof form.values;
   const update = useUpdate<Hub>("hubs");
-  const handleSubmit = (values: FormValues) => {
-    update({ newItem: values as Hub, itemId: id as number });
+  const handleSubmit = (values: Hub) => {
+    update(values);
     setOpened(false);
   };
 
