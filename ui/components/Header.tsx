@@ -19,6 +19,7 @@ import { X, Settings, Plus } from "tabler-icons-react";
 
 import { useHubOneContext } from "../../lib/context/HubOneContext";
 
+import DefaultHubLogo from "./DefaultHubLogo";
 import EditHubModal from "./HubModals";
 import AddHubModal from "./HubModals/AddHubModal";
 
@@ -110,18 +111,17 @@ export function HeaderBar() {
             className={classes.burger}
             size="sm"
           />
-
           <MediaQuery largerThan="sm" styles={{ display: "none" }}>
             <Image src="/logo/hubone_logo.svg" height={28} width={28} />
           </MediaQuery>
           <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
             <Image src="/logo/hubone_logo_full.svg" width={126} />
           </MediaQuery>
-          {hub.hubLogo && (
-            <>
-              <X size={20} strokeWidth={1} color="black" />
-              <Image src={hub.hubLogo} height={28} width={28} />
-            </>
+          <X size={20} strokeWidth={1} color="black" />
+          {hub.hubLogo ? (
+            <Image src={hub.hubLogo} height={28} width={28} />
+          ) : (
+            hub.hubName && <DefaultHubLogo {...hub} />
           )}
         </Group>
 
