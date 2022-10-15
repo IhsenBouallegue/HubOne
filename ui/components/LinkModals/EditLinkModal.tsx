@@ -45,9 +45,11 @@ function EditLinkModal({
           <Button
             leftIcon={<Trash />}
             variant="outline"
-            type="submit"
             color="secondary"
-            onClick={() => deleteItem(id as number)}
+            onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+              e.preventDefault();
+              deleteItem(id as number);
+            }}
           >
             Delete
           </Button>
