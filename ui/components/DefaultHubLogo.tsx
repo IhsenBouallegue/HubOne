@@ -22,6 +22,10 @@ export default function DefaultHubLogo({
         justifyContent: "center",
         alignItems: "center",
         display: "flex",
+        webkitUserSelect: "none",
+        mozUserSelect: "none",
+        msUserSelect: "none",
+        userSelect: "none",
       })}
     >
       <Title size={16}>{shorten(hubName)}</Title>

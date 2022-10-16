@@ -8,12 +8,8 @@ import { usePost } from "../../../lib/useQueries";
 function FooterLinkAddCard({ hubId }: { hubId: number }) {
   const { classes } = useStyles();
   const mutate = usePost<FooterLink>("footerlinks");
-  const handleAdd = () => {
-    try {
-      mutate({ hubId, title: "change me", link: "/" } as FooterLink);
-    } catch (error) {
-      // TODO: error handling
-    }
+  const handleSubmit = () => {
+    mutate({ hubId, title: "change me", link: "/" } as FooterLink);
   };
   return (
     <motion.div
@@ -23,7 +19,7 @@ function FooterLinkAddCard({ hubId }: { hubId: number }) {
       }}
       whileTap={{ scale: 0.98 }}
       className={classes.card}
-      onClick={handleAdd}
+      onClick={handleSubmit}
     >
       <Card className={classes.card} shadow="sm" p="lg" onClick={() => {}}>
         <Group my="auto" position="center">

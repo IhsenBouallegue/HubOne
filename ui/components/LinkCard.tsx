@@ -88,6 +88,7 @@ export default function LinkCard({
               className={classes.image}
               src={image || "./logo/hubone_logo.svg"}
               alt={title}
+              withPlaceholder
             />
           </Group>
         </Card.Section>
