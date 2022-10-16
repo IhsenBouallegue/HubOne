@@ -1,4 +1,4 @@
-import { Text, Title } from "@mantine/core";
+import { Center, Image, Loader, Stack, Text, Title } from "@mantine/core";
 import type { FooterLink, Hub, Link, LinkGroup } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
@@ -17,13 +17,13 @@ export default function Home() {
     useHubOneContext();
   // use `|| [""]` for root hub that has no set path by the router
   const hubPaths = (router.query.hubPaths as string[]) || [""];
-  const { data: hub } = useQuery<Hub>(
-    ["hubs", hubPaths[0]],
-    () => getHubWithPath(hubPaths[0]),
-    {
-      onSuccess: setHub,
-    }
-  );
+  const {
+    data: hub,
+    isLoading,
+    isError,
+  } = useQuery<Hub>(["hubs", hubPaths[0]], () => getHubWithPath(hubPaths[0]), {
+    onSuccess: setHub,
+  });
   const hubId = Number(hub?.id);
 
   const config = <T,>(onSuccess: (data: T) => void) => ({
@@ -34,21 +34,54 @@ export default function Home() {
   useFetchByHubId<LinkGroup>("linkgroups", hubId, config(setLinkGroups));
   useFetchByHubId<FooterLink>("footerlinks", hubId, config(setFooterLinks));
 
-  return (
-    <div>
-      {hub ? (
-        <>
-          <HeaderBar />
-          <Hero />
-          <LinkSection />
-          <Footer />
-        </>
-      ) : (
-        <>
+  if (isLoading) {
+    return (
+      <Center
+        sx={{
+          width: "inherit",
+          height: "100vh",
+        }}
+      >
+        <Stack
+          sx={{
+            alignItems: "center",
+          }}
+        >
+          <Image src="/logo/hubone_logo.svg" width={126} />
+          <Title align="center">Loading...</Title>
+          <Loader size={64} variant="dots" color="brand.4" />
+        </Stack>
+      </Center>
+    );
+  }
+
+  if (isError) {
+    return (
+      <Center
+        sx={{
+          width: "inherit",
+          height: "100vh",
+        }}
+      >
+        <Stack
+          sx={{
+            alignItems: "center",
+          }}
+        >
+          <Image src="/logo/hubone_logo.svg" width={126} />
           <Title align="center">Hub was not found</Title>
           <Text align="center">Please make sure you entered a valid Hub</Text>
-        </>
-      )}
-    </div>
+        </Stack>
+      </Center>
+    );
+  }
+
+  return (
+    <>
+      <HeaderBar />
+      <Hero />
+      <LinkSection />
+      <Footer />
+    </>
   );
 }

@@ -10,13 +10,15 @@ const run = async () => {
       data: [
         {
           hubName: "Company",
-          hubLogo: "/logo/hubone_logo.svg",
+          hubLogo: "",
           hubPath: "",
         },
         {
           hubName: "Sub Hub",
-          hubLogo: "/logo/hubone_logo.svg",
+          hubLogo: "",
           hubPath: "subhub",
+          primaryColor: "#26d46c",
+          secondaryColor: "#00d9ff",
         },
       ],
     });

@@ -1,10 +1,11 @@
 /* eslint-disable sonarjs/no-duplicate-string */
+import { showNotification } from "@mantine/notifications";
 import type { QueryClient } from "@tanstack/react-query";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import axios from "./axios";
 
-export const simpleFetchByHubId = <T>(
+const simpleFetchByHubId = <T>(
   QUERY_NAME: string,
   hubId: number
 ): Promise<T[]> => {
@@ -37,11 +38,26 @@ export function useFetchItem<T>(
   );
 }
 
-const defaultSuccess = (queryClient: QueryClient, QUERY_NAME: string) => {
-  return () => {
-    setTimeout(() => {
-      queryClient.invalidateQueries([QUERY_NAME]);
-    }, 300);
+const defaultMutateList = <T>(queryClient: QueryClient, QUERY_NAME: string) => {
+  return async (newItem: T) => {
+    // Optimistic list update
+    await queryClient.cancelQueries([QUERY_NAME]);
+    const previousItems = queryClient.getQueryData([QUERY_NAME]);
+    queryClient.setQueryData([QUERY_NAME], (old) => [old, newItem]);
+    return { previousItems };
+  };
+};
+
+const defaultMutateItem = <T extends { id: number }>(
+  queryClient: QueryClient,
+  QUERY_NAME: string
+) => {
+  return async ({ id, ...newItem }: T) => {
+    // Optimistic single item update
+    await queryClient.cancelQueries([QUERY_NAME, id]);
+    const previousItem = queryClient.getQueryData([QUERY_NAME, id]);
+    queryClient.setQueryData([QUERY_NAME, id], newItem);
+    return { previousItem, newItem };
   };
 };
 
@@ -52,27 +68,49 @@ export function usePost<T>(QUERY_NAME: string) {
       return axios.post<T>(QUERY_NAME, newItem);
     },
     {
-      onSuccess: defaultSuccess(queryClient, QUERY_NAME),
-      onError: () => {
-        // TODO: handle errors
+      onMutate: defaultMutateList<T>(queryClient, QUERY_NAME),
+      onError: (_, __, context) => {
+        queryClient.setQueryData([QUERY_NAME], context?.previousItems);
+        showNotification({
+          message: `We couldn't add your ${QUERY_NAME.slice(0, -1)} 😢`,
+          color: "red",
+        });
+      },
+      onSuccess: () => {
+        showNotification({
+          message: `Your new ${QUERY_NAME.slice(0, -1)} has been added! 🥳`,
+        });
+      },
+      onSettled: () => {
+        queryClient.invalidateQueries([QUERY_NAME]);
       },
     }
   );
   return mutate;
 }
 
-export function useUpdate<T>(QUERY_NAME: string) {
+export function useUpdate<T extends { id: number }>(QUERY_NAME: string) {
   const queryClient = useQueryClient();
   const { mutate } = useMutation(
-    ({ newItem, itemId }: { newItem: T; itemId: number }) => {
-      return axios.patch<T>(`${QUERY_NAME}/${itemId}`, {
-        ...newItem,
-      });
+    (newItem: T) => {
+      return axios.patch<T>(`${QUERY_NAME}/${newItem.id}`, newItem);
     },
     {
-      onSuccess: defaultSuccess(queryClient, QUERY_NAME),
-      onError: () => {
-        // TODO: handle errors
+      onMutate: defaultMutateItem<T>(queryClient, QUERY_NAME),
+      onError: (_, __, context) => {
+        queryClient.setQueryData([QUERY_NAME], context?.previousItem);
+        showNotification({
+          message: `We couldn't update your ${QUERY_NAME.slice(0, -1)} 😢`,
+          color: "red",
+        });
+      },
+      onSuccess: () => {
+        showNotification({
+          message: `Your ${QUERY_NAME.slice(0, -1)} has been updated! 🥳`,
+        });
+      },
+      onSettled: () => {
+        queryClient.invalidateQueries([QUERY_NAME]);
       },
     }
   );
@@ -86,9 +124,19 @@ export function useDelete(QUERY_NAME: string) {
       return axios.delete(`${QUERY_NAME}/${itemId}`, { data: { itemId } });
     },
     {
-      onSuccess: defaultSuccess(queryClient, QUERY_NAME),
       onError: () => {
-        // TODO: handle errors
+        showNotification({
+          message: `The ${QUERY_NAME.slice(0, -1)} couldn't be deleted! 😢`,
+          color: "red",
+        });
+      },
+      onSuccess: () => {
+        showNotification({
+          message: `The ${QUERY_NAME.slice(0, -1)} has been deleted❗`,
+        });
+      },
+      onSettled: () => {
+        queryClient.invalidateQueries([QUERY_NAME]);
       },
     }
   );
@@ -102,9 +150,19 @@ export function useDeleteAll(QUERY_NAME: string) {
       return axios.delete(QUERY_NAME);
     },
     {
-      onSuccess: defaultSuccess(queryClient, QUERY_NAME),
       onError: () => {
-        // TODO: handle errors
+        showNotification({
+          message: `The ${QUERY_NAME} couldn't be deleted! 😢`,
+          color: "red",
+        });
+      },
+      onSuccess: () => {
+        showNotification({
+          message: `The ${QUERY_NAME} has been deleted❗`,
+        });
+      },
+      onSettled: () => {
+        queryClient.invalidateQueries([QUERY_NAME]);
       },
     }
   );

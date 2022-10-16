@@ -6,12 +6,12 @@ import {
   Group,
   Title,
   useMantineTheme,
-  Image,
 } from "@mantine/core";
 import { Link as ScrollLink } from "react-scroll";
 
 import type { Settings } from "../../../lib/context/HubOneContext";
 import { useHubOneContext } from "../../../lib/context/HubOneContext";
+import { BackgroundImg } from "../../components/BackgroundImg";
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -95,6 +95,8 @@ const useStyles = createStyles((theme) => ({
 
   background: {
     position: "absolute",
+    width: "35vh",
+    maxHeight: "35vh",
     left: "52%",
     bottom: "0",
     objectFit: "contain",
@@ -118,8 +120,8 @@ export function Hero() {
           component="span"
           variant="gradient"
           gradient={{
-            from: "#ff008c",
-            to: "#0cd4f7",
+            from: hub.primaryColor,
+            to: hub.secondaryColor,
           }}
           inherit
         >
@@ -131,7 +133,11 @@ export function Hero() {
   };
   return (
     <div className={classes.wrapper}>
-      <Image src="background.svg" width="35vh" className={classes.background} />
+      <BackgroundImg
+        className={classes.background}
+        primaryColor={hub.primaryColor}
+        secondaryColor={hub.secondaryColor}
+      />
       <Container size={800} className={classes.inner}>
         <Title order={1} className={classes.title}>
           The{" "}

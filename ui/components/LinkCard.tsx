@@ -8,52 +8,38 @@ import {
   useMantineTheme,
 } from "@mantine/core";
 import type { Link } from "@prisma/client";
-import { motion } from "framer-motion";
-import { useState } from "react";
-import { Lock, Trash } from "tabler-icons-react";
+import { motion, useAnimationControls } from "framer-motion";
+import { useEffect, useState } from "react";
+import { Lock, Edit } from "tabler-icons-react";
 
 import { useHubOneContext } from "../../lib/context/HubOneContext";
-import { useDelete } from "../../lib/useQueries";
 
 import EditLinkModal from "./LinkModals/EditLinkModal";
 
-const useStyles = createStyles((theme) => ({
-  card: {
-    height: "100%",
-    minWidth: "150px",
-    margin: "auto",
-  },
-  title: {
-    marginBottom: 5,
-    marginTop: theme.spacing.sm,
-  },
-  image: {
-    padding: 32,
-    minHeight: 160,
-    left: "0%",
-    top: "0%",
-    height: "100%",
-    width: "100%",
-  },
-  icon: { top: "10%", left: "10%", position: "absolute" },
-  trash: { top: "10%", right: "10%", position: "absolute" },
-  description: { color: theme.colors.dark[1], lineHeight: 1.5 },
-}));
-
-function LinkCard({
+export default function LinkCard({
   id,
   title,
   description,
-  image = "./logo/hubone_logo.svg",
+  image,
   link,
   isInternal = false,
 }: Link) {
   const { classes } = useStyles();
   const theme = useMantineTheme();
   const { editMode } = useHubOneContext();
-  const deleteItem = useDelete("links");
-
   const [opened, setOpened] = useState(false);
+  const controls = useAnimationControls();
+  useEffect(() => {
+    if (editMode)
+      controls.start({
+        rotate: [2, -2],
+        transition: { repeat: Infinity, repeatType: "reverse", duration: 0.4 },
+      });
+    else {
+      controls.set({ rotate: 0 });
+      controls.stop();
+    }
+  }, [editMode, controls]);
   return (
     <motion.div
       whileHover={{
@@ -61,6 +47,7 @@ function LinkCard({
         transition: { duration: 0.2 },
       }}
       whileTap={{ scale: 0.94 }}
+      animate={controls}
       className={classes.card}
     >
       <Card
@@ -89,25 +76,19 @@ function LinkCard({
             )}
             {editMode && (
               <ActionIcon
-                className={classes.trash}
-                size={16}
+                className={classes.edit}
+                size={24}
+                color="brand"
                 variant="light"
-                color={theme.colors.secondary[4]}
-                onClick={(
-                  e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-                ) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  deleteItem(id);
-                }}
               >
-                <Trash strokeWidth={2} />
+                <Edit strokeWidth={2} />
               </ActionIcon>
             )}
             <Image
               className={classes.image}
               src={image || "./logo/hubone_logo.svg"}
               alt={title}
+              withPlaceholder
             />
           </Group>
         </Card.Section>
@@ -134,4 +115,25 @@ function LinkCard({
   );
 }
 
-export default LinkCard;
+const useStyles = createStyles((theme) => ({
+  card: {
+    height: "100%",
+    minWidth: "150px",
+    margin: "auto",
+  },
+  title: {
+    marginBottom: 5,
+    marginTop: theme.spacing.sm,
+  },
+  image: {
+    padding: 32,
+    minHeight: 160,
+    left: "0%",
+    top: "0%",
+    height: "100%",
+    width: "100%",
+  },
+  icon: { top: "10%", left: "10%", position: "absolute" },
+  edit: { top: "10%", right: "5%", position: "absolute" },
+  description: { color: theme.colors.dark[1], lineHeight: 1.5 },
+}));

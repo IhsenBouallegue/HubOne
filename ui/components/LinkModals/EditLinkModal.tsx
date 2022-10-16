@@ -1,8 +1,9 @@
-import { Modal } from "@mantine/core";
+import { Button, Group, Modal } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import type { Link } from "@prisma/client";
+import { Trash } from "tabler-icons-react";
 
-import { useUpdate } from "../../../lib/useQueries";
+import { useDelete, useUpdate } from "../../../lib/useQueries";
 
 import LinkFormFields from "./LinkFormFields";
 
@@ -19,7 +20,7 @@ function EditLinkModal({
   opened: boolean;
   setOpened: (open: boolean) => void;
 } & Partial<Link>) {
-  const form = useForm<Partial<Link>>({
+  const form = useForm<Link>({
     initialValues: {
       id,
       title,
@@ -27,13 +28,12 @@ function EditLinkModal({
       image,
       isInternal,
       link,
-    },
+    } as Link,
   });
-  type FormValues = typeof form.values;
   const update = useUpdate<Link>("links");
-  const handleSubmit = (values: FormValues) => {
-    update({ newItem: values as Link, itemId: id as number });
-    form.reset();
+  const deleteItem = useDelete("links");
+  const handleSubmit = (values: Link) => {
+    update(values);
     setOpened(false);
   };
 
@@ -41,6 +41,22 @@ function EditLinkModal({
     <Modal opened={opened} onClose={() => setOpened(false)} title="Edit link">
       <form onSubmit={form.onSubmit(handleSubmit)}>
         <LinkFormFields form={form} />
+        <Group position="center" mt="xl">
+          <Button
+            leftIcon={<Trash />}
+            variant="outline"
+            color="secondary"
+            onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+              e.preventDefault();
+              deleteItem(id as number);
+            }}
+          >
+            Delete
+          </Button>
+          <Button variant="filled" type="submit" data-autofocus>
+            Save
+          </Button>
+        </Group>
       </form>
     </Modal>
   );

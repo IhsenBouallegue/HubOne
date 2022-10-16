@@ -1,4 +1,4 @@
-import { Modal } from "@mantine/core";
+import { Button, Group, Modal } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import type { Link } from "@prisma/client";
 
@@ -15,7 +15,7 @@ function AddLinkModal({
   opened: boolean;
   setOpened: (open: boolean) => void;
 } & Partial<Link>) {
-  const form = useForm<Partial<Link>>({
+  const form = useForm<Link>({
     initialValues: {
       title: "",
       description: "",
@@ -24,19 +24,13 @@ function AddLinkModal({
       link: "",
       hubId,
       linkGroupId,
-    },
+    } as Link,
   });
-  type FormValues = typeof form.values;
-
   const mutate = usePost<Link>("links");
-  const handleSubmit = (values: FormValues) => {
-    try {
-      mutate(values as Link);
-      form.reset();
-      setOpened(false);
-    } catch (error) {
-      // TODO: error handling
-    }
+  const handleSubmit = (values: Link) => {
+    mutate(values);
+    form.reset();
+    setOpened(false);
   };
 
   return (
@@ -47,6 +41,11 @@ function AddLinkModal({
     >
       <form onSubmit={form.onSubmit(handleSubmit)}>
         <LinkFormFields form={form} />
+        <Group position="center" mt="xl">
+          <Button variant="filled" type="submit">
+            Save
+          </Button>
+        </Group>
       </form>
     </Modal>
   );

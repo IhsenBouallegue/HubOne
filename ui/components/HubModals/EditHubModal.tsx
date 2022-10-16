@@ -16,23 +16,26 @@ function EditHubModal({
   hubName,
   hubLogo,
   hubPath,
+  primaryColor,
+  secondaryColor,
 }: {
   opened: boolean;
   setOpened: (open: boolean) => void;
   footerLinks: FooterLink[];
-} & Partial<Hub>) {
-  const form = useForm<Partial<Hub>>({
+} & Hub) {
+  const form = useForm<Hub>({
     initialValues: {
       id,
       hubName,
       hubLogo,
       hubPath,
-    },
+      primaryColor,
+      secondaryColor,
+    } as Hub,
   });
-  type FormValues = typeof form.values;
   const update = useUpdate<Hub>("hubs");
-  const handleSubmit = (values: FormValues) => {
-    update({ newItem: values as Hub, itemId: id as number });
+  const handleSubmit = (values: Hub) => {
+    update(values);
     setOpened(false);
   };
 
@@ -42,7 +45,7 @@ function EditHubModal({
       onClose={() => setOpened(false)}
       title="Edit Current Hub"
     >
-      <Tabs defaultValue="Hub" variant="pills">
+      <Tabs defaultValue="Hub" variant="outline">
         <Tabs.List>
           <Tabs.Tab value="Hub">Hub</Tabs.Tab>
           <Tabs.Tab value="Footer Links">Footer Links</Tabs.Tab>

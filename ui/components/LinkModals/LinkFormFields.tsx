@@ -1,8 +1,8 @@
-import { Button, Group, Switch, TextInput } from "@mantine/core";
+import { Switch, TextInput } from "@mantine/core";
 import type { UseFormReturnType } from "@mantine/form";
 import type { Link } from "@prisma/client";
 
-function LinkFormFields({ form }: { form: UseFormReturnType<Partial<Link>> }) {
+function LinkFormFields({ form }: { form: UseFormReturnType<Link> }) {
   return (
     <>
       <TextInput
@@ -31,12 +31,6 @@ function LinkFormFields({ form }: { form: UseFormReturnType<Partial<Link>> }) {
         {...form.getInputProps("link")}
       />
       <Switch mt="md" label="Internal" {...form.getInputProps("isInternal")} />
-
-      <Group position="center" mt="xl">
-        <Button variant="outline" type="submit">
-          Submit
-        </Button>
-      </Group>
     </>
   );
 }

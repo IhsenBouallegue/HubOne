@@ -1,9 +1,8 @@
 import { Modal } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import type { LinkGroup } from "@prisma/client";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { postLinkGroup } from "../../../lib/requests/linkGroup/postLinkGroup";
+import { usePost } from "../../../lib/useQueries";
 
 import LinkGroupFormFields from "./LinkGroupFormFields";
 
@@ -16,37 +15,17 @@ function AddLinkGroupModal({
   setOpened: (open: boolean) => void;
   hubId: number;
 }) {
-  const form = useForm<Partial<LinkGroup>>({
+  const form = useForm<LinkGroup>({
     initialValues: {
       title: "",
       hubId,
-    },
+    } as LinkGroup,
   });
-  type FormValues = typeof form.values;
-
-  const queryClient = useQueryClient();
-  const mutation = useMutation(
-    (formData: Partial<LinkGroup>) => {
-      return postLinkGroup(formData);
-    },
-    {
-      onSuccess: () => {
-        // add delay to give the db time to save the values before refetching
-        setTimeout(() => {
-          queryClient.invalidateQueries(["linkgroups"]);
-        }, 300);
-      },
-    }
-  );
-
-  const handleSubmit = (values: FormValues) => {
-    try {
-      mutation.mutate(values);
-      form.reset();
-      setOpened(false);
-    } catch (error) {
-      // TODO: error handling
-    }
+  const mutate = usePost<LinkGroup>("linkgroups");
+  const handleSubmit = (values: LinkGroup) => {
+    mutate(values);
+    form.reset();
+    setOpened(false);
   };
 
   return (

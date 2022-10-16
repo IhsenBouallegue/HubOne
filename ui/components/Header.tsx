@@ -19,6 +19,7 @@ import { X, Settings, Plus } from "tabler-icons-react";
 
 import { useHubOneContext } from "../../lib/context/HubOneContext";
 
+import DefaultHubLogo from "./DefaultHubLogo";
 import EditHubModal from "./HubModals";
 import AddHubModal from "./HubModals/AddHubModal";
 
@@ -110,18 +111,17 @@ export function HeaderBar() {
             className={classes.burger}
             size="sm"
           />
-
           <MediaQuery largerThan="sm" styles={{ display: "none" }}>
             <Image src="/logo/hubone_logo.svg" height={28} width={28} />
           </MediaQuery>
           <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
             <Image src="/logo/hubone_logo_full.svg" width={126} />
           </MediaQuery>
-          {hub.hubLogo && (
-            <>
-              <X size={20} strokeWidth={1} color="black" />
-              <Image src={hub.hubLogo} height={28} width={28} />
-            </>
+          <X size={20} strokeWidth={1} color="black" />
+          {hub.hubLogo ? (
+            <Image src={hub.hubLogo} height={28} width={28} />
+          ) : (
+            hub.hubName && <DefaultHubLogo {...hub} />
           )}
         </Group>
 
@@ -136,36 +136,39 @@ export function HeaderBar() {
             </Paper>
           )}
         </Transition>
-        {editMode && (
+        {editMode ? (
           <Group ml="auto" mr="12px">
-            <ActionIcon
-              variant="light"
-              color="secondary.6"
+            <Button
+              leftIcon={<Plus />}
+              variant="outline"
+              color="brand"
+              sx={{ height: 30 }}
               onClick={() => setAddModalOpened(true)}
             >
-              <Plus size={30} />
-            </ActionIcon>
+              Create Sub Hub
+            </Button>
             <ActionIcon
               variant="light"
-              color="brand.6"
+              color="brand"
               onClick={() => setEditModalOpened(true)}
             >
               <Settings size={30} />
             </ActionIcon>
           </Group>
+        ) : (
+          <ScrollLink to="linkSection" smooth="easeInOutQuint" duration={1000}>
+            <Button
+              variant="gradient"
+              gradient={{
+                from: theme.colors.brand[4],
+                to: theme.colors.secondary[4],
+              }}
+              sx={{ height: 30 }}
+            >
+              Browse Links
+            </Button>
+          </ScrollLink>
         )}
-        <ScrollLink to="linkSection" smooth="easeInOutQuint" duration={1000}>
-          <Button
-            variant="gradient"
-            gradient={{
-              from: theme.colors.brand[4],
-              to: theme.colors.secondary[4],
-            }}
-            sx={{ height: 30 }}
-          >
-            Browse Links
-          </Button>
-        </ScrollLink>
       </Container>
       <AddHubModal opened={addModalOpened} setOpened={setAddModalOpened} />
       {hub.id && (
