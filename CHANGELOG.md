@@ -1,3 +1,21 @@
+# [2.2.0](https://github.com/IhsenBouallegue/HubOne/compare/v2.1.1...v2.2.0) (2022-10-16)
+
+
+### Bug Fixes
+
+* add link group not showing up when hub empty ([8e24184](https://github.com/IhsenBouallegue/HubOne/commit/8e241845d2581aec968157e99e52ba20aec4ce3d))
+* make all delete icons consistent ([#41](https://github.com/IhsenBouallegue/HubOne/issues/41)) ([15bca47](https://github.com/IhsenBouallegue/HubOne/commit/15bca478559ef46da339253e0005dd5d6beb1d68))
+* refactor link section files ([94e5939](https://github.com/IhsenBouallegue/HubOne/commit/94e59399c5cf3fd63c0c376ed5536590555d7c4e))
+
+
+### Features
+
+* add loading page ([#43](https://github.com/IhsenBouallegue/HubOne/issues/43)) ([ec71d38](https://github.com/IhsenBouallegue/HubOne/commit/ec71d38a6f769ec826a31000b30b7c5abadfc2a6))
+* add optimistic update ([#42](https://github.com/IhsenBouallegue/HubOne/issues/42)) ([ab3b138](https://github.com/IhsenBouallegue/HubOne/commit/ab3b13869b95754555be30db057b8de461f76fa2))
+* add toasters to show feedback ([#45](https://github.com/IhsenBouallegue/HubOne/issues/45)) ([dfdc824](https://github.com/IhsenBouallegue/HubOne/commit/dfdc8246c70c6da2be2c169b69b32fdeecf12378))
+* make hub colors editable ([#44](https://github.com/IhsenBouallegue/HubOne/issues/44)) ([52c636d](https://github.com/IhsenBouallegue/HubOne/commit/52c636dfe6038a877407702e5a9f840d2ef151b5))
+* redesign the hero image to match hub colors ([#46](https://github.com/IhsenBouallegue/HubOne/issues/46)) ([758d3f0](https://github.com/IhsenBouallegue/HubOne/commit/758d3f0305a93603034cb220c571296c1b78ea1e))
+
 ## [2.1.1](https://github.com/IhsenBouallegue/hub-one/compare/v2.1.0...v2.1.1) (2022-10-06)
 
 
