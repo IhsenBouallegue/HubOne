@@ -11,8 +11,8 @@
     "typecheck": "tsc --noEmit",
     "prettier:check": "prettier --check \"**/*.{ts,tsx}\"",
     "format": "prettier --write \"**/*.{ts,tsx}\"",
-    "up": "docker-compose -f docker/docker-compose.yml up --build --force-recreate",
-    "up:prod": "docker-compose -f docker/docker-compose.production.yml up --build --force-recreate",
+    "up": "docker-compose -f docker/hubone/docker-compose.development.yml up --build --force-recreate",
+    "up:prod": "docker-compose -f docker/hubone/docker-compose.production.yml up --build --force-recreate",
     "prepare": "husky install"
   },
   "dependencies": {

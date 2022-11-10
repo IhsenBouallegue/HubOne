@@ -1,11 +1,11 @@
-name: ci
+name: Build HubOne Schema
 
 on:
   push:
     branches: ["main"]
 
 env:
-  IMAGE_NAME: hubone
+  IMAGE_NAME: hubone-schema
 
 jobs:
   build:
@@ -25,6 +25,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          file: ./docker/Dockerfile.production
+          file: ./docker/hubone-schema/dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.IMAGE_NAME }}:latest
