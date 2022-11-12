@@ -1,3 +1,10 @@
+## [2.2.5](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.4...v2.2.5) (2022-11-12)
+
+
+### Bug Fixes
+
+* fix hubone schema docker file, docker compose ([d1c5a92](https://github.com/IhsenBouallegue/HubOne/commit/d1c5a926826732395fe0cea271968200c18fe831))
+
 ## [2.2.4](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.3...v2.2.4) (2022-11-12)
 
 
