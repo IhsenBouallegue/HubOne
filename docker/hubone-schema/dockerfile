@@ -3,7 +3,7 @@ FROM node:16-alpine
 WORKDIR /app
 
 COPY package.json yarn.lock ./
-RUN yarn install
+RUN yarn add ts-node typescript prisma
 
 COPY prisma ./prisma
 RUN npx prisma generate
