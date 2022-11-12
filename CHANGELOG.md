@@ -1,3 +1,10 @@
+## [2.2.3](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.2...v2.2.3) (2022-11-12)
+
+
+### Bug Fixes
+
+* change hubone schema dockerfile ([#62](https://github.com/IhsenBouallegue/HubOne/issues/62)) ([06d62f4](https://github.com/IhsenBouallegue/HubOne/commit/06d62f43ce2d6f4e727934529f72b14b62d1c907))
+
 ## [2.2.2](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.1...v2.2.2) (2022-11-12)
 
 
