@@ -1,3 +1,10 @@
+## [2.2.2](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.1...v2.2.2) (2022-11-12)
+
+
+### Bug Fixes
+
+* install deps in hubone schema container ([#61](https://github.com/IhsenBouallegue/HubOne/issues/61)) ([a1bbcf3](https://github.com/IhsenBouallegue/HubOne/commit/a1bbcf39157268014aff64f76ac2db8eb84af8ae))
+
 ## [2.2.1](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.0...v2.2.1) (2022-11-12)
 
 
