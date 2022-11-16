@@ -5,15 +5,14 @@ volumes:
 
 services:
   app:
-    image: hubone-docker-dev
+    image: hubone-dev
     depends_on:
       - db
     build:
       context: ../
-      dockerfile: ./docker/Dockerfile
+      dockerfile: ./docker/hubone/dockerfile.development
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/hubone?schema=public
-      - NEXT_PUBLIC_SERVER_BASE_URL=http://localhost:3000
     ports:
       - 3000:3000
     volumes:
