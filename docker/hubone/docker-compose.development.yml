@@ -9,7 +9,7 @@ services:
     depends_on:
       - db
     build:
-      context: ../
+      context: ../../
       dockerfile: ./docker/hubone/dockerfile.development
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@db:5432/hubone?schema=public

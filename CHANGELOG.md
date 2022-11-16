@@ -1,3 +1,38 @@
+## [2.2.5](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.4...v2.2.5) (2022-11-12)
+
+
+### Bug Fixes
+
+* fix hubone schema docker file, docker compose ([d1c5a92](https://github.com/IhsenBouallegue/HubOne/commit/d1c5a926826732395fe0cea271968200c18fe831))
+
+## [2.2.4](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.3...v2.2.4) (2022-11-12)
+
+
+### Bug Fixes
+
+* hubone schema dockerfile ([29193ec](https://github.com/IhsenBouallegue/HubOne/commit/29193ec42f176ccdd5ce635396c89d4bb5b6495e))
+
+## [2.2.3](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.2...v2.2.3) (2022-11-12)
+
+
+### Bug Fixes
+
+* change hubone schema dockerfile ([#62](https://github.com/IhsenBouallegue/HubOne/issues/62)) ([06d62f4](https://github.com/IhsenBouallegue/HubOne/commit/06d62f43ce2d6f4e727934529f72b14b62d1c907))
+
+## [2.2.2](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.1...v2.2.2) (2022-11-12)
+
+
+### Bug Fixes
+
+* install deps in hubone schema container ([#61](https://github.com/IhsenBouallegue/HubOne/issues/61)) ([a1bbcf3](https://github.com/IhsenBouallegue/HubOne/commit/a1bbcf39157268014aff64f76ac2db8eb84af8ae))
+
+## [2.2.1](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.0...v2.2.1) (2022-11-12)
+
+
+### Bug Fixes
+
+* schema container ([#60](https://github.com/IhsenBouallegue/HubOne/issues/60)) ([6ca0278](https://github.com/IhsenBouallegue/HubOne/commit/6ca0278e8711e2b598f9b058d1eef246e21927f8))
+
 # [2.2.0](https://github.com/IhsenBouallegue/HubOne/compare/v2.1.1...v2.2.0) (2022-10-16)
 
 
