@@ -3,12 +3,12 @@ name: Build HubOne
 on:
   push:
     branches:
-      - ["main"]
+      - main
     tags:
-      - "v*"
+      - "*"
   pull_request:
     branches:
-      - ["main"]
+      - main
 
 env:
   IMAGE_NAME: hubone
