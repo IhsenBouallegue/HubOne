@@ -1,3 +1,10 @@
+## [2.2.7](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.6...v2.2.7) (2022-11-17)
+
+
+### Bug Fixes
+
+* adjust build workflows ([fd756cd](https://github.com/IhsenBouallegue/HubOne/commit/fd756cd3284a491a3c39fb3cdcca3184c72f9ac7))
+
 ## [2.2.6](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.5...v2.2.6) (2022-11-17)
 
 
