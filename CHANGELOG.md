@@ -1,3 +1,11 @@
+## [2.2.12](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.11...v2.2.12) (2022-11-17)
+
+
+### Bug Fixes
+
+* add token to env in steps ([f6ef4b8](https://github.com/IhsenBouallegue/HubOne/commit/f6ef4b8496976acbe81ebd95adf6ae18c57e4e4e))
+* change scope of token ([e9eaed9](https://github.com/IhsenBouallegue/HubOne/commit/e9eaed98ab66711560867855cd6343aed76278ca))
+
 ## [2.2.11](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.10...v2.2.11) (2022-11-17)
 
 
