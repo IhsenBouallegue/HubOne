@@ -1,3 +1,15 @@
+## [2.2.9](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.8...v2.2.9) (2022-11-17)
+
+
+### Bug Fixes
+
+* add label to renovate ([f653450](https://github.com/IhsenBouallegue/HubOne/commit/f653450d78c0141bad5be78bec20ef3881f48597))
+* add version tags to docker image ([#63](https://github.com/IhsenBouallegue/HubOne/issues/63)) ([3c36ca8](https://github.com/IhsenBouallegue/HubOne/commit/3c36ca8224517d56e7ef61de307d90cf12264f4b))
+* adjust build ([8447f76](https://github.com/IhsenBouallegue/HubOne/commit/8447f76c966f5f23c6d47f44a84b14335e916e25))
+* adjust renovate config ([3b48a86](https://github.com/IhsenBouallegue/HubOne/commit/3b48a866d995819fa0049e0f60252dd99521bc63))
+* change base branch ([958a6a3](https://github.com/IhsenBouallegue/HubOne/commit/958a6a3aaef8d9f907392d7cd6bf5942509efa3f))
+* remove unused file ([#54](https://github.com/IhsenBouallegue/HubOne/issues/54)) ([01c3801](https://github.com/IhsenBouallegue/HubOne/commit/01c3801dbf5a05aa5b73c9fab70226c1a1bef775))
+
 ## [2.2.8](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.7...v2.2.8) (2022-11-17)
 
 
