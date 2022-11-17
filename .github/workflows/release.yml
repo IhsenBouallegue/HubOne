@@ -10,7 +10,7 @@ jobs:
 
     steps:
       - env:
-        GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
 
       - name: Checkout
         uses: actions/checkout@v3
