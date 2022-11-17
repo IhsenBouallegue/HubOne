@@ -1,3 +1,10 @@
+## [2.2.8](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.7...v2.2.8) (2022-11-17)
+
+
+### Bug Fixes
+
+* adjust deps ([78b3860](https://github.com/IhsenBouallegue/HubOne/commit/78b386036d77d8daa8129d58d0e4d81a3c59903e))
+
 ## [2.2.7](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.6...v2.2.7) (2022-11-17)
 
 
