@@ -1,3 +1,10 @@
+## [2.2.13](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.12...v2.2.13) (2022-11-17)
+
+
+### Bug Fixes
+
+* adjust env release ([48a4376](https://github.com/IhsenBouallegue/HubOne/commit/48a43768ac7992cb39e4cd611a95cdd05562b4fd))
+
 ## [2.2.12](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.11...v2.2.12) (2022-11-17)
 
 
