@@ -1,3 +1,17 @@
+## [2.2.7](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.6...v2.2.7) (2022-11-17)
+
+
+### Bug Fixes
+
+* adjust build workflows ([fd756cd](https://github.com/IhsenBouallegue/HubOne/commit/fd756cd3284a491a3c39fb3cdcca3184c72f9ac7))
+
+## [2.2.6](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.5...v2.2.6) (2022-11-17)
+
+
+### Bug Fixes
+
+* trigger build on tag ([7eeea7c](https://github.com/IhsenBouallegue/HubOne/commit/7eeea7c8554e48793320f83a907d59671d9eefa4))
+
 ## [2.2.5](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.4...v2.2.5) (2022-11-12)
 
 
