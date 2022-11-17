@@ -1,3 +1,10 @@
+## [2.2.10](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.9...v2.2.10) (2022-11-17)
+
+
+### Bug Fixes
+
+* adjust build ([14af66a](https://github.com/IhsenBouallegue/HubOne/commit/14af66a36cb853a96fddac2999c37a73c220398c))
+
 ## [2.2.9](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.8...v2.2.9) (2022-11-17)
 
 
