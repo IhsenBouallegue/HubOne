@@ -1,3 +1,16 @@
+## [2.2.11](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.10...v2.2.11) (2022-11-17)
+
+
+### Bug Fixes
+
+* add token to release ([6097149](https://github.com/IhsenBouallegue/HubOne/commit/609714985b17bf5ad8ed99964ee2560828f5f13b))
+* adjust build hubone ([8487e1b](https://github.com/IhsenBouallegue/HubOne/commit/8487e1bf08dd7b71947a9f675ba95804ce914f60))
+* adjust release ([17ae542](https://github.com/IhsenBouallegue/HubOne/commit/17ae542ce0c6a5d492599f9b6c77dd44d4915d71))
+* adjust release ([a57bb62](https://github.com/IhsenBouallegue/HubOne/commit/a57bb6280ff52726bb735412898b7a492e09760c))
+* adjust release name ([90835e7](https://github.com/IhsenBouallegue/HubOne/commit/90835e7abc6487d132bb89e5c1bf0c76c81a8236))
+* fix release ([730248a](https://github.com/IhsenBouallegue/HubOne/commit/730248ac65e8cc3a7e809db501e560c8b8248541))
+* remove env from release ([f7584f9](https://github.com/IhsenBouallegue/HubOne/commit/f7584f9840f0d7e9f1920ee6ec9c910e1a7e80c2))
+
 ## [2.2.10](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.9...v2.2.10) (2022-11-17)
 
 
