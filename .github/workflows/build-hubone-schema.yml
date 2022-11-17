@@ -23,7 +23,6 @@ jobs:
           images: |
             ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=ref,event=pr
             type=semver,pattern={{version}}
 
       - name: Login to Docker Hub
