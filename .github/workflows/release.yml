@@ -9,6 +9,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - env:
+        GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
+
       - name: Checkout
         uses: actions/checkout@v3
         with:
@@ -26,5 +29,5 @@ jobs:
       - name: Release
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
         run: npx semantic-release
