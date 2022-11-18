@@ -1,3 +1,10 @@
+## [2.2.16](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.15...v2.2.16) (2022-11-18)
+
+
+### Bug Fixes
+
+* use checkout v2 ([607d721](https://github.com/IhsenBouallegue/HubOne/commit/607d721f8273f9e089c9709a8880522a1e41e1da))
+
 ## [2.2.15](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.14...v2.2.15) (2022-11-18)
 
 
