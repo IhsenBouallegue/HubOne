@@ -1,3 +1,11 @@
+## [2.2.15](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.14...v2.2.15) (2022-11-18)
+
+
+### Bug Fixes
+
+* add plugins ([a2c48aa](https://github.com/IhsenBouallegue/HubOne/commit/a2c48aa190ac04b14ee0d33277b418b30c9aeea2))
+* use semantic release action ([bb95542](https://github.com/IhsenBouallegue/HubOne/commit/bb95542887060ea3a6e340799fcd7a3158cad1e9))
+
 ## [2.2.14](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.13...v2.2.14) (2022-11-18)
 
 
