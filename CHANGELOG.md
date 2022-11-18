@@ -1,3 +1,10 @@
+## [2.2.17](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.16...v2.2.17) (2022-11-18)
+
+
+### Bug Fixes
+
+* change token ([4972b07](https://github.com/IhsenBouallegue/HubOne/commit/4972b07c0e8dbafd278c3d6c4c21496c46a9f779))
+
 ## [2.2.16](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.15...v2.2.16) (2022-11-18)
 
 
