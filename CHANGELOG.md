@@ -1,3 +1,10 @@
+## [2.2.19](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.18...v2.2.19) (2022-11-18)
+
+
+### Bug Fixes
+
+* change the correct message ([c038189](https://github.com/IhsenBouallegue/HubOne/commit/c038189bc41c5a60fdeeb43a04c5ca104fcc2e12))
+
 ## [2.2.18](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.17...v2.2.18) (2022-11-18)
 
 
