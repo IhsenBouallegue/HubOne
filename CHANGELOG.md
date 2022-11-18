@@ -1,3 +1,10 @@
+## [2.2.14](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.13...v2.2.14) (2022-11-18)
+
+
+### Bug Fixes
+
+* adjust release script ([567db79](https://github.com/IhsenBouallegue/HubOne/commit/567db7966d21bd56645904a8b0f7908215174a78))
+
 ## [2.2.13](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.12...v2.2.13) (2022-11-17)
 
 
