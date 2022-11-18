@@ -14,7 +14,7 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-          token: ${{ secrets.GH_TOKEN }}
+          token: ${{ secrets.MY_TOKEN }}
 
       - name: Deploy via semantic release
         uses: cycjimmy/semantic-release-action@v2
@@ -27,4 +27,4 @@ jobs:
             @semantic-release/changelog
             @semantic-release/git
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
