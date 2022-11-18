@@ -1,3 +1,10 @@
+## [2.2.18](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.17...v2.2.18) (2022-11-18)
+
+
+### Bug Fixes
+
+* adjust release commit message ([a2acdaa](https://github.com/IhsenBouallegue/HubOne/commit/a2acdaa2ed1c890521941d904648d7edc6ec4411))
+
 ## [2.2.17](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.16...v2.2.17) (2022-11-18)
 
 
