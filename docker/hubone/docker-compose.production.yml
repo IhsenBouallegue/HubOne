@@ -8,11 +8,11 @@ services:
     image: hubone-prod
     depends_on:
       - db
-    environment:
-      - DATABASE_URL=postgresql://postgres:postgres@db:5432/hubone?schema=public
     build:
       context: ../../
       dockerfile: ./docker/hubone/dockerfile.production
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/hubone?schema=public
     ports:
       - 3000:3000
 
