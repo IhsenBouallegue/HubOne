@@ -1,3 +1,74 @@
+## [2.2.19](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.18...v2.2.19) (2022-11-18)
+
+
+### Bug Fixes
+
+* change the correct message ([c038189](https://github.com/IhsenBouallegue/HubOne/commit/c038189bc41c5a60fdeeb43a04c5ca104fcc2e12))
+
+## [2.2.18](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.17...v2.2.18) (2022-11-18)
+
+
+### Bug Fixes
+
+* adjust release commit message ([a2acdaa](https://github.com/IhsenBouallegue/HubOne/commit/a2acdaa2ed1c890521941d904648d7edc6ec4411))
+
+## [2.2.17](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.16...v2.2.17) (2022-11-18)
+
+
+### Bug Fixes
+
+* change token ([4972b07](https://github.com/IhsenBouallegue/HubOne/commit/4972b07c0e8dbafd278c3d6c4c21496c46a9f779))
+
+## [2.2.16](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.15...v2.2.16) (2022-11-18)
+
+
+### Bug Fixes
+
+* use checkout v2 ([607d721](https://github.com/IhsenBouallegue/HubOne/commit/607d721f8273f9e089c9709a8880522a1e41e1da))
+
+## [2.2.15](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.14...v2.2.15) (2022-11-18)
+
+
+### Bug Fixes
+
+* add plugins ([a2c48aa](https://github.com/IhsenBouallegue/HubOne/commit/a2c48aa190ac04b14ee0d33277b418b30c9aeea2))
+* use semantic release action ([bb95542](https://github.com/IhsenBouallegue/HubOne/commit/bb95542887060ea3a6e340799fcd7a3158cad1e9))
+
+## [2.2.14](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.13...v2.2.14) (2022-11-18)
+
+
+### Bug Fixes
+
+* adjust release script ([567db79](https://github.com/IhsenBouallegue/HubOne/commit/567db7966d21bd56645904a8b0f7908215174a78))
+
+## [2.2.13](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.12...v2.2.13) (2022-11-17)
+
+
+### Bug Fixes
+
+* adjust env release ([48a4376](https://github.com/IhsenBouallegue/HubOne/commit/48a43768ac7992cb39e4cd611a95cdd05562b4fd))
+
+## [2.2.12](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.11...v2.2.12) (2022-11-17)
+
+
+### Bug Fixes
+
+* add token to env in steps ([f6ef4b8](https://github.com/IhsenBouallegue/HubOne/commit/f6ef4b8496976acbe81ebd95adf6ae18c57e4e4e))
+* change scope of token ([e9eaed9](https://github.com/IhsenBouallegue/HubOne/commit/e9eaed98ab66711560867855cd6343aed76278ca))
+
+## [2.2.11](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.10...v2.2.11) (2022-11-17)
+
+
+### Bug Fixes
+
+* add token to release ([6097149](https://github.com/IhsenBouallegue/HubOne/commit/609714985b17bf5ad8ed99964ee2560828f5f13b))
+* adjust build hubone ([8487e1b](https://github.com/IhsenBouallegue/HubOne/commit/8487e1bf08dd7b71947a9f675ba95804ce914f60))
+* adjust release ([17ae542](https://github.com/IhsenBouallegue/HubOne/commit/17ae542ce0c6a5d492599f9b6c77dd44d4915d71))
+* adjust release ([a57bb62](https://github.com/IhsenBouallegue/HubOne/commit/a57bb6280ff52726bb735412898b7a492e09760c))
+* adjust release name ([90835e7](https://github.com/IhsenBouallegue/HubOne/commit/90835e7abc6487d132bb89e5c1bf0c76c81a8236))
+* fix release ([730248a](https://github.com/IhsenBouallegue/HubOne/commit/730248ac65e8cc3a7e809db501e560c8b8248541))
+* remove env from release ([f7584f9](https://github.com/IhsenBouallegue/HubOne/commit/f7584f9840f0d7e9f1920ee6ec9c910e1a7e80c2))
+
 ## [2.2.10](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.9...v2.2.10) (2022-11-17)
 
 

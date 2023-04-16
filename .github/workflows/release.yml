@@ -9,25 +9,22 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     steps:
-      - env:
-          GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
         with:
           fetch-depth: 0
           persist-credentials: false
           token: ${{ secrets.MY_TOKEN }}
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - name: Deploy via semantic release
+        uses: cycjimmy/semantic-release-action@v2
         with:
-          node-version: 16
-
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
-
-      - name: Release
+          semantic_version: 18
+          extra_plugins: |
+            @semantic-release/github
+            @semantic-release/commit-analyzer
+            @semantic-release/release-notes-generator
+            @semantic-release/changelog
+            @semantic-release/git
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
-        run: npx semantic-release
