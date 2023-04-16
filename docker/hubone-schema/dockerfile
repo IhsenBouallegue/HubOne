@@ -1,4 +1,5 @@
-FROM node:16-alpine
+FROM node:18-buster-slim
+RUN apt-get update && apt-get install libssl-dev ca-certificates -y
 
 WORKDIR /app
 

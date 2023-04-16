@@ -1,5 +1,5 @@
 import { MantineProvider } from "@mantine/core";
-import { NotificationsProvider } from "@mantine/notifications";
+import { Notifications } from "@mantine/notifications";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import type { AppProps } from "next/app";
@@ -26,11 +26,10 @@ export default function App(props: AppProps) {
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools />
         <MantineProvider withGlobalStyles withNormalizeCSS theme={theme}>
-          <NotificationsProvider>
-            <HubOneContextProvider>
-              <Component {...pageProps} />
-            </HubOneContextProvider>
-          </NotificationsProvider>
+          <Notifications />
+          <HubOneContextProvider>
+            <Component {...pageProps} />
+          </HubOneContextProvider>
         </MantineProvider>
       </QueryClientProvider>
     </>
