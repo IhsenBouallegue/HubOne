@@ -13,9 +13,9 @@ import {
   useMantineTheme,
 } from "@mantine/core";
 import { useToggle } from "@mantine/hooks";
+import { IconPlus, IconSettings, IconX } from "@tabler/icons-react";
 import { useState } from "react";
 import { Link as ScrollLink } from "react-scroll";
-import { X, Settings, Plus } from "tabler-icons-react";
 
 import { useHubOneContext } from "../../lib/context/HubOneContext";
 
@@ -117,7 +117,7 @@ export function HeaderBar() {
           <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
             <Image src="/logo/hubone_logo_full.svg" width={126} />
           </MediaQuery>
-          <X size={20} strokeWidth={1} color="black" />
+          <IconX size={20} strokeWidth={1} color="black" />
           {hub.hubLogo ? (
             <Image src={hub.hubLogo} height={28} width={28} />
           ) : (
@@ -139,7 +139,7 @@ export function HeaderBar() {
         {editMode ? (
           <Group ml="auto" mr="12px">
             <Button
-              leftIcon={<Plus />}
+              leftIcon={<IconPlus />}
               variant="outline"
               color="brand"
               sx={{ height: 30 }}
@@ -152,7 +152,7 @@ export function HeaderBar() {
               color="brand"
               onClick={() => setEditModalOpened(true)}
             >
-              <Settings size={30} />
+              <IconSettings size={30} />
             </ActionIcon>
           </Group>
         ) : (

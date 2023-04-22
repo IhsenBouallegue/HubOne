@@ -1,7 +1,7 @@
 import { Button, Group, Modal } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import type { Link } from "@prisma/client";
-import { Trash } from "tabler-icons-react";
+import { IconTrash } from "@tabler/icons-react";
 
 import { useDelete, useUpdate } from "../../../lib/useQueries";
 
@@ -43,7 +43,7 @@ function EditLinkModal({
         <LinkFormFields form={form} />
         <Group position="center" mt="xl">
           <Button
-            leftIcon={<Trash />}
+            leftIcon={<IconTrash />}
             variant="outline"
             color="secondary"
             onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {

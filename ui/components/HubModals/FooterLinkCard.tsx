@@ -9,9 +9,9 @@ import {
 } from "@mantine/core";
 import { useDebouncedValue } from "@mantine/hooks";
 import type { FooterLink } from "@prisma/client";
+import { IconTrash } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { Trash } from "tabler-icons-react";
 
 import { useDelete, useUpdate } from "../../../lib/useQueries";
 
@@ -107,7 +107,7 @@ function FooterLinkCard({ id, title, link, hubId }: FooterLink) {
               deleteItem(id);
             }}
           >
-            <Trash strokeWidth={2} />
+            <IconTrash strokeWidth={2} />
           </ActionIcon>
         </Group>
       </Card>

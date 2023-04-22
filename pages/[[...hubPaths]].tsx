@@ -5,10 +5,12 @@ import { useRouter } from "next/router";
 
 import { useHubOneContext } from "../lib/context/HubOneContext";
 import { getHubWithPath } from "../lib/requests/hub/getHub";
+import { getHubs } from "../lib/requests/hub/getHubs";
 import { useFetchByHubId } from "../lib/useQueries";
 import { Footer } from "../ui/components/Footer";
 import { HeaderBar } from "../ui/components/Header";
 import Hero from "../ui/sections/Hero";
+import HubMenu from "../ui/sections/HubMenu";
 import LinkSection from "../ui/sections/LinkSection";
 
 export default function Home() {
@@ -33,6 +35,8 @@ export default function Home() {
   useFetchByHubId<Link>("links", hubId, config(setLinks));
   useFetchByHubId<LinkGroup>("linkgroups", hubId, config(setLinkGroups));
   useFetchByHubId<FooterLink>("footerlinks", hubId, config(setFooterLinks));
+
+  const { data: hubs } = useQuery(["hubs"], () => getHubs());
 
   if (isLoading) {
     return (
@@ -81,6 +85,7 @@ export default function Home() {
       <HeaderBar />
       <Hero />
       <LinkSection />
+      {hubs && <HubMenu hubs={hubs} />}
       <Footer />
     </>
   );
