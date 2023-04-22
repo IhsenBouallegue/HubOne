@@ -1,15 +1,17 @@
 import { Box, Title } from "@mantine/core";
-import type { Hub } from "@prisma/client";
 
 export default function DefaultHubLogo({
-  hubName,
-  primaryColor,
-  secondaryColor,
-}: Hub) {
+  hubName = "X",
+  primaryColor = "#ff008c",
+  secondaryColor = "#0cd4f7",
+}: {
+  hubName: string;
+  primaryColor: string;
+  secondaryColor: string;
+}) {
   return (
     <Box
       sx={(theme) => ({
-        height: "32px",
         minWidth: "32px",
         padding: "6px",
         borderRadius: theme.radius.md,
@@ -26,6 +28,7 @@ export default function DefaultHubLogo({
         mozUserSelect: "none",
         msUserSelect: "none",
         userSelect: "none",
+        aspectRatio: "1/1",
       })}
     >
       <Title size={16}>{shorten(hubName)}</Title>

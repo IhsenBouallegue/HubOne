@@ -19,7 +19,7 @@ import { Link as ScrollLink } from "react-scroll";
 
 import { useHubOneContext } from "../../lib/context/HubOneContext";
 
-import DefaultHubLogo from "./DefaultHubLogo";
+import HubLogo from "./HubLogo";
 import EditHubModal from "./HubModals";
 import AddHubModal from "./HubModals/AddHubModal";
 
@@ -118,11 +118,7 @@ export function HeaderBar() {
             <Image src="/logo/hubone_logo_full.svg" width={126} />
           </MediaQuery>
           <IconX size={20} strokeWidth={1} color="black" />
-          {hub.hubLogo ? (
-            <Image src={hub.hubLogo} height={28} width={28} />
-          ) : (
-            hub.hubName && <DefaultHubLogo {...hub} />
-          )}
+          <HubLogo hub={hub} />
         </Group>
 
         <Group spacing={5} className={classes.links}>
