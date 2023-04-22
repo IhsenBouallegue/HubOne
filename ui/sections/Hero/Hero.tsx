@@ -48,7 +48,7 @@ const useStyles = createStyles((theme) => ({
   },
 
   description: {
-    marginTop: 2 * theme.spacing.xl,
+    marginTop: `calc(2 * ${theme.spacing.xl})`,
     fontSize: 24,
 
     [theme.fn.smallerThan("sm")]: {
@@ -57,7 +57,7 @@ const useStyles = createStyles((theme) => ({
   },
 
   controls: {
-    marginTop: 3 * theme.spacing.xl,
+    marginTop: `calc(3 * ${theme.spacing.xl})`,
 
     [theme.fn.smallerThan("sm")]: {
       marginTop: theme.spacing.xl,

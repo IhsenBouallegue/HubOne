@@ -16,14 +16,7 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - ./../pages:/app/pages
-      - ./../public:/app/public
-      - ./../styles:/app/styles
-      - ./../ui:/app/ui
-      - ./../theme.ts:/app/theme.ts
-      - ./../HubOneConfig.ts:/app/HubOneConfig.ts
-      - ./../lib:/app/lib
-      - ./../prisma:/app/prisma
+      - ./../../:/app
 
   db:
     image: "postgres"
