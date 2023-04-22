@@ -141,14 +141,14 @@ export function HeaderBar() {
               sx={{ height: 30 }}
               onClick={() => setAddModalOpened(true)}
             >
-              Create Sub Hub
+              Create New Hub
             </Button>
             <ActionIcon
               variant="light"
               color="brand"
               onClick={() => setEditModalOpened(true)}
             >
-              <IconSettings size={30} />
+              <IconSettings />
             </ActionIcon>
           </Group>
         ) : (
