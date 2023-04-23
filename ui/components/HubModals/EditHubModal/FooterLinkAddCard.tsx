@@ -3,7 +3,7 @@ import type { FooterLink } from "@prisma/client";
 import { IconPlus } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 
-import { usePost } from "../../../lib/useQueries";
+import { usePost } from "../../../../lib/useQueries";
 
 function FooterLinkAddCard({ hubId }: { hubId: number }) {
   const { classes } = useStyles();

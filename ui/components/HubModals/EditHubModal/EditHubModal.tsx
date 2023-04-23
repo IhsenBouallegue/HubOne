@@ -2,11 +2,11 @@ import { Modal, Stack, Tabs } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import type { FooterLink, Hub } from "@prisma/client";
 
-import { useUpdate } from "../../../lib/useQueries";
+import { useUpdate } from "../../../../lib/useQueries";
+import HubFormFields from "../HubFormFields";
 
 import FooterLinkAddCard from "./FooterLinkAddCard";
 import FooterLinkCard from "./FooterLinkCard";
-import HubFormFields from "./HubFormFields";
 
 function EditHubModal({
   opened,

@@ -13,7 +13,7 @@ import { IconTrash } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-import { useDelete, useUpdate } from "../../../lib/useQueries";
+import { useDelete, useUpdate } from "../../../../lib/useQueries";
 
 function FooterLinkCard({ id, title, link, hubId }: FooterLink) {
   const { classes } = useStyles();

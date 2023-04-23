@@ -9,7 +9,7 @@ import { getHubs } from "../lib/requests/hub/getHubs";
 import { useFetchByHubId } from "../lib/useQueries";
 import { Footer } from "../ui/components/Footer";
 import { HeaderBar } from "../ui/components/Header";
-import AddHubModal from "../ui/components/HubModals/AddHubModal";
+import AddHubModal from "../ui/components/HubModals/CreateHubModal/CreateHubModal";
 import Hero from "../ui/sections/Hero";
 import HubMenu from "../ui/sections/HubMenu";
 import LinkSection from "../ui/sections/LinkSection";

@@ -22,8 +22,7 @@ import { Link as ScrollLink } from "react-scroll";
 import { useHubOneContext } from "../../lib/context/HubOneContext";
 
 import HubLogo from "./HubLogo";
-import EditHubModal from "./HubModals";
-import AddHubModal from "./HubModals/AddHubModal";
+import EditHubModal from "./HubModals/EditHubModal";
 
 const HEADER_HEIGHT = 60;
 
