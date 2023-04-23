@@ -7,11 +7,10 @@ import {
   Text,
   TextInput,
 } from "@mantine/core";
-import { useDebouncedValue } from "@mantine/hooks";
 import type { FooterLink } from "@prisma/client";
 import { IconTrash } from "@tabler/icons-react";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import { useDelete, useUpdate } from "../../../../lib/useQueries";
 
@@ -21,11 +20,7 @@ function FooterLinkCard({ id, title, link, hubId }: FooterLink) {
   const deleteItem = useDelete("footerlinks");
   const updateItem = useUpdate<FooterLink>("footerlinks");
   const [state, setState] = useState({ title, link });
-  const [debouncedState] = useDebouncedValue(state, 50);
 
-  useEffect(() => {
-    updateItem({ id, hubId, ...debouncedState });
-  }, [debouncedState, hubId, id, updateItem]);
   return (
     <motion.div
       whileHover={{
@@ -44,7 +39,8 @@ function FooterLinkCard({ id, title, link, hubId }: FooterLink) {
           e.preventDefault();
           setIsEditing(true);
         }}
-        onMouseLeave={() => {
+        onBlur={() => {
+          updateItem({ id, hubId, ...state });
           setIsEditing(false);
         }}
       >
@@ -62,11 +58,6 @@ function FooterLinkCard({ id, title, link, hubId }: FooterLink) {
                 ) => {
                   e.stopPropagation();
                 }}
-                onKeyDown={(e) => {
-                  if (e.code === "Enter") {
-                    setIsEditing(false);
-                  }
-                }}
               />
               <TextInput
                 defaultValue={link}
@@ -78,12 +69,6 @@ function FooterLinkCard({ id, title, link, hubId }: FooterLink) {
                   e: React.MouseEvent<HTMLInputElement, MouseEvent>
                 ) => {
                   e.stopPropagation();
-                }}
-                // eslint-disable-next-line sonarjs/no-identical-functions
-                onKeyDown={(e) => {
-                  if (e.code === "Enter") {
-                    setIsEditing(false);
-                  }
                 }}
               />
             </Stack>
