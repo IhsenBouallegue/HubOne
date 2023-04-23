@@ -5,7 +5,11 @@ import { prisma } from "../../../../lib/prisma";
 // GET
 export async function handleGET(res: NextApiResponse) {
   try {
-    const items = await prisma.hub.findMany();
+    const items = await prisma.hub.findMany({
+      orderBy: {
+        id: "asc",
+      },
+    });
     res.json(items);
   } catch (error) {
     res.status(500).json({ error });

@@ -7,7 +7,12 @@ async function handleGET(res: NextApiResponse, hubId: number) {
   try {
     let items;
     if (hubId && !Number.isNaN(hubId)) {
-      items = await prisma.linkGroup.findMany({ where: { hubId } });
+      items = await prisma.linkGroup.findMany({
+        where: { hubId },
+        orderBy: {
+          id: "asc",
+        },
+      });
     } else {
       items = await prisma.linkGroup.findMany();
     }
