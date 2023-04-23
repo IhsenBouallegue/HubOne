@@ -13,6 +13,7 @@ export default function DefaultHubLogo({
     <Box
       sx={(theme) => ({
         minWidth: "32px",
+        width: "100%",
         padding: "6px",
         borderRadius: theme.radius.md,
         backgroundImage: theme.fn.gradient({

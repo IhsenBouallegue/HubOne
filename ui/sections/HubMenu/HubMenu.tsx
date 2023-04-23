@@ -1,5 +1,6 @@
 import {
   Affix,
+  Center,
   Menu,
   SimpleGrid,
   Stack,
@@ -18,7 +19,7 @@ import AddHubModal from "../../components/HubModals/AddHubModal";
 
 export default function HubMenu({ hubs }: { hubs: Hub[] }) {
   const router = useRouter();
-  const [opened, setOpened] = useState(false);
+  const [opened, setOpened] = useState(true);
   const [addModalOpened, setAddModalOpened] = useState(false);
 
   return (
@@ -50,7 +51,9 @@ export default function HubMenu({ hubs }: { hubs: Hub[] }) {
                 }}
               >
                 <Stack w={rem(64)} h={rem(148)} justify="flex-start">
-                  <HubLogo hub={hub} />
+                  <Center w="100%" h="50%">
+                    <HubLogo hub={hub} />
+                  </Center>
                   <Text
                     sx={{ wordBreak: "break-all" }}
                     align="center"

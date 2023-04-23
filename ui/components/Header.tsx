@@ -2,6 +2,7 @@ import {
   ActionIcon,
   Burger,
   Button,
+  Center,
   Container,
   createStyles,
   Group,
@@ -9,6 +10,7 @@ import {
   Image,
   MediaQuery,
   Paper,
+  rem,
   Transition,
   useMantineTheme,
 } from "@mantine/core";
@@ -118,7 +120,9 @@ export function HeaderBar() {
             <Image src="/logo/hubone_logo_full.svg" width={126} />
           </MediaQuery>
           <IconX size={20} strokeWidth={1} color="black" />
-          <HubLogo hub={hub} />
+          <Center h={rem(28)} w={rem(28)}>
+            <HubLogo hub={hub} />
+          </Center>
         </Group>
 
         <Group spacing={5} className={classes.links}>
