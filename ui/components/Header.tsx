@@ -74,12 +74,12 @@ const useStyles = createStyles((theme) => ({
 
 export function HeaderBar() {
   const { classes } = useStyles();
-  const { hub, linkGroups, footerLinks } = useHubOneContext();
+  const { hub, linkGroups, footerLinks, setCreateModalOpened } =
+    useHubOneContext();
   const theme = useMantineTheme();
   const [opened, toggleOpened] = useToggle();
   const { editMode } = useHubOneContext();
   const [editModalOpened, setEditModalOpened] = useState(false);
-  const [addModalOpened, setAddModalOpened] = useState(false);
   const items = linkGroups?.map((linkGroup) => {
     return (
       <ScrollLink
@@ -143,7 +143,7 @@ export function HeaderBar() {
               variant="outline"
               color="brand"
               sx={{ height: 30 }}
-              onClick={() => setAddModalOpened(true)}
+              onClick={() => setCreateModalOpened(true)}
             >
               Create New Hub
             </Button>
@@ -170,7 +170,6 @@ export function HeaderBar() {
           </ScrollLink>
         )}
       </Container>
-      <AddHubModal opened={addModalOpened} setOpened={setAddModalOpened} />
       {hub.id && (
         <EditHubModal
           opened={editModalOpened}

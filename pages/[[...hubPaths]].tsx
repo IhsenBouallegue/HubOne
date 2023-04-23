@@ -9,14 +9,21 @@ import { getHubs } from "../lib/requests/hub/getHubs";
 import { useFetchByHubId } from "../lib/useQueries";
 import { Footer } from "../ui/components/Footer";
 import { HeaderBar } from "../ui/components/Header";
+import AddHubModal from "../ui/components/HubModals/AddHubModal";
 import Hero from "../ui/sections/Hero";
 import HubMenu from "../ui/sections/HubMenu";
 import LinkSection from "../ui/sections/LinkSection";
 
 export default function Home() {
   const router = useRouter();
-  const { setHub, setLinks, setLinkGroups, setFooterLinks } =
-    useHubOneContext();
+  const {
+    setHub,
+    setLinks,
+    setLinkGroups,
+    setFooterLinks,
+    createModalOpened,
+    setCreateModalOpened,
+  } = useHubOneContext();
   // use `|| [""]` for root hub that has no set path by the router
   const hubPaths = (router.query.hubPaths as string[]) || [""];
   const {
@@ -26,8 +33,8 @@ export default function Home() {
   } = useQuery<Hub>(["hubs", hubPaths[0]], () => getHubWithPath(hubPaths[0]), {
     onSuccess: setHub,
   });
-  const hubId = Number(hub?.id);
 
+  const hubId = Number(hub?.id);
   const config = <T,>(onSuccess: (data: T) => void) => ({
     enabled: !!hubId,
     onSuccess,
@@ -87,6 +94,10 @@ export default function Home() {
       <LinkSection />
       {hubs && <HubMenu hubs={hubs} />}
       <Footer />
+      <AddHubModal
+        opened={createModalOpened}
+        setOpened={setCreateModalOpened}
+      />
     </>
   );
 }
