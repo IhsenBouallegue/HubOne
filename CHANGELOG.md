@@ -1,3 +1,15 @@
+## [2.2.20](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.19...v2.2.20) (2023-04-16)
+
+
+### Bug Fixes
+
+* adjust docker images to work with prisma ([e16288d](https://github.com/IhsenBouallegue/HubOne/commit/e16288d4e8ceeef10535cb8ed6540894b27229b7))
+* crossOrigin value in fonts ([ea402ee](https://github.com/IhsenBouallegue/HubOne/commit/ea402ee0c563865985b891063c5e7b4a11d53acb))
+* **deps:** update dependency framer-motion to v10 ([8a52bc5](https://github.com/IhsenBouallegue/HubOne/commit/8a52bc5bd005192ae083f107299c56ffaa6d04e1))
+* **deps:** update mantine monorepo to v6 ([8432163](https://github.com/IhsenBouallegue/HubOne/commit/8432163df424c131185ac71377d24a3535ded118))
+* **deps:** update mantine monorepo to v6 ([da52771](https://github.com/IhsenBouallegue/HubOne/commit/da5277162c8df74f96b78c5f8b980d0c7e2e1e39))
+* mantine v6 ([cb83f56](https://github.com/IhsenBouallegue/HubOne/commit/cb83f568ee7c2d87d06b9caf6d3a20c41372bbaa))
+
 ## [2.2.19](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.18...v2.2.19) (2022-11-18)
 
 
