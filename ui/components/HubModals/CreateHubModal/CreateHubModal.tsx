@@ -2,11 +2,10 @@ import { Modal } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import type { Hub } from "@prisma/client";
 
-import { usePost } from "../../../lib/useQueries";
+import { usePost } from "../../../../lib/useQueries";
+import HubFormFields from "../HubFormFields";
 
-import HubFormFields from "./HubFormFields";
-
-function EditHubModal({
+function CreateHubModal({
   opened,
   setOpened,
 }: {
@@ -32,7 +31,7 @@ function EditHubModal({
     <Modal
       opened={opened}
       onClose={() => setOpened(false)}
-      title="Create a new hub"
+      title="Create a New Hub"
     >
       <form onSubmit={form.onSubmit(handleSubmit)}>
         <HubFormFields form={form} />
@@ -41,4 +40,4 @@ function EditHubModal({
   );
 }
 
-export default EditHubModal;
+export default CreateHubModal;

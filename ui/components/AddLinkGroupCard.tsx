@@ -1,7 +1,7 @@
 import { Card, createStyles, Group, Text } from "@mantine/core";
+import { IconPlus } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Plus } from "tabler-icons-react";
 
 import AddLinkGroupModal from "./LinkGroupModals";
 
@@ -34,7 +34,7 @@ function AddLinkGroupCard({ hubId }: { hubId: number }) {
             height: "100%",
           })}
         >
-          <Plus size={36} strokeWidth={2} color="black" />
+          <IconPlus size={36} strokeWidth={2} color="black" />
           <Text align="center">Add Link Group</Text>
         </Group>
       </Card>

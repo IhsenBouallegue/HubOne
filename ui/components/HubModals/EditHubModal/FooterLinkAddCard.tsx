@@ -1,9 +1,9 @@
 import { Card, createStyles, Group, Text } from "@mantine/core";
 import type { FooterLink } from "@prisma/client";
+import { IconPlus } from "@tabler/icons-react";
 import { motion } from "framer-motion";
-import { Plus } from "tabler-icons-react";
 
-import { usePost } from "../../../lib/useQueries";
+import { usePost } from "../../../../lib/useQueries";
 
 function FooterLinkAddCard({ hubId }: { hubId: number }) {
   const { classes } = useStyles();
@@ -23,7 +23,7 @@ function FooterLinkAddCard({ hubId }: { hubId: number }) {
     >
       <Card className={classes.card} shadow="sm" p="lg" onClick={() => {}}>
         <Group my="auto" position="center">
-          <Plus size={24} strokeWidth={2} color="black" />
+          <IconPlus size={24} strokeWidth={2} color="black" />
           <Text align="center">Add Footer Link</Text>
         </Group>
       </Card>

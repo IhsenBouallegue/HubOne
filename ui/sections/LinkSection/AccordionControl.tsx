@@ -1,6 +1,6 @@
 import type { AccordionControlProps } from "@mantine/core";
 import { Accordion, ActionIcon, Box } from "@mantine/core";
-import { Trash } from "tabler-icons-react";
+import { IconTrash } from "@tabler/icons-react";
 
 import { useDelete } from "../../../lib/useQueries";
 
@@ -20,7 +20,7 @@ export default function AccordionControl({
           color="secondary"
           onClick={() => deleteItem(itemId)}
         >
-          <Trash strokeWidth={2} />
+          <IconTrash strokeWidth={2} />
         </ActionIcon>
       )}
     </Box>

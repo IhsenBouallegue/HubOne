@@ -1,7 +1,7 @@
 import { Card, createStyles, Stack, Text } from "@mantine/core";
+import { IconPlus } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Plus } from "tabler-icons-react";
 
 import AddLinkModal from "./LinkModals";
 
@@ -48,7 +48,7 @@ function AddLinkCard({
           justify="center"
           sx={() => ({ height: "inherit" })}
         >
-          <Plus size={36} strokeWidth={2} color="black" />
+          <IconPlus size={36} strokeWidth={2} color="black" />
           <Text align="center">Add Link</Text>
         </Stack>
       </Card>

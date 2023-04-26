@@ -2,6 +2,7 @@ import {
   ActionIcon,
   Burger,
   Button,
+  Center,
   Container,
   createStyles,
   Group,
@@ -9,19 +10,19 @@ import {
   Image,
   MediaQuery,
   Paper,
+  rem,
   Transition,
   useMantineTheme,
 } from "@mantine/core";
 import { useToggle } from "@mantine/hooks";
+import { IconPlus, IconSettings, IconX } from "@tabler/icons-react";
 import { useState } from "react";
 import { Link as ScrollLink } from "react-scroll";
-import { X, Settings, Plus } from "tabler-icons-react";
 
 import { useHubOneContext } from "../../lib/context/HubOneContext";
 
-import DefaultHubLogo from "./DefaultHubLogo";
-import EditHubModal from "./HubModals";
-import AddHubModal from "./HubModals/AddHubModal";
+import HubLogo from "./HubLogo";
+import EditHubModal from "./HubModals/EditHubModal";
 
 const HEADER_HEIGHT = 60;
 
@@ -72,31 +73,28 @@ const useStyles = createStyles((theme) => ({
 
 export function HeaderBar() {
   const { classes } = useStyles();
-  const { hub, linkGroups, footerLinks } = useHubOneContext();
+  const { hub, linkGroups, setCreateModalOpened } = useHubOneContext();
   const theme = useMantineTheme();
   const [opened, toggleOpened] = useToggle();
   const { editMode } = useHubOneContext();
   const [editModalOpened, setEditModalOpened] = useState(false);
-  const [addModalOpened, setAddModalOpened] = useState(false);
-  const items = linkGroups?.map((linkGroup) => {
-    return (
-      <ScrollLink
-        key={linkGroup.title}
-        to={linkGroup.title}
-        smooth="easeInOutQuint"
-        duration={1000}
+  const items = linkGroups?.map((linkGroup) => (
+    <ScrollLink
+      key={linkGroup.title}
+      to={linkGroup.title}
+      smooth="easeInOutQuint"
+      duration={1000}
+    >
+      <Button
+        variant="subtle"
+        onClick={() => {
+          toggleOpened(false);
+        }}
       >
-        <Button
-          variant="subtle"
-          onClick={() => {
-            toggleOpened(false);
-          }}
-        >
-          {linkGroup.title}
-        </Button>
-      </ScrollLink>
-    );
-  });
+        {linkGroup.title}
+      </Button>
+    </ScrollLink>
+  ));
 
   return (
     <Header
@@ -117,12 +115,10 @@ export function HeaderBar() {
           <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
             <Image src="/logo/hubone_logo_full.svg" width={126} />
           </MediaQuery>
-          <X size={20} strokeWidth={1} color="black" />
-          {hub.hubLogo ? (
-            <Image src={hub.hubLogo} height={28} width={28} />
-          ) : (
-            hub.hubName && <DefaultHubLogo {...hub} />
-          )}
+          <IconX size={20} strokeWidth={1} color="black" />
+          <Center h={rem(28)} w={rem(28)}>
+            <HubLogo hub={hub} />
+          </Center>
         </Group>
 
         <Group spacing={5} className={classes.links}>
@@ -139,20 +135,20 @@ export function HeaderBar() {
         {editMode ? (
           <Group ml="auto" mr="12px">
             <Button
-              leftIcon={<Plus />}
+              leftIcon={<IconPlus />}
               variant="outline"
               color="brand"
               sx={{ height: 30 }}
-              onClick={() => setAddModalOpened(true)}
+              onClick={() => setCreateModalOpened(true)}
             >
-              Create Sub Hub
+              Create New Hub
             </Button>
             <ActionIcon
               variant="light"
               color="brand"
               onClick={() => setEditModalOpened(true)}
             >
-              <Settings size={30} />
+              <IconSettings />
             </ActionIcon>
           </Group>
         ) : (
@@ -170,14 +166,8 @@ export function HeaderBar() {
           </ScrollLink>
         )}
       </Container>
-      <AddHubModal opened={addModalOpened} setOpened={setAddModalOpened} />
       {hub.id && (
-        <EditHubModal
-          opened={editModalOpened}
-          setOpened={setEditModalOpened}
-          footerLinks={footerLinks}
-          {...hub}
-        />
+        <EditHubModal opened={editModalOpened} setOpened={setEditModalOpened} />
       )}
     </Header>
   );
