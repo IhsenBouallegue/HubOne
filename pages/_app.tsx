@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import { MantineProvider } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";

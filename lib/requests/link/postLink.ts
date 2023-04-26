@@ -9,10 +9,6 @@ export const postLink = async (link: Partial<Link>) => {
         Accept: "application/json",
       },
     })
-    .then((data) => {
-      return data;
-    })
-    .catch((e) => {
-      return e;
-    });
+    .then((data) => data)
+    .catch((e) => e);
 };
