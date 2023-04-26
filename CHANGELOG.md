@@ -1,3 +1,20 @@
+## [2.2.21](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.20...v2.2.21) (2023-04-26)
+
+
+### Bug Fixes
+
+* add format:checkl to precommit check ([6830cff](https://github.com/IhsenBouallegue/HubOne/commit/6830cffdbc7538826040b01922e97e3aa0e2e1cd))
+* add static tests workflow ([f927705](https://github.com/IhsenBouallegue/HubOne/commit/f927705baece543d78cc146d7e58c9269b5167cb))
+* fix dev container ([96eb479](https://github.com/IhsenBouallegue/HubOne/commit/96eb479ad8479e324456b44f225ca5701ab675ea))
+* improve fetch performance ([53f4c1d](https://github.com/IhsenBouallegue/HubOne/commit/53f4c1d1f2852bd1c0d107ec123a65c3eb7d730d))
+* re lint some files and remove workflows ([9f4626c](https://github.com/IhsenBouallegue/HubOne/commit/9f4626c81a3ee132a0af2b10b4bff25e7f38d0c8))
+* use the json protocol in prisma ([a177fc9](https://github.com/IhsenBouallegue/HubOne/commit/a177fc903600b11d10d4aecf7df6e04bda360c10))
+
+
+### Reverts
+
+* Revert "fix: improve eslint rules" ([31a638f](https://github.com/IhsenBouallegue/HubOne/commit/31a638f3a68c2aecbebe91e78661083e941cac2d))
+
 ## [2.2.20](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.19...v2.2.20) (2023-04-16)
 
 
