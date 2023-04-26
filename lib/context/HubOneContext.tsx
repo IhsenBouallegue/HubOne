@@ -8,6 +8,7 @@ export type Settings = {
   links: Link[];
   linkGroups: LinkGroup[];
   footerLinks: FooterLink[];
+  createModalOpened: boolean;
 };
 
 const defaultSettings: Settings = {
@@ -16,6 +17,7 @@ const defaultSettings: Settings = {
   links: [],
   linkGroups: [],
   footerLinks: [],
+  createModalOpened: false,
 };
 
 const HubOneContext = React.createContext({
@@ -25,6 +27,7 @@ const HubOneContext = React.createContext({
   setLinks: (link: Link[]) => {},
   setLinkGroups: (linkGroups: LinkGroup[]) => {},
   setFooterLinks: (footerLinks: FooterLink[]) => {},
+  setCreateModalOpened: (createModalOpened: boolean) => {},
 });
 
 export const useHubOneContext = () => useContext(HubOneContext);
@@ -64,6 +67,12 @@ export function HubOneContextProvider({
       footerLinks,
     }));
   };
+  const setCreateModalOpened = (createModalOpened: boolean) => {
+    setState((prevState) => ({
+      ...prevState,
+      createModalOpened,
+    }));
+  };
 
   const initState = {
     ...defaultSettings,
@@ -72,6 +81,7 @@ export function HubOneContextProvider({
     setLinks,
     setLinkGroups,
     setFooterLinks,
+    setCreateModalOpened,
   };
 
   const [state, setState] = useState(initState);

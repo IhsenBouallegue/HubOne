@@ -8,9 +8,9 @@ import {
   useMantineTheme,
 } from "@mantine/core";
 import type { Link } from "@prisma/client";
+import { IconEdit, IconLock } from "@tabler/icons-react";
 import { motion, useAnimationControls } from "framer-motion";
 import { useEffect, useState } from "react";
-import { Lock, Edit } from "tabler-icons-react";
 
 import { useHubOneContext } from "../../lib/context/HubOneContext";
 
@@ -67,7 +67,7 @@ export default function LinkCard({
         <Card.Section>
           <Group style={{ position: "relative", width: "100%" }}>
             {isInternal && (
-              <Lock
+              <IconLock
                 className={classes.icon}
                 size={16}
                 strokeWidth={2}
@@ -81,7 +81,7 @@ export default function LinkCard({
                 color="brand"
                 variant="light"
               >
-                <Edit strokeWidth={2} />
+                <IconEdit strokeWidth={2} />
               </ActionIcon>
             )}
             <Image

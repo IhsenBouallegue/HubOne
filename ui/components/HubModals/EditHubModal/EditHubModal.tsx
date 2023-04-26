@@ -1,28 +1,25 @@
 import { Modal, Stack, Tabs } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import type { FooterLink, Hub } from "@prisma/client";
+import type { Hub } from "@prisma/client";
+import { useEffect } from "react";
 
-import { useUpdate } from "../../../lib/useQueries";
+import { useHubOneContext } from "../../../../lib/context/HubOneContext";
+import { useUpdate } from "../../../../lib/useQueries";
+import HubFormFields from "../HubFormFields";
 
 import FooterLinkAddCard from "./FooterLinkAddCard";
 import FooterLinkCard from "./FooterLinkCard";
-import HubFormFields from "./HubFormFields";
 
 function EditHubModal({
   opened,
   setOpened,
-  footerLinks,
-  id,
-  hubName,
-  hubLogo,
-  hubPath,
-  primaryColor,
-  secondaryColor,
 }: {
   opened: boolean;
   setOpened: (open: boolean) => void;
-  footerLinks: FooterLink[];
-} & Hub) {
+}) {
+  const { hub, footerLinks } = useHubOneContext();
+  const { id, hubName, hubLogo, hubPath, primaryColor, secondaryColor } = hub;
+
   const form = useForm<Hub>({
     initialValues: {
       id,
@@ -38,6 +35,9 @@ function EditHubModal({
     update(values);
     setOpened(false);
   };
+  useEffect(() => {
+    if (hubPath !== form.getInputProps("hubPath").value) form.setValues(hub);
+  }, [form, hub, hubPath]);
 
   return (
     <Modal
@@ -62,7 +62,10 @@ function EditHubModal({
             {footerLinks.map((footerLink) => (
               <FooterLinkCard
                 key={`footerlink_edit_${footerLink.id}`}
-                {...footerLink}
+                id={footerLink.id}
+                title={footerLink.title}
+                link={footerLink.link}
+                hubId={footerLink.hubId}
               />
             ))}
             <FooterLinkAddCard hubId={id as number} />
