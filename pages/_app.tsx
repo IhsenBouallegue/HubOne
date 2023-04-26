@@ -6,7 +6,6 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 
 import { HubOneContextProvider } from "../lib/context/HubOneContext";
-import "../styles/globals.css";
 import theme from "../theme";
 
 const queryClient = new QueryClient();

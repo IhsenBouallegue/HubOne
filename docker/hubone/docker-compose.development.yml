@@ -16,7 +16,12 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - ./../../:/app
+      - ./../../pages:/app/pages
+      - ./../../public:/app/public
+      - ./../../ui:/app/ui
+      - ./../../theme.ts:/app/theme.ts
+      - ./../../lib:/app/lib
+      - ./../../prisma:/app/prisma
 
   db:
     image: "postgres"
