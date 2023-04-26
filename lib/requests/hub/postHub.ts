@@ -9,6 +9,10 @@ export const postHub = async (linkGroup: Partial<Hub>) => {
         Accept: "application/json",
       },
     })
-    .then((data) => data)
-    .catch((e) => e);
+    .then((data) => {
+      return data;
+    })
+    .catch((e) => {
+      return e;
+    });
 };

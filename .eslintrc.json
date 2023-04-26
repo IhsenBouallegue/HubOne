@@ -1,17 +1,12 @@
 {
   "extends": [
     "mantine",
-    "airbnb",
-    "airbnb-typescript",
+    "prettier",
+    "sznm/react",
     "plugin:react/jsx-runtime",
-    "plugin:@next/next/recommended",
-    "prettier"
+    "plugin:@next/next/recommended"
   ],
-  "parserOptions": {
-    "project": "./tsconfig.json"
-  },
   "rules": {
-    "import/prefer-default-export": "off",
     "no-use-before-define": [
       "error",
       {
