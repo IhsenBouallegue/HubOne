@@ -2,17 +2,6 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 import { prisma } from "../../../../../lib/prisma";
 
-async function handleGET(path: string, res: NextApiResponse) {
-  try {
-    const item = await prisma.hub.findUnique({
-      where: { hubPath: path },
-    });
-    res.json(item);
-  } catch (error) {
-    res.json({ error });
-  }
-}
-
 export default async function handle(
   req: NextApiRequest,
   res: NextApiResponse
@@ -24,7 +13,10 @@ export default async function handle(
       : String(req.query.path);
   }
   if (req.method === "GET") {
-    handleGET(path, res);
+    const item = await prisma.hub.findUnique({
+      where: { hubPath: path },
+    });
+    res.json(item);
   } else {
     // Method Not Allowed
     res.status(405).end();
