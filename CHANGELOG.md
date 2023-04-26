@@ -1,3 +1,23 @@
+# [2.3.0](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.21...v2.3.0) (2023-04-26)
+
+
+### Bug Fixes
+
+* break word instead of break all in hubmenu ([ecec1fb](https://github.com/IhsenBouallegue/HubOne/commit/ecec1fbd4488b812148f1756e5a6bb91b5b9d27f))
+* fetch hubs, links and linkgroups by id order ([6afd1ec](https://github.com/IhsenBouallegue/HubOne/commit/6afd1ec58a15cb40a6b43f76770a68329dbcc6ba))
+* fix logo size ([49d410e](https://github.com/IhsenBouallegue/HubOne/commit/49d410e7b73e076d2c710aff131b05f99cfb1a82))
+* hub menu alignment ([d1c4ec9](https://github.com/IhsenBouallegue/HubOne/commit/d1c4ec9d6ae9799df513e7ca01b24e568a11c34a))
+* remove footer link updating when edit modal opened ([1b4b747](https://github.com/IhsenBouallegue/HubOne/commit/1b4b7473632206d5144d9d1fc5b01fdf37cac3de))
+* update the correct hub in edit hub modal ([10ca5a8](https://github.com/IhsenBouallegue/HubOne/commit/10ca5a85e4a3ba1454eaf3cb065128f501c99197))
+* use the same create modal across the app ([d7d59fd](https://github.com/IhsenBouallegue/HubOne/commit/d7d59fd3a673ebb65b80e8d73f4fca8a73a6fae5))
+
+
+### Features
+
+* add Hub Menu ([a70e8a4](https://github.com/IhsenBouallegue/HubOne/commit/a70e8a4c18e62ba8955b8c0c1827ce79f9d402da))
+* add hubmenu and fetch hubs ([1f35d8b](https://github.com/IhsenBouallegue/HubOne/commit/1f35d8b6998045a771ebf54e5c2eb36ef5513fd7))
+* improve hubmenu ui ([0074d9f](https://github.com/IhsenBouallegue/HubOne/commit/0074d9fb147c2a5edc781adc64ce7b553a1ffea1))
+
 ## [2.2.21](https://github.com/IhsenBouallegue/HubOne/compare/v2.2.20...v2.2.21) (2023-04-26)
 
 
