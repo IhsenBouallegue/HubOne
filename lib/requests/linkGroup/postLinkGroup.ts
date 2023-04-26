@@ -9,10 +9,6 @@ export const postLinkGroup = async (linkGroup: Partial<LinkGroup>) => {
         Accept: "application/json",
       },
     })
-    .then((data) => {
-      return data;
-    })
-    .catch((e) => {
-      return e;
-    });
+    .then((data) => data)
+    .catch((e) => e);
 };

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import { MantineProvider } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -6,7 +7,6 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 
 import { HubOneContextProvider } from "../lib/context/HubOneContext";
-import "../styles/globals.css";
 import theme from "../theme";
 
 const queryClient = new QueryClient();
