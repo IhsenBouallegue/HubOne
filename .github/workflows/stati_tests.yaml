@@ -1,7 +1,6 @@
 name: Static Tests
 on:
   pull_request:
-  push:
 
 jobs:
   linting:
