@@ -1,9 +1,10 @@
+/* eslint-disable arrow-body-style */
 import type { Hub } from "@prisma/client";
 
 import axios from "../../axios";
 
-export const getHubWithPath = (hubPath: string): Promise<Hub> =>
-  axios
+export const getHubWithPath = (hubPath: string): Promise<Hub> => {
+  return axios
     .get<Hub | Hub[]>(`path/hubs/${hubPath}`, {
       headers: {
         Accept: "application/json",
@@ -16,3 +17,4 @@ export const getHubWithPath = (hubPath: string): Promise<Hub> =>
       }
       return data as Hub;
     });
+};
