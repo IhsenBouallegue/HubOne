@@ -11,7 +11,8 @@ import theme from "../theme";
 
 const queryClient = new QueryClient();
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App(props: AppProps) {
+  const { Component, pageProps } = props;
   return (
     <>
       <Head>
