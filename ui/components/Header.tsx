@@ -73,31 +73,28 @@ const useStyles = createStyles((theme) => ({
 
 export function HeaderBar() {
   const { classes } = useStyles();
-  const { hub, linkGroups, footerLinks, setCreateModalOpened } =
-    useHubOneContext();
+  const { hub, linkGroups, setCreateModalOpened } = useHubOneContext();
   const theme = useMantineTheme();
   const [opened, toggleOpened] = useToggle();
   const { editMode } = useHubOneContext();
   const [editModalOpened, setEditModalOpened] = useState(false);
-  const items = linkGroups?.map((linkGroup) => {
-    return (
-      <ScrollLink
-        key={linkGroup.title}
-        to={linkGroup.title}
-        smooth="easeInOutQuint"
-        duration={1000}
+  const items = linkGroups?.map((linkGroup) => (
+    <ScrollLink
+      key={linkGroup.title}
+      to={linkGroup.title}
+      smooth="easeInOutQuint"
+      duration={1000}
+    >
+      <Button
+        variant="subtle"
+        onClick={() => {
+          toggleOpened(false);
+        }}
       >
-        <Button
-          variant="subtle"
-          onClick={() => {
-            toggleOpened(false);
-          }}
-        >
-          {linkGroup.title}
-        </Button>
-      </ScrollLink>
-    );
-  });
+        {linkGroup.title}
+      </Button>
+    </ScrollLink>
+  ));
 
   return (
     <Header
@@ -170,12 +167,7 @@ export function HeaderBar() {
         )}
       </Container>
       {hub.id && (
-        <EditHubModal
-          opened={editModalOpened}
-          setOpened={setEditModalOpened}
-          footerLinks={footerLinks}
-          {...hub}
-        />
+        <EditHubModal opened={editModalOpened} setOpened={setEditModalOpened} />
       )}
     </Header>
   );

@@ -19,17 +19,17 @@ import HubLogo from "../../components/HubLogo";
 
 export default function HubMenu({ hubs }: { hubs: Hub[] }) {
   const router = useRouter();
-  const [opened, setOpened] = useState(true);
-  // const [addModalOpened, setAddModalOpened] = useState(false);
+  const [opened, setOpened] = useState(false);
   const { setCreateModalOpened } = useHubOneContext();
+
   return (
     <Menu
       opened={opened}
       onChange={setOpened}
       trigger="hover"
       position="top-end"
-      offset={9}
-      withArrow
+      shadow="md"
+      radius="md"
     >
       <Menu.Target>
         <Affix position={{ bottom: rem(32), right: rem(32) }}>
@@ -45,6 +45,7 @@ export default function HubMenu({ hubs }: { hubs: Hub[] }) {
         <SimpleGrid p="sm" cols={3} spacing="sm">
           {hubs.map((hub) => (
             <Menu.Item
+              key={`hub_menu_item_${hub.id}`}
               onClick={() => {
                 router.push(hub.hubPath);
               }}
