@@ -1,5 +1,3 @@
-/* eslint-disable arrow-body-style */
-/* eslint-disable react/function-component-definition */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import type { FooterLink, Hub, Link, LinkGroup } from "@prisma/client";
 import React, { useContext, useState } from "react";
@@ -29,15 +27,13 @@ const HubOneContext = React.createContext({
   setFooterLinks: (footerLinks: FooterLink[]) => {},
 });
 
-export const useHubOneContext = () => {
-  return useContext(HubOneContext);
-};
+export const useHubOneContext = () => useContext(HubOneContext);
 
-export const HubOneContextProvider = ({
+export function HubOneContextProvider({
   children,
 }: {
   children: React.ReactNode;
-}) => {
+}) {
   const setSettings = (settings: Settings) => {
     setState((prevState) => ({
       ...prevState,
@@ -83,4 +79,4 @@ export const HubOneContextProvider = ({
   return (
     <HubOneContext.Provider value={state}>{children}</HubOneContext.Provider>
   );
-};
+}
