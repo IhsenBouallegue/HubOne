@@ -1,4 +1,3 @@
-/* eslint-disable sonarjs/no-duplicate-string */
 import { showNotification } from "@mantine/notifications";
 import type { QueryClient } from "@tanstack/react-query";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
@@ -8,11 +7,10 @@ import axios from "./axios";
 const simpleFetchByHubId = <T>(
   QUERY_NAME: string,
   hubId: number
-): Promise<T[]> => {
-  return axios
+): Promise<T[]> =>
+  axios
     .get<T[]>(`${QUERY_NAME}?hubId=${hubId}`)
     .then(({ data }) => data as T[]);
-};
 
 export function useFetchByHubId<T>(
   QUERY_NAME: string,
@@ -38,35 +36,30 @@ export function useFetchItem<T>(
   );
 }
 
-const defaultMutateList = <T>(queryClient: QueryClient, QUERY_NAME: string) => {
-  return async (newItem: T) => {
+const defaultMutateList =
+  <T>(queryClient: QueryClient, QUERY_NAME: string) =>
+  async (newItem: T) => {
     // Optimistic list update
     await queryClient.cancelQueries([QUERY_NAME]);
     const previousItems = queryClient.getQueryData([QUERY_NAME]);
     queryClient.setQueryData([QUERY_NAME], (old) => [old, newItem]);
     return { previousItems };
   };
-};
 
-const defaultMutateItem = <T extends { id: number }>(
-  queryClient: QueryClient,
-  QUERY_NAME: string
-) => {
-  return async ({ id, ...newItem }: T) => {
+const defaultMutateItem =
+  <T extends { id: number }>(queryClient: QueryClient, QUERY_NAME: string) =>
+  async ({ id, ...newItem }: T) => {
     // Optimistic single item update
     await queryClient.cancelQueries([QUERY_NAME, id]);
     const previousItem = queryClient.getQueryData([QUERY_NAME, id]);
     queryClient.setQueryData([QUERY_NAME, id], newItem);
     return { previousItem, newItem };
   };
-};
 
 export function usePost<T>(QUERY_NAME: string) {
   const queryClient = useQueryClient();
   const { mutate } = useMutation(
-    (newItem: T) => {
-      return axios.post<T>(QUERY_NAME, newItem);
-    },
+    (newItem: T) => axios.post<T>(QUERY_NAME, newItem),
     {
       onMutate: defaultMutateList<T>(queryClient, QUERY_NAME),
       onError: (_, __, context) => {
@@ -92,9 +85,7 @@ export function usePost<T>(QUERY_NAME: string) {
 export function useUpdate<T extends { id: number }>(QUERY_NAME: string) {
   const queryClient = useQueryClient();
   const { mutate } = useMutation(
-    (newItem: T) => {
-      return axios.patch<T>(`${QUERY_NAME}/${newItem.id}`, newItem);
-    },
+    (newItem: T) => axios.patch<T>(`${QUERY_NAME}/${newItem.id}`, newItem),
     {
       onMutate: defaultMutateItem<T>(queryClient, QUERY_NAME),
       onError: (_, __, context) => {
@@ -120,9 +111,8 @@ export function useUpdate<T extends { id: number }>(QUERY_NAME: string) {
 export function useDelete(QUERY_NAME: string) {
   const queryClient = useQueryClient();
   const { mutate } = useMutation(
-    (itemId: number) => {
-      return axios.delete(`${QUERY_NAME}/${itemId}`, { data: { itemId } });
-    },
+    (itemId: number) =>
+      axios.delete(`${QUERY_NAME}/${itemId}`, { data: { itemId } }),
     {
       onError: () => {
         showNotification({
@@ -145,26 +135,21 @@ export function useDelete(QUERY_NAME: string) {
 
 export function useDeleteAll(QUERY_NAME: string) {
   const queryClient = useQueryClient();
-  const { mutate } = useMutation(
-    () => {
-      return axios.delete(QUERY_NAME);
+  const { mutate } = useMutation(() => axios.delete(QUERY_NAME), {
+    onError: () => {
+      showNotification({
+        message: `The ${QUERY_NAME} couldn't be deleted! 😢`,
+        color: "red",
+      });
     },
-    {
-      onError: () => {
-        showNotification({
-          message: `The ${QUERY_NAME} couldn't be deleted! 😢`,
-          color: "red",
-        });
-      },
-      onSuccess: () => {
-        showNotification({
-          message: `The ${QUERY_NAME} has been deleted❗`,
-        });
-      },
-      onSettled: () => {
-        queryClient.invalidateQueries([QUERY_NAME]);
-      },
-    }
-  );
+    onSuccess: () => {
+      showNotification({
+        message: `The ${QUERY_NAME} has been deleted❗`,
+      });
+    },
+    onSettled: () => {
+      queryClient.invalidateQueries([QUERY_NAME]);
+    },
+  });
   return mutate;
 }
