@@ -30,15 +30,13 @@ const HubOneContext = React.createContext({
   setCreateModalOpened: (createModalOpened: boolean) => {},
 });
 
-export const useHubOneContext = () => {
-  return useContext(HubOneContext);
-};
+export const useHubOneContext = () => useContext(HubOneContext);
 
-export const HubOneContextProvider = ({
+export function HubOneContextProvider({
   children,
 }: {
   children: React.ReactNode;
-}) => {
+}) {
   const setSettings = (settings: Settings) => {
     setState((prevState) => ({
       ...prevState,
@@ -91,4 +89,4 @@ export const HubOneContextProvider = ({
   return (
     <HubOneContext.Provider value={state}>{children}</HubOneContext.Provider>
   );
-};
+}

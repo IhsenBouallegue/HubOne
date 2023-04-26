@@ -1,3 +1,4 @@
+/* eslint-disable arrow-body-style */
 import type { Hub } from "@prisma/client";
 
 import axios from "../../axios";
