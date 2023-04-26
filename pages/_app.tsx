@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import { MantineProvider } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -10,8 +11,7 @@ import theme from "../theme";
 
 const queryClient = new QueryClient();
 
-export default function App(props: AppProps) {
-  const { Component, pageProps } = props;
+export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>

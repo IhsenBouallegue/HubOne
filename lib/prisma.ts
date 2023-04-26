@@ -1,7 +1,9 @@
+/* eslint-disable vars-on-top */
+/* eslint-disable no-var */
+/* eslint-disable import/prefer-default-export */
 import { PrismaClient } from "@prisma/client";
 
 declare global {
-  // eslint-disable-next-line no-var, vars-on-top
   var prisma: PrismaClient | undefined;
 }
 
