@@ -55,7 +55,7 @@ export default function HubMenu({ hubs }: { hubs: Hub[] }) {
                   <HubLogo hub={hub} />
                 </Center>
                 <Text
-                  sx={{ wordBreak: "break-all" }}
+                  sx={{ wordWrap: "break-word", hyphens: "auto" }}
                   align="center"
                   lineClamp={3}
                 >
