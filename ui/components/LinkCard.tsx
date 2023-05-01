@@ -7,13 +7,11 @@ import {
   Text,
   useMantineTheme,
 } from "@mantine/core";
-import type { Link } from "@prisma/client";
 import { IconEdit, IconLock } from "@tabler/icons-react";
 import { motion, useAnimationControls } from "framer-motion";
 import { useEffect, useState } from "react";
 
-import { useHubOneContext } from "../../lib/context/HubOneContext";
-
+import { useHubOneStore } from "../../lib/Store";
 import EditLinkModal from "./LinkModals/EditLinkModal";
 
 export default function LinkCard({
@@ -23,10 +21,18 @@ export default function LinkCard({
   image,
   link,
   isInternal = false,
-}: Link) {
+}: {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  link: string;
+  isInternal: boolean;
+}) {
   const { classes } = useStyles();
   const theme = useMantineTheme();
-  const { editMode } = useHubOneContext();
+  const editMode = useHubOneStore((state) => state.editMode);
+
   const [opened, setOpened] = useState(false);
   const controls = useAnimationControls();
   useEffect(() => {

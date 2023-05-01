@@ -4,10 +4,11 @@ import { useHubOneContext } from "../../../lib/context/HubOneContext";
 import AddLinkGroupCard from "../../components/AddLinkGroupCard";
 
 import LinkSectionAccordion from "./LinkSectionAccordion";
+import { useHubOneStore } from "../../../lib/Store";
 
 function LinkSection() {
-  const { editMode, hub, linkGroups, links } = useHubOneContext();
-
+  const { hub, linkGroups, links } = useHubOneContext();
+  const editMode = useHubOneStore((state) => state.editMode);
   return (
     <div id="linkSection">
       <Container size={800} px={0}>

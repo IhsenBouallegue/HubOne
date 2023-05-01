@@ -23,6 +23,7 @@ import { useHubOneContext } from "../../lib/context/HubOneContext";
 
 import HubLogo from "./HubLogo";
 import EditHubModal from "./HubModals/EditHubModal";
+import { useHubOneStore } from "../../lib/Store";
 
 const HEADER_HEIGHT = 60;
 
@@ -76,7 +77,7 @@ export function HeaderBar() {
   const { hub, linkGroups, setCreateModalOpened } = useHubOneContext();
   const theme = useMantineTheme();
   const [opened, toggleOpened] = useToggle();
-  const { editMode } = useHubOneContext();
+  const editMode = useHubOneStore((state) => state.editMode);
   const [editModalOpened, setEditModalOpened] = useState(false);
   const items = linkGroups?.map((linkGroup) => (
     <ScrollLink

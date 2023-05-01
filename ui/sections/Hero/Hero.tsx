@@ -1,15 +1,15 @@
 import {
-  createStyles,
-  Container,
-  Text,
   Button,
+  Container,
   Group,
+  Text,
   Title,
+  createStyles,
   useMantineTheme,
 } from "@mantine/core";
 import { Link as ScrollLink } from "react-scroll";
 
-import type { Settings } from "../../../lib/context/HubOneContext";
+import { useHubOneStore } from "../../../lib/Store";
 import { useHubOneContext } from "../../../lib/context/HubOneContext";
 import { BackgroundImg } from "../../components/BackgroundImg";
 
@@ -108,29 +108,29 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export function Hero() {
-  const { setSettings, editMode, hub } = useHubOneContext();
+  const { hub } = useHubOneContext();
+  const editMode = useHubOneStore((state) => state.editMode);
+  const setEditMode = useHubOneStore((state) => state.setEditMode);
   const { hubName } = hub;
   const { classes, cx } = useStyles();
   const theme = useMantineTheme();
-  const name = () => {
-    return (
-      <Text component="span" inherit>
-        {" for "}
-        <Text
-          component="span"
-          variant="gradient"
-          gradient={{
-            from: hub.primaryColor,
-            to: hub.secondaryColor,
-          }}
-          inherit
-        >
-          {hubName}
-        </Text>
-        .
+  const name = () => (
+    <Text component="span" inherit>
+      {" for "}
+      <Text
+        component="span"
+        variant="gradient"
+        gradient={{
+          from: hub.primaryColor,
+          to: hub.secondaryColor,
+        }}
+        inherit
+      >
+        {hubName}
       </Text>
-    );
-  };
+      .
+    </Text>
+  );
   return (
     <div className={classes.wrapper}>
       <BackgroundImg
@@ -188,7 +188,7 @@ export function Hero() {
             variant="outline"
             className={cx(classes.cta, classes.secondaryCta)}
             color="dark"
-            onClick={() => setSettings({ editMode: !editMode } as Settings)}
+            onClick={() => setEditMode(!editMode)}
           >
             {editMode ? "View Mode" : "Edit Mode"}
           </Button>
