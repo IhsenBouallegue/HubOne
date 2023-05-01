@@ -14,13 +14,15 @@ import { IconAppsFilled, IconPlus } from "@tabler/icons-react";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
-import { useHubOneContext } from "../../../lib/context/HubOneContext";
+import { useHubOneStore } from "../../../lib/Store";
 import HubLogo from "../../components/HubLogo";
 
 export default function HubMenu({ hubs }: { hubs: Hub[] }) {
   const router = useRouter();
   const [opened, setOpened] = useState(false);
-  const { setCreateModalOpened } = useHubOneContext();
+  const setCreateModalOpened = useHubOneStore(
+    (state) => state.setCreateModalOpened
+  );
 
   return (
     <Menu

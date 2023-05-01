@@ -1,6 +1,6 @@
-import { createStyles, Anchor, Group, Image } from "@mantine/core";
+import { Anchor, createStyles, Group, Image } from "@mantine/core";
 
-import { useHubOneContext } from "../../lib/context/HubOneContext";
+import { useHubOneStore } from "../../lib/Store";
 
 const useStyles = createStyles((theme) => ({
   footer: {
@@ -34,7 +34,7 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export function Footer() {
-  const { footerLinks } = useHubOneContext();
+  const footerLinks = useHubOneStore((state) => state.footerLinks);
   const { classes } = useStyles();
   const items = footerLinks.map(({ title, link }) => (
     <Anchor<"a">

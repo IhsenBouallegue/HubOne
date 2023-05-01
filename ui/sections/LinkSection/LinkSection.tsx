@@ -1,14 +1,16 @@
 import { Container, Text } from "@mantine/core";
 
-import { useHubOneContext } from "../../../lib/context/HubOneContext";
 import AddLinkGroupCard from "../../components/AddLinkGroupCard";
 
 import LinkSectionAccordion from "./LinkSectionAccordion";
 import { useHubOneStore } from "../../../lib/Store";
 
 function LinkSection() {
-  const { hub, linkGroups, links } = useHubOneContext();
   const editMode = useHubOneStore((state) => state.editMode);
+  const hub = useHubOneStore((state) => state.hub);
+  const linkGroups = useHubOneStore((state) => state.linkGroups);
+  const links = useHubOneStore((state) => state.links);
+
   return (
     <div id="linkSection">
       <Container size={800} px={0}>

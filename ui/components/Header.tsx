@@ -19,66 +19,26 @@ import { IconPlus, IconSettings, IconX } from "@tabler/icons-react";
 import { useState } from "react";
 import { Link as ScrollLink } from "react-scroll";
 
-import { useHubOneContext } from "../../lib/context/HubOneContext";
-
+import { useHubOneStore } from "../../lib/Store";
 import HubLogo from "./HubLogo";
 import EditHubModal from "./HubModals/EditHubModal";
-import { useHubOneStore } from "../../lib/Store";
 
 const HEADER_HEIGHT = 60;
 
-const useStyles = createStyles((theme) => ({
-  inner: {
-    height: HEADER_HEIGHT,
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: 0,
-  },
-
-  links: {
-    position: "absolute",
-    left: "50%",
-    transform: "translate(-50%, 0)",
-    [theme.fn.smallerThan("sm")]: {
-      display: "none",
-    },
-  },
-
-  burger: {
-    [theme.fn.largerThan("sm")]: {
-      display: "none",
-    },
-  },
-
-  dropdown: {
-    position: "absolute",
-    top: HEADER_HEIGHT,
-    left: 0,
-    right: 0,
-    zIndex: 0,
-    borderTopRightRadius: 0,
-    borderTopLeftRadius: 0,
-    borderTopWidth: 0,
-    overflow: "hidden",
-
-    [theme.fn.largerThan("sm")]: {
-      display: "none",
-    },
-  },
-
-  linkLabel: {
-    marginRight: 5,
-  },
-}));
-
 export function HeaderBar() {
   const { classes } = useStyles();
-  const { hub, linkGroups, setCreateModalOpened } = useHubOneContext();
   const theme = useMantineTheme();
   const [opened, toggleOpened] = useToggle();
+
+  const hub = useHubOneStore((state) => state.hub);
+  const linkGroups = useHubOneStore((state) => state.linkGroups);
   const editMode = useHubOneStore((state) => state.editMode);
+  const setCreateModalOpened = useHubOneStore(
+    (state) => state.setCreateModalOpened
+  );
+
   const [editModalOpened, setEditModalOpened] = useState(false);
+
   const items = linkGroups?.map((linkGroup) => (
     <ScrollLink
       key={linkGroup.title}
@@ -173,5 +133,50 @@ export function HeaderBar() {
     </Header>
   );
 }
+
+const useStyles = createStyles((theme) => ({
+  inner: {
+    height: HEADER_HEIGHT,
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: 0,
+  },
+
+  links: {
+    position: "absolute",
+    left: "50%",
+    transform: "translate(-50%, 0)",
+    [theme.fn.smallerThan("sm")]: {
+      display: "none",
+    },
+  },
+
+  burger: {
+    [theme.fn.largerThan("sm")]: {
+      display: "none",
+    },
+  },
+
+  dropdown: {
+    position: "absolute",
+    top: HEADER_HEIGHT,
+    left: 0,
+    right: 0,
+    zIndex: 0,
+    borderTopRightRadius: 0,
+    borderTopLeftRadius: 0,
+    borderTopWidth: 0,
+    overflow: "hidden",
+
+    [theme.fn.largerThan("sm")]: {
+      display: "none",
+    },
+  },
+
+  linkLabel: {
+    marginRight: 5,
+  },
+}));
 
 export default HeaderBar;
