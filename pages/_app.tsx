@@ -6,7 +6,6 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 
-import { HubOneContextProvider } from "../lib/context/HubOneContext";
 import theme from "../theme";
 
 const queryClient = new QueryClient();
@@ -27,9 +26,7 @@ export default function App(props: AppProps) {
         <ReactQueryDevtools />
         <MantineProvider withGlobalStyles withNormalizeCSS theme={theme}>
           <Notifications />
-          <HubOneContextProvider>
-            <Component {...pageProps} />
-          </HubOneContextProvider>
+          <Component {...pageProps} />
         </MantineProvider>
       </QueryClientProvider>
     </>
