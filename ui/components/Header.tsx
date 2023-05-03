@@ -11,6 +11,7 @@ import {
   MediaQuery,
   Paper,
   rem,
+  Switch,
   Transition,
   useMantineTheme,
 } from "@mantine/core";
@@ -33,6 +34,8 @@ export function HeaderBar() {
   const hub = useHubOneStore((state) => state.hub);
   const linkGroups = useHubOneStore((state) => state.linkGroups);
   const editMode = useHubOneStore((state) => state.editMode);
+  const compactMode = useHubOneStore((state) => state.compactMode);
+  const setCompactMode = useHubOneStore((state) => state.setCompactMode);
   const setCreateModalOpened = useHubOneStore(
     (state) => state.setCreateModalOpened
   );
@@ -93,39 +96,54 @@ export function HeaderBar() {
             </Paper>
           )}
         </Transition>
-        {editMode ? (
-          <Group ml="auto" mr="12px">
-            <Button
-              leftIcon={<IconPlus />}
-              variant="outline"
-              color="brand"
-              sx={{ height: 30 }}
-              onClick={() => setCreateModalOpened(true)}
+        <Group>
+          <Switch
+            checked={compactMode}
+            onChange={(event) => setCompactMode(event.target.checked)}
+            label="Compact Mode"
+            labelPosition="left"
+            onLabel="ON"
+            offLabel="OFF"
+            size="md"
+          />
+          {editMode ? (
+            <Group ml="auto" mr="12px">
+              <Button
+                leftIcon={<IconPlus />}
+                variant="outline"
+                color="brand"
+                sx={{ height: 30 }}
+                onClick={() => setCreateModalOpened(true)}
+              >
+                Create New Hub
+              </Button>
+              <ActionIcon
+                variant="light"
+                color="brand"
+                onClick={() => setEditModalOpened(true)}
+              >
+                <IconSettings />
+              </ActionIcon>
+            </Group>
+          ) : (
+            <ScrollLink
+              to="linkSection"
+              smooth="easeInOutQuint"
+              duration={1000}
             >
-              Create New Hub
-            </Button>
-            <ActionIcon
-              variant="light"
-              color="brand"
-              onClick={() => setEditModalOpened(true)}
-            >
-              <IconSettings />
-            </ActionIcon>
-          </Group>
-        ) : (
-          <ScrollLink to="linkSection" smooth="easeInOutQuint" duration={1000}>
-            <Button
-              variant="gradient"
-              gradient={{
-                from: theme.colors.brand[4],
-                to: theme.colors.secondary[4],
-              }}
-              sx={{ height: 30 }}
-            >
-              Browse Links
-            </Button>
-          </ScrollLink>
-        )}
+              <Button
+                variant="gradient"
+                gradient={{
+                  from: theme.colors.brand[4],
+                  to: theme.colors.secondary[4],
+                }}
+                sx={{ height: 30 }}
+              >
+                Browse Links
+              </Button>
+            </ScrollLink>
+          )}
+        </Group>
       </Container>
       {hub.id && (
         <EditHubModal opened={editModalOpened} setOpened={setEditModalOpened} />
