@@ -1,6 +1,6 @@
-import { createStyles, Anchor, Group, Image } from "@mantine/core";
+import { Anchor, createStyles, Flex, Group, Image } from "@mantine/core";
 
-import { useHubOneContext } from "../../lib/context/HubOneContext";
+import { useHubOneStore } from "../../lib/Store";
 
 const useStyles = createStyles((theme) => ({
   footer: {
@@ -34,7 +34,7 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export function Footer() {
-  const { footerLinks } = useHubOneContext();
+  const footerLinks = useHubOneStore((state) => state.footerLinks);
   const { classes } = useStyles();
   const items = footerLinks.map(({ title, link }) => (
     <Anchor<"a">
@@ -50,7 +50,12 @@ export function Footer() {
   ));
 
   return (
-    <div className={classes.footer}>
+    <Flex
+      sx={(theme) => ({
+        marginTop: 120,
+        borderTop: `1px solid ${theme.colors.gray[2]}`,
+      })}
+    >
       <div className={classes.inner}>
         <Image
           src="logo/hubone_logo_full.svg"
@@ -60,7 +65,7 @@ export function Footer() {
         />
         <Group className={classes.links}>{items}</Group>
       </div>
-    </div>
+    </Flex>
   );
 }
 

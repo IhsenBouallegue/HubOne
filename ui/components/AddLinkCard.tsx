@@ -1,20 +1,9 @@
-import { Card, createStyles, Stack, Text } from "@mantine/core";
+import { Paper, Stack, Text } from "@mantine/core";
 import { IconPlus } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
 import AddLinkModal from "./LinkModals";
-
-const useStyles = createStyles(() => ({
-  card: {
-    height: "100%",
-    minHeight: 245,
-    minWidth: "150px",
-    margin: "auto",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-}));
 
 function AddLinkCard({
   hubId,
@@ -23,7 +12,6 @@ function AddLinkCard({
   hubId: number;
   linkGroupId: number;
 }) {
-  const { classes } = useStyles();
   const [opened, setOpened] = useState(false);
 
   return (
@@ -35,14 +23,9 @@ function AddLinkCard({
         transition: { duration: 0.2 },
       }}
       whileTap={{ scale: 0.94 }}
-      className={classes.card}
+      style={{ height: "100%" }}
     >
-      <Card
-        className={classes.card}
-        shadow="sm"
-        p="lg"
-        onClick={() => setOpened(true)}
-      >
+      <Paper h="100%" shadow="sm" p="lg" onClick={() => setOpened(true)}>
         <Stack
           align="center"
           justify="center"
@@ -51,7 +34,7 @@ function AddLinkCard({
           <IconPlus size={36} strokeWidth={2} color="black" />
           <Text align="center">Add Link</Text>
         </Stack>
-      </Card>
+      </Paper>
       <AddLinkModal
         opened={opened}
         setOpened={setOpened}

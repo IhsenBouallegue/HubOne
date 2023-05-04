@@ -3,10 +3,10 @@ import { useForm } from "@mantine/form";
 import type { Hub } from "@prisma/client";
 import { useEffect } from "react";
 
-import { useHubOneContext } from "../../../../lib/context/HubOneContext";
 import { useUpdate } from "../../../../lib/useQueries";
 import HubFormFields from "../HubFormFields";
 
+import { useHubOneStore } from "../../../../lib/Store";
 import FooterLinkAddCard from "./FooterLinkAddCard";
 import FooterLinkCard from "./FooterLinkCard";
 
@@ -17,7 +17,9 @@ function EditHubModal({
   opened: boolean;
   setOpened: (open: boolean) => void;
 }) {
-  const { hub, footerLinks } = useHubOneContext();
+  const hub = useHubOneStore((state) => state.hub);
+  const footerLinks = useHubOneStore((state) => state.footerLinks);
+
   const { id, hubName, hubLogo, hubPath, primaryColor, secondaryColor } = hub;
 
   const form = useForm<Hub>({

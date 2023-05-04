@@ -1,9 +1,9 @@
-import { Center, Image, Loader, Stack, Text, Title } from "@mantine/core";
+import { Box, Center, Image, Loader, Stack, Text, Title } from "@mantine/core";
 import type { FooterLink, Hub, Link, LinkGroup } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 
-import { useHubOneContext } from "../lib/context/HubOneContext";
+import { useHubOneStore } from "../lib/Store";
 import { getHubWithPath } from "../lib/requests/hub/getHub";
 import { getHubs } from "../lib/requests/hub/getHubs";
 import { useFetchByHubId } from "../lib/useQueries";
@@ -16,14 +16,14 @@ import LinkSection from "../ui/sections/LinkSection";
 
 export default function Home() {
   const router = useRouter();
-  const {
-    setHub,
-    setLinks,
-    setLinkGroups,
-    setFooterLinks,
-    createModalOpened,
-    setCreateModalOpened,
-  } = useHubOneContext();
+  const setHub = useHubOneStore((state) => state.setHub);
+  const setLinks = useHubOneStore((state) => state.setLinks);
+  const setLinkGroups = useHubOneStore((state) => state.setLinkGroups);
+  const setFooterLinks = useHubOneStore((state) => state.setFooterLinks);
+  const createModalOpened = useHubOneStore((state) => state.createModalOpened);
+  const setCreateModalOpened = useHubOneStore(
+    (state) => state.setCreateModalOpened
+  );
   // use `|| [""]` for root hub that has no set path by the router
   const hubPaths = (router.query.hubPaths as string[]) || [""];
   const {
@@ -88,16 +88,18 @@ export default function Home() {
   }
 
   return (
-    <>
+    <Stack mih="100vh" spacing={0}>
       <HeaderBar />
       <Hero />
       <LinkSection />
+      <Box mt="auto">
+        <Footer />
+      </Box>
       {hubs && <HubMenu hubs={hubs} />}
-      <Footer />
       <AddHubModal
         opened={createModalOpened}
         setOpened={setCreateModalOpened}
       />
-    </>
+    </Stack>
   );
 }
