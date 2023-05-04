@@ -28,10 +28,11 @@ function LinkGroup({
 }) {
   const { classes } = useStyles();
   const editMode = useHubOneStore((state) => state.editMode);
+  const compactMode = useHubOneStore((state) => state.compactMode);
 
   return (
-    <Container size={700} className={classes.inner}>
-      <Grid columns={4}>
+    <Container size={800} className={classes.inner}>
+      <Grid columns={compactMode ? 3 : 4}>
         {links.map((link) => (
           <Grid.Col key={`link_${link.id}`} span={2} xs={1}>
             <LinkCard
