@@ -12,9 +12,8 @@ export default function CompactHero() {
       size={800}
       sx={{
         paddingTop: 100,
-        paddingBottom: 100,
+        paddingBottom: 80,
         [theme.fn.smallerThan("sm")]: {
-          paddingBottom: 80,
           paddingTop: 80,
         },
       }}

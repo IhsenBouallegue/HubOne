@@ -1,4 +1,4 @@
-import { Center, Image, Loader, Stack, Text, Title } from "@mantine/core";
+import { Box, Center, Image, Loader, Stack, Text, Title } from "@mantine/core";
 import type { FooterLink, Hub, Link, LinkGroup } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
@@ -88,16 +88,18 @@ export default function Home() {
   }
 
   return (
-    <>
+    <Stack mih="100vh" spacing={0}>
       <HeaderBar />
       <Hero />
       <LinkSection />
+      <Box mt="auto">
+        <Footer />
+      </Box>
       {hubs && <HubMenu hubs={hubs} />}
-      <Footer />
       <AddHubModal
         opened={createModalOpened}
         setOpened={setCreateModalOpened}
       />
-    </>
+    </Stack>
   );
 }

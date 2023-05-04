@@ -1,4 +1,4 @@
-import { Anchor, createStyles, Group, Image } from "@mantine/core";
+import { Anchor, createStyles, Flex, Group, Image } from "@mantine/core";
 
 import { useHubOneStore } from "../../lib/Store";
 
@@ -50,7 +50,12 @@ export function Footer() {
   ));
 
   return (
-    <div className={classes.footer}>
+    <Flex
+      sx={(theme) => ({
+        marginTop: 120,
+        borderTop: `1px solid ${theme.colors.gray[2]}`,
+      })}
+    >
       <div className={classes.inner}>
         <Image
           src="logo/hubone_logo_full.svg"
@@ -60,7 +65,7 @@ export function Footer() {
         />
         <Group className={classes.links}>{items}</Group>
       </div>
-    </div>
+    </Flex>
   );
 }
 
