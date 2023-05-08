@@ -31,6 +31,8 @@ const theme: MantineThemeOverride = {
   },
   primaryColor: "brand",
   defaultRadius: "sm",
+  black: "#333333",
+  primaryShade: 4,
   fontFamily: "Poppins",
   headings: { fontFamily: "Poppins", fontWeight: "bold" },
 };
