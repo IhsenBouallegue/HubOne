@@ -20,7 +20,15 @@ function EditHubModal({
   const hub = useHubOneStore((state) => state.hub);
   const footerLinks = useHubOneStore((state) => state.footerLinks);
 
-  const { id, hubName, hubLogo, hubPath, primaryColor, secondaryColor } = hub;
+  const {
+    id,
+    hubName,
+    hubLogo,
+    hubPath,
+    description,
+    primaryColor,
+    secondaryColor,
+  } = hub;
 
   const form = useForm<Hub>({
     initialValues: {
@@ -28,6 +36,7 @@ function EditHubModal({
       hubName,
       hubLogo,
       hubPath,
+      description,
       primaryColor,
       secondaryColor,
     } as Hub,

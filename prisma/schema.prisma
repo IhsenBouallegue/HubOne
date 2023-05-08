@@ -1,5 +1,5 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["jsonProtocol"]
 }
 
@@ -13,11 +13,12 @@ model Hub {
   hubName        String
   hubLogo        String
   hubPath        String       @unique
-  LinkGroup      LinkGroup[]
-  Link           Link[]
-  footerLink     FooterLink[]
+  description    String       @default("Tired of keeping track of new websites? Tired of having to update your bookmarks every few weeks? Access all sites from this one page. Everything is up to date. No need to clutter your life anymore!")
   primaryColor   String       @default("#ff008c")
   secondaryColor String       @default("#0cd4f7")
+  Link           Link[]
+  LinkGroup      LinkGroup[]
+  footerLink     FooterLink[]
 }
 
 model LinkGroup {

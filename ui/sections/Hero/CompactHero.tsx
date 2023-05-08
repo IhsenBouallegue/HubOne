@@ -2,7 +2,7 @@ import { Container, Text, Title, useMantineTheme } from "@mantine/core";
 import { useHubOneStore } from "../../../lib/Store";
 
 export default function CompactHero() {
-  const { hubName, primaryColor, secondaryColor } = useHubOneStore(
+  const { hubName, description, primaryColor, secondaryColor } = useHubOneStore(
     (state) => state.hub
   );
   const theme = useMantineTheme();
@@ -48,9 +48,7 @@ export default function CompactHero() {
         .
       </Title>
       <Text mt="xl" color="dimmed" fz="lg">
-        Tired of keeping track of new websites? Tired of having to update your
-        bookmarks every few weeks? Access all sites from this one page.
-        Everything is up to date. No need to clutter your life anymore!
+        {description}
       </Text>
     </Container>
   );
