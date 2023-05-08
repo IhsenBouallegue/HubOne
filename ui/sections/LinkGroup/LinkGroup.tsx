@@ -45,7 +45,7 @@ function LinkGroup({
             />
           </Grid.Col>
         ))}
-        <Grid.Col span={2} xs={1}>
+        <Grid.Col sm={compactMode ? 4 : 3} span={6}>
           {editMode && <AddLinkCard hubId={hubId} linkGroupId={linkGroupId} />}
         </Grid.Col>
       </Grid>

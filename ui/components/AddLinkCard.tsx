@@ -1,4 +1,4 @@
-import { Paper, Stack, Text } from "@mantine/core";
+import { Paper, Stack, Text, rem } from "@mantine/core";
 import { IconPlus } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
@@ -25,7 +25,13 @@ function AddLinkCard({
       whileTap={{ scale: 0.94 }}
       style={{ height: "100%" }}
     >
-      <Paper h="100%" shadow="sm" p="lg" onClick={() => setOpened(true)}>
+      <Paper
+        h="100%"
+        mih={rem(250)}
+        shadow="sm"
+        p="lg"
+        onClick={() => setOpened(true)}
+      >
         <Stack
           align="center"
           justify="center"
