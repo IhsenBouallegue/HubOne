@@ -70,16 +70,22 @@ export function HeaderBar() {
             className={classes.burger}
             size="sm"
           />
-          <MediaQuery largerThan="sm" styles={{ display: "none" }}>
-            <Image src="/logo/hubone_logo.svg" height={28} width={28} />
-          </MediaQuery>
-          <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
-            <Image src="/logo/hubone_logo_full.svg" width={126} />
-          </MediaQuery>
-          <IconX size={20} strokeWidth={1} color="black" />
-          <Center h={rem(28)} w={rem(28)}>
-            <HubLogo hub={hub} />
-          </Center>
+          <Group spacing="xs">
+            <MediaQuery largerThan="sm" styles={{ display: "none" }}>
+              <Image
+                src="/logo/hubone_logo.svg"
+                height={rem(28)}
+                width={rem(28)}
+              />
+            </MediaQuery>
+            <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
+              <Image src="/logo/hubone_logo_full.svg" width={126} />
+            </MediaQuery>
+            <IconX size={20} strokeWidth={1} color="black" />
+            <Center h={rem(28)} w={rem(28)}>
+              <HubLogo hub={hub} />
+            </Center>
+          </Group>
         </Group>
 
         <Group spacing={5} className={classes.links}>
@@ -114,22 +120,24 @@ export function HeaderBar() {
               </ActionIcon>
             </Group>
           ) : (
-            <ScrollLink
-              to="linkSection"
-              smooth="easeInOutQuint"
-              duration={1000}
-            >
-              <Button
-                variant="gradient"
-                gradient={{
-                  from: theme.colors.brand[4],
-                  to: theme.colors.secondary[4],
-                }}
-                sx={{ height: 30 }}
+            <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
+              <ScrollLink
+                to="linkSection"
+                smooth="easeInOutQuint"
+                duration={1000}
               >
-                Browse Links
-              </Button>
-            </ScrollLink>
+                <Button
+                  variant="gradient"
+                  gradient={{
+                    from: theme.colors.brand[4],
+                    to: theme.colors.secondary[4],
+                  }}
+                  sx={{ height: 30 }}
+                >
+                  Browse Links
+                </Button>
+              </ScrollLink>
+            </MediaQuery>
           )}
         </Group>
       </Container>
