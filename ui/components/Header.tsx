@@ -16,7 +16,7 @@ import {
   useMantineTheme,
 } from "@mantine/core";
 import { useToggle } from "@mantine/hooks";
-import { IconPlus, IconSettings, IconX } from "@tabler/icons-react";
+import { IconSettings, IconX } from "@tabler/icons-react";
 import { useState } from "react";
 import { Link as ScrollLink } from "react-scroll";
 
@@ -36,9 +36,6 @@ export function HeaderBar() {
   const editMode = useHubOneStore((state) => state.editMode);
   const compactMode = useHubOneStore((state) => state.compactMode);
   const setCompactMode = useHubOneStore((state) => state.setCompactMode);
-  const setCreateModalOpened = useHubOneStore(
-    (state) => state.setCreateModalOpened
-  );
 
   const [editModalOpened, setEditModalOpened] = useState(false);
 
@@ -108,15 +105,6 @@ export function HeaderBar() {
           />
           {editMode ? (
             <Group ml="auto" mr="12px">
-              <Button
-                leftIcon={<IconPlus />}
-                variant="outline"
-                color="brand"
-                sx={{ height: 30 }}
-                onClick={() => setCreateModalOpened(true)}
-              >
-                Create New Hub
-              </Button>
               <ActionIcon
                 variant="light"
                 color="brand"
