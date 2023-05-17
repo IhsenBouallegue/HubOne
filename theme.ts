@@ -35,6 +35,7 @@ const theme: MantineThemeOverride = {
   primaryShade: 4,
   fontFamily: "Poppins",
   headings: { fontFamily: "Poppins", fontWeight: "bold" },
+  // https://www.joshwcomeau.com/shadow-palette/
   shadows: {
     low: `0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.24),
   0.4px 0.8px 1px -1.2px hsl(var(--shadow-color) / 0.24),
