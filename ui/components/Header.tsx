@@ -3,7 +3,6 @@ import {
   Burger,
   Button,
   Center,
-  Container,
   createStyles,
   Group,
   Header,
@@ -62,7 +61,13 @@ export function HeaderBar() {
       height={HEADER_HEIGHT}
       sx={{ borderBottom: 0, position: "relative", zIndex: 1 }}
     >
-      <Container px="xl" className={classes.inner} fluid>
+      <Paper
+        px="xl"
+        m="sm"
+        className={classes.inner}
+        shadow="medium"
+        radius="lg"
+      >
         <Group>
           <Burger
             opened={opened}
@@ -140,7 +145,7 @@ export function HeaderBar() {
             </MediaQuery>
           )}
         </Group>
-      </Container>
+      </Paper>
       {hub.id && (
         <EditHubModal opened={editModalOpened} setOpened={setEditModalOpened} />
       )}

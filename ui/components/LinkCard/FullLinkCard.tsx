@@ -54,7 +54,8 @@ export default function FullLinkCard({
     >
       <Paper
         h="100%"
-        shadow="sm"
+        shadow="medium"
+        radius="lg"
         p="lg"
         component="a"
         href={link}
