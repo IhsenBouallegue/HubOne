@@ -13,7 +13,11 @@ function LinkSection() {
 
   return (
     <div id="linkSection">
-      <Container size={800} px={0}>
+      <Container
+        size={800}
+        px={0}
+        sx={{ gap: "2em", display: "flex", flexDirection: "column" }}
+      >
         {linkGroups?.length > 0 ? (
           <LinkSectionAccordion
             linkGroups={linkGroups}

@@ -28,8 +28,8 @@ function AddLinkCard({
       <Paper
         h="100%"
         mih={rem(250)}
-        shadow="sm"
-        p="lg"
+        radius="lg"
+        shadow="medium"
         onClick={() => setOpened(true)}
       >
         <Stack
