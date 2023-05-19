@@ -1,6 +1,7 @@
 import { Container, createStyles, Grid } from "@mantine/core";
 import type { Link } from "@prisma/client";
 
+import { AnimatePresence } from "framer-motion";
 import AddLinkCard from "../../components/AddLinkCard";
 import LinkCard from "../../components/LinkCard";
 import { useHubOneStore } from "../../../lib/Store";
@@ -46,7 +47,11 @@ function LinkGroup({
           </Grid.Col>
         ))}
         <Grid.Col sm={compactMode ? 4 : 3} span={6}>
-          {editMode && <AddLinkCard hubId={hubId} linkGroupId={linkGroupId} />}
+          <AnimatePresence>
+            {editMode && (
+              <AddLinkCard hubId={hubId} linkGroupId={linkGroupId} />
+            )}
+          </AnimatePresence>
         </Grid.Col>
       </Grid>
     </Container>
