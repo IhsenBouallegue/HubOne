@@ -9,7 +9,7 @@ export default function AccordionLabel({ id, title, hubId }: LinkGroup) {
   const editMode = useHubOneStore((state) => state.editMode);
   const updateLinkGroup = useUpdate<LinkGroup>("linkgroups");
   return (
-    <Group>
+    <Group sx={{ height: "3em", alignItems: "center" }}>
       <AnimatePresence>
         {editMode && (
           <motion.div
@@ -33,7 +33,7 @@ export default function AccordionLabel({ id, title, hubId }: LinkGroup) {
                 })
               }
               styles={{
-                input: { fontSize: "1.5em", width: "100%" },
+                input: { fontSize: "1.5em" },
                 root: { width: "100%" },
               }}
             />
