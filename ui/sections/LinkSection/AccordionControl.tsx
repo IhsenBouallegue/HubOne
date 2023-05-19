@@ -3,12 +3,13 @@ import { Accordion, ActionIcon, Box } from "@mantine/core";
 import { IconTrash } from "@tabler/icons-react";
 
 import { useDelete } from "../../../lib/useQueries";
+import { useHubOneStore } from "../../../lib/Store";
 
 export default function AccordionControl({
   itemId,
-  editMode,
   ...props
-}: AccordionControlProps & { itemId: number; editMode: boolean }) {
+}: AccordionControlProps & { itemId: number }) {
+  const editMode = useHubOneStore((state) => state.editMode);
   const deleteItem = useDelete("linkgroups");
   return (
     <Box sx={{ display: "flex", alignItems: "center" }}>

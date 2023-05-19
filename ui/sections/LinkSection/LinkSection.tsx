@@ -22,7 +22,6 @@ function LinkSection() {
           <LinkSectionAccordion
             linkGroups={linkGroups}
             links={links}
-            editMode={editMode}
             hubId={hub.id}
           />
         ) : (
