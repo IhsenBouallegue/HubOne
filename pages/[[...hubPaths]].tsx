@@ -89,6 +89,12 @@ export default function Home() {
 
   return (
     <Stack mih="100vh" spacing={0}>
+      {/* https://app.haikei.app/ */}
+      <Image
+        src="./bg.svg"
+        height="100vh"
+        sx={{ position: "absolute", filter: "blur(4px)", zIndex: -1 }}
+      />
       <HeaderBar />
       <Hero />
       <LinkSection />
