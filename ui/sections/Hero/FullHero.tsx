@@ -6,13 +6,14 @@ import {
   createStyles,
   Text,
   Button,
+  rem,
 } from "@mantine/core";
 import { Link as ScrollLink } from "react-scroll";
 import { useHubOneStore } from "../../../lib/Store";
 import { BackgroundImg } from "../../components/BackgroundImg";
 
 export default function FullHero() {
-  const { hubName, primaryColor, secondaryColor } = useHubOneStore(
+  const { hubName, description, primaryColor, secondaryColor } = useHubOneStore(
     (state) => state.hub
   );
   const editMode = useHubOneStore((state) => state.editMode);
@@ -62,9 +63,7 @@ export default function FullHero() {
         </Title>
 
         <Text className={classes.description} color="dimmed">
-          Tired of keeping track of new websites? Tired of having to update your
-          bookmarks every few weeks? Access all sites from this one page.
-          Everything is up to date. No need to clutter your life anymore!
+          {description}
         </Text>
 
         <Group className={classes.controls}>
@@ -106,6 +105,7 @@ export default function FullHero() {
 const useStyles = createStyles((theme) => ({
   wrapper: {
     position: "relative",
+    overflow: "hidden",
     marginTop: 40,
   },
 
@@ -182,14 +182,15 @@ const useStyles = createStyles((theme) => ({
 
   background: {
     position: "absolute",
+    zIndex: -1,
     width: "35vh",
     maxHeight: "35vh",
     left: "52%",
     bottom: "0",
     objectFit: "contain",
     [theme.fn.smallerThan("sm")]: {
-      bottom: "-35%",
-      left: "45%",
+      bottom: rem(-150),
+      left: "42%",
     },
   },
 }));

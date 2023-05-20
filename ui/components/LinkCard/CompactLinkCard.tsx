@@ -56,8 +56,8 @@ export default function CompactLinkCard({
       <Paper
         h="100%"
         pos="relative"
-        shadow="sm"
-        p="lg"
+        shadow="medium"
+        p="sm"
         component="a"
         href={link}
         target="_blank"

@@ -9,18 +9,18 @@ import AccordionLabel from "./AccordionLabel";
 export default function LinkSectionAccordion({
   linkGroups,
   links,
-  editMode,
   hubId,
 }: {
   linkGroups: LinkGroup[];
   links: Link[];
-  editMode: boolean;
   hubId: number;
 }) {
   return (
     <Accordion
       multiple
-      defaultValue={[linkGroups[0].title]}
+      defaultValue={linkGroups.map((linkGroup) => linkGroup.title)}
+      variant="separated"
+      radius="lg"
       styles={{
         content: {
           padding: 0,
@@ -32,8 +32,8 @@ export default function LinkSectionAccordion({
           value={linkGroup.title}
           key={`linkGroup_${linkGroup.id}`}
         >
-          <AccordionControl editMode={editMode} itemId={linkGroup.id}>
-            <AccordionLabel editMode={editMode} {...linkGroup} />
+          <AccordionControl itemId={linkGroup.id}>
+            <AccordionLabel {...linkGroup} />
           </AccordionControl>
           <Accordion.Panel>
             <LinkGroupUI

@@ -1,4 +1,4 @@
-import { Card, createStyles, Group, Text } from "@mantine/core";
+import { Center, Paper, Text } from "@mantine/core";
 import { IconPlus } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
@@ -6,7 +6,6 @@ import { useState } from "react";
 import AddLinkGroupModal from "./LinkGroupModals";
 
 function AddLinkGroupCard({ hubId }: { hubId: number }) {
-  const { classes } = useStyles();
   const [opened, setOpened] = useState(false);
 
   return (
@@ -18,39 +17,23 @@ function AddLinkGroupCard({ hubId }: { hubId: number }) {
         transition: { duration: 0.2 },
       }}
       whileTap={{ scale: 0.94 }}
-      className={classes.card}
     >
-      <Card
-        className={classes.card}
-        shadow="sm"
-        p="lg"
+      <Paper
+        w="100%"
+        h="6rem"
+        radius="lg"
+        shadow="medium"
+        sx={{ justifyContent: "center", alignItems: "center", display: "flex" }}
         onClick={() => setOpened(true)}
       >
-        <Group
-          my="auto"
-          position="center"
-          p="auto"
-          sx={() => ({
-            height: "100%",
-          })}
-        >
+        <Center>
           <IconPlus size={36} strokeWidth={2} color="black" />
           <Text align="center">Add Link Group</Text>
-        </Group>
-      </Card>
+        </Center>
+      </Paper>
       <AddLinkGroupModal opened={opened} setOpened={setOpened} hubId={hubId} />
     </motion.div>
   );
 }
-
-const useStyles = createStyles(() => ({
-  card: {
-    height: "6rem",
-    width: "100%",
-    marginTop: "1em",
-    justifyContent: "center",
-    display: "flex",
-  },
-}));
 
 export default AddLinkGroupCard;

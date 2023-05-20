@@ -35,7 +35,12 @@ export default function FullLinkCard({
     if (editMode)
       controls.start({
         rotate: [2, -2],
-        transition: { repeat: Infinity, repeatType: "reverse", duration: 0.4 },
+        transition: {
+          repeat: Infinity,
+          repeatType: "reverse",
+          duration: 0.4,
+          ease: "easeInOut",
+        },
       });
     else {
       controls.set({ rotate: 0 });
@@ -54,7 +59,8 @@ export default function FullLinkCard({
     >
       <Paper
         h="100%"
-        shadow="sm"
+        shadow="medium"
+        radius="lg"
         p="lg"
         component="a"
         href={link}

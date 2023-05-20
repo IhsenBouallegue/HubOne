@@ -1,4 +1,12 @@
-import { Button, ColorInput, Group, Stack, TextInput } from "@mantine/core";
+/* eslint-disable react/jsx-props-no-spreading */
+import {
+  Button,
+  ColorInput,
+  Group,
+  Stack,
+  TextInput,
+  Textarea,
+} from "@mantine/core";
 import type { UseFormReturnType } from "@mantine/form";
 import type { Hub } from "@prisma/client";
 
@@ -20,6 +28,12 @@ function HubFormFields({ form }: { form: UseFormReturnType<Hub> }) {
         label="Hub Path"
         placeholder="Hub Path"
         {...form.getInputProps("hubPath")}
+      />
+      <Textarea
+        placeholder="Hub Description"
+        label="Hub Description"
+        autosize
+        {...form.getInputProps("description")}
       />
       <ColorInput
         placeholder="Pick color"

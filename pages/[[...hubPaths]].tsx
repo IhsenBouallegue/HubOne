@@ -7,12 +7,12 @@ import { useHubOneStore } from "../lib/Store";
 import { getHubWithPath } from "../lib/requests/hub/getHub";
 import { getHubs } from "../lib/requests/hub/getHubs";
 import { useFetchByHubId } from "../lib/useQueries";
-import { Footer } from "../ui/components/Footer";
-import { HeaderBar } from "../ui/components/Header";
+import { Footer } from "../ui/components/Footer/Footer";
 import AddHubModal from "../ui/components/HubModals/CreateHubModal/CreateHubModal";
 import Hero from "../ui/sections/Hero";
 import HubMenu from "../ui/sections/HubMenu";
 import LinkSection from "../ui/sections/LinkSection";
+import HeaderBar from "../ui/components/Header";
 
 export default function Home() {
   const router = useRouter();
@@ -89,6 +89,12 @@ export default function Home() {
 
   return (
     <Stack mih="100vh" spacing={0}>
+      {/* https://app.haikei.app/ */}
+      <Image
+        src="./bg.svg"
+        height="100vh"
+        sx={{ position: "absolute", filter: "blur(4px)", zIndex: -1 }}
+      />
       <HeaderBar />
       <Hero />
       <LinkSection />
