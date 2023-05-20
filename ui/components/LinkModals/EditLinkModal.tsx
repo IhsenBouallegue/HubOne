@@ -1,4 +1,4 @@
-import { Button, Group, Modal } from "@mantine/core";
+import { Button, Group, Modal, Title } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import type { Link } from "@prisma/client";
 import { IconTrash } from "@tabler/icons-react";
@@ -33,12 +33,16 @@ function EditLinkModal({
   const update = useUpdate<Link>("links");
   const deleteItem = useDelete("links");
   const handleSubmit = (values: Link) => {
-    update(values);
+    if (form.isTouched()) update(values);
     setOpened(false);
   };
 
   return (
-    <Modal opened={opened} onClose={() => setOpened(false)} title="Edit link">
+    <Modal
+      opened={opened}
+      onClose={() => setOpened(false)}
+      title={<Title size="2rem">Edit Link</Title>}
+    >
       <form onSubmit={form.onSubmit(handleSubmit)}>
         <LinkFormFields form={form} />
         <Group position="center" mt="xl">

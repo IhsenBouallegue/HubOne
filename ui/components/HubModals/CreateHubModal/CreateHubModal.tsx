@@ -1,4 +1,4 @@
-import { Modal } from "@mantine/core";
+import { Modal, Title } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import type { Hub } from "@prisma/client";
 
@@ -17,6 +17,8 @@ function CreateHubModal({
       hubName: "",
       hubLogo: "",
       hubPath: "",
+      description:
+        "Tired of keeping track of new websites? Tired of having to update your bookmarks every few weeks? Access all sites from this one page. Everything is up to date. No need to clutter your life anymore!",
     } as Hub,
   });
 
@@ -31,7 +33,8 @@ function CreateHubModal({
     <Modal
       opened={opened}
       onClose={() => setOpened(false)}
-      title="Create a New Hub"
+      title={<Title size="2rem">Create New Hub</Title>}
+      size="lg"
     >
       <form onSubmit={form.onSubmit(handleSubmit)}>
         <HubFormFields form={form} />

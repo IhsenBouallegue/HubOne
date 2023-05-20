@@ -3,6 +3,7 @@ import { create } from "zustand";
 
 type Settings = {
   editMode: boolean;
+  compactMode: boolean;
   hub: Hub;
   links: Link[];
   linkGroups: LinkGroup[];
@@ -11,6 +12,7 @@ type Settings = {
 };
 type Actions = {
   setEditMode: (editMode: boolean) => void;
+  setCompactMode: (compactMode: boolean) => void;
   setHub: (hub: Hub) => void;
   setLinks: (links: Link[]) => void;
   setLinkGroups: (linkGroups: LinkGroup[]) => void;
@@ -19,12 +21,14 @@ type Actions = {
 };
 export const useHubOneStore = create<Settings & Actions>((set) => ({
   editMode: false,
+  compactMode: false,
   hub: {} as Hub,
   links: [],
   linkGroups: [],
   footerLinks: [],
   createModalOpened: false,
   setEditMode: (editMode) => set(() => ({ editMode })),
+  setCompactMode: (compactMode) => set(() => ({ compactMode })),
   setHub: (hub) => set(() => ({ hub })),
   setLinks: (links) => set(() => ({ links })),
   setLinkGroups: (linkGroups) => set(() => ({ linkGroups })),
