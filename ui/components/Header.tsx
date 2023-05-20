@@ -15,7 +15,12 @@ import {
   useMantineTheme,
 } from "@mantine/core";
 import { useToggle } from "@mantine/hooks";
-import { IconSettings, IconX } from "@tabler/icons-react";
+import {
+  IconArrowsMaximize,
+  IconArrowsMinimize,
+  IconSettings,
+  IconX,
+} from "@tabler/icons-react";
 import { useState } from "react";
 import { Link as ScrollLink } from "react-scroll";
 
@@ -108,11 +113,27 @@ export function HeaderBar() {
           <Switch
             checked={compactMode}
             onChange={(event) => setCompactMode(event.target.checked)}
-            label="Compact Mode"
-            labelPosition="left"
-            onLabel="ON"
-            offLabel="OFF"
-            size="md"
+            onLabel={
+              <IconArrowsMaximize
+                size="1.2rem"
+                stroke={2.5}
+                color={theme.white}
+              />
+            }
+            offLabel={
+              <IconArrowsMinimize
+                size="1.2rem"
+                stroke={2.5}
+                color={theme.colors.brand[4]}
+              />
+            }
+            size="lg"
+            styles={{
+              track: {
+                background: theme.colors.brand[0],
+                borderWidth: 0,
+              },
+            }}
           />
           {editMode ? (
             <Group ml="auto" mr="12px">
