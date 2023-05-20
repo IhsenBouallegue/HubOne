@@ -1,4 +1,4 @@
-import { Modal } from "@mantine/core";
+import { Modal, Title } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import type { Hub } from "@prisma/client";
 
@@ -33,7 +33,8 @@ function CreateHubModal({
     <Modal
       opened={opened}
       onClose={() => setOpened(false)}
-      title="Create a New Hub"
+      title={<Title size="2rem">Create New Hub</Title>}
+      size="lg"
     >
       <form onSubmit={form.onSubmit(handleSubmit)}>
         <HubFormFields form={form} />

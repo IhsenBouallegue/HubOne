@@ -1,4 +1,4 @@
-import { Modal, Stack, Tabs } from "@mantine/core";
+import { Modal, Stack, Tabs, Title } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import type { Hub } from "@prisma/client";
 import { useEffect } from "react";
@@ -54,21 +54,22 @@ function EditHubModal({
     <Modal
       opened={opened}
       onClose={() => setOpened(false)}
-      title="Edit Current Hub"
+      title={<Title size="2rem">Edit Current Hub</Title>}
+      size="lg"
     >
-      <Tabs defaultValue="Hub" variant="outline">
-        <Tabs.List>
+      <Tabs defaultValue="Hub" variant="pills">
+        <Tabs.List mb="xl">
           <Tabs.Tab value="Hub">Hub</Tabs.Tab>
           <Tabs.Tab value="Footer Links">Footer Links</Tabs.Tab>
         </Tabs.List>
 
-        <Tabs.Panel value="Hub" pt="xs">
+        <Tabs.Panel value="Hub">
           <form onSubmit={form.onSubmit(handleSubmit)}>
             <HubFormFields form={form} />
           </form>
         </Tabs.Panel>
 
-        <Tabs.Panel value="Footer Links" pt="xs">
+        <Tabs.Panel value="Footer Links">
           <Stack>
             {footerLinks.map((footerLink) => (
               <FooterLinkCard
