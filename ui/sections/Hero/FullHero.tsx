@@ -6,6 +6,7 @@ import {
   createStyles,
   Text,
   Button,
+  rem,
 } from "@mantine/core";
 import { Link as ScrollLink } from "react-scroll";
 import { useHubOneStore } from "../../../lib/Store";
@@ -104,6 +105,7 @@ export default function FullHero() {
 const useStyles = createStyles((theme) => ({
   wrapper: {
     position: "relative",
+    overflow: "hidden",
     marginTop: 40,
   },
 
@@ -180,14 +182,15 @@ const useStyles = createStyles((theme) => ({
 
   background: {
     position: "absolute",
+    zIndex: -1,
     width: "35vh",
     maxHeight: "35vh",
     left: "52%",
     bottom: "0",
     objectFit: "contain",
     [theme.fn.smallerThan("sm")]: {
-      bottom: "-35%",
-      left: "45%",
+      bottom: rem(-150),
+      left: "42%",
     },
   },
 }));

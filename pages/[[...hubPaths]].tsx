@@ -7,7 +7,7 @@ import { useHubOneStore } from "../lib/Store";
 import { getHubWithPath } from "../lib/requests/hub/getHub";
 import { getHubs } from "../lib/requests/hub/getHubs";
 import { useFetchByHubId } from "../lib/useQueries";
-import { Footer } from "../ui/components/Footer";
+import { Footer } from "../ui/components/Footer/Footer";
 import AddHubModal from "../ui/components/HubModals/CreateHubModal/CreateHubModal";
 import Hero from "../ui/sections/Hero";
 import HubMenu from "../ui/sections/HubMenu";
