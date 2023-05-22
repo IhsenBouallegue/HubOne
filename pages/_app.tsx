@@ -1,12 +1,11 @@
-/* eslint-disable react/jsx-props-no-spreading */
+import type { AppProps } from "next/app";
 import { MantineProvider } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import type { AppProps } from "next/app";
-import "../ui/App.css";
-import Head from "next/head";
 
+import Head from "next/head";
+import "@styles/App.css";
 import theme from "../theme";
 
 const queryClient = new QueryClient();

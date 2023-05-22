@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 
-import { prisma } from "../../../../lib/prisma";
+import { prisma } from "@lib/prisma";
 
 // GET
 async function handleGET(itemId: number, res: NextApiResponse) {

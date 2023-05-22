@@ -1,18 +1,18 @@
-import { Box, Center, Image, Loader, Stack, Text, Title } from "@mantine/core";
 import type { FooterLink, Hub, Link, LinkGroup } from "@prisma/client";
+import { Box, Center, Image, Loader, Stack, Text, Title } from "@mantine/core";
+import { useHubOneStore } from "@lib/Store";
+import { getHubWithPath } from "@lib/requests/hub/getHub";
+import { getHubs } from "@lib/requests/hub/getHubs";
+import { useFetchByHubId } from "@lib/useQueries";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 
-import { useHubOneStore } from "../lib/Store";
-import { getHubWithPath } from "../lib/requests/hub/getHub";
-import { getHubs } from "../lib/requests/hub/getHubs";
-import { useFetchByHubId } from "../lib/useQueries";
-import { Footer } from "../ui/components/Footer/Footer";
-import AddHubModal from "../ui/components/HubModals/CreateHubModal/CreateHubModal";
-import Hero from "../ui/sections/Hero";
-import HubMenu from "../ui/sections/HubMenu";
-import LinkSection from "../ui/sections/LinkSection";
-import HeaderBar from "../ui/components/Header";
+import HeaderBar from "@components/header-bar";
+import Hero from "@sections/hero";
+import HubMenu from "@sections/hub-menu";
+import LinkSection from "@sections/link-section";
+import HubCreateModal from "@modals/hub-modals/hub-create-modal";
+import FooterBar from "@components/footer-bar";
 
 export default function Home() {
   const router = useRouter();
@@ -99,10 +99,10 @@ export default function Home() {
       <Hero />
       <LinkSection />
       <Box mt="auto">
-        <Footer />
+        <FooterBar />
       </Box>
       {hubs && <HubMenu hubs={hubs} />}
-      <AddHubModal
+      <HubCreateModal
         opened={createModalOpened}
         setOpened={setCreateModalOpened}
       />
