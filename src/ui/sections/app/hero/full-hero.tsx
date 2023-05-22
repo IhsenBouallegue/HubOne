@@ -51,7 +51,7 @@ export function FullHero() {
             component="span"
             variant="gradient"
             gradient={{
-              from: theme.colors.brand[4],
+              from: theme.colors.primary[4],
               to: theme.colors.secondary[4],
             }}
             inherit
@@ -78,7 +78,7 @@ export function FullHero() {
               className={classes.cta}
               variant="gradient"
               gradient={{
-                from: theme.colors.brand[4],
+                from: theme.colors.primary[4],
                 to: theme.colors.secondary[4],
               }}
             >

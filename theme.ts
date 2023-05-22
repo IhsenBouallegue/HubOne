@@ -6,7 +6,7 @@ import type {
 
 const theme: MantineThemeOverride = {
   colors: {
-    brand: [
+    primary: [
       "#fff2e3",
       "#ffbf71",
       "#ffbf71",
@@ -29,7 +29,7 @@ const theme: MantineThemeOverride = {
       "#1c0600",
     ],
   },
-  primaryColor: "brand",
+  primaryColor: "primary",
   defaultRadius: "md",
   black: "#333333",
   primaryShade: 4,
@@ -56,7 +56,7 @@ const theme: MantineThemeOverride = {
 
 export default theme;
 
-type ExtendedCustomColors = "brand" | "secondary" | DefaultMantineColor;
+type ExtendedCustomColors = "primary" | "secondary" | DefaultMantineColor;
 
 declare module "@mantine/core" {
   export interface MantineThemeColorsOverride {

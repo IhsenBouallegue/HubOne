@@ -8,11 +8,11 @@ import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/router";
 
 import HeaderBar from "@components/header-bar";
-import Hero from "@sections/hero";
-import HubMenu from "@sections/hub-menu";
-import LinkSection from "@sections/link-section";
 import HubCreateModal from "@modals/hub-modals/hub-create-modal";
 import FooterBar from "@components/footer-bar";
+import LinkSection from "@sections/app/link-section";
+import Hero from "@sections/app/hero";
+import HubMenu from "@sections/app/hub-menu";
 
 export default function Home() {
   const router = useRouter();
@@ -60,7 +60,7 @@ export default function Home() {
         >
           <Image src="/logo/hubone_logo.svg" width={126} />
           <Title align="center">Loading...</Title>
-          <Loader size={64} variant="dots" color="brand.4" />
+          <Loader size={64} variant="dots" color="primary.4" />
         </Stack>
       </Center>
     );

@@ -38,13 +38,13 @@ export function HeaderActionButtons() {
           <IconArrowsMinimize
             size="1.2rem"
             stroke={2.5}
-            color={theme.colors.brand[4]}
+            color={theme.colors.primary[4]}
           />
         }
         size="lg"
         styles={{
           track: {
-            background: theme.colors.brand[0],
+            background: theme.colors.primary[0],
             borderWidth: 0,
           },
         }}
@@ -53,7 +53,7 @@ export function HeaderActionButtons() {
         <Group ml="auto" mr="12px">
           <ActionIcon
             variant="light"
-            color="brand"
+            color="primary"
             onClick={() => setEditModalOpened(true)}
           >
             <IconSettings />
@@ -65,7 +65,7 @@ export function HeaderActionButtons() {
             <Button
               variant="gradient"
               gradient={{
-                from: theme.colors.brand[4],
+                from: theme.colors.primary[4],
                 to: theme.colors.secondary[4],
               }}
               sx={{ height: 30 }}

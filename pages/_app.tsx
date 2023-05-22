@@ -15,7 +15,8 @@ export default function App(props: AppProps) {
   return (
     <>
       <Head>
-        <title>HubOne</title>
+        <title>HubOne | The Bookmark Hub</title>
+        {/* <link rel="shortcut icon" href="/logo/hubone_logo.svg" /> */}
         <meta
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width"

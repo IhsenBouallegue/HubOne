@@ -78,13 +78,13 @@ export function FullLinkCard({
               <IconLock
                 size={rem(16)}
                 strokeWidth={2}
-                color={theme.colors.brand[5]}
+                color={theme.colors.primary[5]}
               />
             </Box>
           )}
           {editMode && (
             <Box top="10%" right="5%" pos="absolute">
-              <ActionIcon size="sm" color="brand" variant="light">
+              <ActionIcon size="sm" color="primary" variant="light">
                 <IconEdit strokeWidth={2} />
               </ActionIcon>
             </Box>
