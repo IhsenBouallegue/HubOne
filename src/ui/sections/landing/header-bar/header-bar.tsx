@@ -99,10 +99,10 @@ export function HeaderBar() {
             size="sm"
           />
           <MediaQuery largerThan="sm" styles={{ display: "none" }}>
-            <Image src="/logo/hubone_logo.svg" height={28} width={28} />
+            <Image src="./logo/hubone_logo.svg" height={28} width={28} />
           </MediaQuery>
           <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
-            <Image src="/logo/hubone_logo_full.svg" width={126} />
+            <Image src="./logo/hubone_logo_full.svg" width={126} />
           </MediaQuery>
         </Group>
 

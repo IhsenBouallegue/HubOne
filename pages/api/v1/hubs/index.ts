@@ -2,7 +2,6 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 import { prisma } from "@lib/prisma";
 
-// GET
 export async function handleGET(res: NextApiResponse) {
   try {
     const items = await prisma.hub.findMany({
@@ -10,31 +9,29 @@ export async function handleGET(res: NextApiResponse) {
         id: "asc",
       },
     });
-    res.json(items);
+    res.status(200).send(items);
   } catch (error) {
-    res.status(500).json({ error });
+    res.status(500).send({ error });
   }
 }
 
-// DELETE
 async function handleDELETE(res: NextApiResponse) {
   try {
     const deletedItem = await prisma.hub.deleteMany();
-    res.json(deletedItem);
+    res.send(deletedItem);
   } catch (error) {
-    res.status(400).json({ error });
+    res.status(400).send({ error });
   }
 }
 
-// POST
 async function handlePOST(req: NextApiRequest, res: NextApiResponse) {
   try {
     const createdItem = await prisma.hub.create({
       data: { ...req.body },
     });
-    res.json(createdItem);
+    res.send(createdItem);
   } catch (error) {
-    res.status(400).json({ error });
+    res.status(400).send({ error });
   }
 }
 

@@ -15,7 +15,7 @@ const simpleFetchByHubId = <T>(
 export function useFetchByHubId<T>(
   QUERY_NAME: string,
   hubId: number,
-  config?: { enabled: boolean; onSuccess: (data: T[]) => void }
+  config?: { enabled: boolean; onSuccess?: (data: T[]) => void }
 ) {
   return useQuery<T[]>(
     [QUERY_NAME, hubId],

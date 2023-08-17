@@ -7,9 +7,9 @@ async function handleGET(id: number, res: NextApiResponse) {
     const item = await prisma.hub.findUnique({
       where: { id },
     });
-    res.json(item);
+    res.status(200).send(item);
   } catch (error) {
-    res.json({ error });
+    res.status(400).send({ error });
   }
 }
 
@@ -18,9 +18,9 @@ async function handleDELETE(id: number, res: NextApiResponse) {
     const deletedItem = await prisma.hub.delete({
       where: { id },
     });
-    res.json(deletedItem);
+    res.status(200).send(deletedItem);
   } catch (error) {
-    res.json({ error });
+    res.status(400).send({ error });
   }
 }
 
@@ -34,9 +34,9 @@ async function handlePATCH(
       where: { id },
       data: { ...req.body },
     });
-    res.json(updatedItem);
+    res.status(200).send(updatedItem);
   } catch (error) {
-    res.json({ error });
+    res.status(400).send({ error });
   }
 }
 

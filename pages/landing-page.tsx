@@ -6,7 +6,7 @@ import Hero from "@sections/landing/hero";
 import Mission from "@sections/landing/mission";
 import Pricing from "@sections/landing/pricing";
 
-export default function test() {
+export default function LandingPage() {
   return (
     <>
       <HeaderBar />

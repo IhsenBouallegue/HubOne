@@ -4,6 +4,21 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 const run = async () => {
+  // HubSpace
+  if ((await prisma.hubSpace.count()) === 0) {
+    await prisma.hubSpace.createMany({
+      data: [
+        {
+          domain: "hubspace1",
+        },
+        {
+          domain: "hubspace2",
+        },
+      ],
+    });
+  } else {
+    console.log("Default hub spaces already created");
+  }
   // Hub
   if ((await prisma.hub.count()) === 0) {
     await prisma.hub.createMany({
@@ -12,6 +27,7 @@ const run = async () => {
           hubName: "Company",
           hubLogo: "",
           hubPath: "",
+          hubSpaceId: 1,
         },
         {
           hubName: "Sub Hub",
@@ -19,6 +35,7 @@ const run = async () => {
           hubPath: "subhub",
           primaryColor: "#26d46c",
           secondaryColor: "#00d9ff",
+          hubSpaceId: 2,
         },
       ],
     });

@@ -48,7 +48,7 @@ export function FooterBar() {
           height={32}
           width={148}
           alt="HubOne logo"
-          src="logo/hubone_logo_full.svg"
+          src="/logo/hubone_logo_full.svg"
         />
         <Stack spacing="xs">
           <Text align="center" size="sm">
