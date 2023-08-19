@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 
+const DASHBOARD_DOMAIN = "my";
+const HOME_DOMAIN = "home";
+
 export const config = {
   matcher: [
     /*
@@ -16,7 +19,7 @@ export default async function middleware(req: NextRequest) {
   const url = req.nextUrl;
 
   const allowedSubdomainRegex = new RegExp(
-    `^https?://(w+.)?(${process.env.NEXT_PUBLIC_ROOT_DOMAIN}|localhost:3000)$`,
+    `^https?://(\\w+\\.)?(${process.env.NEXT_PUBLIC_ROOT_DOMAIN}|localhost:3000)$`,
     "i"
   );
   const res = NextResponse.next();
@@ -47,8 +50,10 @@ export default async function middleware(req: NextRequest) {
   // Get the pathname of the request (e.g. /, /about, /blog/first-post)
   const path = url.pathname;
 
-  // rewrites for app pages
-  if (hostname === `app.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`) {
+  // rewrites for dashboardd pages
+  if (
+    hostname === `${DASHBOARD_DOMAIN}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`
+  ) {
     // const session = await getToken({ req });
     // if (!session && path !== "/login") {
     //   return NextResponse.redirect(new URL("/login", req.url));
@@ -57,7 +62,7 @@ export default async function middleware(req: NextRequest) {
     //   return NextResponse.redirect(new URL("/", req.url));
     // }
     return NextResponse.rewrite(
-      new URL(`/app${path === "/" ? "" : path}`, req.url)
+      new URL(`/${DASHBOARD_DOMAIN}${path === "/" ? "" : path}`, req.url)
     );
   }
 
@@ -66,7 +71,7 @@ export default async function middleware(req: NextRequest) {
     hostname === "localhost:3000" ||
     hostname === process.env.NEXT_PUBLIC_ROOT_DOMAIN
   ) {
-    return NextResponse.rewrite(new URL(`/home${path}`, req.url));
+    return NextResponse.rewrite(new URL(`/${HOME_DOMAIN}${path}`, req.url));
   }
 
   const currentHost = hostname.replace(
