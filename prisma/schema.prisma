@@ -23,9 +23,9 @@ model Hub {
   secondaryColor String       @default("#0cd4f7")
   HubSpace       HubSpace     @relation(fields: [hubSpaceId], references: [id])
   hubSpaceId     Int
-  links           Link[]
-  linkGroups      LinkGroup[]
-  footerLinks     FooterLink[]
+  links          Link[]
+  linkGroups     LinkGroup[]
+  footerLinks    FooterLink[]
 }
 
 model LinkGroup {
@@ -43,7 +43,7 @@ model Link {
   image       String     @default("")
   link        String
   isInternal  Boolean    @default(false)
-  LinkGroup   LinkGroup? @relation(fields: [linkGroupId], references: [id])
+  linkGroup   LinkGroup? @relation(fields: [linkGroupId], references: [id])
   linkGroupId Int?
   hub         Hub        @relation(fields: [hubId], references: [id])
   hubId       Int
