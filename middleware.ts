@@ -48,7 +48,7 @@ export async function routingMiddleware(
   }
 
   // ignore these routes
-  if (/(api|sign-in|sign-up)/.test(url.pathname)) {
+  if (/(api|sign-in|sign-up|user)/.test(url.pathname)) {
     return res;
   }
   // Get hostname of request (e.g. demo.vercel.pub, demo.localhost:3000)
@@ -59,7 +59,7 @@ export async function routingMiddleware(
   // Get the pathname of the request (e.g. /, /about, /blog/first-post)
   const path = url.pathname;
   const dashboardRegex = new RegExp(
-    `^https?://(${process.env.NEXT_PUBLIC_ROOT_DOMAIN}|localhost:3000)/${DASHBOARD_PATH}$`,
+    `^https?://(${process.env.NEXT_PUBLIC_ROOT_DOMAIN}|localhost:3000)/${DASHBOARD_PATH}`,
     "i"
   );
   // rewrites for dashboardd pages
@@ -72,8 +72,12 @@ export async function routingMiddleware(
     if (!auth.userId) {
       return redirectToSignIn({ returnBackUrl: req.url });
     }
+    const sanitisedPath = path.replace(`/${DASHBOARD_PATH}`, "");
     return NextResponse.rewrite(
-      new URL(`/${DASHBOARD_PATH}${path === "/" ? "" : path}`, req.url)
+      new URL(
+        `/${DASHBOARD_PATH}${sanitisedPath === "/" ? "" : sanitisedPath}`,
+        req.url
+      )
     );
   }
 
