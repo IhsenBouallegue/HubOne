@@ -1,11 +1,12 @@
-import type { AppProps } from "next/app";
 import { MantineProvider } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import type { AppProps } from "next/app";
 
-import Head from "next/head";
+import { ClerkProvider } from "@clerk/nextjs";
 import "@styles/App.css";
+import Head from "next/head";
 import theme from "../theme";
 
 const queryClient = new QueryClient();
@@ -22,14 +23,22 @@ export default function App(props: AppProps) {
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
       </Head>
-
-      <QueryClientProvider client={queryClient}>
-        <ReactQueryDevtools />
-        <MantineProvider withGlobalStyles withNormalizeCSS theme={theme}>
-          <Notifications />
-          <Component {...pageProps} />
-        </MantineProvider>
-      </QueryClientProvider>
+      <MantineProvider withGlobalStyles withNormalizeCSS theme={theme}>
+        <ClerkProvider
+          {...pageProps}
+          appearance={{
+            variables: {
+              colorPrimary: theme.colors?.primary?.[4],
+            },
+          }}
+        >
+          <QueryClientProvider client={queryClient}>
+            <ReactQueryDevtools />
+            <Notifications />
+            <Component {...pageProps} />
+          </QueryClientProvider>
+        </ClerkProvider>
+      </MantineProvider>
     </>
   );
 }

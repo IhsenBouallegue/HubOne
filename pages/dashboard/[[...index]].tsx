@@ -1,3 +1,4 @@
+import { UserButton } from "@clerk/nextjs";
 import { AppShell, Header, Navbar } from "@mantine/core";
 
 export default function index() {
@@ -11,7 +12,7 @@ export default function index() {
       }
       header={
         <Header height={60} p="xs">
-          Header
+          <UserButton />
         </Header>
       }
       styles={(theme) => ({

@@ -1,6 +1,8 @@
+import { authMiddleware, redirectToSignIn } from "@clerk/nextjs";
+import { AuthObject } from "@clerk/nextjs/dist/types/server";
 import { NextRequest, NextResponse } from "next/server";
 
-const DASHBOARD_DOMAIN = "my";
+const DASHBOARD_PATH = "dashboard";
 const HOME_DOMAIN = "home";
 
 export const config = {
@@ -12,10 +14,18 @@ export const config = {
      * 3. all root files inside /public (e.g. /favicon.ico)
      */
     "/((?!_next/|_static/|logo/|_vercel|[\\w-]+\\.\\w+).*)",
+    "/",
+    "/api(.*)",
   ],
 };
 
-export default async function middleware(req: NextRequest) {
+export async function routingMiddleware(
+  auth: AuthObject & {
+    isPublicRoute: boolean;
+    isApiRoute: boolean;
+  },
+  req: NextRequest
+) {
   const url = req.nextUrl;
 
   const allowedSubdomainRegex = new RegExp(
@@ -24,7 +34,6 @@ export default async function middleware(req: NextRequest) {
   );
   const res = NextResponse.next();
   const origin = req.headers.get("origin");
-
   // allow subdomains to make requests
   if (origin && allowedSubdomainRegex.test(origin)) {
     res.headers.append("Access-Control-Allow-Origin", origin);
@@ -38,8 +47,8 @@ export default async function middleware(req: NextRequest) {
     );
   }
 
-  // ignore api routes
-  if (url.pathname.includes("api")) {
+  // ignore these routes
+  if (/(api|sign-in|sign-up)/.test(url.pathname)) {
     return res;
   }
   // Get hostname of request (e.g. demo.vercel.pub, demo.localhost:3000)
@@ -49,20 +58,22 @@ export default async function middleware(req: NextRequest) {
 
   // Get the pathname of the request (e.g. /, /about, /blog/first-post)
   const path = url.pathname;
-
+  const dashboardRegex = new RegExp(
+    `^https?://(${process.env.NEXT_PUBLIC_ROOT_DOMAIN}|localhost:3000)/${DASHBOARD_PATH}$`,
+    "i"
+  );
   // rewrites for dashboardd pages
-  if (
-    hostname === `${DASHBOARD_DOMAIN}.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`
-  ) {
-    // const session = await getToken({ req });
-    // if (!session && path !== "/login") {
-    //   return NextResponse.redirect(new URL("/login", req.url));
-    // }
-    // if (session && path === "/login") {
-    //   return NextResponse.redirect(new URL("/", req.url));
-    // }
+  if (dashboardRegex.test(url.href)) {
+    const signInPath = process.env.NEXT_PUBLIC_CLERK_SIGN_IN_URL;
+    const signUpPath = process.env.NEXT_PUBLIC_CLERK_SIGN_UP_URL;
+    // TODO: just returning to home for no if env variables not founnd
+    if (!signInPath || !signUpPath)
+      return NextResponse.rewrite(new URL("/", req.url));
+    if (!auth.userId) {
+      return redirectToSignIn({ returnBackUrl: req.url });
+    }
     return NextResponse.rewrite(
-      new URL(`/${DASHBOARD_DOMAIN}${path === "/" ? "" : path}`, req.url)
+      new URL(`/${DASHBOARD_PATH}${path === "/" ? "" : path}`, req.url)
     );
   }
 
@@ -79,5 +90,12 @@ export default async function middleware(req: NextRequest) {
     ""
   );
   // rewrite everything else to `/[domain]/[path] dynamic route
-  return NextResponse.rewrite(new URL(`/${currentHost}${path}`, req.url));
+  return NextResponse.rewrite(
+    new URL(`/_hubspaces/${currentHost}${path}`, req.url)
+  );
 }
+
+export default authMiddleware({
+  afterAuth: (auth, req) => routingMiddleware(auth, req),
+  publicRoutes: ["/"],
+});

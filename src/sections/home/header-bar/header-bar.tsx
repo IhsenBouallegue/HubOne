@@ -14,6 +14,7 @@ import {
 import { useToggle } from "@mantine/hooks";
 import { Link as ScrollLink } from "react-scroll";
 
+import { SignInButton, UserButton } from "@clerk/nextjs";
 import { headerLinks } from "./HeaderLinks";
 
 const HEADER_HEIGHT = 60;
@@ -117,19 +118,21 @@ export function HeaderBar() {
             </Paper>
           )}
         </Transition>
-
-        <ScrollLink to="linkSection" smooth="easeInOutQuint" duration={1000}>
-          <Button
-            variant="gradient"
-            gradient={{
-              from: theme.colors.primary[4],
-              to: theme.colors.secondary[4],
-            }}
-            sx={{ height: 30 }}
-          >
-            Contact
-          </Button>
-        </ScrollLink>
+        <Group>
+          <UserButton afterSignOutUrl="/" />
+          <SignInButton mode="modal" redirectUrl="/dashboard">
+            <Button
+              variant="gradient"
+              gradient={{
+                from: theme.colors.primary[4],
+                to: theme.colors.secondary[4],
+              }}
+              sx={{ height: 30 }}
+            >
+              Sign In
+            </Button>
+          </SignInButton>
+        </Group>
       </Container>
     </Header>
   );

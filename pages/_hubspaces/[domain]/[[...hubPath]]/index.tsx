@@ -20,7 +20,7 @@ export async function getStaticProps({
 }: {
   params: { domain: string; hubPath: string };
 }) {
-  const hubSlug = hubPath?.[0];
+  const hubSlug = hubPath?.[0] || "/";
   const hubSpace = await prisma.hubSpace.findUnique({
     where: { domain },
   });
