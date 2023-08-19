@@ -1,6 +1,7 @@
 import { Center, Group, Image, MediaQuery, rem } from "@mantine/core";
 import { IconX } from "@tabler/icons-react";
-import HubLogo from "../hub-logo";
+
+import HubLogo from "@components/app/hub-logo";
 
 export function HeaderLogo() {
   return (

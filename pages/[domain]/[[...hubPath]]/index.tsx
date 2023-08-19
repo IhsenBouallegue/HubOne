@@ -1,11 +1,12 @@
 import { getHubSpacesPaths } from "@lib/db";
 import { prisma } from "@lib/prisma";
-import HubLoading from "@sections/app/hub-loading";
-import HubNotFound from "@sections/app/hub-not-found";
-import HubSpaceNotFound from "@sections/app/hub-space-not-found";
 import { InferGetStaticPropsType } from "next";
 import { useRouter } from "next/router";
-import HubPage from "pages/hub-page";
+
+import HubLoading from "@sections/app/hub-loading";
+import HubNotFound from "@sections/app/hub-not-found";
+import HubPage from "@sections/app/hub-page/hub-page";
+import HubSpaceNotFound from "@sections/app/hub-space-not-found";
 
 export async function getStaticPaths() {
   return {

@@ -1,4 +1,4 @@
-import LinkGroupAddCard from "@components/link-group-add-card";
+import LinkGroupAddCard from "@components/app/link-group-add-card";
 import { useHubOneStore } from "@lib/Store";
 import { useFetchByHubId } from "@lib/useQueries";
 import { Container, Text } from "@mantine/core";

@@ -1,6 +1,6 @@
 import { Group, Text, useMantineTheme } from "@mantine/core";
-import Heading from "@components/heading";
-import Section from "@components/section";
+import Heading from "@components/home/heading";
+import Section from "@components/home/section";
 import { PricingLevel } from "./pricing-level";
 
 export function Pricing() {

@@ -1,16 +1,21 @@
 import { Accordion } from "@mantine/core";
-import type { Link, LinkGroup } from "@prisma/client";
+import type { Link, LinkGroup as LinkGroupI } from "@prisma/client";
 
 import { useHubOneStore } from "@lib/Store";
 import { useFetchByHubId } from "@lib/useQueries";
-import LinkGroupUI from "../../link-group";
+
+import LinkGroup from "@sections/app/link-group";
+
 import AccordionControl from "./accordion-control";
 import AccordionLabel from "./accordion-label";
 
 export function LinkSectionAccordion() {
   const hubId = useHubOneStore((state) => state.hubId);
   const { data: links } = useFetchByHubId<Link>("links", hubId!);
-  const { data: linkGroups } = useFetchByHubId<LinkGroup>("linkgroups", hubId!);
+  const { data: linkGroups } = useFetchByHubId<LinkGroupI>(
+    "linkgroups",
+    hubId!
+  );
 
   return (
     <Accordion
@@ -33,7 +38,7 @@ export function LinkSectionAccordion() {
             <AccordionLabel {...linkGroup} />
           </AccordionControl>
           <Accordion.Panel>
-            <LinkGroupUI
+            <LinkGroup
               links={
                 links?.filter((link) => link.linkGroupId === linkGroup.id) || []
               }

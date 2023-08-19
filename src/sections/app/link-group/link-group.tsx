@@ -3,8 +3,8 @@ import type { Link } from "@prisma/client";
 import { AnimatePresence } from "framer-motion";
 import { useHubOneStore } from "@lib/Store";
 
-import LinkAddCard from "@components/link-add-card";
-import LinkCard from "@components/link-card";
+import LinkAddCard from "@components/app/link-add-card";
+import LinkCard from "@components/app/link-card";
 
 export function LinkGroup({
   links,

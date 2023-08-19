@@ -1,5 +1,5 @@
-import Heading from "@components/heading";
-import Section from "@components/section";
+import Heading from "@components/home/heading";
+import Section from "@components/home/section";
 import { Box, Group } from "@mantine/core";
 import { ContactForm } from "./contact-form";
 

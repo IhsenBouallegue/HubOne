@@ -3,12 +3,13 @@ import { Box, Image, Stack } from "@mantine/core";
 import { FooterLink, Hub, Link, LinkGroup } from "@prisma/client";
 import { useFetchByHubId, useFetchItem } from "@lib/useQueries";
 
-import FooterBar from "@components/footer-bar";
-import HeaderBar from "@components/header-bar";
+import HeaderBar from "@components/common/header-bar";
+import FooterBar from "@components/common/footer-bar";
 import HubCreateModal from "@modals/hub-modals/hub-create-modal";
-import Hero from "@sections/app/hero";
-import HubMenu from "@sections/app/hub-menu";
-import LinkSection from "@sections/app/link-section";
+
+import Hero from "../hero";
+import HubMenu from "../hub-menu";
+import LinkSection from "../link-section";
 
 export default function HubPage({
   hub,

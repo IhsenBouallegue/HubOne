@@ -9,10 +9,9 @@
       "@lib/*": ["src/lib/*"],
       "@providers/*": ["src/providers/*"],
       "@styles/*": ["src/styles/*"],
-      "@components/*": ["src/ui/components/*"],
-      "@layouts/*": ["src/ui/layouts/*"],
-      "@modals/*": ["src/ui/modals/*"],
-      "@sections/*": ["src/ui/sections/*"]
+      "@components/*": ["src/components/*"],
+      "@modals/*": ["src/modals/*"],
+      "@sections/*": ["src/sections/*"]
     },
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,

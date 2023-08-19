@@ -1,4 +1,4 @@
-import BackgroundImg from "@components/background-img";
+import BackgroundImg from "@components/app/background-img";
 import { useHubOneStore } from "@lib/Store";
 import { useFetchItem } from "@lib/useQueries";
 import {

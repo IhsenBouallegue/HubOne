@@ -1,4 +1,4 @@
-import HubLogo from "@components/hub-logo";
+import HubLogo from "@components/app/hub-logo";
 import { useHubOneStore } from "@lib/Store";
 import {
   Affix,
