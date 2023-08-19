@@ -53,7 +53,7 @@ export function HubMenu({ hubs }: { hubs: Hub[] }) {
             >
               <Stack w={rem(64)} h={rem(148)} justify="flex-start">
                 <Center w="100%" h="50%">
-                  <HubLogo hub={hub} />
+                  <HubLogo />
                 </Center>
                 <Text
                   sx={{ wordWrap: "break-word", hyphens: "auto" }}

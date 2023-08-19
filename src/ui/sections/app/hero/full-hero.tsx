@@ -1,5 +1,6 @@
 import BackgroundImg from "@components/background-img";
 import { useHubOneStore } from "@lib/Store";
+import { useFetchItem } from "@lib/useQueries";
 import {
   useMantineTheme,
   Container,
@@ -10,12 +11,14 @@ import {
   Button,
   rem,
 } from "@mantine/core";
+import { Hub } from "@prisma/client";
 import { Link as ScrollLink } from "react-scroll";
 
 export function FullHero() {
-  const { hubName, description, primaryColor, secondaryColor } = useHubOneStore(
-    (state) => state.hub
-  );
+  const hubId = useHubOneStore((state) => state.hubId);
+  const { data: hub } = useFetchItem<Hub>("hubs", hubId!);
+  const { hubName, description, primaryColor, secondaryColor } = hub!;
+
   const editMode = useHubOneStore((state) => state.editMode);
   const setEditMode = useHubOneStore((state) => state.setEditMode);
   const { classes, cx } = useStyles();

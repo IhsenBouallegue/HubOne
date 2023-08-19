@@ -2,13 +2,18 @@ import { Button, Group } from "@mantine/core";
 import { Link as ScrollLink } from "react-scroll";
 import { SetStateAction } from "react";
 import { useHubOneStore } from "@lib/Store";
+import { useFetchByHubId } from "@lib/useQueries";
+import { LinkGroup } from "@prisma/client";
 
 export function HeaderLinks({
   toggleOpened,
 }: {
   toggleOpened: (value?: SetStateAction<boolean> | undefined) => void;
 }) {
-  const linkGroups = useHubOneStore((state) => state.linkGroups);
+  const { data: linkGroups } = useFetchByHubId<LinkGroup>(
+    "linkgroups",
+    useHubOneStore((state) => state.hubId)!
+  );
 
   return (
     <Group>

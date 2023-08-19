@@ -1,12 +1,12 @@
-import type { Hub } from "@prisma/client";
-import { useEffect } from "react";
+import { useHubOneStore } from "@lib/Store";
+import { useFetchByHubId, useFetchItem, useUpdate } from "@lib/useQueries";
 import { Modal, Stack, Tabs, Title } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import { useHubOneStore } from "@lib/Store";
-import { useUpdate } from "@lib/useQueries";
+import type { FooterLink, Hub } from "@prisma/client";
+import { useEffect } from "react";
 import { HubFormFields } from "../hub-form-fields";
-import { FooterLinkCard } from "./footer-link-card";
 import { FooterLinkAddCard } from "./footer-link-add-card";
+import { FooterLinkCard } from "./footer-link-card";
 
 export function HubEditModal({
   opened,
@@ -15,9 +15,8 @@ export function HubEditModal({
   opened: boolean;
   setOpened: (open: boolean) => void;
 }) {
-  const hub = useHubOneStore((state) => state.hub);
-  const footerLinks = useHubOneStore((state) => state.footerLinks);
-
+  const hubId = useHubOneStore((state) => state.hubId);
+  const { data: hub } = useFetchItem<Hub>("hubs", hubId!);
   const {
     id,
     hubName,
@@ -26,7 +25,9 @@ export function HubEditModal({
     description,
     primaryColor,
     secondaryColor,
-  } = hub;
+  } = hub!;
+
+  const { data: footerLinks } = useFetchByHubId<FooterLink>("footerlinks", id);
 
   const form = useForm<Hub>({
     initialValues: {
@@ -45,7 +46,7 @@ export function HubEditModal({
     setOpened(false);
   };
   useEffect(() => {
-    if (hubPath !== form.getInputProps("hubPath").value) form.setValues(hub);
+    if (hubPath !== form.getInputProps("hubPath").value) form.setValues(hub!);
   }, [form, hub, hubPath]);
 
   return (
@@ -69,7 +70,7 @@ export function HubEditModal({
 
         <Tabs.Panel value="Footer Links">
           <Stack>
-            {footerLinks.map((footerLink) => (
+            {footerLinks?.map((footerLink) => (
               <FooterLinkCard
                 key={`footerlink_edit_${footerLink.id}`}
                 id={footerLink.id}

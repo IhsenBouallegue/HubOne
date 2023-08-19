@@ -2,30 +2,28 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 import { prisma } from "@lib/prisma";
 
-// GET
 async function handleGET(itemId: number, res: NextApiResponse) {
   try {
     const item = await prisma.linkGroup.findUnique({
       where: { id: itemId },
     });
-    res.json(item);
+    return res.json(item);
   } catch (error) {
-    res.json({ error });
+    return res.json({ error });
   }
 }
-// DELETE
+
 async function handleDELETE(itemId: number, res: NextApiResponse) {
   try {
     const deletedItem = await prisma.linkGroup.delete({
       where: { id: itemId },
     });
-    res.json(deletedItem);
+    return res.json(deletedItem);
   } catch (error) {
-    res.json({ error });
+    return res.json({ error });
   }
 }
 
-// PATCH
 async function handlePATCH(
   itemId: number,
   req: NextApiRequest,
@@ -36,9 +34,9 @@ async function handlePATCH(
       where: { id: itemId },
       data: { ...req.body },
     });
-    res.json(updatedItem);
+    return res.json(updatedItem);
   } catch (error) {
-    res.json({ error });
+    return res.json({ error });
   }
 }
 
@@ -52,22 +50,14 @@ export default async function handle(
 
   switch (req.method) {
     case "GET":
-      handleGET(id, res);
-      break;
+      return handleGET(id, res);
     case "DELETE":
-      handleDELETE(id, res);
-      break;
+      return handleDELETE(id, res);
     case "PATCH":
-      handlePATCH(id, req, res);
-      break;
+      return handlePATCH(id, req, res);
+    case "OPTIONS":
+      return res.status(200).end();
     default: // Method Not Allowed
-      res.status(405).end();
-      break;
+      return res.status(405).end();
   }
 }
-
-export const config = {
-  api: {
-    externalResolver: true,
-  },
-};

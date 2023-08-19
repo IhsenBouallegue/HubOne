@@ -1,8 +1,13 @@
 import { Anchor, Group } from "@mantine/core";
 import { useHubOneStore } from "@lib/Store";
+import { FooterLink } from "@prisma/client";
+import { useFetchByHubId } from "@lib/useQueries";
 
 export function FooterLinks() {
-  const footerLinks = useHubOneStore((state) => state.footerLinks);
+  const { data: footerLinks } = useFetchByHubId<FooterLink>(
+    "footerlinks",
+    useHubOneStore((state) => state.hubId)!
+  );
 
   return (
     <Group

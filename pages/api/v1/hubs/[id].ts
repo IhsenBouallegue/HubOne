@@ -58,6 +58,9 @@ export default async function handle(
     case "PATCH":
       handlePATCH(id, req, res);
       break;
+    case "OPTIONS":
+      res.status(200).end();
+      break;
     default: // Method Not Allowed
       res.status(405).end();
       break;

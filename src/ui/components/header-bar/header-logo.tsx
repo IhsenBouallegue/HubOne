@@ -1,11 +1,8 @@
 import { Center, Group, Image, MediaQuery, rem } from "@mantine/core";
 import { IconX } from "@tabler/icons-react";
-import { useHubOneStore } from "@lib/Store";
 import HubLogo from "../hub-logo";
 
 export function HeaderLogo() {
-  const hub = useHubOneStore((state) => state.hub);
-
   return (
     <Group spacing="xs">
       <MediaQuery largerThan="sm" styles={{ display: "none" }}>
@@ -16,7 +13,7 @@ export function HeaderLogo() {
       </MediaQuery>
       <IconX size={20} strokeWidth={1} color="black" />
       <Center h={rem(28)} w={rem(28)}>
-        <HubLogo hub={hub} />
+        <HubLogo />
       </Center>
     </Group>
   );

@@ -19,7 +19,6 @@ import HubEditModal from "@modals/hub-modals/hub-edit-modal";
 export function HeaderActionButtons() {
   const theme = useMantineTheme();
 
-  const hub = useHubOneStore((state) => state.hub);
   const editMode = useHubOneStore((state) => state.editMode);
   const compactMode = useHubOneStore((state) => state.compactMode);
   const setCompactMode = useHubOneStore((state) => state.setCompactMode);
@@ -75,9 +74,7 @@ export function HeaderActionButtons() {
           </ScrollLink>
         </MediaQuery>
       )}
-      {hub.id && (
-        <HubEditModal opened={editModalOpened} setOpened={setEditModalOpened} />
-      )}
+      <HubEditModal opened={editModalOpened} setOpened={setEditModalOpened} />
     </Group>
   );
 }

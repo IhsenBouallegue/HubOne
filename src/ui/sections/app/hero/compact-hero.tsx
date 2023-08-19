@@ -1,10 +1,12 @@
 import { useHubOneStore } from "@lib/Store";
+import { useFetchItem } from "@lib/useQueries";
 import { Container, Text, Title, useMantineTheme } from "@mantine/core";
+import { Hub } from "@prisma/client";
 
 export function CompactHero() {
-  const { hubName, description, primaryColor, secondaryColor } = useHubOneStore(
-    (state) => state.hub
-  );
+  const hubId = useHubOneStore((state) => state.hubId);
+  const { data: hub } = useFetchItem<Hub>("hubs", hubId!);
+  const { hubName, description, primaryColor, secondaryColor } = hub!;
   const theme = useMantineTheme();
 
   return (

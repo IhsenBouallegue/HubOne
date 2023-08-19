@@ -9,10 +9,23 @@ export async function getHubSpaces() {
   return hubSpaces;
 }
 
+export async function getHubsByHubSpaceId(hubSpaceId: number) {
+  const hubSpaces = await prisma.hub.findMany({
+    where: { hubSpaceId },
+    orderBy: {
+      id: "asc",
+    },
+  });
+  return hubSpaces;
+}
+
 export async function getHubSpacesPaths() {
-  const hubSpaces = await getHubSpaces();
-  const subdomains = hubSpaces.filter((hubSpace) => hubSpace.domain);
-  return subdomains.map((hubSpace) => ({
-    params: { domain: hubSpace.domain },
+  const hubs = await prisma.hub.findMany({ include: { HubSpace: true } });
+
+  return hubs.map((hub) => ({
+    params: {
+      domain: hub.HubSpace.domain,
+      hubPath: [hub.hubPath],
+    },
   }));
 }

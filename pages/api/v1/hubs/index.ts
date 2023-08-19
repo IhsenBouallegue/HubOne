@@ -9,18 +9,18 @@ export async function handleGET(res: NextApiResponse) {
         id: "asc",
       },
     });
-    res.status(200).send(items);
+    return res.status(200).send(items);
   } catch (error) {
-    res.status(500).send({ error });
+    return res.status(500).send({ error });
   }
 }
 
 async function handleDELETE(res: NextApiResponse) {
   try {
     const deletedItem = await prisma.hub.deleteMany();
-    res.send(deletedItem);
+    return res.send(deletedItem);
   } catch (error) {
-    res.status(400).send({ error });
+    return res.status(400).send({ error });
   }
 }
 
@@ -29,9 +29,9 @@ async function handlePOST(req: NextApiRequest, res: NextApiResponse) {
     const createdItem = await prisma.hub.create({
       data: { ...req.body },
     });
-    res.send(createdItem);
+    return res.send(createdItem);
   } catch (error) {
-    res.status(400).send({ error });
+    return res.status(400).send({ error });
   }
 }
 
@@ -41,22 +41,14 @@ export default async function handle(
 ) {
   switch (req.method) {
     case "GET":
-      handleGET(res);
-      break;
+      return handleGET(res);
     case "DELETE":
-      handleDELETE(res);
-      break;
+      return handleDELETE(res);
     case "POST":
-      handlePOST(req, res);
-      break;
+      return handlePOST(req, res);
+    case "OPTIONS":
+      return res.status(200).end();
     default: // Method Not Allowed
-      res.status(405).end();
-      break;
+      return res.status(405).end();
   }
 }
-
-export const hub = {
-  api: {
-    externalResolver: true,
-  },
-};

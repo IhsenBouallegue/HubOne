@@ -1,5 +1,4 @@
 import { showNotification } from "@mantine/notifications";
-import type { QueryClient } from "@tanstack/react-query";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import axios from "./axios";
@@ -15,10 +14,14 @@ const simpleFetchByHubId = <T>(
 export function useFetchByHubId<T>(
   QUERY_NAME: string,
   hubId: number,
-  config?: { enabled: boolean; onSuccess?: (data: T[]) => void }
+  config?: Partial<{
+    enabled: boolean;
+    onSuccess: (data: T[]) => void;
+    initialData: T[];
+  }>
 ) {
   return useQuery<T[]>(
-    [QUERY_NAME, hubId],
+    [QUERY_NAME],
     () => simpleFetchByHubId<T>(QUERY_NAME, hubId),
     config
   );
@@ -27,7 +30,7 @@ export function useFetchByHubId<T>(
 export function useFetchItem<T>(
   QUERY_NAME: string,
   itemId: number,
-  config?: { onSuccess: (data: T) => void }
+  config?: Partial<{ onSuccess: (data: T) => void; initialData: T }>
 ) {
   return useQuery<T>(
     [QUERY_NAME],
@@ -36,34 +39,35 @@ export function useFetchItem<T>(
   );
 }
 
-const defaultMutateList =
-  <T>(queryClient: QueryClient, QUERY_NAME: string) =>
-  async (newItem: T) => {
-    // Optimistic list update
-    await queryClient.cancelQueries([QUERY_NAME]);
-    const previousItems = queryClient.getQueryData([QUERY_NAME]);
-    queryClient.setQueryData([QUERY_NAME], (old) => [old, newItem]);
-    return { previousItems };
-  };
+// const defaultMutateList =
+//   <T>(queryClient: QueryClient, QUERY_NAME: string) =>
+//   async (newItem: T) => {
+//     // Optimistic list update
+//     await queryClient.cancelQueries([QUERY_NAME]);
+//     const previousItems = queryClient.getQueryData([QUERY_NAME]);
+//     queryClient.setQueryData([QUERY_NAME], (old) => [old, newItem]);
+//     return { previousItems };
+//   };
 
-const defaultMutateItem =
-  <T extends { id: number }>(queryClient: QueryClient, QUERY_NAME: string) =>
-  async ({ id, ...newItem }: T) => {
-    // Optimistic single item update
-    await queryClient.cancelQueries([QUERY_NAME, id]);
-    const previousItem = queryClient.getQueryData([QUERY_NAME, id]);
-    queryClient.setQueryData([QUERY_NAME, id], newItem);
-    return { previousItem, newItem };
-  };
+// const defaultMutateItem =
+//   <T extends { id: number }>(queryClient: QueryClient, QUERY_NAME: string) =>
+//   async (newItem: T) => {
+//     // Optimistic single item update
+//     await queryClient.cancelQueries([QUERY_NAME, newItem.id]);
+//     const previousItem = queryClient.getQueryData([QUERY_NAME, newItem.id]);
+//     queryClient.setQueryData([QUERY_NAME, newItem.id], newItem);
+//     return { previousItem, newItem };
+//   };
 
 export function usePost<T>(QUERY_NAME: string) {
   const queryClient = useQueryClient();
   const { mutate } = useMutation(
     (newItem: T) => axios.post<T>(QUERY_NAME, newItem),
     {
-      onMutate: defaultMutateList<T>(queryClient, QUERY_NAME),
-      onError: (_, __, context) => {
-        queryClient.setQueryData([QUERY_NAME], context?.previousItems);
+      // onMutate: defaultMutateList<T>(queryClient, QUERY_NAME),
+      // onError: (_, __, context) => {
+      onError: () => {
+        // queryClient.setQueryData([QUERY_NAME], context?.previousItems);
         showNotification({
           message: `We couldn't add your ${QUERY_NAME.slice(0, -1)} 😢`,
           color: "red",
@@ -87,9 +91,10 @@ export function useUpdate<T extends { id: number }>(QUERY_NAME: string) {
   const { mutate } = useMutation(
     (newItem: T) => axios.patch<T>(`${QUERY_NAME}/${newItem.id}`, newItem),
     {
-      onMutate: defaultMutateItem<T>(queryClient, QUERY_NAME),
-      onError: (_, __, context) => {
-        queryClient.setQueryData([QUERY_NAME], context?.previousItem);
+      // onMutate: defaultMutateItem<T>(queryClient, QUERY_NAME),
+      // onError: (_, __, context) => {
+      onError: () => {
+        // queryClient.setQueryData([QUERY_NAME], context?.previousItem);
         showNotification({
           message: `We couldn't update your ${QUERY_NAME.slice(0, -1)} 😢`,
           color: "red",
