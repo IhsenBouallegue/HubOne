@@ -1,10 +1,6 @@
-import type {
-  MantineThemeOverride,
-  Tuple,
-  DefaultMantineColor,
-} from "@mantine/core";
+"use client";
 
-const theme: MantineThemeOverride = {
+const theme = {
   colors: {
     primary: [
       "#fff2e3",
@@ -55,11 +51,3 @@ const theme: MantineThemeOverride = {
 };
 
 export default theme;
-
-type ExtendedCustomColors = "primary" | "secondary" | DefaultMantineColor;
-
-declare module "@mantine/core" {
-  export interface MantineThemeColorsOverride {
-    colors: Record<ExtendedCustomColors, Tuple<string, 10>>;
-  }
-}

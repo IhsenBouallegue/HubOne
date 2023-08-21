@@ -1,5 +1,5 @@
 {
-  "name": "hub-one",
+  "name": "hubone",
   "version": "2.3.0",
   "private": true,
   "scripts": {
@@ -12,18 +12,14 @@
     "format": "prettier --write \"**/*.{ts,tsx}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx}\"",
     "up": "docker-compose -f docker/hubone/docker-compose.development.yml up --build --force-recreate",
-    "up:prod": "docker-compose -f docker/hubone/docker-compose.production.yml up --build --force-recreate",
-    "prepare": "husky install"
+    "up:prod": "docker-compose -f docker/hubone/docker-compose.production.yml up --build --force-recreate"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.23.2",
-    "@emotion/react": "^11.10.4",
-    "@emotion/server": "^11.10.0",
-    "@mantine/core": "^6.0.0",
-    "@mantine/form": "^6.0.0",
-    "@mantine/hooks": "^6.0.0",
-    "@mantine/next": "^6.0.11",
-    "@mantine/notifications": "^6.0.0",
+    "@mantine/core": "7.0.0-beta.0",
+    "@mantine/form": "7.0.0-beta.0",
+    "@mantine/hooks": "7.0.0-beta.0",
+    "@mantine/notifications": "7.0.0-beta.0",
     "@prisma/client": "^5.0.0",
     "@tabler/icons-react": "^2.17.0",
     "@tanstack/react-query": "^4.12.0",
@@ -50,14 +46,16 @@
     "eslint": "8.47.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-typescript": "17.1.0",
-    "eslint-config-mantine": "2.0.0",
     "eslint-config-next": "13.4.19",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-import": "2.28.1",
     "eslint-plugin-jsx-a11y": "6.7.1",
     "eslint-plugin-react": "7.33.2",
     "eslint-plugin-react-hooks": "4.6.0",
-    "husky": "^8.0.0",
+    "lefthook": "^1.4.9",
+    "postcss": "^8.4.28",
+    "postcss-preset-mantine": "^1.7.0",
+    "postcss-simple-vars": "^7.0.1",
     "prisma": "^5.0.0",
     "semantic-release": "^21.0.0",
     "ts-node": "^10.9.1",
@@ -90,5 +88,6 @@
         "message": "chore(release): ${nextRelease.version} \n\n${nextRelease.notes}"
       }
     ]
-  }
+  },
+  "packageManager": "yarn@3.6.2"
 }
