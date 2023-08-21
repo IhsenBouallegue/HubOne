@@ -29,7 +29,7 @@ export async function getStaticProps({
 
   try {
     const hub = await prisma.hub.findFirstOrThrow({
-      where: { hubSpaceId: hubSpace?.id, hubPath: hubSlug },
+      where: { hubSpaceId: hubSpace.id, hubPath: hubSlug },
     });
     const hubId = Number(hub?.id);
     const links = await prisma.link.findMany({
@@ -58,7 +58,7 @@ export async function getStaticProps({
       revalidate: 60 * 5,
     };
   } catch (e) {
-    return { props: { HubNotFound: true } };
+    return { props: { hubNotFound: true } };
   }
 }
 
@@ -69,7 +69,7 @@ export default function index(
 
   if (props.hubSpaceNotFound) return <HubSpaceNotFound />;
 
-  if (props.HubNotFound) return <HubNotFound />;
+  if (props.hubNotFound) return <HubNotFound />;
 
   if (router.isFallback) {
     return <HubLoading />;

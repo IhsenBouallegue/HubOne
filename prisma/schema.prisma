@@ -9,15 +9,15 @@ datasource db {
 
 model HubSpace {
   id     Int    @id @default(autoincrement())
-  domain String @unique
-  hubs   Hub[]
+  domain String @unique 
+  hubs   Hub[] 
 }
 
 model Hub {
   id             Int          @id @default(autoincrement())
   hubName        String
   hubLogo        String
-  hubPath        String       @unique
+  hubPath        String       @unique @default("/")
   description    String       @default("Tired of keeping track of new websites? Tired of having to update your bookmarks every few weeks? Access all sites from this one page. Everything is up to date. No need to clutter your life anymore!")
   primaryColor   String       @default("#ff008c")
   secondaryColor String       @default("#0cd4f7")

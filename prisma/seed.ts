@@ -26,7 +26,7 @@ const run = async () => {
         {
           hubName: "Company",
           hubLogo: "",
-          hubPath: "",
+          hubPath: "/",
           hubSpaceId: 1,
         },
         {

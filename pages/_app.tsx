@@ -7,12 +7,22 @@ import type { AppProps } from "next/app";
 import { ClerkProvider } from "@clerk/nextjs";
 import "@styles/App.css";
 import Head from "next/head";
+import { ReactElement, ReactNode } from "react";
+import { NextPage } from "next";
 import theme from "../theme";
+
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode;
+};
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
 
 const queryClient = new QueryClient();
 
-export default function App(props: AppProps) {
-  const { Component, pageProps } = props;
+export default function App({ Component, pageProps }: AppPropsWithLayout) {
+  const getLayout = Component.getLayout || ((page) => page);
   return (
     <>
       <Head>
@@ -35,7 +45,7 @@ export default function App(props: AppProps) {
           <QueryClientProvider client={queryClient}>
             <ReactQueryDevtools />
             <Notifications />
-            <Component {...pageProps} />
+            {getLayout(<Component {...pageProps} />)}
           </QueryClientProvider>
         </ClerkProvider>
       </MantineProvider>

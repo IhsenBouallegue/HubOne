@@ -1,12 +1,12 @@
 import DashboardLayout from "@components/dashboard/dashboard-layout";
 import HubSpaceAddCard from "@components/dashboard/hubspace-add-card";
 import HubSpaceCard from "@components/dashboard/hubspace-card";
-import { Group, Title } from "@mantine/core";
+import { Container, Group, Title } from "@mantine/core";
 import { ReactElement } from "react";
 
-export function index() {
+export function Home() {
   return (
-    <div>
+    <Container size="lg" pt="2em">
       <Title size="2em" mb="1.2em" fw={600}>
         HubSpaces
       </Title>
@@ -14,12 +14,12 @@ export function index() {
         <HubSpaceCard />
         <HubSpaceAddCard />
       </Group>
-    </div>
+    </Container>
   );
 }
 
-index.getLayout = function getLayout(page: ReactElement) {
+Home.getLayout = function getLayout(page: ReactElement) {
   return <DashboardLayout>{page}</DashboardLayout>;
 };
 
-export default index;
+export default Home;
