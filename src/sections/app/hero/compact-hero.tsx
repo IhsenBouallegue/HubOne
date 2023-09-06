@@ -3,6 +3,8 @@ import { useFetchItem } from "@lib/useQueries";
 import { Container, Text, Title, useMantineTheme } from "@mantine/core";
 import { Hub } from "@prisma/client";
 
+import classes from "./compact-hero.module.css";
+
 export function CompactHero() {
   const hubId = useHubOneStore((state) => state.hubId);
   const { data: hub } = useFetchItem<Hub>("hubs", hubId!);
@@ -10,16 +12,7 @@ export function CompactHero() {
   const theme = useMantineTheme();
 
   return (
-    <Container
-      size={800}
-      sx={{
-        paddingTop: 100,
-        paddingBottom: 80,
-        [theme.fn.smallerThan("sm")]: {
-          paddingTop: 80,
-        },
-      }}
-    >
+    <Container size={800} className={classes.container}>
       <Title fz={32}>
         The{" "}
         <Text
@@ -49,7 +42,7 @@ export function CompactHero() {
         </Text>
         .
       </Title>
-      <Text mt="xl" color="dimmed" fz="lg">
+      <Text mt="xl" c="dimmed" fz="lg">
         {description}
       </Text>
     </Container>

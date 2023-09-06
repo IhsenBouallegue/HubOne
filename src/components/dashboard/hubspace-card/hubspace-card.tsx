@@ -14,25 +14,25 @@ export default function HubSpaceCard() {
     <Paper
       w={rem(292)}
       h={rem(364)}
-      shadow="medium"
+      shadow="md"
       radius="lg"
-      sx={{ overflow: "hidden", display: "flex", flexDirection: "column" }}
+      style={{ overflow: "hidden", display: "flex", flexDirection: "column" }}
     >
-      <Center sx={{ flex: 5 }} bg="blue">
+      <Center style={{ flex: 5 }} bg="blue">
         <Text c="white" fw="bold" size="xl">
           HubSpace1
         </Text>
       </Center>
-      <Stack p="md" spacing={0} sx={{ flex: 6 }} justify="space-between">
-        <Stack spacing={0}>
+      <Stack p="md" gap={0} style={{ flex: 6 }} justify="space-between">
+        <Stack gap={0}>
           <Text>Name</Text>
           <Text size="sm">Updated about 1 hour ago</Text>
           <a href="hubspace1.huboneapp.com" style={{ fontSize: 14 }}>
             hubspace1.huboneapp.com
           </a>
         </Stack>
-        <Group spacing={6}>
-          <Box h="10px" w="10px" bg="green" sx={{ borderRadius: "100%" }} />
+        <Group gap={6}>
+          <Box h="10px" w="10px" bg="green" style={{ borderRadius: "100%" }} />
           <Text size="sm" c="green">
             is active
           </Text>

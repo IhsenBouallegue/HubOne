@@ -2,17 +2,17 @@ import BackgroundImg from "@components/app/background-img";
 import { useHubOneStore } from "@lib/Store";
 import { useFetchItem } from "@lib/useQueries";
 import {
-  useMantineTheme,
-  Container,
-  Title,
-  Group,
-  createStyles,
-  Text,
   Button,
-  rem,
+  Container,
+  Group,
+  Text,
+  Title,
+  useMantineTheme,
 } from "@mantine/core";
 import { Hub } from "@prisma/client";
 import { Link as ScrollLink } from "react-scroll";
+
+import classes from "./full-hero.module.css";
 
 export function FullHero() {
   const hubId = useHubOneStore((state) => state.hubId);
@@ -21,7 +21,6 @@ export function FullHero() {
 
   const editMode = useHubOneStore((state) => state.editMode);
   const setEditMode = useHubOneStore((state) => state.setEditMode);
-  const { classes, cx } = useStyles();
   const theme = useMantineTheme();
   const name = () => (
     <Text component="span" inherit>
@@ -93,7 +92,7 @@ export function FullHero() {
             component="a"
             size="xl"
             variant="outline"
-            className={cx(classes.cta, classes.secondaryCta)}
+            className={classes.cta}
             color="dark"
             onClick={() => setEditMode(!editMode)}
           >
@@ -104,96 +103,3 @@ export function FullHero() {
     </div>
   );
 }
-
-const useStyles = createStyles((theme) => ({
-  wrapper: {
-    position: "relative",
-    overflow: "hidden",
-    marginTop: 40,
-  },
-
-  inner: {
-    position: "relative",
-    paddingTop: 100,
-    paddingBottom: 200,
-    margin: "auto",
-    [theme.fn.smallerThan("sm")]: {
-      paddingBottom: 80,
-      paddingTop: 80,
-    },
-  },
-
-  title: {
-    fontSize: 62,
-    fontWeight: 900,
-    lineHeight: 1.25,
-    margin: 0,
-    padding: 0,
-    color: theme.black,
-
-    [theme.fn.smallerThan("sm")]: {
-      fontSize: 42,
-      lineHeight: 1.2,
-    },
-  },
-
-  description: {
-    marginTop: `calc(2 * ${theme.spacing.xl})`,
-    fontSize: 24,
-
-    [theme.fn.smallerThan("sm")]: {
-      fontSize: 18,
-    },
-  },
-
-  controls: {
-    marginTop: `calc(3 * ${theme.spacing.xl})`,
-
-    [theme.fn.smallerThan("sm")]: {
-      marginTop: theme.spacing.xl,
-    },
-  },
-
-  cta: {
-    height: 54,
-    paddingLeft: 38,
-    paddingRight: 38,
-
-    [theme.fn.smallerThan("sm")]: {
-      paddingLeft: 18,
-      paddingRight: 18,
-      width: "100%",
-      flex: 1,
-    },
-  },
-
-  ctaContainer: {
-    [theme.fn.smallerThan("sm")]: {
-      flex: 1,
-    },
-  },
-
-  secondaryCta: {
-    borderWidth: 2,
-    borderColor: theme.colors.dark[9],
-    backgroundColor: "transparent",
-
-    "&:hover": {
-      backgroundColor: `${theme.colors.gray[0]} !important`,
-    },
-  },
-
-  background: {
-    position: "absolute",
-    zIndex: -1,
-    width: "35vh",
-    maxHeight: "35vh",
-    left: "52%",
-    bottom: "0",
-    objectFit: "contain",
-    [theme.fn.smallerThan("sm")]: {
-      bottom: rem(-150),
-      left: "42%",
-    },
-  },
-}));

@@ -1,3 +1,5 @@
+"use client";
+
 import { useHubOneStore } from "@lib/Store";
 import {
   ActionIcon,
@@ -59,7 +61,7 @@ export function FullLinkCard({
     >
       <Paper
         h="100%"
-        shadow="medium"
+        shadow="md"
         radius="lg"
         p="lg"
         component="a"
@@ -89,15 +91,10 @@ export function FullLinkCard({
               </ActionIcon>
             </Box>
           )}
-          <Image
-            src={image || "./logo/hubone_logo.svg"}
-            alt={title}
-            withPlaceholder
-            p="xl"
-          />
+          <Image src={image || "./logo/hubone_logo.svg"} alt={title} p="xl" />
         </Group>
 
-        <Text my="sm" weight={600} size="lg">
+        <Text my="sm" fw={600} size="lg">
           {title}
         </Text>
 

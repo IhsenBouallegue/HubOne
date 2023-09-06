@@ -1,20 +1,21 @@
+"use client";
+
+import { useHubOneStore } from "@lib/Store";
 import {
+  ActionIcon,
+  Button,
   Group,
   Switch,
-  ActionIcon,
-  MediaQuery,
   useMantineTheme,
-  Button,
 } from "@mantine/core";
+import HubEditModal from "@modals/hub-modals/hub-edit-modal";
 import {
   IconArrowsMaximize,
   IconArrowsMinimize,
   IconSettings,
 } from "@tabler/icons-react";
-import { Link as ScrollLink } from "react-scroll";
 import { useState } from "react";
-import { useHubOneStore } from "@lib/Store";
-import HubEditModal from "@modals/hub-modals/hub-edit-modal";
+import { Link as ScrollLink } from "react-scroll";
 
 export function HeaderActionButtons() {
   const theme = useMantineTheme();
@@ -59,7 +60,7 @@ export function HeaderActionButtons() {
           </ActionIcon>
         </Group>
       ) : (
-        <MediaQuery smallerThan="sm" styles={{ display: "none" }}>
+        <Group hiddenFrom="sm">
           <ScrollLink to="linkSection" smooth="easeInOutQuint" duration={1000}>
             <Button
               variant="gradient"
@@ -67,12 +68,12 @@ export function HeaderActionButtons() {
                 from: theme.colors.primary[4],
                 to: theme.colors.secondary[4],
               }}
-              sx={{ height: 30 }}
+              style={{ height: 30 }}
             >
               Browse Links
             </Button>
           </ScrollLink>
-        </MediaQuery>
+        </Group>
       )}
       <HubEditModal opened={editModalOpened} setOpened={setEditModalOpened} />
     </Group>

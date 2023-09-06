@@ -1,3 +1,5 @@
+"use client";
+
 import type { LinkGroup } from "@prisma/client";
 import { useHubOneStore } from "@lib/Store";
 import { useUpdate } from "@lib/useQueries";
@@ -8,7 +10,7 @@ export default function AccordionLabel({ id, title, hubId }: LinkGroup) {
   const editMode = useHubOneStore((state) => state.editMode);
   const updateLinkGroup = useUpdate<LinkGroup>("linkgroups");
   return (
-    <Group sx={{ height: "3em", alignItems: "center" }}>
+    <Group style={{ height: "3em", alignItems: "center" }}>
       <AnimatePresence>
         {editMode && (
           <motion.div

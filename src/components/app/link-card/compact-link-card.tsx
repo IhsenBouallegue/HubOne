@@ -1,3 +1,5 @@
+"use client";
+
 import { useHubOneStore } from "@lib/Store";
 import {
   ActionIcon,
@@ -56,12 +58,12 @@ export function CompactLinkCard({
       <Paper
         h="100%"
         pos="relative"
-        shadow="medium"
+        shadow="md"
         p="sm"
         component="a"
         href={link}
         target="_blank"
-        sx={{ display: "flex", flexDirection: "row", gap: theme.spacing.sm }}
+        style={{ display: "flex", flexDirection: "row", gap: theme.spacing.sm }}
         onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
           if (editMode) {
             e.preventDefault();
@@ -71,11 +73,7 @@ export function CompactLinkCard({
       >
         {isInternal && (
           <Box top="10%" left="5%" pos="absolute">
-            <IconLock
-              size={rem(16)}
-              strokeWidth={2}
-              color={theme.colors.primary[5]}
-            />
+            <IconLock size={rem(16)} strokeWidth={2} color="primary.5" />
           </Box>
         )}
         {editMode && (
@@ -85,15 +83,11 @@ export function CompactLinkCard({
             </ActionIcon>
           </Box>
         )}
-        <Group sx={{ flex: 1 }}>
-          <Image
-            src={image || "./logo/hubone_logo.svg"}
-            alt={title}
-            withPlaceholder
-          />
+        <Group style={{ flex: 1 }}>
+          <Image src={image || "./logo/hubone_logo.svg"} alt={title} />
         </Group>
-        <Stack sx={{ flex: 3 }} spacing={0}>
-          <Text mb="sm" weight={600} size="md" lh="1.3">
+        <Stack style={{ flex: 3 }} gap={0}>
+          <Text mb="sm" fw={600} size="md" lh="1.3">
             {title}
           </Text>
 

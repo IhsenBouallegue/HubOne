@@ -1,3 +1,5 @@
+"use client";
+
 import { Button, Group } from "@mantine/core";
 import { Link as ScrollLink } from "react-scroll";
 import { SetStateAction } from "react";

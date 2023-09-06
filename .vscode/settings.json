@@ -1,7 +1,5 @@
 {
-  "githubPullRequests.ignoredPullRequestBranches": [
-    "main"
-  ],
+  "githubPullRequests.ignoredPullRequestBranches": ["main"],
   "search.exclude": {
     "**/.yarn": true,
     "**/.pnp.*": true

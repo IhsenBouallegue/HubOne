@@ -1,4 +1,4 @@
-import { Box, Title } from "@mantine/core";
+import { Box, Title, getGradient } from "@mantine/core";
 
 export function DefaultHubLogo({
   hubName = "X",
@@ -11,16 +11,15 @@ export function DefaultHubLogo({
 }) {
   return (
     <Box
-      sx={(theme) => ({
+      style={(theme) => ({
         minWidth: "32px",
         width: "100%",
         padding: "6px",
         borderRadius: theme.radius.md,
-        backgroundImage: theme.fn.gradient({
-          from: primaryColor,
-          to: secondaryColor,
-          deg: 135,
-        }),
+        backgroundImage: getGradient(
+          { deg: 135, from: primaryColor, to: secondaryColor },
+          theme
+        ),
         color: theme.white,
         justifyContent: "center",
         alignItems: "center",

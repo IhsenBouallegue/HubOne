@@ -3,6 +3,8 @@ import { useHubOneStore } from "@lib/Store";
 import { FooterLink } from "@prisma/client";
 import { useFetchByHubId } from "@lib/useQueries";
 
+import classes from "./footer-links.module.css";
+
 export function FooterLinks() {
   const { data: footerLinks } = useFetchByHubId<FooterLink>(
     "footerlinks",
@@ -10,21 +12,13 @@ export function FooterLinks() {
   );
 
   return (
-    <Group
-      sx={(theme) => ({
-        [theme.fn.largerThan("sm")]: {
-          position: "absolute",
-          left: "50%",
-          transform: "translate(-50%, 0)",
-        },
-      })}
-    >
+    <Group className={classes.container}>
       {footerLinks?.map(({ title, link }) => (
         <Anchor<"a">
           color="dimmed"
           key={`footer_link_${title}`}
           href={link}
-          sx={{ lineHeight: 1 }}
+          style={{ lineHeight: 1 }}
           onClick={(event) => event.preventDefault()}
           size="sm"
         >

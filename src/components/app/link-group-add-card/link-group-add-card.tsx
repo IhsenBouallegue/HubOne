@@ -1,3 +1,5 @@
+"use client";
+
 import { Center, Paper, Text } from "@mantine/core";
 import AddLinkGroupModal from "@modals/link-group-modal";
 import { IconPlus } from "@tabler/icons-react";
@@ -21,13 +23,17 @@ export function LinkGroupAddCard({ hubId }: { hubId: number }) {
         w="100%"
         h="6rem"
         radius="lg"
-        shadow="medium"
-        sx={{ justifyContent: "center", alignItems: "center", display: "flex" }}
+        shadow="md"
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+          display: "flex",
+        }}
         onClick={() => setOpened(true)}
       >
         <Center>
           <IconPlus size={36} strokeWidth={2} color="black" />
-          <Text align="center">Add Link Group</Text>
+          <Text ta="center">Add Link Group</Text>
         </Center>
       </Paper>
       <AddLinkGroupModal opened={opened} setOpened={setOpened} hubId={hubId} />

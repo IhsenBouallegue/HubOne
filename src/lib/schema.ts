@@ -1,0 +1,78 @@
+import {
+  boolean,
+  integer,
+  pgTable,
+  serial,
+  text,
+  uniqueIndex,
+} from "drizzle-orm/pg-core";
+
+export const hubs = pgTable(
+  "hubs",
+  {
+    id: serial("id").primaryKey().notNull(),
+    hubName: text("hub_name").notNull(),
+    hubLogo: text("hub_logo").notNull(),
+    hubPath: text("hub_path").default("/").notNull(),
+    primaryColor: text("primary_color").default("#ff008c").notNull(),
+    secondaryColor: text("secondary_color").default("#0cd4f7").notNull(),
+    description: text("description")
+      .default(
+        "Tired of keeping track of new websites? Tired of having to update your bookmarks every few weeks? Access all sites from this one page. Everything is up to date. No need to clutter your life anymore!"
+      )
+      .notNull(),
+    hubSpaceId: integer("hubspace_id")
+      .notNull()
+      .references(() => hubSpaces.id, {
+        onDelete: "restrict",
+        onUpdate: "cascade",
+      }),
+  },
+  (table) => ({
+    hubPathKey: uniqueIndex("hub_hub_path_key").on(table.hubPath),
+  })
+);
+
+export const links = pgTable("links", {
+  id: serial("id").primaryKey().notNull(),
+  title: text("title").notNull(),
+  description: text("description").notNull(),
+  image: text("image").default("").notNull(),
+  link: text("link").notNull(),
+  isInternal: boolean("is_internal").default(false).notNull(),
+  linkGroupId: integer("link_group_id").references(() => linkGroups.id, {
+    onDelete: "set null",
+    onUpdate: "cascade",
+  }),
+  hubId: integer("hub_id")
+    .notNull()
+    .references(() => hubs.id, { onDelete: "restrict", onUpdate: "cascade" }),
+});
+
+export const footerLinks = pgTable("footer_links", {
+  id: serial("id").primaryKey().notNull(),
+  title: text("title").notNull(),
+  link: text("link").notNull(),
+  hubId: integer("hub_id")
+    .notNull()
+    .references(() => hubs.id, { onDelete: "restrict", onUpdate: "cascade" }),
+});
+
+export const linkGroups = pgTable("link_groups", {
+  id: serial("id").primaryKey().notNull(),
+  title: text("title").notNull(),
+  hubId: integer("hub_id")
+    .notNull()
+    .references(() => hubs.id, { onDelete: "restrict", onUpdate: "cascade" }),
+});
+
+export const hubSpaces = pgTable(
+  "hubspaces",
+  {
+    id: serial("id").primaryKey().notNull(),
+    domain: text("domain").notNull(),
+  },
+  (table) => ({
+    domainKey: uniqueIndex("hubspaces_domain_key").on(table.domain),
+  })
+);

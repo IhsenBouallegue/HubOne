@@ -1,0 +1,86 @@
+.wrapper {
+  position: relative;
+  overflow: hidden;
+  margin-top: 40px;
+}
+
+.inner {
+  position: relative;
+  padding-top: 100px;
+  padding-bottom: 200px;
+  margin: auto;
+  @media (max-width: $mantine-breakpoint-sm) {
+    padding-bottom: 80;
+    padding-top: 80;
+  }
+}
+
+.title {
+  font-size: 62px;
+  font-weight: 900px;
+  line-height: 1.25px;
+  margin: 0px;
+  padding: 0px;
+  color: var(--mantine-colors-black);
+  @media (max-width: $mantine-breakpoint-sm) {
+    font-size: 42;
+    line-height: 1.2;
+  }
+}
+
+.description {
+  margin-top: calc(2 * var(--mantine-spacing-xl));
+  font-size: 24px;
+
+  @media (max-width: $mantine-breakpoint-sm) {
+    font-size: 18;
+  }
+}
+
+.controls {
+  margin-top: calc(3 * var(--mantine-spacing-xl));
+
+  @media (max-width: $mantine-breakpoint-sm) {
+    margintop: var(--mantine-spacing-xl);
+  }
+}
+
+.cta {
+  height: 54px;
+  padding-left: 38px;
+  padding-right: 38px;
+  @media (max-width: $mantine-breakpoint-sm) {
+    padding-left: 18;
+    padding-right: 18;
+    width: 100%;
+    flex: 1;
+  }
+}
+
+.ctaContainer {
+  @media (max-width: $mantine-breakpoint-sm) {
+    flex: 1;
+  }
+}
+.background {
+  position: absolute;
+  z-index: -1;
+  width: 35vh;
+  max-height: 35vh;
+  left: 52%;
+  bottom: 0;
+  object-fit: contain;
+  @media (max-width: $mantine-breakpoint-sm) {
+    bottom: rem(-150);
+    left: "42%";
+  }
+}
+/* secondaryCta: {
+    borderWidth: 2,
+    borderColor: theme.colors.dark[9],
+    backgroundColor: "transparent",
+
+    "&:hover": {
+      backgroundColor: `${theme.colors.gray[0]} !important`,
+    },
+  }, */

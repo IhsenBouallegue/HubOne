@@ -12,7 +12,7 @@ export function Pricing() {
         description=" For your personal use or for your business. We got you covered!"
       />
 
-      <Group sx={{ overflow: "visible" }}>
+      <Group style={{ overflow: "visible" }}>
         <PricingLevel
           color={theme.colors.secondary[3]}
           title="Local"

@@ -2,7 +2,7 @@ import LinkGroupAddCard from "@components/app/link-group-add-card";
 import { useHubOneStore } from "@lib/Store";
 import { useFetchByHubId } from "@lib/useQueries";
 import { Container, Text } from "@mantine/core";
-import { LinkGroup } from "@prisma/client";
+import type { LinkGroup } from "@prisma/client";
 
 import LinkSectionAccordion from "./accordion";
 
@@ -16,12 +16,12 @@ function LinkSection() {
       <Container
         size={800}
         px={0}
-        sx={{ gap: "2em", display: "flex", flexDirection: "column" }}
+        style={{ gap: "2em", display: "flex", flexDirection: "column" }}
       >
         {linkGroups!?.length > 0 ? (
           <LinkSectionAccordion />
         ) : (
-          !editMode && <Text align="center">No links to display.</Text>
+          !editMode && <Text ta="center">No links to display.</Text>
         )}
         {editMode && <LinkGroupAddCard hubId={hubId!} />}
       </Container>

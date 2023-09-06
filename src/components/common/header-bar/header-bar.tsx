@@ -1,3 +1,5 @@
+"use client";
+
 import { Burger, Collapse, Group, Paper } from "@mantine/core";
 import { useToggle } from "@mantine/hooks";
 import { HeaderActionButtons } from "./header-actions";
@@ -12,46 +14,39 @@ export function Header() {
       px="xl"
       py="md"
       m="sm"
-      shadow="medium"
+      shadow="md"
       radius="lg"
       mih="4rem"
-      sx={{
+      style={{
         display: "flex",
         justifyContent: "center",
         flexDirection: "column",
       }}
     >
-      <Group position="apart" w="100%">
+      <Group justify="apart" w="100%">
         <Group>
           <Burger
             opened={opened}
             onClick={() => toggleOpened()}
             size="sm"
-            sx={(theme) => ({
-              [theme.fn.largerThan("sm")]: {
-                display: "none",
-              },
-            })}
+            hiddenFrom="md"
           />
           <HeaderLogo />
         </Group>
         <Group
-          spacing="lg"
+          justify="lg"
           pos="absolute"
           left="50%"
-          sx={(theme) => ({
+          style={{
             transform: "translate(-50%, 0)",
-            [theme.fn.smallerThan("sm")]: {
-              display: "none",
-            },
-          })}
+          }}
         >
           <HeaderLinks toggleOpened={toggleOpened} />
         </Group>
         <HeaderActionButtons />
       </Group>
       <Collapse in={opened}>
-        <Group spacing="md" mt="sm">
+        <Group gap="md" mt="sm">
           <HeaderLinks toggleOpened={toggleOpened} />
         </Group>
       </Collapse>

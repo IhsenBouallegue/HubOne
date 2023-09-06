@@ -1,10 +1,14 @@
-import { Container, Grid } from "@mantine/core";
+"use client";
+
 import type { Link } from "@prisma/client";
+import { Container, Grid } from "@mantine/core";
 import { AnimatePresence } from "framer-motion";
 import { useHubOneStore } from "@lib/Store";
 
 import LinkAddCard from "@components/app/link-add-card";
 import LinkCard from "@components/app/link-card";
+
+import classes from "./link-group.module.css";
 
 export function LinkGroup({
   links,
@@ -19,19 +23,13 @@ export function LinkGroup({
   const compactMode = useHubOneStore((state) => state.compactMode);
 
   return (
-    <Container
-      size={800}
-      sx={(theme) => ({
-        padding: "1.875rem 0.2rem 3.75rem 0.2rem",
-        margin: "auto",
-        [theme.fn.largerThan("lg")]: {
-          padding: "4rem 1rem 4rem 1rem",
-        },
-      })}
-    >
-      <Grid columns={12} gutter="sm" gutterMd="lg">
+    <Container size={800} className={classes.container}>
+      <Grid columns={12} gutter={{ base: "sm", md: "lg" }}>
         {links.map((link) => (
-          <Grid.Col key={`link_${link.id}`} sm={compactMode ? 4 : 3} span={6}>
+          <Grid.Col
+            key={`link_${link.id}`}
+            span={{ base: 6, sm: compactMode ? 4 : 3 }}
+          >
             <LinkCard
               id={link.id}
               title={link.title}
@@ -42,7 +40,7 @@ export function LinkGroup({
             />
           </Grid.Col>
         ))}
-        <Grid.Col sm={compactMode ? 4 : 3} span={6}>
+        <Grid.Col span={{ base: 6, sm: compactMode ? 4 : 3 }}>
           <AnimatePresence>
             {editMode && (
               <LinkAddCard hubId={hubId} linkGroupId={linkGroupId} />

@@ -1,3 +1,5 @@
+"use client";
+
 import { useHubOneStore } from "@lib/Store";
 import { Box, Image, Stack } from "@mantine/core";
 import { FooterLink, Hub, Link, LinkGroup } from "@prisma/client";
@@ -37,12 +39,12 @@ export default function HubPage({
   );
 
   return (
-    <Stack mih="100vh" spacing={0}>
+    <Stack mih="100vh" gap={0}>
       {/* https://app.haikei.app/ */}
       <Image
         src="./bg.svg"
         height="100vh"
-        sx={{ position: "absolute", filter: "blur(4px)", zIndex: -1 }}
+        style={{ position: "absolute", filter: "blur(4px)", zIndex: -1 }}
       />
       <HeaderBar />
       <Hero />

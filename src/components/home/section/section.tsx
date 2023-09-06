@@ -12,7 +12,7 @@ export function Section({
       id={id}
       size="lg"
       mt="16em"
-      sx={{
+      style={{
         display: "flex",
         flexDirection: "column",
         alignItems: "center",

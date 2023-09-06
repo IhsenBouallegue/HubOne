@@ -10,15 +10,15 @@ export function Heading({
   description: string;
 }) {
   return (
-    <Stack align="center" mb="6em" spacing="xl">
+    <Stack align="center" mb="6em" gap="xl">
       <Title
-        sx={(theme) => ({
+        style={(theme) => ({
           [theme.fn.smallerThan("sm")]: {
             fontSize: 24,
           },
         })}
         size="4em"
-        align="center"
+        ta="center"
         mt="sm"
       >
         {title}

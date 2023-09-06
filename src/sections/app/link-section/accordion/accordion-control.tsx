@@ -1,3 +1,5 @@
+"use client";
+
 import type { AccordionControlProps } from "@mantine/core";
 import { useHubOneStore } from "@lib/Store";
 import { useDelete } from "@lib/useQueries";
@@ -12,7 +14,7 @@ export default function AccordionControl({
   const editMode = useHubOneStore((state) => state.editMode);
   const deleteItem = useDelete("linkgroups");
   return (
-    <Box sx={{ display: "flex", alignItems: "center" }}>
+    <Box style={{ display: "flex", alignItems: "center" }}>
       <Accordion.Control {...props} />
       <AnimatePresence>
         {editMode && (

@@ -1,3 +1,5 @@
+"use client";
+
 import { Paper, Stack, Text, rem } from "@mantine/core";
 import { IconPlus } from "@tabler/icons-react";
 import { motion } from "framer-motion";
@@ -30,16 +32,16 @@ export function LinkAddCard({
         h="100%"
         mih={rem(250)}
         radius="lg"
-        shadow="medium"
+        shadow="md"
         onClick={() => setOpened(true)}
       >
         <Stack
           align="center"
           justify="center"
-          sx={() => ({ height: "inherit" })}
+          style={() => ({ height: "inherit" })}
         >
           <IconPlus size={36} strokeWidth={2} color="black" />
-          <Text align="center">Add Link</Text>
+          <Text ta="center">Add Link</Text>
         </Stack>
       </Paper>
       <LinkCreateModal

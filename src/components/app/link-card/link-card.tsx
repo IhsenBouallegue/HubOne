@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { useHubOneStore } from "@lib/Store";
 import LinkEditModal from "@modals/link-modals/link-edit-modal";

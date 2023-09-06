@@ -56,8 +56,8 @@ export function HubMenu({ hubs }: { hubs: Hub[] }) {
                   <HubLogo />
                 </Center>
                 <Text
-                  sx={{ wordWrap: "break-word", hyphens: "auto" }}
-                  align="center"
+                  style={{ wordWrap: "break-word", hyphens: "auto" }}
+                  ta="center"
                   lineClamp={3}
                 >
                   {hub.hubName}
@@ -69,7 +69,7 @@ export function HubMenu({ hubs }: { hubs: Hub[] }) {
         <Menu.Divider />
         <Menu.Item
           onClick={() => setCreateModalOpened(true)}
-          icon={<IconPlus size={14} />}
+          leftSection={<IconPlus size={14} />}
         >
           Create New Hub
         </Menu.Item>

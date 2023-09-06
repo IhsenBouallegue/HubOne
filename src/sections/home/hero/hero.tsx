@@ -1,77 +1,10 @@
-import {
-  createStyles,
-  Container,
-  Title,
-  Text,
-  Button,
-  Group,
-  useMantineTheme,
-  Image,
-} from "@mantine/core";
+"use client";
 
-const useStyles = createStyles((theme) => ({
-  root: {
-    height: "100vh",
-    width: "100%",
-    paddingTop: `calc(5 * ${theme.spacing.xl})`,
-    paddingBottom: `calc(3 * ${theme.spacing.xl})`,
-  },
+import { Container, Title, Text, Button, Group, Image } from "@mantine/core";
 
-  inner: {
-    display: "flex",
-    justifyContent: "space-between",
-
-    [theme.fn.smallerThan("md")]: {
-      flexDirection: "column",
-    },
-  },
-
-  content: {
-    paddingTop: `calc(2 * ${theme.spacing.xl})`,
-    paddingBottom: `calc(2 * ${theme.spacing.xl})`,
-    marginRight: `calc(3 * ${theme.spacing.xl})`,
-    [theme.fn.smallerThan("md")]: {
-      marginRight: 0,
-    },
-  },
-
-  title: {
-    fontWeight: 900,
-    lineHeight: 1.2,
-    maxWidth: 700,
-    fontSize: "4em",
-
-    [theme.fn.smallerThan("md")]: {
-      maxWidth: "100%",
-      fontSize: 34,
-      lineHeight: 1.15,
-    },
-  },
-
-  description: {
-    opacity: 0.75,
-    maxWidth: 500,
-
-    [theme.fn.smallerThan("md")]: {
-      maxWidth: "100%",
-    },
-  },
-
-  control: {
-    paddingLeft: 50,
-    paddingRight: 50,
-    fontSize: 22,
-
-    [theme.fn.smallerThan("md")]: {
-      width: "100%",
-    },
-  },
-}));
+import classes from "./hero.module.css";
 
 export function Hero() {
-  const { classes } = useStyles();
-  const theme = useMantineTheme();
-
   return (
     <div className={classes.root}>
       <Container size="lg">
@@ -79,15 +12,7 @@ export function Hero() {
           <div className={classes.content}>
             <Title className={classes.title}>
               The{" "}
-              <Text
-                component="span"
-                variant="gradient"
-                gradient={{
-                  from: theme.colors.primary[4],
-                  to: theme.colors.secondary[4],
-                }}
-                inherit
-              >
+              <Text component="span" variant="gradient" inherit>
                 central Hub
               </Text>{" "}
               for you and your team.
@@ -102,14 +27,10 @@ export function Hero() {
             <Group>
               <Button
                 variant="gradient"
-                gradient={{
-                  from: theme.colors.primary[4],
-                  to: theme.colors.secondary[4],
-                }}
                 size="xl"
                 mt={40}
                 px={50}
-                sx={{ fontSize: 22 }}
+                style={{ fontSize: 22 }}
                 component="a"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -123,7 +44,7 @@ export function Hero() {
                 color="primary.4"
                 mt={40}
                 px={50}
-                sx={{ fontSize: 22 }}
+                style={{ fontSize: 22 }}
                 component="a"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -140,9 +61,7 @@ export function Hero() {
                 left: "60%",
                 top: "20%",
                 zIndex: -2,
-              },
-              image: {
-                boxShadow: theme.shadows.lg,
+                // boxShadow: theme.shadows.lg,
               },
             }}
             src="showcase-1.png"
@@ -156,9 +75,7 @@ export function Hero() {
                 left: "50%",
                 top: "50%",
                 zIndex: -1,
-              },
-              image: {
-                boxShadow: theme.shadows.xl,
+                // boxShadow: theme.shadows.xl,
               },
             }}
             src="showcase-2.png"

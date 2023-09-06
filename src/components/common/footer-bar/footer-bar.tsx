@@ -1,24 +1,11 @@
 import { Image, Paper } from "@mantine/core";
 import { FooterLinks } from "./footer-links";
 
+import classes from "./footer-bar.module.css";
+
 export function FooterBar() {
   return (
-    <Paper
-      radius="lg"
-      sx={(theme) => ({
-        marginTop: 120,
-        borderTop: `2px solid ${theme.colors.gray[2]}`,
-        height: "6rem",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: `${theme.spacing.md} ${theme.spacing.xl}`,
-
-        [theme.fn.smallerThan("sm")]: {
-          flexDirection: "column",
-        },
-      })}
-    >
+    <Paper radius="lg" className={classes.container}>
       <Image
         src="logo/hubone_logo_full.svg"
         fit="contain"
