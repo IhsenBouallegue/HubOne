@@ -755,9 +755,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mantine/core@npm:7.0.0-beta.0":
-  version: 7.0.0-beta.0
-  resolution: "@mantine/core@npm:7.0.0-beta.0"
+"@mantine/core@npm:7.0.0-beta.3":
+  version: 7.0.0-beta.3
+  resolution: "@mantine/core@npm:7.0.0-beta.3"
   dependencies:
     "@floating-ui/react": ^0.24.8
     clsx: 2.0.0
@@ -766,55 +766,55 @@ __metadata:
     react-textarea-autosize: 8.5.2
     type-fest: ^4.0.0
   peerDependencies:
-    "@mantine/hooks": 7.0.0-beta.0
+    "@mantine/hooks": 7.0.0-beta.3
     react: ^18.2.0
     react-dom: ^18.2.0
-  checksum: c29c51479796e076bb6a87bacec7f8cc7fb82402d5ad0a3ed2729acadf0c3aa96bed1ecdbf0ff29d6a2cc268bcaca02e6bd95678a2dc86be621b3e2a279080f4
+  checksum: 79142d6467453de90ca0684f588e956e78a9617cc507a319d6c6135680b9c0e8ab3ff655bc4bc451b56931bc82be756dd2c6bc1ee40071e94092e30412a06467
   languageName: node
   linkType: hard
 
-"@mantine/form@npm:7.0.0-beta.0":
-  version: 7.0.0-beta.0
-  resolution: "@mantine/form@npm:7.0.0-beta.0"
+"@mantine/form@npm:7.0.0-beta.3":
+  version: 7.0.0-beta.3
+  resolution: "@mantine/form@npm:7.0.0-beta.3"
   dependencies:
     fast-deep-equal: ^3.1.3
     klona: ^2.0.5
   peerDependencies:
     react: ^18.2.0
-  checksum: e5f995424414519c7770aee0892002974ecb90637dd925d01ef44bd41523a6aca01d7bb15fa106f61999387e72dfc3f60ae29971ff49c9af4e77a83d84b3cf9f
+  checksum: f4672cba407a98e98b4fca79c13e33e0eaeeabeb20527f8339225528525f1decd4568da13b2dfb91398b2a4b0f09b86a2136d9e515280fe8b73ba2551d5a15cc
   languageName: node
   linkType: hard
 
-"@mantine/hooks@npm:7.0.0-beta.0":
-  version: 7.0.0-beta.0
-  resolution: "@mantine/hooks@npm:7.0.0-beta.0"
+"@mantine/hooks@npm:7.0.0-beta.3":
+  version: 7.0.0-beta.3
+  resolution: "@mantine/hooks@npm:7.0.0-beta.3"
   peerDependencies:
     react: ^18.2.0
-  checksum: 866cc713f4428144ddb665c2a90291df5e349cb1d374d537126956f04c6cc90c3a97a7c6015fbe4d613722edff4b84f2f850c610f184821c744f9bf8f0d34343
+  checksum: d26ff07f4845d6f4444a502add3b5dcd3783528e459cf776d6d4461df3dfceb54de625f24db1134d14052a50254247e8df08323403d68ed02a65f4a67874f2cd
   languageName: node
   linkType: hard
 
-"@mantine/notifications@npm:7.0.0-beta.0":
-  version: 7.0.0-beta.0
-  resolution: "@mantine/notifications@npm:7.0.0-beta.0"
+"@mantine/notifications@npm:7.0.0-beta.3":
+  version: 7.0.0-beta.3
+  resolution: "@mantine/notifications@npm:7.0.0-beta.3"
   dependencies:
-    "@mantine/store": 7.0.0-beta.0
+    "@mantine/store": 7.0.0-beta.3
     react-transition-group: 4.4.5
   peerDependencies:
-    "@mantine/core": 7.0.0-beta.0
-    "@mantine/hooks": 7.0.0-beta.0
+    "@mantine/core": 7.0.0-beta.3
+    "@mantine/hooks": 7.0.0-beta.3
     react: ^18.2.0
     react-dom: ^18.2.0
-  checksum: 048a27ede12c3cf274c2fded1d8cad296c0bac55f795591a765b62f4eddb3e9ba0af4ed13b90e277ee30e20cacfadaf0b83942569789a9fcb98edc59e52b47e1
+  checksum: e0924c15755b2d0e6974fef97300923d87f62a9aa1155585944d2d6921cd2b4d2c70428c7c56e65b79d736692a87705e4d3614c6b2a05e01cea1ea617f2d47bc
   languageName: node
   linkType: hard
 
-"@mantine/store@npm:7.0.0-beta.0":
-  version: 7.0.0-beta.0
-  resolution: "@mantine/store@npm:7.0.0-beta.0"
+"@mantine/store@npm:7.0.0-beta.3":
+  version: 7.0.0-beta.3
+  resolution: "@mantine/store@npm:7.0.0-beta.3"
   peerDependencies:
     react: ^18.2.0
-  checksum: 7aa4413de667a4ba30d4e7f1bd7a5771f56cba6b58afbf54544c8f1e0d1dab165d8d75741c16d6f4fa385ef98ffdfe74ee7423b1a31305c7367b71736825c6dc
+  checksum: 1491ae95e3eacce871aba3ea6a4e5d810c2e54c9abf930c46409cf8ad10ff8e598aaf48b6eb310ee7f0aca0aabf070b58339fd03537d1527b8af96e4ecfe3287
   languageName: node
   linkType: hard
 
@@ -5255,10 +5255,10 @@ __metadata:
   dependencies:
     "@babel/core": ^7.19.6
     "@clerk/nextjs": ^4.23.2
-    "@mantine/core": 7.0.0-beta.0
-    "@mantine/form": 7.0.0-beta.0
-    "@mantine/hooks": 7.0.0-beta.0
-    "@mantine/notifications": 7.0.0-beta.0
+    "@mantine/core": 7.0.0-beta.3
+    "@mantine/form": 7.0.0-beta.3
+    "@mantine/hooks": 7.0.0-beta.3
+    "@mantine/notifications": 7.0.0-beta.3
     "@next/eslint-plugin-next": ^13.4.19
     "@prisma/client": ^5.2.0
     "@semantic-release/changelog": ^6.0.1

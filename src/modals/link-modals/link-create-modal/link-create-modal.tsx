@@ -1,7 +1,9 @@
-import type { Link } from "@prisma/client";
+"use client";
+
 import { Button, Group, Modal } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { usePost } from "@lib/useQueries";
+import { Link } from "@lib/schema";
 import { LinkFormFields } from "../link-form-fields";
 
 export function LinkCreateModal({
@@ -39,7 +41,7 @@ export function LinkCreateModal({
     >
       <form onSubmit={form.onSubmit(handleSubmit)}>
         <LinkFormFields form={form} />
-        <Group position="center" mt="xl">
+        <Group justify="center" mt="xl">
           <Button variant="filled" type="submit">
             Save
           </Button>

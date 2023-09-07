@@ -9,7 +9,7 @@ import {
   Title,
   useMantineTheme,
 } from "@mantine/core";
-import { Hub } from "@prisma/client";
+import { Hub } from "@lib/schema";
 import { Link as ScrollLink } from "react-scroll";
 
 import classes from "./full-hero.module.css";
@@ -64,7 +64,7 @@ export function FullHero() {
           {hubName ? name() : "."}
         </Title>
 
-        <Text className={classes.description} color="dimmed">
+        <Text className={classes.description} c="dimmed">
           {description}
         </Text>
 

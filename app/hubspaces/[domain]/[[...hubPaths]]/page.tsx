@@ -1,10 +1,13 @@
-import { getHubSpacesPaths } from "@lib/db";
+import db, { getHubSpacesPaths } from "@lib/db";
+import { hubSpaces, hubs } from "@lib/schema";
 import HubNotFound from "@sections/app/hub-not-found";
+import HubPage from "@sections/app/hub-page/hub-page";
 import HubSpaceNotFound from "@sections/app/hub-space-not-found";
+import { and, eq } from "drizzle-orm";
 
 export async function generateStaticParams() {
-  const hubs = await getHubSpacesPaths();
-  return hubs;
+  const hubSpacesParams = await getHubSpacesPaths();
+  return hubSpacesParams;
 }
 
 export default async function index({
@@ -15,44 +18,26 @@ export default async function index({
   const hubPath = params.hubPaths?.[0] || "/";
   const { domain } = params;
 
-  const hubSpace = await prisma.hubSpace.findUnique({
-    where: { domain },
+  const hubSpace = await db.query.hubSpaces.findFirst({
+    where: eq(hubSpaces.domain, domain),
   });
 
   if (!hubSpace) return <HubSpaceNotFound />;
 
-  try {
-    const hub = await prisma.hub.findFirstOrThrow({
-      where: { hubSpaceId: hubSpace.id, hubPath },
-    });
-    const hubId = Number(hub?.id);
-    const links = await prisma.link.findMany({
-      where: { hubId },
-      orderBy: {
-        id: "asc",
-      },
-    });
-    const linkGroups = await prisma.linkGroup.findMany({
-      where: { hubId },
-      orderBy: {
-        id: "asc",
-      },
-    });
-    const footerLinks = await prisma.footerLink.findMany({
-      where: { hubId },
-      orderBy: {
-        id: "asc",
-      },
-    });
-    const hubs = await prisma.hub.findMany({
-      where: { hubSpaceId: hubSpace?.id },
-    });
-    return <div>{hubPath}</div>;
-    // return {
-    //   props: { hubData: { hub, links, linkGroups, footerLinks, hubs } },
-    //   revalidate: 60 * 5,
-    // };
-  } catch (e) {
-    return <HubNotFound />;
-  }
+  const hub = await db.query.hubs.findFirst({
+    where: and(eq(hubs.hubSpaceId, hubSpace.id), eq(hubs.hubPath, hubPath)),
+    with: { links: true, linkGroups: true, footerLinks: true },
+  });
+
+  if (!hub) return <HubNotFound />;
+
+  return (
+    <HubPage
+      hub={hub}
+      links={hub.links}
+      linkGroups={hub.linkGroups}
+      footerLinks={hub.footerLinks}
+      hubs={[]}
+    />
+  );
 }

@@ -84,14 +84,14 @@ export function CompactLinkCard({
           </Box>
         )}
         <Group style={{ flex: 1 }}>
-          <Image src={image || "./logo/hubone_logo.svg"} alt={title} />
+          <Image src={image || "/logo/hubone_logo.svg"} alt={title} />
         </Group>
         <Stack style={{ flex: 3 }} gap={0}>
-          <Text mb="sm" fw={600} size="md" lh="1.3">
+          <Text c="black" mb="sm" fw={600} size="md" lh="1.2">
             {title}
           </Text>
 
-          <Text c={theme.colors.dark[1]} size="xs" color="dimmed">
+          <Text c="dimmed" size="xs">
             {description}
           </Text>
         </Stack>

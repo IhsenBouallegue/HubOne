@@ -1,9 +1,7 @@
 import { Anchor, Group } from "@mantine/core";
 import { useHubOneStore } from "@lib/Store";
-import { FooterLink } from "@prisma/client";
 import { useFetchByHubId } from "@lib/useQueries";
-
-import classes from "./footer-links.module.css";
+import { FooterLink } from "@lib/schema";
 
 export function FooterLinks() {
   const { data: footerLinks } = useFetchByHubId<FooterLink>(
@@ -12,10 +10,10 @@ export function FooterLinks() {
   );
 
   return (
-    <Group className={classes.container}>
+    <Group>
       {footerLinks?.map(({ title, link }) => (
         <Anchor<"a">
-          color="dimmed"
+          c="dimmed"
           key={`footer_link_${title}`}
           href={link}
           style={{ lineHeight: 1 }}

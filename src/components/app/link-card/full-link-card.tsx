@@ -91,14 +91,14 @@ export function FullLinkCard({
               </ActionIcon>
             </Box>
           )}
-          <Image src={image || "./logo/hubone_logo.svg"} alt={title} p="xl" />
+          <Image src={image || "/logo/hubone_logo.svg"} alt={title} p="xl" />
         </Group>
 
-        <Text my="sm" fw={600} size="lg">
+        <Text c="black" my="sm" fw={600} size="lg">
           {title}
         </Text>
 
-        <Text c={theme.colors.dark[1]} lh="1.5" size="sm" color="dimmed">
+        <Text c="dimmed" lh="1.5" size="sm">
           {description}
         </Text>
       </Paper>

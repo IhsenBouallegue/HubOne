@@ -1,3 +1,4 @@
+import { InferSelectModel, relations } from "drizzle-orm";
 import {
   boolean,
   integer,
@@ -76,3 +77,39 @@ export const hubSpaces = pgTable(
     domainKey: uniqueIndex("hubspaces_domain_key").on(table.domain),
   })
 );
+
+export const hubsRelations = relations(hubs, ({ one, many }) => ({
+  hubSpace: one(hubSpaces, {
+    fields: [hubs.hubSpaceId],
+    references: [hubSpaces.id],
+  }),
+  links: many(links),
+  linkGroups: many(linkGroups),
+  footerLinks: many(footerLinks),
+}));
+
+export const linksRelations = relations(links, ({ one }) => ({
+  hub: one(hubs, {
+    fields: [links.hubId],
+    references: [hubs.id],
+  }),
+}));
+
+export const linkGroupsRelations = relations(linkGroups, ({ one }) => ({
+  hub: one(hubs, {
+    fields: [linkGroups.hubId],
+    references: [hubs.id],
+  }),
+}));
+
+export const footerLinksRelations = relations(footerLinks, ({ one }) => ({
+  hub: one(hubs, {
+    fields: [footerLinks.hubId],
+    references: [hubs.id],
+  }),
+}));
+
+export type Hub = InferSelectModel<typeof hubs>;
+export type Link = InferSelectModel<typeof links>;
+export type LinkGroup = InferSelectModel<typeof linkGroups>;
+export type FooterLink = InferSelectModel<typeof footerLinks>;

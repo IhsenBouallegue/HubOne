@@ -1,11 +1,15 @@
 import { drizzle } from "drizzle-orm/postgres-js";
 import postgres from "postgres";
-import * as schema from './schema';
+import * as schema from "./schema";
 
-import { hubSpaces } from './schema';
+import { hubSpaces } from "./schema";
 
 export async function getHubSpaces() {
-  return db.select().from(schema.hubSpaces).orderBy(hubSpaces.id).then((_hubSpaces) => _hubSpaces);
+  return db
+    .select()
+    .from(schema.hubSpaces)
+    .orderBy(hubSpaces.id)
+    .then((_hubSpaces) => _hubSpaces);
 }
 
 // export async function getHubsByHubSpaceId(hubSpaceId: number) {
@@ -19,19 +23,15 @@ export async function getHubSpaces() {
 // }
 
 export async function getHubSpacesPaths() {
-  console.log(await getHubSpaces());
-  
-  const hubs = await db.query.hubs.findMany({with:{hubSpaces:true}});
-  console.log(hubs);
-  
+  const hubs = await db.query.hubs.findMany({ with: { hubSpace: true } });
+
   return hubs.map((hub) => ({
-      domain: hub.hubSpaces.domain,
-      hubPath: [hub.hubPath],
+    domain: hub.hubSpace.domain,
+    hubPath: [hub.hubPath],
   }));
 }
 
-
 const queryClient = postgres(process.env.DATABASE_URL as string);
-const db = drizzle(queryClient, {schema});
+const db = drizzle(queryClient, { schema });
 
 export default db;

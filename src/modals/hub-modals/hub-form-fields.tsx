@@ -1,3 +1,6 @@
+"use client";
+
+import { Hub } from "@lib/schema";
 import {
   Button,
   ColorInput,
@@ -7,11 +10,10 @@ import {
   Textarea,
 } from "@mantine/core";
 import type { UseFormReturnType } from "@mantine/form";
-import type { Hub } from "@prisma/client";
 
 export function HubFormFields({ form }: { form: UseFormReturnType<Hub> }) {
   return (
-    <Stack spacing="md">
+    <Stack gap="md">
       <TextInput
         required
         label="Hub Name"
@@ -45,7 +47,7 @@ export function HubFormFields({ form }: { form: UseFormReturnType<Hub> }) {
         {...form.getInputProps("secondaryColor")}
       />
 
-      <Group position="center" mt="xl">
+      <Group align="center" mt="xl">
         <Button type="submit">Save</Button>
       </Group>
     </Stack>

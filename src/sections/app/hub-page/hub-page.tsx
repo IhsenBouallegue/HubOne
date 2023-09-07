@@ -2,13 +2,13 @@
 
 import { useHubOneStore } from "@lib/Store";
 import { Box, Image, Stack } from "@mantine/core";
-import { FooterLink, Hub, Link, LinkGroup } from "@prisma/client";
 import { useFetchByHubId, useFetchItem } from "@lib/useQueries";
 
 import HeaderBar from "@components/common/header-bar";
 import FooterBar from "@components/common/footer-bar";
 import HubCreateModal from "@modals/hub-modals/hub-create-modal";
 
+import { Hub, FooterLink, LinkGroup, Link } from "@lib/schema";
 import Hero from "../hero";
 import HubMenu from "../hub-menu";
 import LinkSection from "../link-section";
@@ -42,8 +42,8 @@ export default function HubPage({
     <Stack mih="100vh" gap={0}>
       {/* https://app.haikei.app/ */}
       <Image
-        src="./bg.svg"
-        height="100vh"
+        src="/bg.svg"
+        h="100vh"
         style={{ position: "absolute", filter: "blur(4px)", zIndex: -1 }}
       />
       <HeaderBar />

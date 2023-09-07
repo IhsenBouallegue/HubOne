@@ -1,4 +1,6 @@
-import type { FooterLink } from "@prisma/client";
+"use client";
+
+import { FooterLink } from "@lib/schema";
 import { useDelete, useUpdate } from "@lib/useQueries";
 import { ActionIcon, Card, Group, Stack, Text, TextInput } from "@mantine/core";
 import { IconTrash } from "@tabler/icons-react";
@@ -34,9 +36,9 @@ export function FooterLinkCard({ id, title, link, hubId }: FooterLink) {
           setIsEditing(false);
         }}
       >
-        <Group position="apart">
+        <Group align="apart">
           {isEditing ? (
-            <Stack spacing="xs">
+            <Stack gap="xs">
               <TextInput
                 defaultValue={title}
                 id="title"
@@ -63,8 +65,8 @@ export function FooterLinkCard({ id, title, link, hubId }: FooterLink) {
               />
             </Stack>
           ) : (
-            <Stack spacing="sm">
-              <Text mt="sm" weight={600} size="lg">
+            <Stack gap="sm">
+              <Text mt="sm" fw={600} size="lg">
                 {title}
               </Text>
               <Text size="sm" color="dimmed">

@@ -1,6 +1,8 @@
+"use client";
+
 import type { UseFormReturnType } from "@mantine/form";
-import type { LinkGroup } from "@prisma/client";
 import { Button, Group, TextInput } from "@mantine/core";
+import { LinkGroup } from "@lib/schema";
 
 export function LinkGroupFormFields({
   form,
@@ -16,7 +18,7 @@ export function LinkGroupFormFields({
         {...form.getInputProps("title")}
       />
 
-      <Group position="center" mt="xl">
+      <Group justify="center" mt="xl">
         <Button variant="outline" type="submit">
           Save
         </Button>

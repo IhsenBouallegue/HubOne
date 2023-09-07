@@ -1,7 +1,7 @@
 import { useHubOneStore } from "@lib/Store";
 import { useFetchItem } from "@lib/useQueries";
 import { Image } from "@mantine/core";
-import { Hub } from "@prisma/client";
+import { Hub } from "@lib/schema";
 import { DefaultHubLogo } from "./default-hub-logo";
 
 export function HubLogo() {

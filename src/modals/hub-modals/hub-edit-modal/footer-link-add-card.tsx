@@ -1,11 +1,13 @@
+"use client";
+
 import { usePost } from "@lib/useQueries";
-import { Card, createStyles, Group, Text } from "@mantine/core";
-import type { FooterLink } from "@prisma/client";
+import { Card, Group, Text } from "@mantine/core";
 import { IconPlus } from "@tabler/icons-react";
 import { motion } from "framer-motion";
+import { FooterLink } from "@lib/schema";
+import classes from "./footer-link-add-card.module.css";
 
 export function FooterLinkAddCard({ hubId }: { hubId: number }) {
-  const { classes } = useStyles();
   const mutate = usePost<FooterLink>("footerlinks");
   const handleSubmit = () => {
     mutate({ hubId, title: "change me", link: "/" } as FooterLink);
@@ -21,21 +23,11 @@ export function FooterLinkAddCard({ hubId }: { hubId: number }) {
       onClick={handleSubmit}
     >
       <Card className={classes.card} shadow="sm" p="lg" onClick={() => {}}>
-        <Group my="auto" position="center">
+        <Group my="auto" align="center">
           <IconPlus size={24} strokeWidth={2} color="black" />
-          <Text align="center">Add Footer Link</Text>
+          <Text ta="center">Add Footer Link</Text>
         </Group>
       </Card>
     </motion.div>
   );
 }
-
-const useStyles = createStyles(() => ({
-  card: {
-    alignItems: "center",
-    justifyContent: "center",
-    display: "flex",
-    width: "100%",
-    minHeight: "5rem",
-  },
-}));

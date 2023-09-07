@@ -30,6 +30,7 @@ export function HeaderActionButtons() {
     <Group>
       <Switch
         checked={compactMode}
+        aria-label="Enable compact mode"
         onChange={(event) => setCompactMode(event.target.checked)}
         onLabel={
           <IconArrowsMaximize size="1.2rem" stroke={2.5} color={theme.white} />
@@ -44,7 +45,7 @@ export function HeaderActionButtons() {
         size="lg"
         styles={{
           track: {
-            background: theme.colors.primary[0],
+            ...(compactMode ? {} : { background: theme.colors.primary[0] }),
             borderWidth: 0,
           },
         }}

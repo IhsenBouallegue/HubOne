@@ -23,13 +23,13 @@ export function Header() {
         flexDirection: "column",
       }}
     >
-      <Group justify="apart" w="100%">
+      <Group justify="space-between" w="100%">
         <Group>
           <Burger
             opened={opened}
             onClick={() => toggleOpened()}
             size="sm"
-            hiddenFrom="md"
+            hiddenFrom="sm"
           />
           <HeaderLogo />
         </Group>
@@ -37,6 +37,7 @@ export function Header() {
           justify="lg"
           pos="absolute"
           left="50%"
+          visibleFrom="sm"
           style={{
             transform: "translate(-50%, 0)",
           }}

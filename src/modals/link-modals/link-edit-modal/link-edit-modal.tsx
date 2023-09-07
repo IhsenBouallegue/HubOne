@@ -1,8 +1,10 @@
-import type { Link } from "@prisma/client";
+"use client";
+
 import { Button, Group, Modal, Title } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { IconTrash } from "@tabler/icons-react";
 import { useDelete, useUpdate } from "@lib/useQueries";
+import { Link } from "@lib/schema";
 import { LinkFormFields } from "../link-form-fields";
 
 export function LinkEditModal({
@@ -43,9 +45,9 @@ export function LinkEditModal({
     >
       <form onSubmit={form.onSubmit(handleSubmit)}>
         <LinkFormFields form={form} />
-        <Group position="center" mt="xl">
+        <Group justify="center" mt="xl">
           <Button
-            leftIcon={<IconTrash />}
+            leftSection={<IconTrash />}
             variant="outline"
             color="secondary"
             onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {

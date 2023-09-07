@@ -1,5 +1,8 @@
+"use client";
+
 import HubLogo from "@components/app/hub-logo";
 import { useHubOneStore } from "@lib/Store";
+import { Hub } from "@lib/schema";
 import {
   Affix,
   Center,
@@ -11,13 +14,11 @@ import {
   Title,
   rem,
 } from "@mantine/core";
-import type { Hub } from "@prisma/client";
 import { IconAppsFilled, IconPlus } from "@tabler/icons-react";
-import { useRouter } from "next/router";
+import Link from "next/link";
 import { useState } from "react";
 
 export function HubMenu({ hubs }: { hubs: Hub[] }) {
-  const router = useRouter();
   const [opened, setOpened] = useState(false);
   const setCreateModalOpened = useHubOneStore(
     (state) => state.setCreateModalOpened
@@ -45,24 +46,21 @@ export function HubMenu({ hubs }: { hubs: Hub[] }) {
         </Title>
         <SimpleGrid p="sm" cols={3} spacing="sm">
           {hubs.map((hub) => (
-            <Menu.Item
-              key={`hub_menu_item_${hub.id}`}
-              onClick={() => {
-                router.push(hub.hubPath);
-              }}
-            >
-              <Stack w={rem(64)} h={rem(148)} justify="flex-start">
-                <Center w="100%" h="50%">
-                  <HubLogo />
-                </Center>
-                <Text
-                  style={{ wordWrap: "break-word", hyphens: "auto" }}
-                  ta="center"
-                  lineClamp={3}
-                >
-                  {hub.hubName}
-                </Text>
-              </Stack>
+            <Menu.Item key={`hub_menu_item_${hub.id}`}>
+              <Link href={hub.hubPath}>
+                <Stack w={rem(64)} h={rem(148)} justify="flex-start">
+                  <Center w="100%" h="50%">
+                    <HubLogo />
+                  </Center>
+                  <Text
+                    style={{ wordWrap: "break-word", hyphens: "auto" }}
+                    ta="center"
+                    lineClamp={3}
+                  >
+                    {hub.hubName}
+                  </Text>
+                </Stack>
+              </Link>
             </Menu.Item>
           ))}
         </SimpleGrid>

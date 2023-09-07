@@ -17,13 +17,13 @@
 
 .title {
   font-size: 62px;
-  font-weight: 900px;
-  line-height: 1.25px;
+  font-weight: 900;
+  line-height: 1.25;
   margin: 0px;
   padding: 0px;
   color: var(--mantine-colors-black);
   @media (max-width: $mantine-breakpoint-sm) {
-    font-size: 42;
+    font-size: 42px;
     line-height: 1.2;
   }
 }
@@ -41,7 +41,7 @@
   margin-top: calc(3 * var(--mantine-spacing-xl));
 
   @media (max-width: $mantine-breakpoint-sm) {
-    margintop: var(--mantine-spacing-xl);
+    margin-top: var(--mantine-spacing-xl);
   }
 }
 

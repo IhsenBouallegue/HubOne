@@ -1,13 +1,27 @@
 .container {
   margin-top: 120px;
-  border-top: 2px solid var(--mantine-color-primary-4);
+  border-top: 2px solid var(--mantine-color-gray-2);
   height: 6rem;
   display: flex;
-  justify-content: space-between;
+  position: relative;
   align-items: center;
   padding: var(--mantine-spacing-md) var(--mantine-spacing-xl);
+  @media (max-width: $mantine-breakpoint-sm) {
+    flex-direction: column;
+  }
+}
 
-  @media (max-width: $mantine-breakpoint-xs) {
-    flex-direction: "column";
+.logo {
+  position: absolute;
+  @media (max-width: $mantine-breakpoint-sm) {
+    position: initial;
+  }
+}
+
+.footerLinks {
+  margin: 0 auto;
+  padding-top: var(--mantine-spacing-xs);
+  @media (min-width: $mantine-breakpoint-sm) {
+    position: relative;
   }
 }
