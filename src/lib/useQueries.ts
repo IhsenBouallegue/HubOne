@@ -1,16 +1,19 @@
+"use client";
+
 import { showNotification } from "@mantine/notifications";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-import axios from "./axios";
-
+const API_URL = `${process.env.NEXT_PUBLIC_SERVER_BASE_URL || ""}/api/`;
 const simpleFetchByHubId = <T>(
   QUERY_NAME: string,
   hubId: number
 ): Promise<T[]> =>
-  axios
-    .get<T[]>(`${QUERY_NAME}?hubId=${hubId}`)
-    .then(({ data }) => data as T[]);
-
+  fetch(`${API_URL}${QUERY_NAME}?hubId=${hubId}`, {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  }).then((res) => res.json());
 export function useFetchByHubId<T>(
   QUERY_NAME: string,
   hubId: number,
@@ -34,8 +37,22 @@ export function useFetchItem<T>(
 ) {
   return useQuery<T>(
     [QUERY_NAME],
-    () => axios.get<T>(`${QUERY_NAME}/${itemId}`).then(({ data }) => data as T),
-    config
+    () =>
+      fetch(`${API_URL}${QUERY_NAME}/${itemId}`, {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }).then((res) => res.json()),
+    {
+      ...config,
+      onError: () => {
+        showNotification({
+          message: `We couldn't fetch your ${QUERY_NAME.slice(0, -1)} 😢`,
+          color: "red",
+        });
+      },
+    }
   );
 }
 
@@ -62,7 +79,11 @@ export function useFetchItem<T>(
 export function usePost<T>(QUERY_NAME: string) {
   const queryClient = useQueryClient();
   const { mutate } = useMutation(
-    (newItem: T) => axios.post<T>(QUERY_NAME, newItem),
+    (newItem: T) =>
+      fetch(API_URL + QUERY_NAME, {
+        method: "POST",
+        body: JSON.stringify(newItem),
+      }),
     {
       // onMutate: defaultMutateList<T>(queryClient, QUERY_NAME),
       // onError: (_, __, context) => {
@@ -89,7 +110,11 @@ export function usePost<T>(QUERY_NAME: string) {
 export function useUpdate<T extends { id: number }>(QUERY_NAME: string) {
   const queryClient = useQueryClient();
   const { mutate } = useMutation(
-    (newItem: T) => axios.patch<T>(`${QUERY_NAME}/${newItem.id}`, newItem),
+    (newItem: T) =>
+      fetch(`${API_URL}${QUERY_NAME}/${newItem.id}`, {
+        method: "PATCH",
+        body: JSON.stringify(newItem),
+      }),
     {
       // onMutate: defaultMutateItem<T>(queryClient, QUERY_NAME),
       // onError: (_, __, context) => {
@@ -117,7 +142,11 @@ export function useDelete(QUERY_NAME: string) {
   const queryClient = useQueryClient();
   const { mutate } = useMutation(
     (itemId: number) =>
-      axios.delete(`${QUERY_NAME}/${itemId}`, { data: { itemId } }),
+      fetch(`${API_URL}${QUERY_NAME}/${itemId}`, {
+        method: "DELETE",
+        body: JSON.stringify(itemId),
+      }),
+
     {
       onError: () => {
         showNotification({
@@ -140,21 +169,24 @@ export function useDelete(QUERY_NAME: string) {
 
 export function useDeleteAll(QUERY_NAME: string) {
   const queryClient = useQueryClient();
-  const { mutate } = useMutation(() => axios.delete(QUERY_NAME), {
-    onError: () => {
-      showNotification({
-        message: `The ${QUERY_NAME} couldn't be deleted! 😢`,
-        color: "red",
-      });
-    },
-    onSuccess: () => {
-      showNotification({
-        message: `The ${QUERY_NAME} has been deleted❗`,
-      });
-    },
-    onSettled: () => {
-      queryClient.invalidateQueries([QUERY_NAME]);
-    },
-  });
+  const { mutate } = useMutation(
+    () => fetch(API_URL + QUERY_NAME, { method: "DELETE" }),
+    {
+      onError: () => {
+        showNotification({
+          message: `The ${QUERY_NAME} couldn't be deleted! 😢`,
+          color: "red",
+        });
+      },
+      onSuccess: () => {
+        showNotification({
+          message: `The ${QUERY_NAME} has been deleted❗`,
+        });
+      },
+      onSettled: () => {
+        queryClient.invalidateQueries([QUERY_NAME]);
+      },
+    }
+  );
   return mutate;
 }

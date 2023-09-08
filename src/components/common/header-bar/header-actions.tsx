@@ -33,11 +33,11 @@ export function HeaderActionButtons() {
         aria-label="Enable compact mode"
         onChange={(event) => setCompactMode(event.target.checked)}
         onLabel={
-          <IconArrowsMaximize size="1.2rem" stroke={2.5} color={theme.white} />
+          <IconArrowsMaximize size={20} stroke={2.5} color={theme.white} />
         }
         offLabel={
           <IconArrowsMinimize
-            size="1.2rem"
+            size={20}
             stroke={2.5}
             color={theme.colors.primary[4]}
           />

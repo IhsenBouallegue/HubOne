@@ -5,7 +5,7 @@ import { Link as ScrollLink } from "react-scroll";
 import { SetStateAction } from "react";
 import { useHubOneStore } from "@lib/Store";
 import { useFetchByHubId } from "@lib/useQueries";
-import { LinkGroup } from "@prisma/client";
+import { LinkGroup } from "@lib/schema";
 
 export function HeaderLinks({
   toggleOpened,

@@ -1,5 +1,6 @@
-import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
+import "@mantine/notifications/styles.css";
+import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 import theme from "theme";
 import Providers from "./providers";
@@ -14,8 +15,8 @@ export default function RootLayout({ children }: { children: any }) {
   return (
     <html lang="en">
       <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
         <ColorSchemeScript forceColorScheme="light" />
-        <link rel="shortcut icon" href="/favicon.svg" />
       </head>
       <body>
         <MantineProvider theme={theme} forceColorScheme="light">
