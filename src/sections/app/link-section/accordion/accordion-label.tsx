@@ -1,7 +1,7 @@
 "use client";
 
-import type { LinkGroup } from "@prisma/client";
 import { useHubOneStore } from "@lib/Store";
+import { LinkGroup } from "@lib/schema";
 import { useUpdate } from "@lib/useQueries";
 import { Group, TextInput, Title } from "@mantine/core";
 import { AnimatePresence, motion } from "framer-motion";

@@ -3,7 +3,6 @@
     "target": "ESNext",
     "baseUrl": ".",
     "paths": {
-      "@prisma/*": ["prisma/*"],
       "@config/*": ["src/config/*"],
       "@hooks/*": ["src/hooks/*"],
       "@lib/*": ["src/lib/*"],

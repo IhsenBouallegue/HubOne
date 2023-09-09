@@ -1,8 +1,8 @@
 import { useHubOneStore } from "@lib/Store";
 import { useFetchItem } from "@lib/useQueries";
 import { Container, Text, Title, useMantineTheme } from "@mantine/core";
-import { Hub } from "@prisma/client";
 
+import { Hub } from "@lib/schema";
 import classes from "./compact-hero.module.css";
 
 export function CompactHero() {

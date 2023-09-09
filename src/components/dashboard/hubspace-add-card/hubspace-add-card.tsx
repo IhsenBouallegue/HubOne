@@ -1,3 +1,5 @@
+"use client";
+
 import { Paper, Stack, Text, rem, useMantineTheme } from "@mantine/core";
 import { IconPlus } from "@tabler/icons-react";
 

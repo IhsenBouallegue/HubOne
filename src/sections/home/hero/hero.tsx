@@ -1,4 +1,12 @@
-import { Container, Title, Text, Button, Group, Image, useMantineTheme } from "@mantine/core";
+import {
+  Container,
+  Title,
+  Text,
+  Button,
+  Group,
+  Image,
+  useMantineTheme,
+} from "@mantine/core";
 
 import classes from "./hero.module.css";
 

@@ -1,9 +1,9 @@
-import type { Hub } from "@prisma/client";
 import { Modal, Title } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { usePost } from "@lib/useQueries";
 
 import { HubFormFields } from "../hub-form-fields";
+import { Hub } from "@lib/schema";
 
 export function HubCreateModal({
   opened,

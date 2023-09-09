@@ -12,16 +12,6 @@ export async function getHubSpaces() {
     .then((_hubSpaces) => _hubSpaces);
 }
 
-// export async function getHubsByHubSpaceId(hubSpaceId: number) {
-//   const hubSpaces = await prisma.hub.findMany({
-//     where: { hubSpaceId },
-//     orderBy: {
-//       id: "asc",
-//     },
-//   });
-//   return hubSpaces;
-// }
-
 export async function getHubSpacesPaths() {
   const hubs = await db.query.hubs.findMany({ with: { hubSpace: true } });
 

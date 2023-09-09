@@ -39,11 +39,7 @@ export function Pricing() {
           frequency="/month"
           lastLevel="Local"
           specialOffer="Limited Time"
-          features={[
-            "3 HubSpaces",
-            "Unlimited users",
-            "Direct support",
-          ]}
+          features={["3 HubSpaces", "Unlimited users", "Direct support"]}
           button="Contact Us"
           onClick={() => {}}
         />
