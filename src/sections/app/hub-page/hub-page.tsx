@@ -1,14 +1,17 @@
 "use client";
 
 import { useHubOneStore } from "@lib/Store";
-import { Box, Image, Stack } from "@mantine/core";
 import { useFetchByHubId, useFetchItem } from "@lib/useQueries";
+import { Box, Image, Stack } from "@mantine/core";
 
-import HeaderBar from "@components/common/header-bar";
 import FooterBar from "@components/common/footer-bar";
+import HeaderBar from "@components/common/header-bar";
 import HubCreateModal from "@modals/hub-modals/hub-create-modal";
 
-import { Hub, FooterLink, LinkGroup, Link } from "@lib/schema";
+import { HeaderActionButtons } from "@components/app/header/header-actions";
+import { HeaderLinks } from "@components/app/header/header-links";
+import { HeaderLogo } from "@components/app/header/header-logo";
+import { FooterLink, Hub, Link, LinkGroup } from "@lib/schema";
 import Hero from "../hero";
 import HubMenu from "../hub-menu";
 import LinkSection from "../link-section";
@@ -46,7 +49,11 @@ export default function HubPage({
         h="100vh"
         style={{ position: "absolute", filter: "blur(4px)", zIndex: -1 }}
       />
-      <HeaderBar />
+      <HeaderBar
+        left={<HeaderLogo />}
+        middle={HeaderLinks}
+        right={<HeaderActionButtons />}
+      />
       <Hero />
       <LinkSection />
       <Box mt="auto">

@@ -37,11 +37,10 @@ export function PricingLevel({
 
   return (
     <Card
-      h="100%"
       w={320}
       shadow="lg"
       radius="lg"
-      sx={{
+      style={{
         display: "flex",
         flexDirection: "column",
         border: `1px solid ${theme.colors.gray[1]}`,
@@ -52,9 +51,9 @@ export function PricingLevel({
     >
       {specialOffer && (
         <Box
-          sx={{
+          style={{
             width: "100%",
-            my: "auto",
+            margin: "auto",
             position: "absolute",
             top: "-40px",
             left: "0",
@@ -65,31 +64,31 @@ export function PricingLevel({
             borderRadius: theme.radius.lg,
           }}
         >
-          <Title order={2} size="1em" align="center" color="white">
+          <Title order={2} size="1em" ta="center" c="white">
             {specialOffer}
           </Title>
         </Box>
       )}
 
       <Box>
-        <Title order={2} size="1em" mb="1em" align="center" color={color}>
+        <Title order={2} size="1em" mb="1em" ta="center" c={color}>
           {title}
         </Title>
-        <Group position="center" spacing="xs">
-          <Title order={2} size="3em" align="center">
+        <Group align="center" gap="xs">
+          <Title order={2} size="3em" ta="center">
             {price}
           </Title>
-          <Title order={2} size="0.6em" align="center" color="dimmed">
+          <Title order={2} size="0.6em" ta="center" c="dimmed">
             {frequency}
           </Title>
         </Group>
       </Box>
 
-      <Text size={14} color="dimmed">
+      <Text size="sm" c="dimmed">
         {description}
       </Text>
 
-      <Stack spacing="xs">
+      <Stack gap="xs">
         {lastLevel && (
           <Group>
             <IconArrowLeft color={color} />
@@ -113,10 +112,6 @@ export function PricingLevel({
             height: 42,
             paddingLeft: 20,
             paddingRight: 20,
-
-            "&:hover": {
-              backgroundColor: theme.fn.darken(color, 0.05),
-            },
           },
         }}
         onClick={onClick}

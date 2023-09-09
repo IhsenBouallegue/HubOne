@@ -1,6 +1,8 @@
 import { Group, Text, useMantineTheme } from "@mantine/core";
+
 import Heading from "@components/home/heading";
 import Section from "@components/home/section";
+
 import { PricingLevel } from "./pricing-level";
 
 export function Pricing() {
@@ -15,13 +17,13 @@ export function Pricing() {
       <Group style={{ overflow: "visible" }}>
         <PricingLevel
           color={theme.colors.secondary[3]}
-          title="Local"
+          title="Starter"
           price="Free"
-          description="As HubOne is Open Source, you are free to host it yourself and share it with your team. We make it easy for you!"
+          description="More than enough to get you started. You can create your own Hubs and share them with your team."
           frequency="forever"
           features={[
-            "Unlimited subhubs",
-            "Unlimited users",
+            "1 HubSpace",
+            "Up to 10 users",
             "Fully featured Edit Mode",
             "Lifetime updates",
           ]}
@@ -31,15 +33,15 @@ export function Pricing() {
         <Text>Or</Text>
         <PricingLevel
           color={theme.colors.primary[4]}
-          title="On The Cloud"
-          price="0$"
+          title="Pro"
+          price="0.00$"
           description="We take care of the hosting for you. You get a link and you are good to go. Nothing to worry about."
           frequency="/month"
           lastLevel="Local"
           specialOffer="Limited Time"
           features={[
-            "No hosting required",
-            "Accessible everywhere",
+            "3 HubSpaces",
+            "Unlimited users",
             "Direct support",
           ]}
           button="Contact Us"

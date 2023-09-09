@@ -1,10 +1,9 @@
-"use client";
-
-import { Container, Title, Text, Button, Group, Image } from "@mantine/core";
+import { Container, Title, Text, Button, Group, Image, useMantineTheme } from "@mantine/core";
 
 import classes from "./hero.module.css";
 
 export function Hero() {
+  const theme = useMantineTheme();
   return (
     <div className={classes.root}>
       <Container size="lg">
@@ -31,10 +30,6 @@ export function Hero() {
                 mt={40}
                 px={50}
                 style={{ fontSize: 22 }}
-                component="a"
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://hubone.vercel.app/"
               >
                 Get Started
               </Button>
@@ -48,7 +43,7 @@ export function Hero() {
                 component="a"
                 target="_blank"
                 rel="noopener noreferrer"
-                href="https://hubone.vercel.app/"
+                href="https://hubspace1.huboneapp.com/"
               >
                 Live Demo
               </Button>
@@ -61,11 +56,11 @@ export function Hero() {
                 left: "60%",
                 top: "20%",
                 zIndex: -2,
-                // boxShadow: theme.shadows.lg,
+                boxShadow: theme.shadows.md,
               },
             }}
             src="showcase-1.png"
-            width={500}
+            w={500}
             radius="md"
           />
           <Image
@@ -75,13 +70,13 @@ export function Hero() {
                 left: "50%",
                 top: "50%",
                 zIndex: -1,
-                // boxShadow: theme.shadows.xl,
+                boxShadow: theme.shadows.md,
               },
             }}
             src="showcase-2.png"
-            width={400}
+            w={400}
             fit="contain"
-            radius="md"
+            radius="lg"
           />
         </div>
       </Container>

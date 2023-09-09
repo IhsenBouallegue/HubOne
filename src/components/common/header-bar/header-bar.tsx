@@ -2,11 +2,19 @@
 
 import { Burger, Collapse, Group, Paper } from "@mantine/core";
 import { useToggle } from "@mantine/hooks";
-import { HeaderActionButtons } from "./header-actions";
-import { HeaderLinks } from "./header-links";
-import { HeaderLogo } from "./header-logo";
+import { ComponentType, ReactNode, SetStateAction } from "react";
 
-export function Header() {
+export function HeaderBar({
+  left,
+  middle: Middle,
+  right,
+}: {
+  left: ReactNode;
+  middle: ComponentType<{
+    toggleOpened: (value?: SetStateAction<boolean> | undefined) => void;
+  }>;
+  right: ReactNode;
+}) {
   const [opened, toggleOpened] = useToggle();
 
   return (
@@ -31,7 +39,7 @@ export function Header() {
             size="sm"
             hiddenFrom="sm"
           />
-          <HeaderLogo />
+          {left}
         </Group>
         <Group
           justify="lg"
@@ -42,17 +50,15 @@ export function Header() {
             transform: "translate(-50%, 0)",
           }}
         >
-          <HeaderLinks toggleOpened={toggleOpened} />
+          <Middle toggleOpened={toggleOpened} />
         </Group>
-        <HeaderActionButtons />
+        {right}
       </Group>
       <Collapse in={opened}>
         <Group gap="md" mt="sm">
-          <HeaderLinks toggleOpened={toggleOpened} />
+          <Middle toggleOpened={toggleOpened} />
         </Group>
       </Collapse>
     </Paper>
   );
 }
-
-export default Header;

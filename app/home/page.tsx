@@ -1,21 +1,28 @@
-// import Contact from "@sections/home/contact";
-// import Features from "@sections/home/features";
-// import FooterBar from "@sections/home/footer-bar";
-// import HeaderBar from "@sections/home/header-bar";
+"use client";
+
+import { HeaderActions } from "@components/home/header/header-actions";
+import { HeaderLinks } from "@components/home/header/header-links";
+import { HeaderLogo } from "@components/home/header/header-logo";
+
+import HeaderBar from "@components/common/header-bar";
 import Hero from "@sections/home/hero";
-// import Mission from "@sections/home/mission";
-// import Pricing from "@sections/home/pricing";
+import Pricing from "@sections/home/pricing";
 
 export default function page() {
   return (
     <>
-      {/* <HeaderBar /> */}
+      <HeaderBar
+        left={<HeaderLogo />}
+        middle={HeaderLinks}
+        right={<HeaderActions />}
+      />
+
       <Hero />
-      {/* <Mission />
-      <Features />
       <Pricing />
-      <Contact />
-      <FooterBar /> */}
+      {/* <Mission /> */}
+      {/* <Features /> */}
+      {/* <Contact /> */}
+      {/* <FooterBar /> */}
     </>
   );
 }
