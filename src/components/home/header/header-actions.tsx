@@ -1,9 +1,10 @@
+import { SignedIn, UserButton, SignedOut, SignInButton } from "@clerk/nextjs";
 import { Button, Group } from "@mantine/core";
 
 export function HeaderActions() {
   return (
     <Group>
-      {/* <SignedIn> */}
+      <SignedIn>
         <Button
           variant="light"
           style={{ height: 30 }}
@@ -12,15 +13,15 @@ export function HeaderActions() {
         >
           Dashboard
         </Button>
-        {/* <UserButton afterSignOutUrl="/" /> */}
-      {/* </SignedIn> */}
-      {/* <SignedOut> */}
-        {/* <SignInButton mode="modal" redirectUrl="/dashboard"> */}
+        <UserButton afterSignOutUrl="/" />
+      </SignedIn>
+      <SignedOut>
+        <SignInButton mode="modal" redirectUrl="/dashboard">
           <Button variant="gradient" style={{ height: 30 }}>
             Sign In
           </Button>
-        {/* </SignInButton> */}
-      {/* </SignedOut> */}
+        </SignInButton>
+      </SignedOut>
     </Group>
   );
 }
