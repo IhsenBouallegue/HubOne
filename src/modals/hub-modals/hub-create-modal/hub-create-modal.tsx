@@ -1,6 +1,6 @@
+import { usePost } from "@lib/useQueries";
 import { Modal, Title } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import { usePost } from "@lib/useQueries";
 
 import { Hub } from "@lib/schema";
 import { HubFormFields } from "../hub-form-fields";

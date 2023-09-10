@@ -1,8 +1,8 @@
 import {
+  Icon,
   IconBrandOpenSource,
   IconSquareRounded,
   IconUsers,
-  Icon,
 } from "@tabler/icons-react";
 
 export const featuresData: {

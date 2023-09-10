@@ -1,7 +1,7 @@
-import { Anchor, Group } from "@mantine/core";
 import { useHubOneStore } from "@lib/Store";
-import { useFetchByHubId } from "@lib/useQueries";
 import { FooterLink } from "@lib/schema";
+import { useFetchByHubId } from "@lib/useQueries";
+import { Anchor, Group } from "@mantine/core";
 
 export function FooterLinks() {
   const { data: footerLinks } = useFetchByHubId<FooterLink>(

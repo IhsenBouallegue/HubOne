@@ -7,8 +7,8 @@ import {
   Group,
   Image,
   Paper,
-  rem,
   Text,
+  rem,
   useMantineTheme,
 } from "@mantine/core";
 import { IconEdit, IconLock } from "@tabler/icons-react";

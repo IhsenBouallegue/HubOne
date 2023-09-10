@@ -1,9 +1,7 @@
-"use client";
-
+import { Link } from "@lib/schema";
+import { usePost } from "@lib/useQueries";
 import { Button, Group, Modal } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import { usePost } from "@lib/useQueries";
-import { Link } from "@lib/schema";
 import { LinkFormFields } from "../link-form-fields";
 
 export function LinkCreateModal({

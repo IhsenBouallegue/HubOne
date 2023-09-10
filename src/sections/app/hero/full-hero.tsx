@@ -1,5 +1,6 @@
 import BackgroundImg from "@components/app/background-img";
 import { useHubOneStore } from "@lib/Store";
+import { Hub } from "@lib/schema";
 import { useFetchItem } from "@lib/useQueries";
 import {
   Button,
@@ -9,7 +10,6 @@ import {
   Title,
   useMantineTheme,
 } from "@mantine/core";
-import { Hub } from "@lib/schema";
 import { Link as ScrollLink } from "react-scroll";
 
 import classes from "./full-hero.module.css";

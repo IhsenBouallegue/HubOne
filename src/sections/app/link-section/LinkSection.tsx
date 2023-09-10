@@ -1,8 +1,8 @@
 import LinkGroupAddCard from "@components/app/link-group-add-card";
 import { useHubOneStore } from "@lib/Store";
+import { LinkGroup } from "@lib/schema";
 import { useFetchByHubId } from "@lib/useQueries";
 import { Container, Text } from "@mantine/core";
-import { LinkGroup } from "@lib/schema";
 
 import LinkSectionAccordion from "./accordion";
 
@@ -18,7 +18,7 @@ function LinkSection() {
         px={0}
         style={{ gap: "2em", display: "flex", flexDirection: "column" }}
       >
-        {linkGroups!?.length > 0 ? (
+        {linkGroups && linkGroups?.length > 0 ? (
           <LinkSectionAccordion />
         ) : (
           !editMode && (

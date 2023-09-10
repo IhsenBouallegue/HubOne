@@ -1,8 +1,8 @@
 "use client";
 
-import type { UseFormReturnType } from "@mantine/form";
-import { Button, Group, TextInput } from "@mantine/core";
 import { LinkGroup } from "@lib/schema";
+import { Button, Group, TextInput } from "@mantine/core";
+import type { UseFormReturnType } from "@mantine/form";
 
 export function LinkGroupFormFields({
   form,

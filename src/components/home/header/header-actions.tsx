@@ -1,4 +1,4 @@
-import { SignedIn, UserButton, SignedOut, SignInButton } from "@clerk/nextjs";
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 import { Button, Group } from "@mantine/core";
 
 export function HeaderActions() {

@@ -1,9 +1,9 @@
-import { Button, Group } from "@mantine/core";
-import { Link as ScrollLink } from "react-scroll";
-import { SetStateAction } from "react";
 import { useHubOneStore } from "@lib/Store";
-import { useFetchByHubId } from "@lib/useQueries";
 import { LinkGroup } from "@lib/schema";
+import { useFetchByHubId } from "@lib/useQueries";
+import { Button, Group } from "@mantine/core";
+import { SetStateAction } from "react";
+import { Link as ScrollLink } from "react-scroll";
 
 export function HeaderLinks({
   toggleOpened,

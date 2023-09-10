@@ -1,9 +1,9 @@
 "use client";
 
+import { LinkGroup } from "@lib/schema";
+import { usePost } from "@lib/useQueries";
 import { Modal } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import { usePost } from "@lib/useQueries";
-import { LinkGroup } from "@lib/schema";
 import { LinkGroupFormFields } from "./link-group-form-fields";
 
 export function AddLinkGroupModal({

@@ -1,10 +1,10 @@
 "use client";
 
+import { FooterLink } from "@lib/schema";
 import { usePost } from "@lib/useQueries";
 import { Card, Group, Text } from "@mantine/core";
 import { IconPlus } from "@tabler/icons-react";
 import { motion } from "framer-motion";
-import { FooterLink } from "@lib/schema";
 import classes from "./footer-link-add-card.module.css";
 
 export function FooterLinkAddCard({ hubId }: { hubId: number }) {

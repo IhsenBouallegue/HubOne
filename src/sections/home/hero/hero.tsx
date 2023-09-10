@@ -1,10 +1,10 @@
 import {
-  Container,
-  Title,
-  Text,
   Button,
+  Container,
   Group,
   Image,
+  Text,
+  Title,
   useMantineTheme,
 } from "@mantine/core";
 

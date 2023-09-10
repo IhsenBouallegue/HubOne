@@ -1,10 +1,10 @@
 "use client";
 
+import { Link } from "@lib/schema";
+import { useDelete, useUpdate } from "@lib/useQueries";
 import { Button, Group, Modal, Title } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { IconTrash } from "@tabler/icons-react";
-import { useDelete, useUpdate } from "@lib/useQueries";
-import { Link } from "@lib/schema";
 import { LinkFormFields } from "../link-form-fields";
 
 export function LinkEditModal({

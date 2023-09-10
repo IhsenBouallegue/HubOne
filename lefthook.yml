@@ -4,17 +4,17 @@
 #   https://github.com/evilmartians/lefthook/blob/master/docs/configuration.md
 #
 
-# pre-push:
-#   commands:
-#     packages-audit:
-#       tags: frontend security
-#       run: yarn audit
-#     gems-audit:
-#       tags: backend security
-#       run: bundle audit
+pre-push:
+  parallel: true
+  commands:
+    lint:
+      run: yarn lint:check
+    format:
+      run: yarn format:check
 
-# pre-commit:
-#   parallel: true
-#   commands:
-#     eslint:
-#       run: yarn lint
+pre-commit:
+  commands:
+    lint:
+      run: yarn lint:check
+    format:
+      run: yarn format:check

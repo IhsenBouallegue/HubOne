@@ -1,8 +1,8 @@
 "use client";
 
-import type { UseFormReturnType } from "@mantine/form";
-import { Switch, TextInput } from "@mantine/core";
 import { Link } from "@lib/schema";
+import { Switch, TextInput } from "@mantine/core";
+import type { UseFormReturnType } from "@mantine/form";
 
 export function LinkFormFields({ form }: { form: UseFormReturnType<Link> }) {
   return (

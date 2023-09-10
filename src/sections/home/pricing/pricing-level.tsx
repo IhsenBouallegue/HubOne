@@ -1,12 +1,12 @@
 import {
+  Box,
+  Button,
   Card,
+  Group,
+  Stack,
+  Text,
   Title,
   useMantineTheme,
-  Text,
-  Stack,
-  Group,
-  Button,
-  Box,
 } from "@mantine/core";
 import { IconArrowLeft, IconCheck } from "@tabler/icons-react";
 
