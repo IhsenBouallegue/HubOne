@@ -16,7 +16,7 @@
     "generate": "drizzle-kit generate:pg"
   },
   "dependencies": {
-    "@clerk/nextjs": "^4.23.2",
+    "@clerk/nextjs": "4.23.5",
     "@mantine/core": "7.0.0-beta.3",
     "@mantine/form": "7.0.0-beta.3",
     "@mantine/hooks": "7.0.0-beta.3",

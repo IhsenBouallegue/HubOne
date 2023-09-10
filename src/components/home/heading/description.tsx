@@ -4,9 +4,9 @@ import type { ReactNode } from "react";
 export function Description({ children }: { children: ReactNode }) {
   return (
     <Text
-      color="dimmed"
-      align="center"
-      sx={(theme) => ({
+      c="dimmed"
+      ta="center"
+      style={(theme) => ({
         maxWidth: 600,
 
         "&::after": {

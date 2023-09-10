@@ -1,3 +1,3 @@
-import { FooterBar } from "./footer-bar";
+// import { FooterBar } from "./footer-bar";
 
-export default FooterBar;
+// export default FooterBar;

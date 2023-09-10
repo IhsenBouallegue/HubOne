@@ -1,21 +1,21 @@
-import Heading from "@components/home/heading";
-import Section from "@components/home/section";
-import { Box, Group } from "@mantine/core";
-import { ContactForm } from "./contact-form";
+// import Heading from "@components/home/heading";
+// import Section from "@components/home/section";
+// import { Box, Group } from "@mantine/core";
+// import { ContactForm } from "./contact-form";
 
-export function Contact() {
-  return (
-    <Section id="contact">
-      <Heading
-        title="Contact Us"
-        description="Please feel free to contact us. We are here to help you get started
-          into your journey for organisation."
-      />
-      <Group>
-        <Box w={400}>
-          <ContactForm />
-        </Box>
-      </Group>
-    </Section>
-  );
-}
+// export function Contact() {
+//   return (
+//     <Section id="contact">
+//       <Heading
+//         title="Contact Us"
+//         description="Please feel free to contact us. We are here to help you get started
+//           into your journey for organisation."
+//       />
+//       <Group>
+//         <Box w={400}>
+//           <ContactForm />
+//         </Box>
+//       </Group>
+//     </Section>
+//   );
+// }

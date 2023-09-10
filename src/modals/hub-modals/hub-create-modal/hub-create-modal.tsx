@@ -2,8 +2,8 @@ import { Modal, Title } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { usePost } from "@lib/useQueries";
 
-import { HubFormFields } from "../hub-form-fields";
 import { Hub } from "@lib/schema";
+import { HubFormFields } from "../hub-form-fields";
 
 export function HubCreateModal({
   opened,

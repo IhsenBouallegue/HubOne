@@ -5,12 +5,14 @@ import HubPage from "@sections/app/hub-page/hub-page";
 import HubSpaceNotFound from "@sections/app/hub-space-not-found";
 import { and, eq } from "drizzle-orm";
 
+export const revalidate = 0;
+
 export async function generateStaticParams() {
   const hubSpacesParams = await getHubSpacesPaths();
   return hubSpacesParams;
 }
 
-export default async function index({
+export default async function Page({
   params,
 }: {
   params: { domain: string; hubPaths: string[] };

@@ -4,24 +4,21 @@ export function Mission() {
   return (
     <Box h="30vh">
       <Stack
-        sx={(theme) => ({
+        style={(theme) => ({
           width: "100%",
           height: "inherit",
           backgroundColor: theme.colors.primary[4],
           backgroundSize: "cover",
           backgroundPosition: "center",
-          backgroundImage: `linear-gradient(250deg, ${theme.fn.rgba(
-            theme.colors.secondary[4],
-            0.4
-          )} 0%, ${theme.fn.rgba(theme.colors.primary[4], 0.8)} 100%)`,
+          backgroundImage: `linear-gradient(250deg, ${theme.colors.primary[4]} 0%, ${theme.colors.primary[6]} 100%)`,
           position: "absolute",
         })}
       >
         <Stack my="auto" align="center">
-          <Text color="white" size="xl">
+          <Text c="white" size="xl">
             We help you
           </Text>
-          <Title color="white" size="3em">
+          <Title c="white" size="3em">
             Work Smart not Hard.
           </Title>
         </Stack>
@@ -34,7 +31,7 @@ export function Mission() {
             },
           }}
           src="dotted-2.png"
-          width={150}
+          w={150}
         />
         <Image
           styles={{
@@ -45,7 +42,7 @@ export function Mission() {
             },
           }}
           src="dotted-1.png"
-          width={150}
+          w={150}
         />
       </Stack>
     </Box>

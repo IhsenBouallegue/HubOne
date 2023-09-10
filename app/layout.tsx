@@ -4,15 +4,16 @@ import "@styles/App.css";
 
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
-import { ClerkProvider } from "@clerk/nextjs";
 
 import theme from "theme";
+import { ClerkProvider } from "@clerk/nextjs";
 import Providers from "./providers";
 
 export const metadata = {
   title: "HubOne",
   description: "HubOne",
 };
+
 
 export default function RootLayout({ children }: { children: any }) {
   return (
@@ -35,6 +36,6 @@ export default function RootLayout({ children }: { children: any }) {
           </MantineProvider>
         </body>
       </html>
-    </ClerkProvider>
+ </ClerkProvider>
   );
 }
