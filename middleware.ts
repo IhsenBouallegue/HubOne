@@ -22,24 +22,24 @@ export async function routingMiddleware(
 ) {
   const url = req.nextUrl;
 
-  // const allowedSubdomainRegex = new RegExp(
-  //   `^https?://(\\w+\\.)?(${process.env.NEXT_PUBLIC_ROOT_DOMAIN}|localhost:3000)$`,
-  //   "i"
-  // );
+  const allowedSubdomainRegex = new RegExp(
+    `^https?://(\\w+\\.)?(${process.env.NEXT_PUBLIC_ROOT_DOMAIN}|localhost:3000)$`,
+    "i"
+  );
   const res = NextResponse.next();
-  // const origin = req.headers.get("origin");
-  // // allow subdomains to make requests
-  // if (origin && allowedSubdomainRegex.test(origin)) {
-  //   res.headers.append("Access-Control-Allow-Origin", origin);
-  //   res.headers.append(
-  //     "Access-Control-Allow-Methods",
-  //     "GET, PATCH, POST, OPTIONS, DELETE, HEAD"
-  //   );
-  //   res.headers.append(
-  //     "Access-Control-Allow-Headers",
-  //     "Origin, X-Requested-With, Content-Type, Accept"
-  //   );
-  // }
+  const origin = req.headers.get("origin");
+  // allow subdomains to make requests
+  if (origin && allowedSubdomainRegex.test(origin)) {
+    res.headers.append("Access-Control-Allow-Origin", origin);
+    res.headers.append(
+      "Access-Control-Allow-Methods",
+      "GET, PATCH, POST, OPTIONS, DELETE, HEAD"
+    );
+    res.headers.append(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept"
+    );
+  }
 
   // ignore these routes
   if (/(api|sign-in|sign-up|user)/.test(url.pathname)) {
@@ -94,6 +94,6 @@ export async function routingMiddleware(
 }
 
 export default authMiddleware({
-  // afterAuth: (auth, req) => routingMiddleware(auth, req),
+  afterAuth: (auth, req) => routingMiddleware(auth, req),
   publicRoutes: ["/"],
 });
