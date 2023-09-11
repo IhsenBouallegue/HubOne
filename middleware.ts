@@ -3,7 +3,7 @@ import { AuthObject } from "@clerk/nextjs/dist/types/server";
 import { NextRequest, NextResponse } from "next/server";
 
 const DASHBOARD_PATH = "dashboard";
-const HOME_DOMAIN = "home";
+const HOME_DOMAIN = "";
 
 export const config = {
   matcher: [
@@ -21,30 +21,30 @@ export async function routingMiddleware(
   req: NextRequest
 ) {
   const url = req.nextUrl;
-
-  const allowedSubdomainRegex = new RegExp(
-    `^https?://(\\w+\\.)?(${process.env.NEXT_PUBLIC_ROOT_DOMAIN}|localhost:3000)$`,
-    "i"
-  );
-  const res = NextResponse.next();
-  const origin = req.headers.get("origin");
+  console.log(url);
+  // const allowedSubdomainRegex = new RegExp(
+  //   `^https?://(\\w+\\.)?(${process.env.NEXT_PUBLIC_ROOT_DOMAIN}|localhost:3000)$`,
+  //   "i"
+  // );
+  // const res = NextResponse.next();
+  // const origin = req.headers.get("origin");
   // allow subdomains to make requests
-  if (origin && allowedSubdomainRegex.test(origin)) {
-    res.headers.append("Access-Control-Allow-Origin", origin);
-    res.headers.append(
-      "Access-Control-Allow-Methods",
-      "GET, PATCH, POST, OPTIONS, DELETE, HEAD"
-    );
-    res.headers.append(
-      "Access-Control-Allow-Headers",
-      "Origin, X-Requested-With, Content-Type, Accept"
-    );
-  }
+  // if (origin && allowedSubdomainRegex.test(origin)) {
+  //   res.headers.append("Access-Control-Allow-Origin", origin);
+  //   res.headers.append(
+  //     "Access-Control-Allow-Methods",
+  //     "GET, PATCH, POST, OPTIONS, DELETE, HEAD"
+  //   );
+  //   res.headers.append(
+  //     "Access-Control-Allow-Headers",
+  //     "Origin, X-Requested-With, Content-Type, Accept"
+  //   );
+  // }
 
   // ignore these routes
-  if (/(api|sign-in|sign-up|user)/.test(url.pathname)) {
-    return res;
-  }
+  // if (/(api|sign-in|sign-up|user)/.test(url.pathname)) {
+  //   return res;
+  // }
   // Get hostname of request (e.g. demo.vercel.pub, demo.localhost:3000)
   const hostname = req.headers
     .get("host")!
@@ -57,7 +57,10 @@ export async function routingMiddleware(
     "i"
   );
   // rewrites for dashboardd pages
+  console.log(dashboardRegex.test(url.href));
   if (dashboardRegex.test(url.href)) {
+    console.time("dashboard");
+
     const signInPath = process.env.NEXT_PUBLIC_CLERK_SIGN_IN_URL;
     const signUpPath = process.env.NEXT_PUBLIC_CLERK_SIGN_UP_URL;
     // TODO: just returning to home for no if env variables not founnd
@@ -67,6 +70,8 @@ export async function routingMiddleware(
       return redirectToSignIn({ returnBackUrl: req.url });
     }
     const sanitisedPath = path.replace(`/${DASHBOARD_PATH}`, "");
+    console.timeEnd("dashboard");
+
     return NextResponse.rewrite(
       new URL(
         `/${DASHBOARD_PATH}${sanitisedPath === "/" ? "" : sanitisedPath}`,
@@ -80,7 +85,7 @@ export async function routingMiddleware(
     hostname === "localhost:3000" ||
     hostname === process.env.NEXT_PUBLIC_ROOT_DOMAIN
   ) {
-    return NextResponse.rewrite(new URL(`/${HOME_DOMAIN}${path}`, req.url));
+    return NextResponse.rewrite(new URL(`${path}`, req.url));
   }
 
   const currentHost = hostname.replace(
