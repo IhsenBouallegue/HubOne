@@ -1,9 +1,11 @@
 "use client";
 
 import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
-import { AppShell, Burger, Button, Group, Stack } from "@mantine/core";
+import ResponsiveLogo from "@components/common/responsive-logo";
+import { AppShell, Burger, Button, Group, Stack, rem } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { IconHome, IconLayoutDashboard, IconUsers } from "@tabler/icons-react";
+import { useSelectedLayoutSegment } from "next/navigation";
 import { ReactNode } from "react";
 
 export default function DashboardLayout({
@@ -12,6 +14,8 @@ export default function DashboardLayout({
   children: ReactNode | ReactNode[];
 }) {
   const [opened, { toggle }] = useDisclosure();
+  const segment = useSelectedLayoutSegment();
+
   return (
     <AppShell
       padding="md"
@@ -19,26 +23,39 @@ export default function DashboardLayout({
       navbar={{ width: 300, breakpoint: "sm", collapsed: { mobile: !opened } }}
     >
       <AppShell.Header>
-        <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-        <Group align="apart" h="100%">
-          <Group ml={300} pl="xs">
-            <OrganizationSwitcher
-              appearance={{
-                elements: {
-                  rootBox: { display: "flex", justifyContent: "center" },
-                },
-              }}
+        <Group h="100%" w="100%">
+          <Group w={rem(300)} pl="xs">
+            <Burger
+              opened={opened}
+              onClick={toggle}
+              hiddenFrom="sm"
+              size="sm"
             />
+            <ResponsiveLogo />
           </Group>
-          <UserButton />
+          <Group justify="space-between" h="100%" style={{ flexGrow: 1 }}>
+            <Group pl="xs">
+              <OrganizationSwitcher
+                appearance={{
+                  elements: {
+                    rootBox: { display: "flex", justifyContent: "center" },
+                  },
+                }}
+              />
+            </Group>
+            <Group mr="lg">
+              <UserButton />
+            </Group>
+          </Group>
         </Group>
       </AppShell.Header>
       <AppShell.Navbar>
-        <Stack>
+        <Stack p="xs" mt="xl" gap="lg">
           <Button
             component="a"
             href="/dashboard"
-            variant="subtle"
+            variant={segment === null ? "light" : "subtle"}
+            size="md"
             styles={{ inner: { justifyContent: "left" } }}
             leftSection={<IconHome />}
           >
@@ -47,7 +64,8 @@ export default function DashboardLayout({
           <Button
             component="a"
             href="/dashboard/hubspaces"
-            variant="subtle"
+            variant={segment === "hubspaces" ? "light" : "subtle"}
+            size="md"
             styles={{ inner: { justifyContent: "left" } }}
             leftSection={<IconLayoutDashboard />}
           >
@@ -57,6 +75,7 @@ export default function DashboardLayout({
             component="a"
             href="/dashboard/members"
             variant="subtle"
+            size="md"
             styles={{ inner: { justifyContent: "left" } }}
             leftSection={<IconUsers />}
           >

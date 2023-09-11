@@ -5,6 +5,7 @@ import {
   pgTable,
   serial,
   text,
+  timestamp,
   uniqueIndex,
 } from "drizzle-orm/pg-core";
 
@@ -72,6 +73,10 @@ export const hubSpaces = pgTable(
   {
     id: serial("id").primaryKey().notNull(),
     domain: text("domain").notNull(),
+    ownerId: text("owner_id").notNull(),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
   },
   (table) => ({
     domainKey: uniqueIndex("hubspaces_domain_key").on(table.domain),
@@ -109,6 +114,7 @@ export const footerLinksRelations = relations(footerLinks, ({ one }) => ({
   }),
 }));
 
+export type HubSpace = InferSelectModel<typeof hubSpaces>;
 export type Hub = InferSelectModel<typeof hubs>;
 export type Link = InferSelectModel<typeof links>;
 export type LinkGroup = InferSelectModel<typeof linkGroups>;

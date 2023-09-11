@@ -1,17 +1,30 @@
+import { auth } from "@clerk/nextjs";
 import HubSpaceAddCard from "@components/dashboard/hubspace-add-card";
 import HubSpaceCard from "@components/dashboard/hubspace-card";
-import { Group, Title } from "@mantine/core";
+import db from "@lib/db";
+import { hubSpaces } from "@lib/schema";
+import { Container, Group, Title } from "@mantine/core";
+import { eq } from "drizzle-orm";
 
-export default function Page() {
+export default async function Page() {
+  const { orgId, userId } = auth();
+  if (!userId) return null;
+
+  const ownHubspaces = await db.query.hubSpaces.findMany({
+    where: eq(hubSpaces.ownerId, orgId ?? userId),
+  });
+
   return (
-    <div>
+    <Container size="lg" pt="2em">
       <Title size="2em" mb="1.2em" fw={600}>
         HubSpaces
       </Title>
       <Group gap="xl">
-        <HubSpaceCard />
+        {ownHubspaces.map((hubspace) => (
+          <HubSpaceCard {...hubspace} />
+        ))}
         <HubSpaceAddCard />
       </Group>
-    </div>
+    </Container>
   );
 }

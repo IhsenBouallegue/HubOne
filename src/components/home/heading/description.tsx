@@ -8,7 +8,6 @@ export function Description({ children }: { children: ReactNode }) {
       ta="center"
       style={(theme) => ({
         maxWidth: 600,
-
         "&::after": {
           content: '""',
           display: "block",
