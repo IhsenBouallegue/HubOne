@@ -1,19 +1,24 @@
 "use client";
 
+import { useAuth } from "@clerk/nextjs";
 import { showNotification } from "@mantine/notifications";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 const API_URL = `${process.env.NEXT_PUBLIC_SERVER_BASE_URL || ""}/api/`;
-const simpleFetchByHubId = <T>(
+async function simpleFetchByHubId<T>(
   QUERY_NAME: string,
   hubId: number
-): Promise<T[]> =>
-  fetch(`${API_URL}${QUERY_NAME}?hubId=${hubId}`, {
+): Promise<T[]> {
+  const { getToken } = useAuth();
+  return fetch(`${API_URL}${QUERY_NAME}?hubId=${hubId}`, {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
+      Authorization: `Bearer ${await getToken()}`,
     },
   }).then((res) => res.json());
+}
+
 export function useFetchByHubId<T>(
   QUERY_NAME: string,
   hubId: number,
@@ -144,9 +149,7 @@ export function useDelete(QUERY_NAME: string) {
     (itemId: number) =>
       fetch(`${API_URL}${QUERY_NAME}/${itemId}`, {
         method: "DELETE",
-        body: JSON.stringify(itemId),
       }),
-
     {
       onError: () => {
         showNotification({

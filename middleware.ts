@@ -83,13 +83,12 @@ export async function routingMiddleware(
     return NextResponse.rewrite(new URL(`${path}`, req.url));
   }
 
-  const currentHost = hostname.replace(
+  const subdomain = hostname.replace(
     `.${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`,
     ""
   );
-  // rewrite everything else to `/[domain]/[path] dynamic route
   return NextResponse.rewrite(
-    new URL(`/hubspaces/${currentHost}${path}`, req.url)
+    new URL(`/hubspaces/${subdomain}${path}`, req.url)
   );
 }
 

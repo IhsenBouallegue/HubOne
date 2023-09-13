@@ -4,7 +4,12 @@ import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
 import ResponsiveLogo from "@components/common/responsive-logo";
 import { AppShell, Burger, Button, Group, Stack, rem } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { IconHome, IconLayoutDashboard, IconUsers } from "@tabler/icons-react";
+import {
+  IconFileInvoice,
+  IconHome,
+  IconLayoutDashboard,
+  IconUsers,
+} from "@tabler/icons-react";
 import { useSelectedLayoutSegment } from "next/navigation";
 import { ReactNode } from "react";
 
@@ -74,12 +79,24 @@ export default function DashboardLayout({
           <Button
             component="a"
             href="/dashboard/members"
-            variant="subtle"
+            variant={segment === "members" ? "light" : "subtle"}
             size="md"
             styles={{ inner: { justifyContent: "left" } }}
+            disabled
             leftSection={<IconUsers />}
           >
             Members
+          </Button>
+          <Button
+            component="a"
+            href="/dashboard/billing"
+            variant={segment === "billing" ? "light" : "subtle"}
+            size="md"
+            styles={{ inner: { justifyContent: "left" } }}
+            disabled
+            leftSection={<IconFileInvoice />}
+          >
+            Billing
           </Button>
         </Stack>
       </AppShell.Navbar>

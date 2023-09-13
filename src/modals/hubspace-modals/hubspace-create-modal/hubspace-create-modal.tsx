@@ -16,15 +16,12 @@ export function HubSpaceCreateModal({
   const form = useForm<HubSpace>({
     initialValues: {
       domain: "",
+      isPublic: false,
     } as HubSpace,
   });
-  const { user } = useUser();
   const mutate = usePost<HubSpace>("hubspaces");
   const handleSubmit = (values: HubSpace) => {
-    if (!user) return;
-    mutate({ ...values, ownerId: user.id });
-    console.log(values);
-
+    mutate(values);
     form.reset();
     setOpened(false);
   };

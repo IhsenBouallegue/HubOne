@@ -43,7 +43,7 @@ export function HubFormFields({ form }: { form: UseFormReturnType<Hub> }) {
       />
       <ColorInput
         placeholder="Pick color"
-        label="Hub Secodary Color"
+        label="Hub Secondary Color"
         {...form.getInputProps("secondaryColor")}
       />
 

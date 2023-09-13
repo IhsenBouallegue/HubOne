@@ -74,6 +74,7 @@ export const hubSpaces = pgTable(
     id: serial("id").primaryKey().notNull(),
     domain: text("domain").notNull(),
     ownerId: text("owner_id").notNull(),
+    isPublic: boolean("is_public").default(false).notNull(),
     createdAt: timestamp("created_at", { withTimezone: true })
       .notNull()
       .defaultNow(),

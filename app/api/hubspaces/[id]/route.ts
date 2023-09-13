@@ -32,3 +32,17 @@ export async function PATCH(
     return NextResponse.json({ error });
   }
 }
+
+export async function DELETE(
+  req: NextRequest,
+  context: { params: { id: string } }
+) {
+  try {
+    const item = await db
+      .delete(hubSpaces)
+      .where(eq(hubSpaces.id, Number(context.params.id)));
+    return NextResponse.json(item);
+  } catch (error) {
+    return NextResponse.json({ error });
+  }
+}
