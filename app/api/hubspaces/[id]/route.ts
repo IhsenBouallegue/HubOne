@@ -1,5 +1,5 @@
 import db from "@lib/db";
-import { hubSpaces, hubs } from "@lib/schema";
+import { hubSpaces } from "@lib/schema";
 import { eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -34,7 +34,7 @@ export async function PATCH(
 }
 
 export async function DELETE(
-  req: NextRequest,
+  _req: NextRequest,
   context: { params: { id: string } }
 ) {
   try {

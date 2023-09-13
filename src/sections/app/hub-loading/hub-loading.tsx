@@ -1,4 +1,4 @@
-import { Center, Image, Loader, Stack, Title } from "@mantine/core";
+import { Center, Loader, Stack, Title } from "@mantine/core";
 
 export default function HubLoading() {
   return (

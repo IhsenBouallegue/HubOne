@@ -1,4 +1,4 @@
-import { Center, Group, Image, rem } from "@mantine/core";
+import { Center, Group, rem } from "@mantine/core";
 import { IconX } from "@tabler/icons-react";
 
 import HubLogo from "@components/app/hub-logo";

@@ -2,7 +2,6 @@ import { usePost } from "@lib/useQueries";
 import { Modal, Title } from "@mantine/core";
 import { useForm } from "@mantine/form";
 
-import { auth, currentUser, useUser } from "@clerk/nextjs";
 import { HubSpace } from "@lib/schema";
 import { HubSpaceFormFields } from "../hubspace-form-fields";
 

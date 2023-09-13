@@ -1,5 +1,4 @@
-// import Clerk from "@clerk/clerk-js";
-import { RedirectToSignIn, auth, clerkClient } from "@clerk/nextjs";
+import { RedirectToSignIn, auth } from "@clerk/nextjs";
 import { isOwnerAnOrganisation } from "@lib/auth";
 import db, { getHubSpacesPaths } from "@lib/db";
 import { hubSpaces, hubs } from "@lib/schema";
