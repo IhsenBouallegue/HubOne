@@ -10,7 +10,20 @@ export function HubSpaceAddCard() {
 
   return (
     <>
-      <Paper w={292} h={364} radius="lg" shadow="medium" onClick={open}>
+      <Paper
+        w={292}
+        h={364}
+        radius="lg"
+        shadow="medium"
+        onClick={open}
+        withBorder
+        styles={{
+          root: {
+            borderStyle: "dashed",
+            borderWidth: "2px",
+          },
+        }}
+      >
         <Stack align="center" justify="center" h="inherit">
           <IconPlus size={36} strokeWidth={2} />
           <Text ta="center">Add HubSpace</Text>

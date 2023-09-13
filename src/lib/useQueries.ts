@@ -10,13 +10,18 @@ async function simpleFetchByHubId<T>(
   hubId: number
 ): Promise<T[]> {
   const { getToken } = useAuth();
-  return fetch(`${API_URL}${QUERY_NAME}?hubId=${hubId}`, {
+  const res = await fetch(`${API_URL}${QUERY_NAME}?hubId=${hubId}`, {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
       Authorization: `Bearer ${await getToken()}`,
     },
-  }).then((res) => res.json());
+  });
+  if (!res.ok) {
+    const { error } = await res.json();
+    throw new Error(error);
+  }
+  return res.json();
 }
 
 export function useFetchByHubId<T>(
@@ -42,13 +47,19 @@ export function useFetchItem<T>(
 ) {
   return useQuery<T>(
     [QUERY_NAME],
-    () =>
-      fetch(`${API_URL}${QUERY_NAME}/${itemId}`, {
+    async () => {
+      const res = await fetch(`${API_URL}${QUERY_NAME}/${itemId}`, {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-      }).then((res) => res.json()),
+      });
+      if (!res.ok) {
+        const { error } = await res.json();
+        throw new Error(error);
+      }
+      return res.json();
+    },
     {
       ...config,
       onError: () => {
@@ -84,18 +95,25 @@ export function useFetchItem<T>(
 export function usePost<T>(QUERY_NAME: string) {
   const queryClient = useQueryClient();
   const { mutate } = useMutation(
-    (newItem: T) =>
-      fetch(API_URL + QUERY_NAME, {
+    async (newItem: T) => {
+      const res = await fetch(API_URL + QUERY_NAME, {
         method: "POST",
         body: JSON.stringify(newItem),
-      }),
+      });
+      if (!res.ok) {
+        const { error } = await res.json();
+        throw new Error(error);
+      }
+      return res.json();
+    },
     {
       // onMutate: defaultMutateList<T>(queryClient, QUERY_NAME),
       // onError: (_, __, context) => {
-      onError: () => {
+      onError: (error: { message: string }) => {
         // queryClient.setQueryData([QUERY_NAME], context?.previousItems);
         showNotification({
-          message: `We couldn't add your ${QUERY_NAME.slice(0, -1)} 😢`,
+          title: `We couldn't create your ${QUERY_NAME.slice(0, -1)} 😢`,
+          message: error.message,
           color: "red",
         });
       },

@@ -4,12 +4,12 @@ import HubSpaceCard from "@components/dashboard/hubspace-card";
 import db from "@lib/db";
 import { hubSpaces } from "@lib/schema";
 import { Container, Group, Title } from "@mantine/core";
+import { HUBSPACE_LIMIT } from "app/api/hubspaces/route";
 import { eq } from "drizzle-orm";
 
 export default async function Page() {
   const { orgId, userId } = auth();
   if (!userId) return null;
-
   const ownHubspaces = await db.query.hubSpaces.findMany({
     where: eq(hubSpaces.ownerId, orgId ?? userId),
   });
@@ -23,7 +23,9 @@ export default async function Page() {
         {ownHubspaces.map((hubspace) => (
           <HubSpaceCard {...hubspace} />
         ))}
-        <HubSpaceAddCard />
+        {[...Array(HUBSPACE_LIMIT - ownHubspaces.length)].map((_) => (
+          <HubSpaceAddCard />
+        ))}
       </Group>
     </Container>
   );
