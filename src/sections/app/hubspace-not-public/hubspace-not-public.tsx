@@ -7,7 +7,7 @@ export function HubSpaceNotPublic() {
         <Image src="/logo/hubone_logo.svg" w={126} />
         <Title ta="center">HubSpace is not public.</Title>
         <Text ta="center">
-          You don't have access to this HubSpace. Please ask the admin for
+          You don&apos;t have access to this HubSpace. Please ask the admin for
           permission.
         </Text>
       </Stack>
