@@ -9,7 +9,6 @@ import HeaderBar from "@components/common/header-bar";
 import HubCreateModal from "@modals/hub-modals/hub-create-modal";
 
 import { HeaderActionButtons } from "@components/app/header/header-actions";
-import { HeaderLinks } from "@components/app/header/header-links";
 import { HeaderLogo } from "@components/app/header/header-logo";
 import { FooterLink, Hub, Link, LinkGroup } from "@lib/schema";
 import Hero from "../hero";
@@ -51,7 +50,7 @@ export default function HubPage({
       />
       <HeaderBar
         left={<HeaderLogo />}
-        middle={HeaderLinks}
+        // middle={HeaderLinks}
         right={<HeaderActionButtons />}
       />
       <Hero />
