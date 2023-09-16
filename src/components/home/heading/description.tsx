@@ -1,3 +1,5 @@
+"use client";
+
 import { Text } from "@mantine/core";
 import type { ReactNode } from "react";
 

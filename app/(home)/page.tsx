@@ -1,7 +1,4 @@
-"use client";
-
 import { HeaderActions } from "@components/home/header/header-actions";
-import { HeaderLinks } from "@components/home/header/header-links";
 import { HeaderLogo } from "@components/home/header/header-logo";
 
 import HeaderBar from "@components/common/header-bar";
@@ -13,11 +10,15 @@ export default function page() {
     <>
       <HeaderBar
         left={<HeaderLogo />}
-        middle={HeaderLinks}
+        // middle={<HeaderLinks toggleOpened={() => {}} />}
         right={<HeaderActions />}
       />
 
       <Hero />
+      {/* <StripePricingTable
+        pricingTableId="prctbl_1NqbQyLZDDYfVnf19VrFuHwh"
+        publishableKey={process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ?? ""}
+      /> */}
       <Pricing />
       {/* <Mission /> */}
       {/* <Features /> */}

@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Button,
   Container,
@@ -37,7 +39,7 @@ export function Hero() {
                 size="xl"
                 mt={40}
                 px={50}
-                style={{ fontSize: 22 }}
+                styles={{ label: { fontSize: 22 } }}
               >
                 Get Started
               </Button>
@@ -47,7 +49,7 @@ export function Hero() {
                 color="primary.4"
                 mt={40}
                 px={50}
-                style={{ fontSize: 22 }}
+                styles={{ label: { fontSize: 22 } }}
                 component="a"
                 target="_blank"
                 rel="noopener noreferrer"

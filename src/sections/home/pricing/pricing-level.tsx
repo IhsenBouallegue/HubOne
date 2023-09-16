@@ -1,3 +1,6 @@
+"use client";
+
+import { API_URL } from "@lib/useQueries";
 import {
   Box,
   Button,
@@ -8,33 +11,34 @@ import {
   Title,
   useMantineTheme,
 } from "@mantine/core";
+import { loadStripe } from "@stripe/stripe-js";
 import { IconArrowLeft, IconCheck } from "@tabler/icons-react";
+import Stripe from "stripe";
 
 export function PricingLevel({
   color,
   title,
   price,
+  priceId,
   description,
   frequency,
   lastLevel = "",
   specialOffer = "",
   features,
   button,
-  onClick,
 }: {
   color: string;
   title: string;
   price: string;
+  priceId: string;
   description: string;
   frequency: string;
   lastLevel?: string;
   specialOffer?: string;
   features: string[];
   button: string;
-  onClick: () => void;
 }) {
   const theme = useMantineTheme();
-
   return (
     <Card
       w={320}
@@ -114,10 +118,20 @@ export function PricingLevel({
             paddingRight: 20,
           },
         }}
-        onClick={onClick}
         fullWidth
+        onClick={async () => {
+          const res = await fetch(`${API_URL}/create-checkout-session`, {
+            method: "POST",
+            body: JSON.stringify({ price: priceId }),
+          });
+          const session: Stripe.Checkout.Session = await res.json();
+          const clientStripe = await loadStripe(
+            process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string
+          );
+          await clientStripe?.redirectToCheckout({ sessionId: session.id });
+        }}
       >
-        {button}
+        {priceId + button}
       </Button>
     </Card>
   );

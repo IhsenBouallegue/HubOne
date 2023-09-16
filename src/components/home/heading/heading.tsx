@@ -1,6 +1,4 @@
-import { Stack, Title } from "@mantine/core";
-
-import { Description } from "./description";
+import { Stack, Text, Title } from "@mantine/core";
 
 import classes from "./heading.module.css";
 
@@ -16,7 +14,8 @@ export function Heading({
       <Title className={classes.heading} size="4em" ta="center" mt="sm">
         {title}
       </Title>
-      <Description>{description}</Description>
+      <Text>{description}</Text>
+      {/* <Description>{description}</Description> */}
     </Stack>
   );
 }

@@ -4,7 +4,8 @@ import { useAuth } from "@clerk/nextjs";
 import { showNotification } from "@mantine/notifications";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-const API_URL = `${process.env.NEXT_PUBLIC_SERVER_BASE_URL || ""}/api/`;
+export const API_URL = `${process.env.NEXT_PUBLIC_SERVER_BASE_URL || ""}/api/`;
+
 async function simpleFetchByHubId<T>(
   QUERY_NAME: string,
   hubId: number

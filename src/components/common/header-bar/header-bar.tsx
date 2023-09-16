@@ -2,17 +2,15 @@
 
 import { Burger, Collapse, Group, Paper } from "@mantine/core";
 import { useToggle } from "@mantine/hooks";
-import { ComponentType, ReactNode, SetStateAction } from "react";
+import { ReactNode } from "react";
 
 export function HeaderBar({
   left,
-  middle: Middle,
+  // middle,
   right,
 }: {
   left: ReactNode;
-  middle: ComponentType<{
-    toggleOpened: (value?: SetStateAction<boolean> | undefined) => void;
-  }>;
+  // middle: ReactNode;
   right: ReactNode;
 }) {
   const [opened, toggleOpened] = useToggle();
@@ -50,13 +48,13 @@ export function HeaderBar({
             transform: "translate(-50%, 0)",
           }}
         >
-          <Middle toggleOpened={toggleOpened} />
+          {/* {middle({ toggleOpened })} */}
         </Group>
         {right}
       </Group>
       <Collapse in={opened}>
         <Group gap="md" mt="sm">
-          <Middle toggleOpened={toggleOpened} />
+          {/* {middle({ toggleOpened })} */}
         </Group>
       </Collapse>
     </Paper>

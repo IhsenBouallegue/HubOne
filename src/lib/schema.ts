@@ -1,83 +1,75 @@
 import { InferSelectModel, relations } from "drizzle-orm";
 import {
   boolean,
-  integer,
-  pgTable,
+  int,
+  mysqlTable,
   serial,
   text,
   timestamp,
   uniqueIndex,
-} from "drizzle-orm/pg-core";
+  varchar,
+} from "drizzle-orm/mysql-core";
 
-export const hubs = pgTable(
+export const hubs = mysqlTable(
   "hubs",
   {
     id: serial("id").primaryKey().notNull(),
-    hubName: text("hub_name").notNull(),
-    hubLogo: text("hub_logo").notNull(),
-    hubPath: text("hub_path").default("/").notNull(),
-    primaryColor: text("primary_color").default("#ff008c").notNull(),
-    secondaryColor: text("secondary_color").default("#0cd4f7").notNull(),
+    hubName: varchar("hub_name", { length: 256 }).notNull(),
+    hubLogo: varchar("hub_logo", { length: 256 }).notNull(),
+    hubPath: varchar("hub_path", { length: 256 }).default("/").notNull(),
+    primaryColor: varchar("primary_color", { length: 256 })
+      .default("#ff008c")
+      .notNull(),
+    secondaryColor: varchar("secondary_color", { length: 256 })
+      .default("#0cd4f7")
+      .notNull(),
     description: text("description")
       .default(
         "Tired of keeping track of new websites? Tired of having to update your bookmarks every few weeks? Access all sites from this one page. Everything is up to date. No need to clutter your life anymore!"
       )
       .notNull(),
-    hubSpaceId: integer("hubspace_id")
-      .notNull()
-      .references(() => hubSpaces.id, {
-        onDelete: "restrict",
-        onUpdate: "cascade",
-      }),
+    hubSpaceId: int("hubspace_id").notNull(),
   },
   (table) => ({
-    hubPathKey: uniqueIndex("hub_hub_path_key").on(table.hubPath),
+    hubPathKey: uniqueIndex("hub_hub_path_key").on(
+      table.hubPath,
+      table.hubSpaceId
+    ),
   })
 );
 
-export const links = pgTable("links", {
+export const links = mysqlTable("links", {
   id: serial("id").primaryKey().notNull(),
-  title: text("title").notNull(),
+  title: varchar("title", { length: 256 }).notNull(),
   description: text("description").notNull(),
-  image: text("image").default("").notNull(),
-  link: text("link").notNull(),
+  image: varchar("image", { length: 256 }).default("").notNull(),
+  link: varchar("link", { length: 256 }).notNull(),
   isInternal: boolean("is_internal").default(false).notNull(),
-  linkGroupId: integer("link_group_id").references(() => linkGroups.id, {
-    onDelete: "set null",
-    onUpdate: "cascade",
-  }),
-  hubId: integer("hub_id")
-    .notNull()
-    .references(() => hubs.id, { onDelete: "restrict", onUpdate: "cascade" }),
+  linkGroupId: int("link_group_id"),
+  hubId: int("hub_id").notNull(),
 });
 
-export const footerLinks = pgTable("footer_links", {
+export const footerLinks = mysqlTable("footer_links", {
   id: serial("id").primaryKey().notNull(),
-  title: text("title").notNull(),
-  link: text("link").notNull(),
-  hubId: integer("hub_id")
-    .notNull()
-    .references(() => hubs.id, { onDelete: "restrict", onUpdate: "cascade" }),
+  title: varchar("title", { length: 256 }).notNull(),
+  link: varchar("link", { length: 256 }).notNull(),
+  hubId: int("hub_id").notNull(),
 });
 
-export const linkGroups = pgTable("link_groups", {
+export const linkGroups = mysqlTable("link_groups", {
   id: serial("id").primaryKey().notNull(),
-  title: text("title").notNull(),
-  hubId: integer("hub_id")
-    .notNull()
-    .references(() => hubs.id, { onDelete: "restrict", onUpdate: "cascade" }),
+  title: varchar("title", { length: 256 }).notNull(),
+  hubId: int("hub_id").notNull(),
 });
 
-export const hubSpaces = pgTable(
+export const hubSpaces = mysqlTable(
   "hubspaces",
   {
     id: serial("id").primaryKey().notNull(),
-    domain: text("domain").notNull(),
-    ownerId: text("owner_id").notNull(),
+    domain: varchar("domain", { length: 256 }).notNull(),
+    ownerId: varchar("owner_id", { length: 256 }).notNull(),
     isPublic: boolean("is_public").default(false).notNull(),
-    createdAt: timestamp("created_at", { withTimezone: true })
-      .notNull()
-      .defaultNow(),
+    createdAt: timestamp("created_at").defaultNow(),
   },
   (table) => ({
     domainKey: uniqueIndex("hubspaces_domain_key").on(table.domain),

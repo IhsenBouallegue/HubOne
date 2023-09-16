@@ -23,18 +23,28 @@ export async function POST(req: NextRequest) {
         { status: 403 }
       );
 
-    const insertedItems = await db
+    const { insertId } = await db
       .insert(hubSpaces)
-      .values({ ...body, ownerId: orgId ?? userId })
-      .returning();
-    const insertertedHubSpace = insertedItems[0];
+      .values({ ...body, ownerId: orgId ?? userId });
+
+    const insertertedHubSpace = await db.query.hubSpaces.findFirst({
+      where: eq(hubSpaces.id, Number(insertId)),
+    });
+
+    if (insertertedHubSpace === undefined)
+      return NextResponse.json(
+        { error: "Hub Space not found" },
+        { status: 404 }
+      );
+
     await db.insert(hubs).values({
       hubSpaceId: insertertedHubSpace.id,
       hubName: insertertedHubSpace.domain,
+      hubPath: "/",
       hubLogo: "",
     });
 
-    return NextResponse.json(insertedItems[0]);
+    return NextResponse.json(insertertedHubSpace);
   } catch (error) {
     return NextResponse.json({ error }, { status: 500 });
   }

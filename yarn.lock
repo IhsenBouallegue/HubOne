@@ -1335,6 +1335,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@planetscale/database@npm:^1.11.0":
+  version: 1.11.0
+  resolution: "@planetscale/database@npm:1.11.0"
+  checksum: 587caf811780e48fe91da8a1b569a2b94d163f2c8d0aa95c40c75f43b240f4323e7b6433a4d2ee3a5022a746fc4e6d350260cdac1ff267775287738170c8a2e4
+  languageName: node
+  linkType: hard
+
 "@pnpm/config.env-replace@npm:^1.1.0":
   version: 1.1.0
   resolution: "@pnpm/config.env-replace@npm:1.1.0"
@@ -1496,6 +1503,13 @@ __metadata:
     "@sigstore/protobuf-specs": ^0.2.0
     tuf-js: ^1.1.7
   checksum: 0a32594b73ce3b3a4dfeec438ff98866a952a48ee6c020ddf57795062d9d328bc4327bb0e0c8d24011e3870c7d4670bc142a47025cbe7218c776f08084085421
+  languageName: node
+  linkType: hard
+
+"@stripe/stripe-js@npm:2.1.5":
+  version: 2.1.5
+  resolution: "@stripe/stripe-js@npm:2.1.5"
+  checksum: db7868c0f9ac5254a3e94e640d046e81529a8d8553d6aee361cf97f198af9740ae2debb9651287fc366d84f7cdcb2bb5b73cb61761df94f0b1d67c15be92c033
   languageName: node
   linkType: hard
 
@@ -1755,7 +1769,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*":
+"@types/node@npm:*, @types/node@npm:>=8.1.0":
   version: 20.6.0
   resolution: "@types/node@npm:20.6.0"
   checksum: 52611801af5cf151c6fac1963aa4a8a8ca2e388a9e9ed82b01b70bca762088ded5b32cc789c5564220d5d7dccba2b8dd34446a3d4fc74736805e1f2cf262e29d
@@ -4882,6 +4896,8 @@ __metadata:
     "@mantine/hooks": 7.0.0-beta.4
     "@mantine/notifications": 7.0.0-beta.4
     "@next/eslint-plugin-next": ^13.4.19
+    "@planetscale/database": ^1.11.0
+    "@stripe/stripe-js": 2.1.5
     "@tabler/icons-react": ^2.17.0
     "@tanstack/react-query": ^4.12.0
     "@tanstack/react-query-devtools": ^4.12.0
@@ -4917,6 +4933,7 @@ __metadata:
     react-dom: 18.2.0
     react-scroll: ^1.8.8
     semantic-release: ^21.0.0
+    stripe: ^13.5.0
     ts-node: ^10.9.1
     typescript: 5.1.6
     zustand: ^4.3.7
@@ -7652,6 +7669,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"qs@npm:^6.11.0":
+  version: 6.11.2
+  resolution: "qs@npm:6.11.2"
+  dependencies:
+    side-channel: ^1.0.4
+  checksum: e812f3c590b2262548647d62f1637b6989cc56656dc960b893fe2098d96e1bd633f36576f4cd7564dfbff9db42e17775884db96d846bebe4f37420d073ecdc0b
+  languageName: node
+  linkType: hard
+
 "queue-microtask@npm:^1.2.2":
   version: 1.2.3
   resolution: "queue-microtask@npm:1.2.3"
@@ -8673,6 +8699,16 @@ __metadata:
   version: 2.0.1
   resolution: "strip-json-comments@npm:2.0.1"
   checksum: 1074ccb63270d32ca28edfb0a281c96b94dc679077828135141f27d52a5a398ef5e78bcf22809d23cadc2b81dfbe345eb5fd8699b385c8b1128907dec4a7d1e1
+  languageName: node
+  linkType: hard
+
+"stripe@npm:^13.5.0":
+  version: 13.5.0
+  resolution: "stripe@npm:13.5.0"
+  dependencies:
+    "@types/node": ">=8.1.0"
+    qs: ^6.11.0
+  checksum: 36c02a051d886a3f737c6e5b8c405470221cc59c256736269a0eb33e0b29d38771ddc66b835c41b8dd963f41441f2cca32af70e5dd84a31f72526e65d9cb8f39
   languageName: node
   linkType: hard
 

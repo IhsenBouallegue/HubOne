@@ -3,7 +3,6 @@ import { AuthObject } from "@clerk/nextjs/dist/types/server";
 import { NextRequest, NextResponse } from "next/server";
 
 const DASHBOARD_PATH = "dashboard";
-const HOME_DOMAIN = "";
 
 export const config = {
   matcher: [

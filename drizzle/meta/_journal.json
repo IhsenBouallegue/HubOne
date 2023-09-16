@@ -1,13 +1,1 @@
-{
-  "version": "5",
-  "dialect": "pg",
-  "entries": [
-    {
-      "idx": 0,
-      "version": "5",
-      "when": 1693438455454,
-      "tag": "0000_massive_red_shift",
-      "breakpoints": true
-    }
-  ]
-}
+{"version":"5","dialect":"mysql","entries":[]}
