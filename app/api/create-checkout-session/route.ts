@@ -4,9 +4,8 @@ import { stripe } from "@lib/stripe";
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
-// data needed for checkout
 export interface CheckoutSubscriptionBody {
-  price: string;
+  priceId: string;
 }
 
 export async function POST(req: Request) {
@@ -27,19 +26,17 @@ export async function POST(req: Request) {
       customer: customeId,
       line_items: [
         {
-          price: body.price,
+          price: body.priceId,
           quantity: 1,
         },
       ],
       mode: "subscription",
       success_url: `${origin}/thankyou?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${origin}/cancel?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${origin}`,
     });
     return NextResponse.json(session, { status: 200 });
   } catch (error) {
     if (error instanceof Stripe.errors.StripeError) {
-      console.log(error);
-
       const { message } = error;
       return NextResponse.json({ message }, { status: error.statusCode });
     }

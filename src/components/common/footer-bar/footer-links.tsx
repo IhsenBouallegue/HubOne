@@ -1,3 +1,5 @@
+"use client";
+
 import { useHubOneStore } from "@lib/Store";
 import { FooterLink } from "@lib/schema";
 import { useFetchByHubId } from "@lib/useQueries";

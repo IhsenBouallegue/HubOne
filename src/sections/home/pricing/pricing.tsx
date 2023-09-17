@@ -17,23 +17,28 @@ export async function Pricing() {
       />
 
       <Group style={{ overflow: "visible" }}>
-        {products.map((product) => (
-          <PricingLevel
-            color={"#000"}
-            title={"test"}
-            price="Free"
-            priceId={product.id}
-            description="More than enough to get you started. You can create your own Hubs and share them with your team."
-            frequency="forever"
-            features={[
-              "1 HubSpace",
-              "Up to 10 users",
-              "Fully featured Edit Mode",
-              "Lifetime updates",
-            ]}
-            button=""
-          />
-        ))}
+        {Object.keys(products).map((productId) => {
+          const { name, description, prices } = products[productId];
+          return (
+            <PricingLevel
+              color={"#000"}
+              title={name}
+              price={Number(prices[0].unit_amount) / 100}
+              priceId={prices[0].id}
+              currency={prices[0].currency}
+              description={description ?? ""}
+              frequency="month"
+              features={[
+                "1 HubSpace",
+                "Up to 10 users",
+                "Fully featured Edit Mode",
+                "Lifetime updates",
+              ]}
+              button="Get Started"
+              specialOffer={name === "Pro" ? "Most Popular" : ""}
+            />
+          );
+        })}
       </Group>
     </Section>
   );

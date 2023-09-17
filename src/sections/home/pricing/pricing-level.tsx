@@ -1,5 +1,6 @@
 "use client";
 
+import { useUser } from "@clerk/nextjs";
 import { API_URL } from "@lib/useQueries";
 import {
   Box,
@@ -13,6 +14,8 @@ import {
 } from "@mantine/core";
 import { loadStripe } from "@stripe/stripe-js";
 import { IconArrowLeft, IconCheck } from "@tabler/icons-react";
+import { useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 import Stripe from "stripe";
 
 export function PricingLevel({
@@ -24,26 +27,62 @@ export function PricingLevel({
   frequency,
   lastLevel = "",
   specialOffer = "",
+  currency,
   features,
   button,
 }: {
   color: string;
   title: string;
-  price: string;
+  price: number;
   priceId: string;
   description: string;
   frequency: string;
   lastLevel?: string;
+  currency: string;
   specialOffer?: string;
   features: string[];
   button: string;
 }) {
   const theme = useMantineTheme();
+  const { isSignedIn } = useUser();
+  const searchParams = useSearchParams();
+  const priceIdParam = searchParams.get("priceId");
+
+  useEffect(() => {
+    if (isSignedIn && priceIdParam && priceIdParam === priceId) {
+      redirectToCheckout(priceId);
+    }
+  }, []);
+
+  const redirectToCheckout = async (checkoutPriceId: string) => {
+    const res = await fetch(`${API_URL}/create-checkout-session`, {
+      method: "POST",
+      body: JSON.stringify({ priceId: checkoutPriceId }),
+    });
+    const session: Stripe.Checkout.Session = await res.json();
+    const clientStripe = await loadStripe(
+      process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string
+    );
+    await clientStripe?.redirectToCheckout({ sessionId: session.id });
+  };
+
+  const handleClick = async () => {
+    if (!isSignedIn) {
+      window.Clerk.mountSignUp(document.getElementById("sign-up"));
+      window.Clerk.openSignUp({
+        afterSignInUrl: `?priceId=${priceId}`,
+      });
+    } else {
+      redirectToCheckout(priceId);
+    }
+  };
+
   return (
     <Card
       w={320}
       shadow="lg"
       radius="lg"
+      p="xl"
       style={{
         display: "flex",
         flexDirection: "column",
@@ -51,7 +90,6 @@ export function PricingLevel({
         gap: theme.spacing.xl,
         overflow: "visible",
       }}
-      p="xl"
     >
       {specialOffer && (
         <Box
@@ -78,11 +116,11 @@ export function PricingLevel({
         <Title order={2} size="1em" mb="1em" ta="center" c={color}>
           {title}
         </Title>
-        <Group align="center" gap="xs">
-          <Title order={2} size="3em" ta="center">
-            {price}
+        <Group align="center" gap="xs" justify="center">
+          <Title order={2} size="3em">
+            {price} {currency === "eur" ? "€" : ""}
           </Title>
-          <Title order={2} size="0.6em" ta="center" c="dimmed">
+          <Title order={2} size="0.6em" c="dimmed">
             {frequency}
           </Title>
         </Group>
@@ -119,20 +157,19 @@ export function PricingLevel({
           },
         }}
         fullWidth
-        onClick={async () => {
-          const res = await fetch(`${API_URL}/create-checkout-session`, {
-            method: "POST",
-            body: JSON.stringify({ price: priceId }),
-          });
-          const session: Stripe.Checkout.Session = await res.json();
-          const clientStripe = await loadStripe(
-            process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string
-          );
-          await clientStripe?.redirectToCheckout({ sessionId: session.id });
-        }}
+        onClick={handleClick}
       >
-        {priceId + button}
+        {isSignedIn ? button : "Sign Up"}
       </Button>
     </Card>
   );
+}
+
+declare global {
+  interface Window {
+    Clerk: {
+      mountSignUp: (signIn: HTMLElement | null) => void;
+      openSignUp: (options: { afterSignInUrl: string }) => void;
+    };
+  }
 }

@@ -1,6 +1,7 @@
 import { HeaderActions } from "@components/home/header/header-actions";
 import { HeaderLogo } from "@components/home/header/header-logo";
 
+import FooterBar from "@components/common/footer-bar";
 import HeaderBar from "@components/common/header-bar";
 import Hero from "@sections/home/hero";
 import Pricing from "@sections/home/pricing";
@@ -23,7 +24,7 @@ export default function page() {
       {/* <Mission /> */}
       {/* <Features /> */}
       {/* <Contact /> */}
-      {/* <FooterBar /> */}
+      <FooterBar />
     </>
   );
 }
