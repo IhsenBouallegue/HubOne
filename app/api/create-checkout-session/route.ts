@@ -19,11 +19,11 @@ export async function POST(req: Request) {
         { message: "You must be logged in to subscribe" },
         { status: 500 }
       );
-    const customeId = await findOrCreateCustomerId({ clerkUserId });
+    const customerId = await findOrCreateCustomerId({ clerkUserId });
     const session = await stripe.checkout.sessions.create({
       // if user is logged in, stripe will set the email in the checkout page
       billing_address_collection: "auto",
-      customer: customeId,
+      customer: customerId,
       line_items: [
         {
           price: body.priceId,

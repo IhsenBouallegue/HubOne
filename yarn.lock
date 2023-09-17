@@ -4933,7 +4933,7 @@ __metadata:
     react-dom: 18.2.0
     react-scroll: ^1.8.8
     semantic-release: ^21.0.0
-    stripe: ^13.5.0
+    stripe: 13.6.0
     ts-node: ^10.9.1
     typescript: 5.1.6
     zustand: ^4.3.7
@@ -8702,13 +8702,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"stripe@npm:^13.5.0":
-  version: 13.5.0
-  resolution: "stripe@npm:13.5.0"
+"stripe@npm:13.6.0":
+  version: 13.6.0
+  resolution: "stripe@npm:13.6.0"
   dependencies:
     "@types/node": ">=8.1.0"
     qs: ^6.11.0
-  checksum: 36c02a051d886a3f737c6e5b8c405470221cc59c256736269a0eb33e0b29d38771ddc66b835c41b8dd963f41441f2cca32af70e5dd84a31f72526e65d9cb8f39
+  checksum: 5313fd88aecdae701967ee7cd3c41be4a31b3aefc45a07f164895f5f7870217e8f2d9ba18973dc760e2a46ed51e5733b6e7f517a5b0a247c1dbdf4b822d6c2d6
   languageName: node
   linkType: hard
 

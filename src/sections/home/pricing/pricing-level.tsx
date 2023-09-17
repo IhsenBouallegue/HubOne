@@ -170,6 +170,8 @@ declare global {
     Clerk: {
       mountSignUp: (signIn: HTMLElement | null) => void;
       openSignUp: (options: { afterSignInUrl: string }) => void;
+      load: () => Promise<void>;
+      openOrganizationProfile: () => void;
     };
   }
 }

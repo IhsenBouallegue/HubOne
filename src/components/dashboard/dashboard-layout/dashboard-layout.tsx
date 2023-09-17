@@ -1,7 +1,12 @@
 "use client";
 
-import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
+import {
+  OrganizationSwitcher,
+  UserButton,
+  useOrganization,
+} from "@clerk/nextjs";
 import ResponsiveLogo from "@components/common/responsive-logo";
+import { API_URL } from "@lib/useQueries";
 import { AppShell, Burger, Button, Group, Stack, rem } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import {
@@ -20,6 +25,7 @@ export default function DashboardLayout({
 }) {
   const [opened, { toggle }] = useDisclosure();
   const segment = useSelectedLayoutSegment();
+  const { organization } = useOrganization();
 
   return (
     <AppShell
@@ -76,28 +82,36 @@ export default function DashboardLayout({
           >
             HubSpaces
           </Button>
+          {organization && (
+            <Button
+              variant={segment === "members" ? "light" : "subtle"}
+              size="md"
+              styles={{ inner: { justifyContent: "left" } }}
+              onClick={async () => {
+                await window.Clerk.load();
+                window.Clerk.openOrganizationProfile();
+              }}
+              leftSection={<IconUsers />}
+            >
+              Organization
+            </Button>
+          )}
+
           <Button
-            component="a"
-            href="/dashboard/members"
-            variant={segment === "members" ? "light" : "subtle"}
-            size="md"
-            styles={{ inner: { justifyContent: "left" } }}
-            disabled
-            leftSection={<IconUsers />}
-          >
-            Members
-          </Button>
-          <Button
-            component="a"
-            href="/dashboard/billing"
             variant={segment === "billing" ? "light" : "subtle"}
             size="md"
             styles={{ inner: { justifyContent: "left" } }}
-            disabled
             leftSection={<IconFileInvoice />}
+            onClick={() =>
+              fetch(`${API_URL}/billing-portal`, { method: "POST" })
+                .then((res) => res.json())
+                // biome-ignore lint/suspicious/noAssignInExpressions: <explanation>
+                .then((res) => (window.location.href = res.url))
+            }
           >
             Billing
           </Button>
+          {/* <BillingPortalRedirectButton>Billing</BillingPortalRedirectButton> */}
         </Stack>
       </AppShell.Navbar>
       <AppShell.Main>{children}</AppShell.Main>
