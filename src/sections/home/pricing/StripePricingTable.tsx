@@ -3,9 +3,11 @@ import Script from "next/script";
 export function StripePricingTable({
   pricingTableId,
   publishableKey,
+  clientReferenceId,
 }: {
   pricingTableId: string;
   publishableKey: string;
+  clientReferenceId: string;
 }) {
   if (!pricingTableId || !publishableKey) return null;
   return (
@@ -18,6 +20,7 @@ export function StripePricingTable({
       <stripe-pricing-table
         pricing-table-id={pricingTableId}
         publishable-key={publishableKey}
+        client-reference-id={clientReferenceId}
       />
     </>
   );

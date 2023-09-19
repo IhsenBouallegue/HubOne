@@ -18,10 +18,11 @@ export async function Pricing() {
 
       <Group style={{ overflow: "visible" }}>
         {Object.keys(products).map((productId) => {
-          const { name, description, prices } = products[productId];
+          const { name, color, description, prices } = products[productId];
           return (
             <PricingLevel
-              color={"#000"}
+              key={name}
+              color={color ?? "#000"}
               title={name}
               price={Number(prices[0].unit_amount) / 100}
               priceId={prices[0].id}

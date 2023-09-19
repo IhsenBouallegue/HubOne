@@ -9,6 +9,7 @@ interface Products {
   [productId: string]: {
     name: string;
     description: string | null;
+    color: string | undefined;
     prices: Stripe.Price[];
   };
 }
@@ -24,6 +25,7 @@ export const getProducts = async () => {
     productMap[product.id] = {
       name: product.name,
       description: product.description,
+      color: product.metadata.color,
       prices: prices.data.filter((price) => price.product === product.id),
     };
   });

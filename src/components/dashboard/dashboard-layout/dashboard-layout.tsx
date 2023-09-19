@@ -13,10 +13,12 @@ import {
   IconFileInvoice,
   IconHome,
   IconLayoutDashboard,
+  IconMap,
   IconUsers,
 } from "@tabler/icons-react";
 import { useSelectedLayoutSegment } from "next/navigation";
 import { ReactNode } from "react";
+import SubscriptionBadge from "../subscription-badge";
 
 export default function DashboardLayout({
   children,
@@ -53,6 +55,7 @@ export default function DashboardLayout({
                   },
                 }}
               />
+              <SubscriptionBadge />
             </Group>
             <Group mr="lg">
               <UserButton />
@@ -96,7 +99,16 @@ export default function DashboardLayout({
               Organization
             </Button>
           )}
-
+          <Button
+            component="a"
+            href="/dashboard/plans"
+            variant={segment === "plans" ? "light" : "subtle"}
+            size="md"
+            styles={{ inner: { justifyContent: "left" } }}
+            leftSection={<IconMap />}
+          >
+            Plans
+          </Button>
           <Button
             variant={segment === "billing" ? "light" : "subtle"}
             size="md"
@@ -111,7 +123,6 @@ export default function DashboardLayout({
           >
             Billing
           </Button>
-          {/* <BillingPortalRedirectButton>Billing</BillingPortalRedirectButton> */}
         </Stack>
       </AppShell.Navbar>
       <AppShell.Main>{children}</AppShell.Main>

@@ -4,15 +4,18 @@ import { stripe } from "@lib/stripe";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
+  const origin = req.headers.get("origin") || "http://localhost:3000";
   try {
-    const { userId: clerkUserId } = auth();
-    if (!clerkUserId)
+    const { userId, orgId } = auth();
+    if (!userId)
       return NextResponse.json(
-        { message: "You must be logged in to subscribe" },
+        { message: "You must be logged in to manage billing" },
         { status: 500 }
       );
-    const customerId = await findOrCreateCustomerId({ clerkUserId });
-    const origin = req.headers.get("origin") || "http://localhost:3000";
+    const customerId = await findOrCreateCustomerId({
+      clerkUserId: userId,
+      clerkOrgId: orgId,
+    });
 
     const { url } = await stripe.billingPortal.sessions.create({
       customer: customerId,

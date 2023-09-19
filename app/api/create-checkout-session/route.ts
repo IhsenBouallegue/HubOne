@@ -13,15 +13,19 @@ export async function POST(req: Request) {
   const origin = req.headers.get("origin") || "http://localhost:3000";
 
   try {
-    const { userId: clerkUserId } = auth();
-    if (!clerkUserId)
+    const { userId, orgId, user } = auth();
+    if (!userId)
       return NextResponse.json(
         { message: "You must be logged in to subscribe" },
         { status: 500 }
       );
-    const customerId = await findOrCreateCustomerId({ clerkUserId });
+    const customerId = await findOrCreateCustomerId({
+      clerkUserId: userId,
+      clerkOrgId: orgId,
+    });
+
     const session = await stripe.checkout.sessions.create({
-      // if user is logged in, stripe will set the email in the checkout page
+      customer_email: user?.emailAddresses[0].emailAddress,
       billing_address_collection: "auto",
       customer: customerId,
       line_items: [
@@ -31,10 +35,11 @@ export async function POST(req: Request) {
         },
       ],
       mode: "subscription",
-      success_url: `${origin}/thankyou?session_id={CHECKOUT_SESSION_ID}`,
+      success_url: `${origin}/dashboard`,
       cancel_url: `${origin}`,
     });
-    return NextResponse.json(session, { status: 200 });
+
+    return NextResponse.json({ url: session.url }, { status: 200 });
   } catch (error) {
     if (error instanceof Stripe.errors.StripeError) {
       const { message } = error;
