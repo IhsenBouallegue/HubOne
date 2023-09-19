@@ -1,3 +1,4 @@
+import { JwtPayload } from "@clerk/types";
 import Stripe from "stripe";
 
 export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
@@ -31,3 +32,22 @@ export const getProducts = async () => {
   });
   return productMap;
 };
+
+export function getStripeCustomerId(sessionClaims: JwtPayload | null) {
+  let stripeCustomerId = "";
+  const { stripeCustomerId: orgStripeCustomerId } =
+    sessionClaims?.orgPublicMetadata as {
+      stripeCustomerId: string | undefined;
+    };
+
+  const { stripeCustomerId: userStripeCustomerId } =
+    sessionClaims?.userPublicMetadata as {
+      stripeCustomerId: string | undefined;
+    };
+  if (orgStripeCustomerId) {
+    stripeCustomerId = orgStripeCustomerId;
+  } else if (userStripeCustomerId) {
+    stripeCustomerId = userStripeCustomerId;
+  }
+  return stripeCustomerId;
+}

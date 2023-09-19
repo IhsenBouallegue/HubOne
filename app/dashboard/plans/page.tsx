@@ -1,11 +1,10 @@
 import { auth } from "@clerk/nextjs";
+import { getStripeCustomerId } from "@lib/stripe";
 import { StripePricingTable } from "@sections/home/pricing/StripePricingTable";
-import { getStripeCustomerId } from "app/api/products/route";
 
 export default function Page() {
   const { sessionClaims } = auth();
   const clientReferenceId = getStripeCustomerId(sessionClaims);
-  console.log(clientReferenceId);
 
   return (
     <StripePricingTable

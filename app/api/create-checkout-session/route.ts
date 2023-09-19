@@ -4,7 +4,7 @@ import { stripe } from "@lib/stripe";
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
-export interface CheckoutSubscriptionBody {
+interface CheckoutSubscriptionBody {
   priceId: string;
 }
 

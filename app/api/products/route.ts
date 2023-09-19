@@ -1,6 +1,5 @@
 import { auth } from "@clerk/nextjs";
-import { JwtPayload } from "@clerk/types";
-import { stripe } from "@lib/stripe";
+import { getStripeCustomerId, stripe } from "@lib/stripe";
 import { NextResponse } from "next/server";
 
 export async function GET() {
@@ -18,23 +17,4 @@ export async function GET() {
   console.log(product);
 
   return NextResponse.json(product);
-}
-
-export function getStripeCustomerId(sessionClaims: JwtPayload | null) {
-  let stripeCustomerId = "";
-  const { stripeCustomerId: orgStripeCustomerId } =
-    sessionClaims?.orgPublicMetadata as {
-      stripeCustomerId: string | undefined;
-    };
-
-  const { stripeCustomerId: userStripeCustomerId } =
-    sessionClaims?.userPublicMetadata as {
-      stripeCustomerId: string | undefined;
-    };
-  if (orgStripeCustomerId) {
-    stripeCustomerId = orgStripeCustomerId;
-  } else if (userStripeCustomerId) {
-    stripeCustomerId = userStripeCustomerId;
-  }
-  return stripeCustomerId;
 }
