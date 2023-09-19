@@ -14,7 +14,6 @@ export async function GET() {
     return NextResponse.json({ message: "No product found" }, { status: 500 });
 
   const product = await stripe.products.retrieve(subscribedProductId as string);
-  console.log(product);
 
   return NextResponse.json(product);
 }

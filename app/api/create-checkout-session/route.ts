@@ -38,6 +38,8 @@ export async function POST(req: Request) {
       success_url: `${origin}/dashboard`,
       cancel_url: `${origin}`,
     });
+    if (session.url === null)
+      return NextResponse.json({ message: "No session url" }, { status: 500 });
 
     return NextResponse.json({ url: session.url }, { status: 200 });
   } catch (error) {
@@ -45,5 +47,6 @@ export async function POST(req: Request) {
       const { message } = error;
       return NextResponse.json({ message }, { status: error.statusCode });
     }
+    return NextResponse.json({ error }, { status: 500 });
   }
 }
