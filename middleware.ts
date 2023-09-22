@@ -5,11 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 const DASHBOARD_PATH = "dashboard";
 
 export const config = {
-  matcher: [
-    "/((?!_next/|_static/|logo/|_vercel|[\\w-]+\\.\\w+).*)",
-    "/",
-    "/api(.*)",
-  ],
+  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
 };
 
 export async function routingMiddleware(
@@ -92,6 +88,6 @@ export async function routingMiddleware(
 }
 
 export default authMiddleware({
-  afterAuth: (auth, req) => routingMiddleware(auth, req),
+  // afterAuth: (auth, req) => routingMiddleware(auth, req),
   publicRoutes: ["/"],
 });
