@@ -92,4 +92,5 @@ export default authMiddleware({
   afterAuth: () => console.timeEnd("auth"),
   // afterAuth: (auth, req) => routingMiddleware(auth, req),
   publicRoutes: ["/"],
+  debug: true,
 });
