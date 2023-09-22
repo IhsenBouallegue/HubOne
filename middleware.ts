@@ -1,20 +1,11 @@
-import { authMiddleware, redirectToSignIn } from "@clerk/nextjs";
-import { AuthObject } from "@clerk/nextjs/dist/types/server";
+import { authMiddleware } from "@clerk/nextjs";
 import { NextRequest, NextResponse } from "next/server";
-
-const DASHBOARD_PATH = "dashboard";
 
 export const config = {
   matcher: ["/((?!.+\\.[\\w]+$|_next|favicon.ico).*)", "/", "/(api|trpc)(.*)"],
 };
 
-export async function routingMiddleware(
-  auth: AuthObject & {
-    isPublicRoute: boolean;
-    isApiRoute: boolean;
-  },
-  req: NextRequest
-) {
+export async function routingMiddleware(req: NextRequest) {
   const url = req.nextUrl;
   const allowedSubdomainRegex = new RegExp(
     `^https?://(\\w+\\.)?(${process.env.NEXT_PUBLIC_ROOT_DOMAIN}|localhost:3000)$`,
@@ -46,29 +37,6 @@ export async function routingMiddleware(
 
   // Get the pathname of the request (e.g. /, /about, /blog/first-post)
   const path = url.pathname;
-  const dashboardRegex = new RegExp(
-    `^https?://(${process.env.NEXT_PUBLIC_ROOT_DOMAIN}|localhost:3000)/${DASHBOARD_PATH}`,
-    "i"
-  );
-  // rewrites for dashboardd pages
-  if (dashboardRegex.test(url.href)) {
-    const signInPath = process.env.NEXT_PUBLIC_CLERK_SIGN_IN_URL;
-    const signUpPath = process.env.NEXT_PUBLIC_CLERK_SIGN_UP_URL;
-    // TODO: just returning to home for no if env variables not founnd
-    if (!signInPath || !signUpPath)
-      return NextResponse.rewrite(new URL("/", req.url));
-    if (!auth.userId) {
-      return redirectToSignIn({ returnBackUrl: req.url });
-    }
-    const sanitisedPath = path.replace(`/${DASHBOARD_PATH}`, "");
-
-    return NextResponse.rewrite(
-      new URL(
-        `/${DASHBOARD_PATH}${sanitisedPath === "/" ? "" : sanitisedPath}`,
-        req.url
-      )
-    );
-  }
 
   // rewrite root application to `/home` folder
   if (
@@ -88,7 +56,6 @@ export async function routingMiddleware(
 }
 
 export default authMiddleware({
-  afterAuth: (auth, req) => routingMiddleware(auth, req),
+  afterAuth: (_auth, req) => routingMiddleware(req),
   publicRoutes: ["/"],
-  debug: true,
 });
