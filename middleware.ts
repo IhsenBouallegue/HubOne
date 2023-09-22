@@ -88,9 +88,7 @@ export async function routingMiddleware(
 }
 
 export default authMiddleware({
-  beforeAuth: () => console.time("auth"),
-  afterAuth: () => console.timeEnd("auth"),
-  // afterAuth: (auth, req) => routingMiddleware(auth, req),
+  afterAuth: (auth, req) => routingMiddleware(auth, req),
   publicRoutes: ["/"],
   debug: true,
 });
