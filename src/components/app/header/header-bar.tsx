@@ -1,34 +1,17 @@
 "use client";
 
-import { Burger, Collapse, Group, Paper } from "@mantine/core";
+import HeaderBase from "@components/common/header-base";
+import { Burger, Collapse, Group } from "@mantine/core";
 import { useToggle } from "@mantine/hooks";
-import { ReactNode } from "react";
+import { HeaderActions } from "./header-actions";
+import { HeaderLinks } from "./header-links";
+import { HeaderLogo } from "./header-logo";
 
-export function HeaderBar({
-  left,
-  // middle,
-  right,
-}: {
-  left: ReactNode;
-  // middle: ReactNode;
-  right: ReactNode;
-}) {
+export function HeaderBar() {
   const [opened, toggleOpened] = useToggle();
 
   return (
-    <Paper
-      px="xl"
-      py="md"
-      m="sm"
-      shadow="md"
-      radius="lg"
-      mih="4rem"
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        flexDirection: "column",
-      }}
-    >
+    <HeaderBase>
       <Group justify="space-between" w="100%">
         <Group>
           <Burger
@@ -37,7 +20,7 @@ export function HeaderBar({
             size="sm"
             hiddenFrom="sm"
           />
-          {left}
+          <HeaderLogo />
         </Group>
         <Group
           justify="lg"
@@ -48,15 +31,15 @@ export function HeaderBar({
             transform: "translate(-50%, 0)",
           }}
         >
-          {/* {middle({ toggleOpened })} */}
+          <HeaderLinks toggleOpened={toggleOpened} />
         </Group>
-        {right}
+        <HeaderActions />
       </Group>
       <Collapse in={opened}>
         <Group gap="md" mt="sm">
-          {/* {middle({ toggleOpened })} */}
+          <HeaderLinks toggleOpened={toggleOpened} />
         </Group>
       </Collapse>
-    </Paper>
+    </HeaderBase>
   );
 }

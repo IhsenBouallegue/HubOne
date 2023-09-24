@@ -1,6 +1,11 @@
 "use client";
 
-import { useOrganization } from "@clerk/nextjs";
+import {
+  OrganizationSwitcher,
+  UserButton,
+  useOrganization,
+} from "@clerk/nextjs";
+import ResponsiveLogo from "@components/common/responsive-logo";
 import { API_URL } from "@lib/useQueries";
 import { AppShell, Burger, Button, Group, Stack, rem } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
@@ -13,6 +18,7 @@ import {
 } from "@tabler/icons-react";
 import { useSelectedLayoutSegment } from "next/navigation";
 import { ReactNode } from "react";
+import SubscriptionBadge from "../subscription-badge";
 
 export default function DashboardLayout({
   children,
@@ -38,20 +44,22 @@ export default function DashboardLayout({
               hiddenFrom="sm"
               size="sm"
             />
-            {/* <ResponsiveLogo /> */}
+            <ResponsiveLogo />
           </Group>
           <Group justify="space-between" h="100%" style={{ flexGrow: 1 }}>
             <Group pl="xs">
-              {/* <OrganizationSwitcher
+              <OrganizationSwitcher
                 appearance={{
                   elements: {
                     rootBox: { display: "flex", justifyContent: "center" },
                   },
                 }}
               />
-              <SubscriptionBadge /> */}
+              <SubscriptionBadge />
             </Group>
-            <Group mr="lg">{/* <UserButton /> */}</Group>
+            <Group mr="lg">
+              <UserButton />
+            </Group>
           </Group>
         </Group>
       </AppShell.Header>

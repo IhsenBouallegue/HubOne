@@ -1,19 +1,12 @@
 "use client";
 
-import {
-  Button,
-  Container,
-  Group,
-  Image,
-  Text,
-  Title,
-  useMantineTheme,
-} from "@mantine/core";
+import { Button, Container, Group, Text, Title } from "@mantine/core";
 
+import { IconArchive, IconBook, IconUsers } from "@tabler/icons-react";
+import Image from "next/image";
 import classes from "./hero.module.css";
 
 export function Hero() {
-  const theme = useMantineTheme();
   return (
     <div className={classes.root}>
       <Container size="lg">
@@ -53,40 +46,92 @@ export function Hero() {
                 component="a"
                 target="_blank"
                 rel="noopener noreferrer"
-                href="https://hubspace1.huboneapp.com/"
+                href="https://public.huboneapp.com/"
               >
                 Live Demo
               </Button>
             </Group>
           </div>
+          <div
+            className={classes.bluredLinkCard}
+            style={{ right: "15%", rotate: "6deg", scale: "0.8" }}
+          >
+            <div style={{ height: "40%", display: "flex" }}>
+              <IconUsers
+                width={64}
+                height={64}
+                color="#333333"
+                style={{ margin: "auto" }}
+              />
+            </div>
+
+            <Text fw={800} size="xl">
+              Onboarding
+            </Text>
+            <Text size="sm">
+              A document containing all about onboarding new team members.
+            </Text>
+          </div>
+          <div
+            className={classes.bluredLinkCard}
+            style={{ right: "35%", top: "56%", rotate: "-6deg", scale: "0.9" }}
+          >
+            <div style={{ height: "40%", display: "flex" }}>
+              <IconArchive
+                width={64}
+                height={64}
+                color="#333333"
+                style={{ margin: "auto" }}
+              />
+            </div>
+            <Text fw={800} size="xl">
+              Documentation
+            </Text>
+            <Text size="sm">
+              Our public documentation website for internal and external users.
+            </Text>
+          </div>
+          <div
+            className={classes.bluredLinkCard}
+            style={{ right: "25%", top: "40%" }}
+          >
+            <div style={{ height: "40%", display: "flex" }}>
+              <IconBook
+                width={64}
+                height={64}
+                color="#333333"
+                style={{ margin: "auto" }}
+              />
+            </div>
+            <Text fw={800} size="xl">
+              Tutorials
+            </Text>
+            <Text size="sm">
+              A collection to of tutorials for the most used tools in our
+              compony.
+            </Text>
+          </div>
           <Image
-            styles={{
-              root: {
-                position: "absolute",
-                left: "60%",
-                top: "20%",
-                zIndex: -2,
-                boxShadow: theme.shadows.md,
-              },
+            src="/circle-scatter-red.svg"
+            fill
+            alt="background"
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              filter: "blur(60px)",
             }}
-            src="showcase-1.png"
-            w={500}
-            radius="md"
           />
           <Image
-            styles={{
-              root: {
-                position: "absolute",
-                left: "50%",
-                top: "50%",
-                zIndex: -1,
-                boxShadow: theme.shadows.md,
-              },
+            src="/circle-scatter-yellow.svg"
+            fill
+            alt="background"
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              filter: "blur(60px)",
             }}
-            src="showcase-2.png"
-            w={400}
-            fit="contain"
-            radius="lg"
           />
         </div>
       </Container>

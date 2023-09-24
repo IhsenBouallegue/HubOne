@@ -1,3 +1,5 @@
+"use client";
+
 import { Box, Image, Stack, Text, Title } from "@mantine/core";
 
 export function Mission() {
@@ -10,7 +12,7 @@ export function Mission() {
           backgroundColor: theme.colors.primary[4],
           backgroundSize: "cover",
           backgroundPosition: "center",
-          backgroundImage: `linear-gradient(250deg, ${theme.colors.primary[4]} 0%, ${theme.colors.primary[6]} 100%)`,
+          backgroundImage: `linear-gradient(250deg, ${theme.colors.secondary[4]} 0%, ${theme.colors.primary[4]} 100%)`,
           position: "absolute",
         })}
       >
@@ -19,7 +21,7 @@ export function Mission() {
             We help you
           </Text>
           <Title c="white" size="3em">
-            Work Smart not Hard.
+            work smarter not harder.
           </Title>
         </Stack>
         <Image

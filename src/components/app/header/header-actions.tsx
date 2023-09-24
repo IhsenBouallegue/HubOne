@@ -17,7 +17,7 @@ import {
 import { useState } from "react";
 import { Link as ScrollLink } from "react-scroll";
 
-export function HeaderActionButtons() {
+export function HeaderActions() {
   const theme = useMantineTheme();
 
   const editMode = useHubOneStore((state) => state.editMode);

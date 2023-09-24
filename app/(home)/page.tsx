@@ -1,27 +1,18 @@
-import { HeaderActions } from "@components/home/header/header-actions";
-import { HeaderLogo } from "@components/home/header/header-logo";
-
 import FooterBar from "@components/common/footer-bar";
-import HeaderBar from "@components/common/header-bar";
+import HeaderBar from "@components/home/header";
+import Faq from "@sections/home/faq";
 import Hero from "@sections/home/hero";
+import Mission from "@sections/home/mission";
 import Pricing from "@sections/home/pricing";
 
 export default function page() {
   return (
     <>
-      <HeaderBar
-        left={<HeaderLogo />}
-        // middle={<HeaderLinks toggleOpened={() => {}} />}
-        right={<HeaderActions />}
-      />
-
+      <HeaderBar />
       <Hero />
-      {/* <StripePricingTable
-        pricingTableId="prctbl_1NqbQyLZDDYfVnf19VrFuHwh"
-        publishableKey={process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY ?? ""}
-      /> */}
+      <Mission />
       <Pricing />
-      {/* <Mission /> */}
+      <Faq />
       {/* <Features /> */}
       {/* <Contact /> */}
       <FooterBar />
