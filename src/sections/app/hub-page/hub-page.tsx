@@ -5,11 +5,9 @@ import { useFetchByHubId, useFetchItem } from "@lib/useQueries";
 import { Box, Image, Stack } from "@mantine/core";
 
 import FooterBar from "@components/common/footer-bar";
-import HeaderBar from "@components/common/header-bar";
 import HubCreateModal from "@modals/hub-modals/hub-create-modal";
 
-import { HeaderActionButtons } from "@components/app/header/header-actions";
-import { HeaderLogo } from "@components/app/header/header-logo";
+import Header from "@components/app/header";
 import { FooterLink, Hub, Link, LinkGroup } from "@lib/schema";
 import Hero from "../hero";
 import HubMenu from "../hub-menu";
@@ -35,6 +33,7 @@ export default function HubPage({
     initialData: footerLinks,
   });
   useHubOneStore.setState({ hubId: hub.id });
+  useHubOneStore.setState({ hubSpaceId: hub.hubSpaceId });
   const createModalOpened = useHubOneStore((state) => state.createModalOpened);
   const setCreateModalOpened = useHubOneStore(
     (state) => state.setCreateModalOpened
@@ -48,11 +47,7 @@ export default function HubPage({
         h="100vh"
         style={{ position: "absolute", filter: "blur(4px)", zIndex: -1 }}
       />
-      <HeaderBar
-        left={<HeaderLogo />}
-        // middle={HeaderLinks}
-        right={<HeaderActionButtons />}
-      />
+      <Header />
       <Hero />
       <LinkSection />
       <Box mt="auto">

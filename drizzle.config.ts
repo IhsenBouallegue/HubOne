@@ -9,6 +9,6 @@ export default {
   driver: "mysql2",
   verbose: true,
   dbCredentials: {
-    connectionString: `${process.env.DATABASE_URL}"?ssl={"rejectUnauthorized":true}"`,
+    connectionString: `${process.env.DATABASE_URL}?ssl={"rejectUnauthorized":true}`,
   },
 } satisfies Config;

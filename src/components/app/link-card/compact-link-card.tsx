@@ -1,5 +1,3 @@
-"use client";
-
 import { useHubOneStore } from "@lib/Store";
 import {
   ActionIcon,
@@ -9,10 +7,9 @@ import {
   Paper,
   Stack,
   Text,
-  rem,
   useMantineTheme,
 } from "@mantine/core";
-import { IconEdit, IconLock } from "@tabler/icons-react";
+import { IconEdit } from "@tabler/icons-react";
 import { motion, useAnimationControls } from "framer-motion";
 import { Dispatch, SetStateAction, useEffect } from "react";
 
@@ -21,14 +18,12 @@ export function CompactLinkCard({
   description,
   image,
   link,
-  isInternal = false,
   setOpened,
 }: {
   title: string;
   description: string;
   image: string;
   link: string;
-  isInternal: boolean;
   setOpened: Dispatch<SetStateAction<boolean>>;
 }) {
   const theme = useMantineTheme();
@@ -71,11 +66,6 @@ export function CompactLinkCard({
           }
         }}
       >
-        {isInternal && (
-          <Box top="10%" left="5%" pos="absolute">
-            <IconLock size={rem(16)} strokeWidth={2} color="primary.5" />
-          </Box>
-        )}
         {editMode && (
           <Box top="10%" right="5%" pos="absolute">
             <ActionIcon size="sm" color="primary" variant="light">

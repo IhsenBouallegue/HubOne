@@ -21,14 +21,15 @@ export function HubFormFields({ form }: { form: UseFormReturnType<Hub> }) {
         {...form.getInputProps("hubName")}
       />
       <TextInput
-        label="Hub Logo"
-        placeholder="Hub Logo"
-        {...form.getInputProps("hubLogo")}
-      />
-      <TextInput
+        required
         label="Hub Path"
         placeholder="Hub Path"
         {...form.getInputProps("hubPath")}
+      />
+      <TextInput
+        label="Hub Logo"
+        placeholder="Hub Logo"
+        {...form.getInputProps("hubLogo")}
       />
       <Textarea
         placeholder="Hub Description"

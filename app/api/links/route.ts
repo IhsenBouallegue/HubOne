@@ -19,3 +19,13 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error });
   }
 }
+
+export async function POST(req: NextRequest) {
+  const link = await req.json();
+  try {
+    await db.insert(links).values(link);
+    return NextResponse.json({ message: "ok" }, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ error }, { status: 500 });
+  }
+}

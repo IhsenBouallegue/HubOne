@@ -4,6 +4,7 @@ type Settings = {
   editMode: boolean;
   compactMode: boolean;
   hubId: number | null;
+  hubSpaceId: number | null;
   createModalOpened: boolean;
 };
 type Actions = {
@@ -16,6 +17,7 @@ export const useHubOneStore = create<Settings & Actions>((set) => ({
   editMode: false,
   compactMode: false,
   hubId: null,
+  hubSpaceId: null,
   createModalOpened: false,
   setEditMode: (editMode) => set(() => ({ editMode })),
   setCompactMode: (compactMode) => set(() => ({ compactMode })),

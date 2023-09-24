@@ -2,6 +2,7 @@ import { usePost } from "@lib/useQueries";
 import { Modal, Title } from "@mantine/core";
 import { useForm } from "@mantine/form";
 
+import { useHubOneStore } from "@lib/Store";
 import { Hub } from "@lib/schema";
 import { HubFormFields } from "../hub-form-fields";
 
@@ -12,13 +13,14 @@ export function HubCreateModal({
   opened: boolean;
   setOpened: (open: boolean) => void;
 }) {
+  const hubSpaceId = useHubOneStore((state) => state.hubSpaceId);
   const form = useForm<Hub>({
     initialValues: {
       hubName: "",
       hubLogo: "",
-      hubPath: "",
       description:
         "Tired of keeping track of new websites? Tired of having to update your bookmarks every few weeks? Access all sites from this one page. Everything is up to date. No need to clutter your life anymore!",
+      hubSpaceId,
     } as Hub,
   });
 

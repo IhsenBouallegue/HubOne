@@ -1,5 +1,5 @@
 import db from "@lib/db";
-import { linkGroups } from "@lib/schema";
+import { hubs } from "@lib/schema";
 import { eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -8,11 +8,9 @@ export async function GET(req: NextRequest) {
   try {
     let items;
     if (hubId && !Number.isNaN(hubId)) {
-      items = await db.query.linkGroups.findMany({
-        where: eq(linkGroups.hubId, Number(hubId)),
+      items = await db.query.hubs.findFirst({
+        where: eq(hubs.id, Number(hubId)),
       });
-    } else {
-      items = await db.query.linkGroups.findMany();
     }
     return NextResponse.json(items);
   } catch (error) {
@@ -21,9 +19,9 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  const linkGroup = await req.json();
+  const hub = await req.json();
   try {
-    await db.insert(linkGroups).values(linkGroup);
+    await db.insert(hubs).values(hub);
     return NextResponse.json({ message: "ok" }, { status: 200 });
   } catch (error) {
     return NextResponse.json({ error }, { status: 500 });

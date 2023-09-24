@@ -32,7 +32,6 @@ export function LinkCard({
           description={description}
           image={image}
           link={link}
-          isInternal={isInternal}
           setOpened={setOpened}
         />
       ) : (
@@ -41,7 +40,6 @@ export function LinkCard({
           description={description}
           image={image}
           link={link}
-          isInternal={isInternal}
           setOpened={setOpened}
         />
       )}

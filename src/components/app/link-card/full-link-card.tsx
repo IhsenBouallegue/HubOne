@@ -1,18 +1,8 @@
-"use client";
-
 import { useHubOneStore } from "@lib/Store";
-import {
-  ActionIcon,
-  Box,
-  Group,
-  Image,
-  Paper,
-  Text,
-  rem,
-  useMantineTheme,
-} from "@mantine/core";
-import { IconEdit, IconLock } from "@tabler/icons-react";
+import { ActionIcon, Box, Paper, Stack, Text } from "@mantine/core";
+import { IconEdit } from "@tabler/icons-react";
 import { motion, useAnimationControls } from "framer-motion";
+import Image from "next/image";
 import { Dispatch, SetStateAction, useEffect } from "react";
 
 export function FullLinkCard({
@@ -20,19 +10,17 @@ export function FullLinkCard({
   description,
   image,
   link,
-  isInternal = false,
   setOpened,
 }: {
   title: string;
   description: string;
   image: string;
   link: string;
-  isInternal: boolean;
   setOpened: Dispatch<SetStateAction<boolean>>;
 }) {
-  const theme = useMantineTheme();
   const editMode = useHubOneStore((state) => state.editMode);
   const controls = useAnimationControls();
+
   useEffect(() => {
     if (editMode)
       controls.start({
@@ -74,33 +62,30 @@ export function FullLinkCard({
           }
         }}
       >
-        <Group w="100%" h="50%" pos="relative">
-          {isInternal && (
-            <Box top="10%" left="5%" pos="absolute">
-              <IconLock
-                size={rem(16)}
-                strokeWidth={2}
-                color={theme.colors.primary[5]}
-              />
-            </Box>
-          )}
-          {editMode && (
-            <Box top="10%" right="5%" pos="absolute">
-              <ActionIcon size="sm" color="primary" variant="light">
-                <IconEdit strokeWidth={2} />
-              </ActionIcon>
-            </Box>
-          )}
-          <Image src={image || "/logo/hubone_logo.svg"} alt={title} p="xl" />
-        </Group>
+        {editMode && (
+          <Box top="10%" right="5%" pos="absolute">
+            <ActionIcon size="sm" color="primary" variant="light">
+              <IconEdit strokeWidth={2} />
+            </ActionIcon>
+          </Box>
+        )}
+        <Stack p="sm" style={{ flex: 1, alignItems: "center" }}>
+          <Image
+            src={!image || image === "" ? "./logo/hubone_logo.svg" : image}
+            width={64}
+            height={64}
+            alt={title}
+          />
+        </Stack>
+        <Stack style={{ flex: 1 }}>
+          <Text c="black" my="sm" fw={600} size="lg">
+            {title}
+          </Text>
 
-        <Text c="black" my="sm" fw={600} size="lg">
-          {title}
-        </Text>
-
-        <Text c="dimmed" lh="1.5" size="sm">
-          {description}
-        </Text>
+          <Text c="dimmed" lh="1.5" size="sm">
+            {description}
+          </Text>
+        </Stack>
       </Paper>
     </motion.div>
   );

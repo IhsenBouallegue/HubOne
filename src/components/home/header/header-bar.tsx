@@ -12,7 +12,7 @@ export function HeaderBar() {
 
   return (
     <HeaderBase>
-      <Group justify="space-between" w="100%">
+      <Group justify="space-between" w="100%" style={{ zIndex: 5 }}>
         <Group>
           <Burger
             opened={opened}
