@@ -1,3 +1,5 @@
+"use client";
+
 import { HubSpace } from "@lib/schema";
 import { Badge, Box, Center, Group, Paper, Stack, Text } from "@mantine/core";
 import Link from "next/link";

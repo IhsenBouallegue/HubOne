@@ -4,7 +4,7 @@ import { useHubOneStore } from "@lib/Store";
 import { useFetchByHubId, useFetchItem } from "@lib/useQueries";
 import { Box, Image, Stack } from "@mantine/core";
 
-import FooterBar from "@components/common/footer-bar";
+import FooterBar from "@components/app/footer-bar";
 import HubCreateModal from "@modals/hub-modals/hub-create-modal";
 
 import Header from "@components/app/header";

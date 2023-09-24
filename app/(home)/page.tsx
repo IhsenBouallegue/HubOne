@@ -1,4 +1,4 @@
-import FooterBar from "@components/common/footer-bar";
+import FooterBar from "@components/home/footer-bar";
 import HeaderBar from "@components/home/header";
 import Faq from "@sections/home/faq";
 import Hero from "@sections/home/hero";

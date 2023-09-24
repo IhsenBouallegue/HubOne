@@ -21,10 +21,10 @@ export default async function Page() {
       </Title>
       <Group gap="xl">
         {ownHubspaces.map((hubspace) => (
-          <HubSpaceCard {...hubspace} />
+          <HubSpaceCard key={`hubspace_card_${hubspace.id}`} {...hubspace} />
         ))}
-        {[...Array(HUBSPACE_LIMIT - ownHubspaces.length)].map((_) => (
-          <HubSpaceAddCard />
+        {[...Array(HUBSPACE_LIMIT - ownHubspaces.length)].map((index) => (
+          <HubSpaceAddCard key={`hubspace_add_card_${index}`} />
         ))}
       </Group>
     </Container>
