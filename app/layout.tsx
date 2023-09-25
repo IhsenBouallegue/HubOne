@@ -2,10 +2,10 @@ import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
 import "@styles/App.css";
 
-import { ClerkProvider } from "@clerk/nextjs";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 import { Analytics } from "@vercel/analytics/react";
+import { SessionProvider } from "next-auth/react";
 import { Poppins } from "next/font/google";
 import { ReactNode } from "react";
 import theme from "theme";
@@ -24,26 +24,20 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode[] }) {
   return (
-    <ClerkProvider
-      appearance={{
-        variables: {
-          colorPrimary: "#ff8d00",
-        },
-      }}
-    >
-      <html lang="en" className={poppins.className}>
-        <head>
-          <link rel="icon" href="/favicon.ico" sizes="any" />
-          <ColorSchemeScript forceColorScheme="light" />
-        </head>
-        <body>
+    <html lang="en" className={poppins.className}>
+      <head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <ColorSchemeScript forceColorScheme="light" />
+      </head>
+      <body>
+        <SessionProvider>
           <MantineProvider theme={theme} forceColorScheme="light">
             <Notifications />
             <Analytics />
             <Providers>{children}</Providers>
           </MantineProvider>
-        </body>
-      </html>
-    </ClerkProvider>
+        </SessionProvider>
+      </body>
+    </html>
   );
 }

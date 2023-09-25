@@ -1,10 +1,5 @@
 "use client";
 
-import {
-  OrganizationSwitcher,
-  UserButton,
-  useOrganization,
-} from "@clerk/nextjs";
 import ResponsiveLogo from "@components/common/responsive-logo";
 import { API_URL } from "@lib/useQueries";
 import { AppShell, Burger, Button, Group, Stack, rem } from "@mantine/core";
@@ -18,7 +13,6 @@ import {
 } from "@tabler/icons-react";
 import { useSelectedLayoutSegment } from "next/navigation";
 import { ReactNode } from "react";
-import SubscriptionBadge from "../subscription-badge";
 
 export default function DashboardLayout({
   children,
@@ -27,7 +21,6 @@ export default function DashboardLayout({
 }) {
   const [opened, { toggle }] = useDisclosure();
   const segment = useSelectedLayoutSegment();
-  const { organization } = useOrganization();
 
   return (
     <AppShell
@@ -45,21 +38,6 @@ export default function DashboardLayout({
               size="sm"
             />
             <ResponsiveLogo />
-          </Group>
-          <Group justify="space-between" h="100%" style={{ flexGrow: 1 }}>
-            <Group pl="xs">
-              <OrganizationSwitcher
-                appearance={{
-                  elements: {
-                    rootBox: { display: "flex", justifyContent: "center" },
-                  },
-                }}
-              />
-              <SubscriptionBadge />
-            </Group>
-            <Group mr="lg">
-              <UserButton />
-            </Group>
           </Group>
         </Group>
       </AppShell.Header>
@@ -85,20 +63,14 @@ export default function DashboardLayout({
           >
             HubSpaces
           </Button>
-          {organization && (
-            <Button
-              variant={segment === "members" ? "light" : "subtle"}
-              size="md"
-              styles={{ inner: { justifyContent: "left" } }}
-              onClick={async () => {
-                await window.Clerk.load();
-                window.Clerk.openOrganizationProfile();
-              }}
-              leftSection={<IconUsers />}
-            >
-              Organization
-            </Button>
-          )}
+          <Button
+            variant={segment === "members" ? "light" : "subtle"}
+            size="md"
+            styles={{ inner: { justifyContent: "left" } }}
+            leftSection={<IconUsers />}
+          >
+            Organization
+          </Button>
           <Button
             component="a"
             href="/dashboard/plans"

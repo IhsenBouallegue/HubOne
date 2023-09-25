@@ -1,27 +1,31 @@
-import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { SignIn, SignOut } from "@components/common/auth";
 import { Button, Group } from "@mantine/core";
+import { useSession } from "next-auth/react";
 
 export function HeaderActions() {
+  const session = useSession();
+  if (session.data) {
+    return (
+      <>
+        <pre>{JSON.stringify(session, null, 2)}</pre>
+        <SignOut>Sign out</SignOut>
+      </>
+    );
+  }
   return (
     <Group>
-      <SignedIn>
-        <Button
-          variant="light"
-          style={{ height: 30 }}
-          component="a"
-          href="/dashboard"
-        >
-          Dashboard
-        </Button>
-        <UserButton afterSignOutUrl="/" />
-      </SignedIn>
-      <SignedOut>
-        <SignInButton mode="modal" redirectUrl="/dashboard">
-          <Button variant="gradient" style={{ height: 30 }}>
-            Sign In
-          </Button>
-        </SignInButton>
-      </SignedOut>
+      <Button
+        variant="light"
+        style={{ height: 30 }}
+        component="a"
+        href="/dashboard"
+      >
+        Dashboard
+      </Button>
+      <Button variant="gradient" style={{ height: 30 }}>
+        Sign In
+      </Button>
+      <SignIn provider="google">Sign in with Google</SignIn>
     </Group>
   );
 }

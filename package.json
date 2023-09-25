@@ -16,6 +16,8 @@
     "stripe:listen": "stripe listen --forward-to localhost:3000/api/stripe/webhook"
   },
   "dependencies": {
+    "@auth/core": "^0.15.2",
+    "@auth/drizzle-adapter": "0.3.2",
     "@clerk/nextjs": "4.23.5",
     "@mantine/core": "7.0.0",
     "@mantine/form": "7.0.0",
@@ -32,6 +34,7 @@
     "framer-motion": "^10.0.0",
     "mysql2": "3.6.1",
     "next": "13.5.2",
+    "next-auth": "experimental",
     "postgres": "^3.3.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -62,11 +65,9 @@
     "eslint-plugin-react": "7.33.2",
     "eslint-plugin-react-hooks": "4.6.0",
     "lefthook": "^1.4.9",
-    "pg": "^8.11.3",
     "postcss": "^8.4.28",
     "postcss-preset-mantine": "^1.7.0",
     "postcss-simple-vars": "^7.0.1",
-    "semantic-release": "^21.0.0",
     "ts-node": "^10.9.1",
     "typescript": "5.1.6"
   },

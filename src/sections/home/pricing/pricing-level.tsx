@@ -1,6 +1,5 @@
 "use client";
 
-import { useUser } from "@clerk/nextjs";
 import {
   Box,
   Button,
@@ -39,31 +38,7 @@ export function PricingLevel({
   button: string;
 }) {
   const theme = useMantineTheme();
-  const { isSignedIn } = useUser();
   const router = useRouter();
-
-  // const redirectToCheckout = async (checkoutPriceId: string) => {
-  //   const res = await fetch(`${API_URL}/create-checkout-session`, {
-  //     method: "POST",
-  //     body: JSON.stringify({ priceId: checkoutPriceId }),
-  //   });
-  //   const session: Stripe.Checkout.Session = await res.json();
-  //   const clientStripe = await loadStripe(
-  //     process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string
-  //   );
-  //   await clientStripe?.redirectToCheckout({ sessionId: session.id });
-  // };
-
-  const handleClick = async () => {
-    if (!isSignedIn) {
-      window.Clerk.mountSignUp(document.getElementById("sign-up"));
-      window.Clerk.openSignUp({
-        afterSignInUrl: "/dashboard",
-      });
-    } else {
-      router.push("/dashboard");
-    }
-  };
 
   return (
     <Card
@@ -145,21 +120,10 @@ export function PricingLevel({
           },
         }}
         fullWidth
-        onClick={handleClick}
+        onClick={() => router.push("/dashboard/plans")}
       >
         {button}
       </Button>
     </Card>
   );
-}
-
-declare global {
-  interface Window {
-    Clerk: {
-      mountSignUp: (signIn: HTMLElement | null) => void;
-      openSignUp: (options: { afterSignInUrl: string }) => void;
-      load: () => Promise<void>;
-      openOrganizationProfile: () => void;
-    };
-  }
 }
