@@ -1,4 +1,4 @@
-import { useHubOneStore } from "@lib/Store";
+import { useHubOneStore } from "@/lib/Store";
 import {
   ActionIcon,
   Box,

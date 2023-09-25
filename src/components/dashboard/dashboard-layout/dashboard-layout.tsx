@@ -1,7 +1,7 @@
 "use client";
 
-import ResponsiveLogo from "@components/common/responsive-logo";
-import { API_URL } from "@lib/useQueries";
+import ResponsiveLogo from "@/components/common/responsive-logo";
+import { API_URL } from "@/lib/useQueries";
 import { AppShell, Burger, Button, Group, Stack, rem } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import {

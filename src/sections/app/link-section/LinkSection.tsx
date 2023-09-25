@@ -1,7 +1,7 @@
-import LinkGroupAddCard from "@components/app/link-group-add-card";
-import { useHubOneStore } from "@lib/Store";
-import { LinkGroup } from "@lib/schema";
-import { useFetchByHubId } from "@lib/useQueries";
+import LinkGroupAddCard from "@/components/app/link-group-add-card";
+import { useHubOneStore } from "@/lib/Store";
+import { LinkGroup } from "@/lib/schema";
+import { useFetchByHubId } from "@/lib/useQueries";
 import { Container, Text } from "@mantine/core";
 
 import LinkSectionAccordion from "./accordion";

@@ -1,14 +1,14 @@
 "use client";
 
-import { useHubOneStore } from "@lib/Store";
-import { useFetchByHubId, useFetchItem } from "@lib/useQueries";
+import { useHubOneStore } from "@/lib/Store";
+import { useFetchByHubId, useFetchItem } from "@/lib/useQueries";
 import { Box, Image, Stack } from "@mantine/core";
 
-import FooterBar from "@components/app/footer-bar";
-import HubCreateModal from "@modals/hub-modals/hub-create-modal";
+import FooterBar from "@/components/app/footer-bar";
+import HubCreateModal from "@/modals/hub-modals/hub-create-modal";
 
-import Header from "@components/app/header";
-import { FooterLink, Hub, Link, LinkGroup } from "@lib/schema";
+import Header from "@/components/app/header";
+import { FooterLink, Hub, Link, LinkGroup } from "@/lib/schema";
 import Hero from "../hero";
 import HubMenu from "../hub-menu";
 import LinkSection from "../link-section";

@@ -1,8 +1,8 @@
 import { Accordion, Container } from "@mantine/core";
 
-import { useHubOneStore } from "@lib/Store";
-import { Link, LinkGroup as LinkGroupI } from "@lib/schema";
-import { useFetchByHubId } from "@lib/useQueries";
+import { useHubOneStore } from "@/lib/Store";
+import { Link, LinkGroup as LinkGroupI } from "@/lib/schema";
+import { useFetchByHubId } from "@/lib/useQueries";
 
 import LinkGroupGrid from "../link-group-grid";
 import AccordionControl from "./accordion-control";

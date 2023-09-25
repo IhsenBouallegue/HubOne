@@ -1,4 +1,4 @@
-import { useHubOneStore } from "@lib/Store";
+import { useHubOneStore } from "@/lib/Store";
 import { ActionIcon, Box, Paper, Stack, Text } from "@mantine/core";
 import { IconEdit } from "@tabler/icons-react";
 import { motion, useAnimationControls } from "framer-motion";

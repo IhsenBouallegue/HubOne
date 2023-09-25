@@ -1,4 +1,3 @@
-import { SignIn, SignOut } from "@components/common/auth";
 import { Button, Group } from "@mantine/core";
 import { useSession } from "next-auth/react";
 
@@ -8,7 +7,6 @@ export function HeaderActions() {
     return (
       <>
         <pre>{JSON.stringify(session, null, 2)}</pre>
-        <SignOut>Sign out</SignOut>
       </>
     );
   }
@@ -25,7 +23,6 @@ export function HeaderActions() {
       <Button variant="gradient" style={{ height: 30 }}>
         Sign In
       </Button>
-      <SignIn provider="google">Sign in with Google</SignIn>
     </Group>
   );
 }

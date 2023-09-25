@@ -1,7 +1,7 @@
 "use client";
 
-import { FooterLink } from "@lib/schema";
-import { useDelete, useUpdate } from "@lib/useQueries";
+import { FooterLink } from "@/lib/schema";
+import { useDelete, useUpdate } from "@/lib/useQueries";
 import { ActionIcon, Card, Group, Stack, Text, TextInput } from "@mantine/core";
 import { IconTrash } from "@tabler/icons-react";
 import { motion } from "framer-motion";

@@ -1,7 +1,7 @@
 "use client";
 
-import Heading from "@components/home/heading";
-import Section from "@components/home/section";
+import Heading from "@/components/home/heading";
+import Section from "@/components/home/section";
 import { Accordion, Container } from "@mantine/core";
 import classes from "./faq.module.css";
 

@@ -1,8 +1,8 @@
 import { Center, Group, rem } from "@mantine/core";
 import { IconX } from "@tabler/icons-react";
 
-import HubLogo from "@components/app/hub-logo";
-import ResponsiveLogo from "@components/common/responsive-logo";
+import HubLogo from "@/components/app/hub-logo";
+import ResponsiveLogo from "@/components/common/responsive-logo";
 
 export function HeaderLogo() {
   return (

@@ -1,6 +1,6 @@
 "use client";
 
-import { HubSpace } from "@lib/schema";
+import { HubSpace } from "@/lib/schema";
 import { Button, Checkbox, Group, Stack, TextInput } from "@mantine/core";
 import type { UseFormReturnType } from "@mantine/form";
 

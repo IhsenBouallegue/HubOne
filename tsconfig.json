@@ -1,16 +1,14 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "baseUrl": ".",
+    "baseUrl": "src/",
     "paths": {
-      "@config/*": ["src/config/*"],
-      "@hooks/*": ["src/hooks/*"],
-      "@lib/*": ["src/lib/*"],
-      "@providers/*": ["src/providers/*"],
-      "@styles/*": ["src/styles/*"],
-      "@components/*": ["src/components/*"],
-      "@modals/*": ["src/modals/*"],
-      "@sections/*": ["src/sections/*"]
+      "@/lib/*": ["lib/*"],
+      "@/components/*": ["components/*"],
+      "@/modals/*": ["modals/*"],
+      "@/sections/*": ["sections/*"],
+      "@/styles/*": ["styles/*"],
+      "@/*": ["./*"]
     },
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,

@@ -1,5 +1,5 @@
+import { API_URL } from "@/lib/useQueries";
 import { useOrganization } from "@clerk/nextjs";
-import { API_URL } from "@lib/useQueries";
 import { Badge } from "@mantine/core";
 import { useEffect, useState } from "react";
 

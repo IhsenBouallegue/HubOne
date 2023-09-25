@@ -1,4 +1,4 @@
-import { useHubOneStore } from "@lib/Store";
+import { useHubOneStore } from "@/lib/Store";
 import { CompactHero } from "./compact-hero";
 import { FullHero } from "./full-hero";
 

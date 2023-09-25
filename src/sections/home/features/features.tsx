@@ -1,5 +1,5 @@
-// import Section from "@components/home/section";
-// import Heading from "@components/home/heading";
+// import Section from "@/components/home/section";
+// import Heading from "@/components/home/heading";
 // import { SimpleGrid } from "@mantine/core";
 // import { FeatureCard } from "./feature-card";
 // import { featuresData } from "./featuresData";

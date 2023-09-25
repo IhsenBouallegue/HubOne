@@ -1,8 +1,8 @@
 "use client";
 
+import HubSpaceCreateModal from "@/modals/hubspace-modals/hubspace-create-modal";
 import { Paper, Stack, Text } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import HubSpaceCreateModal from "@modals/hubspace-modals/hubspace-create-modal";
 import { IconPlus } from "@tabler/icons-react";
 
 export function HubSpaceAddCard() {

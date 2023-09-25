@@ -1,8 +1,8 @@
 "use client";
 
-import HubLogo from "@components/app/hub-logo";
-import { useHubOneStore } from "@lib/Store";
-import { Hub } from "@lib/schema";
+import HubLogo from "@/components/app/hub-logo";
+import { useHubOneStore } from "@/lib/Store";
+import { Hub } from "@/lib/schema";
 import {
   Affix,
   Center,

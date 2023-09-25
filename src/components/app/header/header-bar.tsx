@@ -1,6 +1,6 @@
 "use client";
 
-import HeaderBase from "@components/common/header-base";
+import HeaderBase from "@/components/common/header-base";
 import { Burger, Collapse, Group } from "@mantine/core";
 import { useToggle } from "@mantine/hooks";
 import { HeaderActions } from "./header-actions";

@@ -1,7 +1,7 @@
 "use client";
 
-import { useHubOneStore } from "@lib/Store";
-import { useDelete } from "@lib/useQueries";
+import { useHubOneStore } from "@/lib/Store";
+import { useDelete } from "@/lib/useQueries";
 import type { AccordionControlProps } from "@mantine/core";
 import { Accordion, ActionIcon, Box } from "@mantine/core";
 import { IconTrash } from "@tabler/icons-react";

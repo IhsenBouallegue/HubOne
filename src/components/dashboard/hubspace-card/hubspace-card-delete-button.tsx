@@ -1,6 +1,6 @@
 "use client";
 
-import { useDelete } from "@lib/useQueries";
+import { useDelete } from "@/lib/useQueries";
 import { Button } from "@mantine/core";
 import { IconTrash } from "@tabler/icons-react";
 

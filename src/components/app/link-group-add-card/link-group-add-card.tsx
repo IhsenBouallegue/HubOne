@@ -1,7 +1,7 @@
 "use client";
 
+import AddLinkGroupModal from "@/modals/link-group-modal";
 import { Center, Paper, Text } from "@mantine/core";
-import AddLinkGroupModal from "@modals/link-group-modal";
 import { IconPlus } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 import { useState } from "react";

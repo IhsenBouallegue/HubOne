@@ -1,12 +1,12 @@
 "use client";
 
-import { useHubOneStore } from "@lib/Store";
-import { Link } from "@lib/schema";
+import { useHubOneStore } from "@/lib/Store";
+import { Link } from "@/lib/schema";
 import { Grid, Text } from "@mantine/core";
 import { AnimatePresence } from "framer-motion";
 
-import LinkAddCard from "@components/app/link-add-card";
-import LinkCard from "@components/app/link-card";
+import LinkAddCard from "@/components/app/link-add-card";
+import LinkCard from "@/components/app/link-card";
 
 import classes from "./link-group-grid.module.css";
 

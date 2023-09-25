@@ -1,9 +1,9 @@
 import { Group } from "@mantine/core";
 
-import Heading from "@components/home/heading";
-import Section from "@components/home/section";
+import Heading from "@/components/home/heading";
+import Section from "@/components/home/section";
 
-import { getProducts } from "@lib/stripe";
+import { getProducts } from "@/lib/stripe";
 import { PricingLevel } from "./pricing-level";
 
 export async function Pricing() {

@@ -1,6 +1,7 @@
 "use client";
 
-import { useHubOneStore } from "@lib/Store";
+import { useHubOneStore } from "@/lib/Store";
+import HubEditModal from "@/modals/hub-modals/hub-edit-modal";
 import {
   ActionIcon,
   Button,
@@ -8,7 +9,6 @@ import {
   Switch,
   useMantineTheme,
 } from "@mantine/core";
-import HubEditModal from "@modals/hub-modals/hub-edit-modal";
 import {
   IconArrowsMaximize,
   IconArrowsMinimize,

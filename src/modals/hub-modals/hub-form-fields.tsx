@@ -1,6 +1,6 @@
 "use client";
 
-import { Hub } from "@lib/schema";
+import { Hub } from "@/lib/schema";
 import {
   Button,
   ColorInput,

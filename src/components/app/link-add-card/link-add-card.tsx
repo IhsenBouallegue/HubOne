@@ -5,7 +5,7 @@ import { IconPlus } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
-import LinkCreateModal from "@modals/link-modals/link-create-modal";
+import LinkCreateModal from "@/modals/link-modals/link-create-modal";
 
 export function LinkAddCard({
   hubId,
