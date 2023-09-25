@@ -31,7 +31,7 @@ const theme = createTheme({
   },
   primaryColor: "primary",
   defaultRadius: "md",
-  black: "#333333",
+  black: "#050315",
   primaryShade: 4,
   fontFamily: "Poppins",
   headings: { fontFamily: "Poppins", fontWeight: "bold" },

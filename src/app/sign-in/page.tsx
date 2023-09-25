@@ -5,6 +5,7 @@ import { Icons } from "@/components/icons";
 import { buttonVariants } from "@/components/ui/button";
 import { UserAuthForm } from "@/components/user-auth-form";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Login",
@@ -28,7 +29,13 @@ export default function LoginPage() {
       </Link>
       <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
         <div className="flex flex-col space-y-2 text-center">
-          <Icons.logo className="mx-auto h-6 w-6" />
+          <Image
+            src="/logo/hubone_logo.svg"
+            height={56}
+            width={56}
+            className="mx-auto m-4"
+            alt={"HubOne Logo"}
+          />
           <h1 className="text-2xl font-semibold tracking-tight">
             Welcome back
           </h1>

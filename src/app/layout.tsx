@@ -1,7 +1,8 @@
-import "@/styles/globals.css";
 import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
+import "./globals.css";
 
+import { Toaster } from "@/components/ui/toaster";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 import { Analytics } from "@vercel/analytics/react";
@@ -34,6 +35,7 @@ export default function RootLayout({ children }: { children: ReactNode[] }) {
           <MantineProvider theme={theme} forceColorScheme="light">
             <Notifications />
             <Analytics />
+            <Toaster />
             <Providers>{children}</Providers>
           </MantineProvider>
         </SessionProvider>

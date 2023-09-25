@@ -1,5 +1,7 @@
-import { Button, Group } from "@mantine/core";
+import { Button } from "@/components/ui/button";
+import { Group } from "@mantine/core";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
 
 export function HeaderActions() {
   const session = useSession();
@@ -12,17 +14,10 @@ export function HeaderActions() {
   }
   return (
     <Group>
-      <Button
-        variant="light"
-        style={{ height: 30 }}
-        component="a"
-        href="/dashboard"
-      >
-        Dashboard
-      </Button>
-      <Button variant="gradient" style={{ height: 30 }}>
-        Sign In
-      </Button>
+      <Button>Dashboard</Button>
+      <Link href="/sign-in">
+        <Button>Sign In</Button>
+      </Link>
     </Group>
   );
 }
