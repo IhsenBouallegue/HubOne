@@ -3,7 +3,6 @@ import { LinkGroup } from "@/lib/schema";
 import { useFetchByHubId } from "@/lib/useQueries";
 import { Button, Group } from "@mantine/core";
 import { SetStateAction } from "react";
-import { Link as ScrollLink } from "react-scroll";
 
 export function HeaderLinks({
   toggleOpened,
@@ -18,12 +17,6 @@ export function HeaderLinks({
   return (
     <Group>
       {linkGroups?.map((linkGroup) => (
-        <ScrollLink
-          key={linkGroup.title}
-          to={linkGroup.title}
-          smooth="easeInOutQuint"
-          duration={1000}
-        >
           <Button
             variant="subtle"
             onClick={() => {
@@ -32,7 +25,6 @@ export function HeaderLinks({
           >
             {linkGroup.title}
           </Button>
-        </ScrollLink>
       ))}
     </Group>
   );

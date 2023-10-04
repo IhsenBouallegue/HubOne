@@ -61,16 +61,16 @@ export function HeaderActions() {
         </Group>
       ) : (
         <Group hiddenFrom="sm">
-            <Button
-              variant="gradient"
-              gradient={{
-                from: theme.colors.primary[4],
-                to: theme.colors.secondary[4],
-              }}
-              style={{ height: 30 }}
-            >
-              Browse Links
-            </Button>
+          <Button
+            variant="gradient"
+            gradient={{
+              from: theme.colors.primary[4],
+              to: theme.colors.secondary[4],
+            }}
+            style={{ height: 30 }}
+          >
+            Browse Links
+          </Button>
         </Group>
       )}
       <HubEditModal opened={editModalOpened} setOpened={setEditModalOpened} />

@@ -10,7 +10,6 @@ import {
   Title,
   useMantineTheme,
 } from "@mantine/core";
-import { Link as ScrollLink } from "react-scroll";
 
 import classes from "./full-hero.module.css";
 
@@ -69,24 +68,17 @@ export function FullHero() {
         </Text>
 
         <Group className={classes.controls}>
-          <ScrollLink
-            className={classes.ctaContainer}
-            to="linkSection"
-            smooth="easeInOutQuint"
-            duration={1000}
+          <Button
+            size="xl"
+            className={classes.cta}
+            variant="gradient"
+            gradient={{
+              from: theme.colors.primary[4],
+              to: theme.colors.secondary[4],
+            }}
           >
-            <Button
-              size="xl"
-              className={classes.cta}
-              variant="gradient"
-              gradient={{
-                from: theme.colors.primary[4],
-                to: theme.colors.secondary[4],
-              }}
-            >
-              Browse Links
-            </Button>
-          </ScrollLink>
+            Browse Links
+          </Button>
 
           <Button
             component="a"
