@@ -17,14 +17,14 @@ export function HeaderLinks({
   return (
     <Group>
       {linkGroups?.map((linkGroup) => (
-          <Button
-            variant="subtle"
-            onClick={() => {
-              toggleOpened(false);
-            }}
-          >
-            {linkGroup.title}
-          </Button>
+        <Button
+          variant="subtle"
+          onClick={() => {
+            toggleOpened(false);
+          }}
+        >
+          {linkGroup.title}
+        </Button>
       ))}
     </Group>
   );

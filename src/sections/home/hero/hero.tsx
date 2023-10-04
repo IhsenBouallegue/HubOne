@@ -3,7 +3,6 @@
 import { Button, Container, Group, Text, Title } from "@mantine/core";
 
 import { IconArchive, IconBook, IconUsers } from "@tabler/icons-react";
-import Image from "next/image";
 import classes from "./hero.module.css";
 
 export function Hero() {
