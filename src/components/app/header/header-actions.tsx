@@ -15,7 +15,6 @@ import {
   IconSettings,
 } from "@tabler/icons-react";
 import { useState } from "react";
-import { Link as ScrollLink } from "react-scroll";
 
 export function HeaderActions() {
   const theme = useMantineTheme();
@@ -62,7 +61,6 @@ export function HeaderActions() {
         </Group>
       ) : (
         <Group hiddenFrom="sm">
-          <ScrollLink to="linkSection" smooth="easeInOutQuint" duration={1000}>
             <Button
               variant="gradient"
               gradient={{
@@ -73,7 +71,6 @@ export function HeaderActions() {
             >
               Browse Links
             </Button>
-          </ScrollLink>
         </Group>
       )}
       <HubEditModal opened={editModalOpened} setOpened={setEditModalOpened} />
