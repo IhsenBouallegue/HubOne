@@ -1,23 +1,28 @@
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { Group } from "@mantine/core";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 
 export function HeaderActions() {
   const session = useSession();
-  if (session.data) {
-    return (
-      <>
-        <pre>{JSON.stringify(session, null, 2)}</pre>
-      </>
-    );
-  }
   return (
     <Group>
-      <Button>Dashboard</Button>
-      <Link href="/sign-in">
-        <Button>Sign In</Button>
-      </Link>
+      {session?.data ? (
+        <Link
+          href="/dashboard"
+          className={cn(buttonVariants({ variant: "secondary" }))}
+        >
+          Dashboard
+        </Link>
+      ) : (
+        <Link
+          href="/sign-in"
+          className={cn(buttonVariants({ variant: "default" }))}
+        >
+          Sign In
+        </Link>
+      )}
     </Group>
   );
 }

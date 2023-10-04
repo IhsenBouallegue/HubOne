@@ -1,6 +1,7 @@
-import { Button, Group } from "@mantine/core";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import Link from "next/link";
 import { SetStateAction } from "react";
-import { Link as ScrollLink } from "react-scroll";
 
 export function HeaderLinks({
   toggleOpened,
@@ -8,39 +9,33 @@ export function HeaderLinks({
   toggleOpened: (value?: SetStateAction<boolean> | undefined) => void;
 }) {
   return (
-    <Group>
+    <>
       {headerLinks.map((linkGroup) => (
-        <ScrollLink
-          key={linkGroup.link}
-          to={linkGroup.link}
-          smooth="easeInOutQuint"
-          duration={1000}
+        <Link
+          href={linkGroup.link}
+          className={cn(buttonVariants({ variant: "link" }))}
+          onClick={() => {
+            toggleOpened(false);
+          }}
         >
-          <Button
-            variant="subtle"
-            onClick={() => {
-              toggleOpened(false);
-            }}
-          >
-            {linkGroup.label}
-          </Button>
-        </ScrollLink>
+          {linkGroup.label}
+        </Link>
       ))}
-    </Group>
+    </>
   );
 }
 
 export const headerLinks = [
   {
-    link: "features",
+    link: "#features",
     label: "Features",
   },
   {
-    link: "pricing",
+    link: "#pricing",
     label: "Pricing",
   },
   {
-    link: "contact",
+    link: "#contact",
     label: "Contact",
   },
 ];

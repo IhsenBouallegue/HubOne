@@ -111,28 +111,6 @@ export function Hero() {
               compony.
             </Text>
           </div>
-          <Image
-            src="/circle-scatter-red.svg"
-            fill
-            alt="background"
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              filter: "blur(60px)",
-            }}
-          />
-          <Image
-            src="/circle-scatter-yellow.svg"
-            fill
-            alt="background"
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              filter: "blur(60px)",
-            }}
-          />
         </div>
       </Container>
     </div>

@@ -12,33 +12,21 @@ export function HeaderBar() {
 
   return (
     <HeaderBase>
-      <Group justify="space-between" w="100%" style={{ zIndex: 5 }}>
-        <Group>
-          <Burger
-            opened={opened}
-            onClick={() => toggleOpened()}
-            size="sm"
-            hiddenFrom="sm"
-          />
-          <HeaderLogo />
-        </Group>
-        <Group
-          justify="lg"
-          pos="absolute"
-          left="50%"
-          visibleFrom="sm"
-          style={{
-            transform: "translate(-50%, 0)",
-          }}
-        >
-          <HeaderLinks toggleOpened={toggleOpened} />
-        </Group>
-        <HeaderActions />
-      </Group>
+      <div>
+        <Burger
+          opened={opened}
+          onClick={() => toggleOpened()}
+          size="sm"
+          hiddenFrom="sm"
+        />
+        <HeaderLogo />
+      </div>
+      <div className="absolute right-1/2 translate-x-1/2 hidden sm:block">
+        <HeaderLinks toggleOpened={toggleOpened} />
+      </div>
+      <HeaderActions />
       <Collapse in={opened}>
-        <Group gap="md" mt="sm">
-          <HeaderLinks toggleOpened={toggleOpened} />
-        </Group>
+        <HeaderLinks toggleOpened={toggleOpened} />
       </Collapse>
     </HeaderBase>
   );
