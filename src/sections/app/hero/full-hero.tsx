@@ -1,6 +1,6 @@
 import BackgroundImg from "@/components/app/background-img";
 import { useHubOneStore } from "@/lib/Store";
-import { Hub } from "@/lib/schema";
+import { Hub } from "@/lib/schema/app";
 import { useFetchItem } from "@/lib/useQueries";
 import {
   Button,

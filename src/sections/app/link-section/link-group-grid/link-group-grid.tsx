@@ -1,7 +1,7 @@
 "use client";
 
 import { useHubOneStore } from "@/lib/Store";
-import { Link } from "@/lib/schema";
+import { Link } from "@/lib/schema/app";
 import { Grid, Text } from "@mantine/core";
 import { AnimatePresence } from "framer-motion";
 

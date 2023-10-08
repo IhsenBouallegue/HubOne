@@ -1,5 +1,5 @@
 import db from "@/lib/db";
-import { hubSpaces } from "@/lib/schema";
+import { hubSpaces } from "@/lib/schema/app";
 import { eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 

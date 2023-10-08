@@ -1,5 +1,5 @@
 import db from "@/lib/db";
-import { linkGroups } from "@/lib/schema";
+import { linkGroups } from "@/lib/schema/app";
 import { eq } from "drizzle-orm";
 import { NextRequest, NextResponse } from "next/server";
 

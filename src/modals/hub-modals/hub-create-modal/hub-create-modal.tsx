@@ -3,7 +3,7 @@ import { Modal, Title } from "@mantine/core";
 import { useForm } from "@mantine/form";
 
 import { useHubOneStore } from "@/lib/Store";
-import { Hub } from "@/lib/schema";
+import { Hub } from "@/lib/schema/app";
 import { HubFormFields } from "../hub-form-fields";
 
 export function HubCreateModal({

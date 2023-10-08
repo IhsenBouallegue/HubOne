@@ -1,5 +1,5 @@
 import { useHubOneStore } from "@/lib/Store";
-import { Hub } from "@/lib/schema";
+import { Hub } from "@/lib/schema/app";
 import { useFetchItem } from "@/lib/useQueries";
 import { Image } from "@mantine/core";
 import { DefaultHubLogo } from "./default-hub-logo";

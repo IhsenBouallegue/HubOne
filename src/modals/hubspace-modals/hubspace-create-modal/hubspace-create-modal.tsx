@@ -2,7 +2,7 @@ import { usePost } from "@/lib/useQueries";
 import { Modal, Title } from "@mantine/core";
 import { useForm } from "@mantine/form";
 
-import { HubSpace } from "@/lib/schema";
+import { HubSpace } from "@/lib/schema/app";
 import { HubSpaceFormFields } from "../hubspace-form-fields";
 
 export function HubSpaceCreateModal({

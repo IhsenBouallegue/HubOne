@@ -1,6 +1,6 @@
 "use client";
 
-import { LinkGroup } from "@/lib/schema";
+import { LinkGroup } from "@/lib/schema/app";
 import { usePost } from "@/lib/useQueries";
 import { Modal } from "@mantine/core";
 import { useForm } from "@mantine/form";

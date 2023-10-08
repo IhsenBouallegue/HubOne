@@ -1,4 +1,4 @@
-import { Link } from "@/lib/schema";
+import { Link } from "@/lib/schema/app";
 import { usePost } from "@/lib/useQueries";
 import { Button, Group, Modal } from "@mantine/core";
 import { useForm } from "@mantine/form";

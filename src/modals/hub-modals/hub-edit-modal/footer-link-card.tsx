@@ -1,6 +1,6 @@
 "use client";
 
-import { FooterLink } from "@/lib/schema";
+import { FooterLink } from "@/lib/schema/app";
 import { useDelete, useUpdate } from "@/lib/useQueries";
 import { ActionIcon, Card, Group, Stack, Text, TextInput } from "@mantine/core";
 import { IconTrash } from "@tabler/icons-react";

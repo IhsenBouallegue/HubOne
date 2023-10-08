@@ -1,6 +1,6 @@
 "use client";
 
-import { Link } from "@/lib/schema";
+import { Link } from "@/lib/schema/app";
 import { useDelete, useUpdate } from "@/lib/useQueries";
 import { Button, Group, Modal, Title } from "@mantine/core";
 import { useForm } from "@mantine/form";

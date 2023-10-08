@@ -1,5 +1,5 @@
 import { useHubOneStore } from "@/lib/Store";
-import { LinkGroup } from "@/lib/schema";
+import { LinkGroup } from "@/lib/schema/app";
 import { useFetchByHubId } from "@/lib/useQueries";
 import { Button, Group } from "@mantine/core";
 import { SetStateAction } from "react";

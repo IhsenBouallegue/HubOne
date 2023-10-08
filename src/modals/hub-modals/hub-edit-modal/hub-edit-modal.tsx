@@ -1,7 +1,7 @@
 "use client";
 
 import { useHubOneStore } from "@/lib/Store";
-import { FooterLink, Hub } from "@/lib/schema";
+import { FooterLink, Hub } from "@/lib/schema/app";
 import { useFetchByHubId, useFetchItem, useUpdate } from "@/lib/useQueries";
 import { Modal, Stack, Tabs, Title } from "@mantine/core";
 import { useForm } from "@mantine/form";
