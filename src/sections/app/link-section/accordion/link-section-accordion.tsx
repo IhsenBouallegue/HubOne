@@ -1,7 +1,7 @@
 import { Accordion, Container } from "@mantine/core";
 
 import { useHubOneStore } from "@/lib/Store";
-import { Link, LinkGroup as LinkGroupI } from "@/lib/schema";
+import { Link, LinkGroup as LinkGroupI } from "@/lib/schema/app";
 import { useFetchByHubId } from "@/lib/useQueries";
 
 import LinkGroupGrid from "../link-group-grid";

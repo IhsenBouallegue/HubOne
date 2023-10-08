@@ -8,7 +8,7 @@ import FooterBar from "@/components/app/footer-bar";
 import HubCreateModal from "@/modals/hub-modals/hub-create-modal";
 
 import Header from "@/components/app/header";
-import { FooterLink, Hub, Link, LinkGroup } from "@/lib/schema";
+import { FooterLink, Hub, Link, LinkGroup } from "@/lib/schema/app";
 import Hero from "../hero";
 import HubMenu from "../hub-menu";
 import LinkSection from "../link-section";

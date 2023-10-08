@@ -1,5 +1,5 @@
 import db, { getHubSpacesPaths } from "@/lib/db";
-import { hubSpaces, hubs } from "@/lib/schema";
+import { hubSpaces, hubs } from "@/lib/schema/app";
 import HubNotFound from "@/sections/app/hub-not-found";
 import HubPage from "@/sections/app/hub-page/hub-page";
 import HubSpaceNotFound from "@/sections/app/hubspace-not-found";

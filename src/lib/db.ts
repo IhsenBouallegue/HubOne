@@ -1,6 +1,6 @@
 import { connect } from "@planetscale/database";
 import { drizzle } from "drizzle-orm/planetscale-serverless";
-import * as schema from "./schema";
+import * as schema from "./schema/app";
 
 export async function getHubSpacesPaths() {
   const hubs = await db.query.hubs.findMany({ with: { hubSpace: true } });

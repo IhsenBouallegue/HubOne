@@ -1,6 +1,6 @@
 "use client";
 
-import { LinkGroup } from "@/lib/schema";
+import { LinkGroup } from "@/lib/schema/app";
 import { Button, Group, TextInput } from "@mantine/core";
 import type { UseFormReturnType } from "@mantine/form";
 

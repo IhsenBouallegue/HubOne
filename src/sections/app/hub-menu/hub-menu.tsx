@@ -2,7 +2,7 @@
 
 import HubLogo from "@/components/app/hub-logo";
 import { useHubOneStore } from "@/lib/Store";
-import { Hub } from "@/lib/schema";
+import { Hub } from "@/lib/schema/app";
 import {
   Affix,
   Center,

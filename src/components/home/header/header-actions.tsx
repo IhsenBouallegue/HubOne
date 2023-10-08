@@ -6,6 +6,8 @@ import Link from "next/link";
 
 export function HeaderActions() {
   const session = useSession();
+  console.log(session);
+  
   return (
     <Group>
       {session?.data ? (

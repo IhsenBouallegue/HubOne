@@ -1,6 +1,6 @@
 "use client";
 
-import { Link } from "@/lib/schema";
+import { Link } from "@/lib/schema/app";
 import { Switch, TextInput } from "@mantine/core";
 import type { UseFormReturnType } from "@mantine/form";
 
