@@ -48,25 +48,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@auth/core@npm:^0.15.2":
-  version: 0.15.2
-  resolution: "@auth/core@npm:0.15.2"
-  dependencies:
-    "@panva/hkdf": ^1.0.4
-    cookie: 0.5.0
-    jose: ^4.11.1
-    oauth4webapi: ^2.0.6
-    preact: 10.11.3
-    preact-render-to-string: 5.2.3
-  peerDependencies:
-    nodemailer: ^6.8.0
-  peerDependenciesMeta:
-    nodemailer:
-      optional: true
-  checksum: 40983d6a426932a7d1114990cb628b0aa105619c8c2b521085939055d4876e0f25a1aac0f396aa800e36c1b4e9a889dbcc25652915bd2b4f1035bc5efe0cc0dd
-  languageName: node
-  linkType: hard
-
 "@auth/core@npm:experimental":
   version: 0.0.0-manual.e9863699
   resolution: "@auth/core@npm:0.0.0-manual.e9863699"
@@ -3770,7 +3751,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"drizzle-kit@npm:^0.19.13":
+"drizzle-kit@npm:0.19.13":
   version: 0.19.13
   resolution: "drizzle-kit@npm:0.19.13"
   dependencies:
@@ -3792,7 +3773,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"drizzle-orm@npm:^0.28.6":
+"drizzle-orm@npm:0.28.6":
   version: 0.28.6
   resolution: "drizzle-orm@npm:0.28.6"
   peerDependencies:
@@ -5113,7 +5094,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "hubone@workspace:."
   dependencies:
-    "@auth/core": ^0.15.2
     "@auth/drizzle-adapter": ^0.3.3
     "@babel/core": ^7.19.6
     "@biomejs/biome": 1.1.2
@@ -5153,8 +5133,8 @@ __metadata:
     cmdk: ^0.2.0
     date-fns: ^2.30.0
     dotenv: ^16.3.1
-    drizzle-kit: ^0.19.13
-    drizzle-orm: ^0.28.6
+    drizzle-kit: 0.19.13
+    drizzle-orm: 0.28.6
     eslint: 8.47.0
     eslint-config-airbnb: 19.0.4
     eslint-config-airbnb-typescript: 17.1.0
@@ -5169,7 +5149,7 @@ __metadata:
     lucide-react: ^0.279.0
     mysql2: 3.6.1
     next: 13.5.2
-    next-auth: experimental
+    next-auth: 0.0.0-manual.ffd05533
     postcss: latest
     postcss-preset-mantine: ^1.7.0
     postcss-simple-vars: ^7.0.1
@@ -6153,9 +6133,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next-auth@npm:experimental":
-  version: 0.0.0-manual.5749b095
-  resolution: "next-auth@npm:0.0.0-manual.5749b095"
+"next-auth@npm:0.0.0-manual.ffd05533":
+  version: 0.0.0-manual.ffd05533
+  resolution: "next-auth@npm:0.0.0-manual.ffd05533"
   dependencies:
     "@auth/core": experimental
   peerDependencies:
@@ -6165,7 +6145,7 @@ __metadata:
   peerDependenciesMeta:
     nodemailer:
       optional: true
-  checksum: 37b3ce501a32159afc6647eccda90d012892713d248cd2edab239aa1a3695c85348920c913f9b0470d2515f4451971c04b29b9154cd736f6fdb6ad317ca11f36
+  checksum: 6241c5ea9074fd28bec739b675e820263b94b9ce6b5d01ad93bd353c6c64ad913e68a43db5e56f92183623986fe34431920b94830fb3f464768725da214e7fa6
   languageName: node
   linkType: hard
 

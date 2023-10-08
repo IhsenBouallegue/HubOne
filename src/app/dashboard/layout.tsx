@@ -2,11 +2,21 @@ import { MainNav } from "@/components/dashboard/main-nav";
 import { Search } from "@/components/dashboard/search";
 import TeamSwitcher from "@/components/dashboard/team-switcher";
 import { UserNav } from "@/components/dashboard/user-nav";
+import db from "@/lib/db";
+import { users } from "@/lib/schema/auth";
+import { auth } from "auth";
+import { eq } from "drizzle-orm";
 import { ReactNode } from "react";
 
-export default function layout({
+export default async function layout({
   children,
 }: { children: ReactNode | ReactNode[] }) {
+  const { user } = await auth();
+  const dbUser = await db.query.users.findFirst({
+    where: eq(users.id, user?.id ?? ""),
+  });
+  console.log(dbUser);
+
   return (
     <div>
       <div className="hidden flex-col md:flex">

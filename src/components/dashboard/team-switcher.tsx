@@ -34,7 +34,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/ui/select";
-import { useSession } from "next-auth/react";
 import { Icons } from "../icons";
 
 const groups = [
@@ -76,9 +75,6 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
   const [selectedTeam, setSelectedTeam] = React.useState<Organization>(
     groups[0].organizations[0]
   );
-  const session = useSession();
-  console.log(session);
-
   return (
     <Dialog open={showNewTeamDialog} onOpenChange={setShowNewTeamDialog}>
       <Popover open={open} onOpenChange={setOpen}>

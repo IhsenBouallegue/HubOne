@@ -1,7 +1,15 @@
 import db from "@/lib/db";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
 import NextAuth from "next-auth";
+import type { User } from "next-auth";
 import Google from "next-auth/providers/google";
+declare module "next-auth" {
+  interface Session {
+    user: {
+      picture?: string;
+    } & User;
+  }
+}
 
 export const {
   handlers: { GET, POST },
@@ -10,16 +18,11 @@ export const {
   adapter: DrizzleAdapter(db),
   providers: [Google],
   callbacks: {
-    async jwt({token, user}) {
-        console.log(user);
-        
-       if (user?.id) {
-           token.id = user.id
-       }
-       if (user?.name) {
-           token.name = user.name;
-       }
-       return token
+    async session({ session, user }) {
+      return {
+        ...session,
+        user: { ...session.user, id: user.id },
+      };
     },
   },
 });
