@@ -5,9 +5,7 @@ import type { User } from "next-auth";
 import Google from "next-auth/providers/google";
 declare module "next-auth" {
   interface Session {
-    user: {
-      picture?: string;
-    } & User;
+    user: User;
   }
 }
 

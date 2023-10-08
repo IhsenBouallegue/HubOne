@@ -67,16 +67,19 @@ type PopoverTriggerProps = React.ComponentPropsWithoutRef<
   typeof PopoverTrigger
 >;
 
-type TeamSwitcherProps = PopoverTriggerProps;
+type OrganizationSwitcherProps = PopoverTriggerProps;
 
-export default function TeamSwitcher({ className }: TeamSwitcherProps) {
+export function OrganizationSwitcher({ className }: OrganizationSwitcherProps) {
   const [open, setOpen] = React.useState(false);
-  const [showNewTeamDialog, setShowNewTeamDialog] = React.useState(false);
-  const [selectedTeam, setSelectedTeam] = React.useState<Organization>(
-    groups[0].organizations[0]
-  );
+  const [showNewOrganizationDialog, setShowNewOrganizationDialog] =
+    React.useState(false);
+  const [selectedOrganization, setSelectedOrganization] =
+    React.useState<Organization>(groups[0].organizations[0]);
   return (
-    <Dialog open={showNewTeamDialog} onOpenChange={setShowNewTeamDialog}>
+    <Dialog
+      open={showNewOrganizationDialog}
+      onOpenChange={setShowNewOrganizationDialog}
+    >
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button
@@ -88,12 +91,12 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
           >
             <Avatar className="mr-2 h-5 w-5">
               <AvatarImage
-                src={`https://avatar.vercel.sh/${selectedTeam.value}.png`}
-                alt={selectedTeam.label}
+                src={`https://avatar.vercel.sh/${selectedOrganization.value}.png`}
+                alt={selectedOrganization.label}
               />
               <AvatarFallback>SC</AvatarFallback>
             </Avatar>
-            {selectedTeam.label}
+            {selectedOrganization.label}
             <Icons.sort className="ml-auto h-4 w-4 shrink-0 opacity-50" />
           </Button>
         </PopoverTrigger>
@@ -108,7 +111,7 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
                     <CommandItem
                       key={organization.value}
                       onSelect={() => {
-                        setSelectedTeam(organization);
+                        setSelectedOrganization(organization);
                         setOpen(false);
                       }}
                       className="text-sm"
@@ -125,7 +128,7 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
                       <Icons.checkIcon
                         className={cn(
                           "ml-auto h-4 w-4",
-                          selectedTeam.value === organization.value
+                          selectedOrganization.value === organization.value
                             ? "opacity-100"
                             : "opacity-0"
                         )}
@@ -142,7 +145,7 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
                   <CommandItem
                     onSelect={() => {
                       setOpen(false);
-                      setShowNewTeamDialog(true);
+                      setShowNewOrganizationDialog(true);
                     }}
                   >
                     <Icons.plus className="mr-2 h-5 w-5" />
@@ -158,7 +161,7 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
         <DialogHeader>
           <DialogTitle>Create organization</DialogTitle>
           <DialogDescription>
-            Add a new organization to manage products and customers.
+            Add a new organization to manage HubSpaces and Hubs.
           </DialogDescription>
         </DialogHeader>
         <div>
@@ -192,7 +195,10 @@ export default function TeamSwitcher({ className }: TeamSwitcherProps) {
           </div>
         </div>
         <DialogFooter>
-          <Button variant="outline" onClick={() => setShowNewTeamDialog(false)}>
+          <Button
+            variant="outline"
+            onClick={() => setShowNewOrganizationDialog(false)}
+          >
             Cancel
           </Button>
           <Button type="submit">Continue</Button>
