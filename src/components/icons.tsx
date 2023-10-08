@@ -3,6 +3,7 @@ import {
   AlertTriangle,
   ArrowRight,
   Check,
+  CheckIcon,
   ChevronLeft,
   ChevronRight,
   CreditCard,
@@ -18,6 +19,7 @@ import {
   Pizza,
   Plus,
   Settings,
+  SortAsc,
   SunMedium,
   Trash,
   Twitter,
@@ -37,7 +39,7 @@ export const Icons = {
   settings: Settings,
   billing: CreditCard,
   ellipsis: MoreVertical,
-  add: Plus,
+  plus: Plus,
   warning: AlertTriangle,
   user: User,
   arrowRight: ArrowRight,
@@ -45,7 +47,9 @@ export const Icons = {
   pizza: Pizza,
   sun: SunMedium,
   moon: Moon,
+  sort: SortAsc,
   laptop: Laptop,
+  checkIcon: CheckIcon,
   gitHub: ({ ...props }: LucideProps) => (
     // biome-ignore lint/a11y/noSvgWithoutTitle: <explanation>
     <svg

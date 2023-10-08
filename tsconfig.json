@@ -3,11 +3,6 @@
     "target": "ESNext",
     "baseUrl": ".",
     "paths": {
-      "@/lib/*": ["src/lib/*"],
-      "@/components/*": ["src/components/*"],
-      "@/modals/*": ["src/modals/*"],
-      "@/sections/*": ["src/sections/*"],
-      "@/styles/*": ["src/styles/*"],
       "@/*": ["./src/*"]
     },
     "lib": ["dom", "dom.iterable", "esnext"],
