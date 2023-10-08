@@ -1065,6 +1065,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@noble/hashes@npm:^1.1.5":
+  version: 1.3.2
+  resolution: "@noble/hashes@npm:1.3.2"
+  checksum: fe23536b436539d13f90e4b9be843cc63b1b17666a07634a2b1259dded6f490be3d050249e6af98076ea8f2ea0d56f578773c2197f2aa0eeaa5fba5bc18ba474
+  languageName: node
+  linkType: hard
+
 "@nodelib/fs.scandir@npm:2.1.5":
   version: 2.1.5
   resolution: "@nodelib/fs.scandir@npm:2.1.5"
@@ -1105,6 +1112,15 @@ __metadata:
   version: 1.1.1
   resolution: "@panva/hkdf@npm:1.1.1"
   checksum: f0dd12903751d8792420353f809ed3c7de860cf506399759fff5f59f7acfef8a77e2b64012898cee7e5b047708fa0bd91dff5ef55a502bf8ea11aad9842160da
+  languageName: node
+  linkType: hard
+
+"@paralleldrive/cuid2@npm:2.2.2":
+  version: 2.2.2
+  resolution: "@paralleldrive/cuid2@npm:2.2.2"
+  dependencies:
+    "@noble/hashes": ^1.1.5
+  checksum: f7f6ac70e0268ec2c72e555719240d5c2c9a859ce541ac1c637eed3f3ee971b42881d299dedafbded53e7365b9e98176c5a31c442c1112f7e9e7306f2fd0ecbb
   languageName: node
   linkType: hard
 
@@ -3839,6 +3855,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"drizzle-zod@npm:0.5.1":
+  version: 0.5.1
+  resolution: "drizzle-zod@npm:0.5.1"
+  peerDependencies:
+    drizzle-orm: ">=0.23.13"
+    zod: "*"
+  checksum: 4a2562b16dc519280eaabc01c19042f359249dd36b266b382a1b89343515a6621736f6849ad0863b403676d4852049123fe0e82ba90f0d1b80da5ec815a5a5e4
+  languageName: node
+  linkType: hard
+
 "eastasianwidth@npm:^0.2.0":
   version: 0.2.0
   resolution: "eastasianwidth@npm:0.2.0"
@@ -5106,6 +5132,7 @@ __metadata:
     "@mantine/hooks": 7.0.0
     "@mantine/notifications": 7.0.0
     "@next/eslint-plugin-next": ^13.4.19
+    "@paralleldrive/cuid2": 2.2.2
     "@planetscale/database": ^1.11.0
     "@radix-ui/react-avatar": ^1.0.4
     "@radix-ui/react-dialog": ^1.0.5
@@ -5135,6 +5162,7 @@ __metadata:
     dotenv: ^16.3.1
     drizzle-kit: 0.19.13
     drizzle-orm: 0.28.6
+    drizzle-zod: 0.5.1
     eslint: 8.47.0
     eslint-config-airbnb: 19.0.4
     eslint-config-airbnb-typescript: 17.1.0
@@ -5157,7 +5185,7 @@ __metadata:
     react: 18.2.0
     react-day-picker: ^8.8.2
     react-dom: 18.2.0
-    react-hook-form: ^7.46.2
+    react-hook-form: ^7.47.0
     recharts: ^2.8.0
     stripe: 13.6.0
     tailwind-merge: ^1.14.0
@@ -5165,7 +5193,7 @@ __metadata:
     tailwindcss-animate: ^1.0.7
     ts-node: ^10.9.1
     typescript: 5.1.6
-    zod: ^3.22.2
+    zod: ^3.22.4
     zustand: ^4.3.7
   languageName: unknown
   linkType: soft
@@ -6797,12 +6825,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-hook-form@npm:^7.46.2":
-  version: 7.46.2
-  resolution: "react-hook-form@npm:7.46.2"
+"react-hook-form@npm:^7.47.0":
+  version: 7.47.0
+  resolution: "react-hook-form@npm:7.47.0"
   peerDependencies:
     react: ^16.8.0 || ^17 || ^18
-  checksum: 5ad2b478337fed3ab1a7bee79844d89a85485626fb1afd4acba54e28adb8f6663d37efefa9000b6ddb33f7de23b765bfac9a1d12e10c63e71463317a307134cf
+  checksum: dec192fec9c54e436f9e47008635dd7849b6b119ed477a9b0cd491367a0b2ced3427cd937febfb245e1cb7578c863917181d903eff4519c2787bf713ec7d3426
   languageName: node
   linkType: hard
 
@@ -8386,10 +8414,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zod@npm:^3.20.2, zod@npm:^3.22.2":
+"zod@npm:^3.20.2":
   version: 3.22.2
   resolution: "zod@npm:3.22.2"
   checksum: 231e2180c8eabb56e88680d80baff5cf6cbe6d64df3c44c50ebe52f73081ecd0229b1c7215b9552537f537a36d9e36afac2737ddd86dc14e3519bdbc777e82b9
+  languageName: node
+  linkType: hard
+
+"zod@npm:^3.22.4":
+  version: 3.22.4
+  resolution: "zod@npm:3.22.4"
+  checksum: 80bfd7f8039b24fddeb0718a2ec7c02aa9856e4838d6aa4864335a047b6b37a3273b191ef335bf0b2002e5c514ef261ffcda5a589fb084a48c336ffc4cdbab7f
   languageName: node
   linkType: hard
 

@@ -15,26 +15,10 @@ import {
   CommandList,
   CommandSeparator,
 } from "@/ui/command";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/ui/dialog";
-import { Input } from "@/ui/input";
-import { Label } from "@/ui/label";
+import { Dialog, DialogTrigger } from "@/ui/dialog";
 import { Popover, PopoverContent, PopoverTrigger } from "@/ui/popover";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/ui/select";
 import { Icons } from "../icons";
+import OrganizationForm from "./organization-form";
 
 const groups = [
   {
@@ -86,7 +70,7 @@ export function OrganizationSwitcher({ className }: OrganizationSwitcherProps) {
             variant="outline"
             role="combobox"
             aria-expanded={open}
-            aria-label="Select a organization"
+            aria-label="Select an organization"
             className={cn("w-[200px] justify-between", className)}
           >
             <Avatar className="mr-2 h-5 w-5">
@@ -157,53 +141,9 @@ export function OrganizationSwitcher({ className }: OrganizationSwitcherProps) {
           </Command>
         </PopoverContent>
       </Popover>
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Create organization</DialogTitle>
-          <DialogDescription>
-            Add a new organization to manage HubSpaces and Hubs.
-          </DialogDescription>
-        </DialogHeader>
-        <div>
-          <div className="space-y-4 py-2 pb-4">
-            <div className="space-y-2">
-              <Label htmlFor="name">Organization name</Label>
-              <Input id="name" placeholder="Acme Inc." />
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="plan">Subscription plan</Label>
-              <Select>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select a plan" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="free">
-                    <span className="font-medium">Free</span> -{" "}
-                    <span className="text-muted-foreground">
-                      Trial for two weeks
-                    </span>
-                  </SelectItem>
-                  <SelectItem value="pro">
-                    <span className="font-medium">Pro</span> -{" "}
-                    <span className="text-muted-foreground">
-                      $9/month per user
-                    </span>
-                  </SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
-        </div>
-        <DialogFooter>
-          <Button
-            variant="outline"
-            onClick={() => setShowNewOrganizationDialog(false)}
-          >
-            Cancel
-          </Button>
-          <Button type="submit">Continue</Button>
-        </DialogFooter>
-      </DialogContent>
+      <OrganizationForm
+        setShowNewOrganizationDialog={setShowNewOrganizationDialog}
+      />
     </Dialog>
   );
 }
