@@ -2,6 +2,7 @@ import { connect } from "@planetscale/database";
 import { drizzle } from "drizzle-orm/planetscale-serverless";
 import * as app from "./schema/app";
 import * as auth from "./schema/auth";
+import * as organizations from "./schema/orgaizations";
 
 export async function getHubSpacesPaths() {
   const hubs = await db.query.hubs.findMany({ with: { hubSpace: true } });
@@ -16,6 +17,8 @@ const connection = connect({
   url: process.env.DATABASE_URL,
 });
 
-const db = drizzle(connection, { schema: { ...auth, ...app } });
+const db = drizzle(connection, {
+  schema: { ...auth, ...app, ...organizations },
+});
 
 export default db;

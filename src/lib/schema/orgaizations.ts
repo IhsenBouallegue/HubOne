@@ -1,5 +1,5 @@
 import { createId } from "@paralleldrive/cuid2";
-import { relations } from "drizzle-orm";
+import { InferSelectModel, relations } from "drizzle-orm";
 import { mysqlTable, primaryKey, varchar } from "drizzle-orm/mysql-core";
 import { users } from "./auth";
 
@@ -20,7 +20,10 @@ export const organizationsRelations = relations(
   organizations,
   ({ one, many }) => ({
     usersToOrganizations: many(usersToOrganizations),
-    admin: one(users),
+    admin: one(users, {
+      fields: [organizations.admin],
+      references: [users.id],
+    }),
   })
 );
 
@@ -52,3 +55,5 @@ export const usersToOrganizationsRelations = relations(
     }),
   })
 );
+
+export type Organization = InferSelectModel<typeof organizations>;

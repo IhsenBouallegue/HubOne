@@ -4,6 +4,8 @@ import * as React from "react";
 
 import { cn } from "@/lib/utils";
 
+import { Organization } from "@/lib/schema/orgaizations";
+import { API_URL } from "@/lib/useQueries";
 import { Avatar, AvatarFallback, AvatarImage } from "@/ui/avatar";
 import { Button } from "@/ui/button";
 import {
@@ -17,35 +19,19 @@ import {
 } from "@/ui/command";
 import { Dialog, DialogTrigger } from "@/ui/dialog";
 import { Popover, PopoverContent, PopoverTrigger } from "@/ui/popover";
+import { useSession } from "next-auth/react";
+import { useState } from "react";
 import { Icons } from "../icons";
 import OrganizationForm from "./organization-form";
 
 const groups = [
   {
-    label: "Personal Account",
-    organizations: [
-      {
-        label: "Alicia Koch",
-        value: "personal",
-      },
-    ],
-  },
-  {
     label: "Organizations",
-    organizations: [
-      {
-        label: "Acme Inc.",
-        value: "acme-inc",
-      },
-      {
-        label: "Monsters Inc.",
-        value: "monsters",
-      },
-    ],
+    organizations: [],
   },
 ];
 
-type Organization = typeof groups[number]["organizations"][number];
+type OrganizationCommand = { label: string; value: string };
 
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<
   typeof PopoverTrigger
@@ -54,11 +40,37 @@ type PopoverTriggerProps = React.ComponentPropsWithoutRef<
 type OrganizationSwitcherProps = PopoverTriggerProps;
 
 export function OrganizationSwitcher({ className }: OrganizationSwitcherProps) {
-  const [open, setOpen] = React.useState(false);
+  const session = useSession();
+  const [open, setOpen] = useState(false);
+  const [memberOrganizations, setMemberOrganizations] = useState<
+    OrganizationCommand[]
+  >([]);
   const [showNewOrganizationDialog, setShowNewOrganizationDialog] =
-    React.useState(false);
+    useState(false);
   const [selectedOrganization, setSelectedOrganization] =
-    React.useState<Organization>(groups[0].organizations[0]);
+    useState<OrganizationCommand>({ label: "", value: "" });
+
+  React.useEffect(() => {
+    if (!session.data?.user.id) return;
+    fetch(
+      `${API_URL}/usersOrganizations?${new URLSearchParams({
+        userId: session.data?.user.id || "",
+      })}`
+    )
+      .then((res) => res.json())
+      .then(
+        ({ memberOrganizations }: { memberOrganizations: Organization[] }) => {
+          const memberOrganizationsCommand: OrganizationCommand[] =
+            memberOrganizations.map((org) => ({
+              label: org.name,
+              value: org.id,
+            }));
+          setMemberOrganizations(memberOrganizationsCommand);
+          if (selectedOrganization.value === "")
+            setSelectedOrganization(memberOrganizationsCommand[0]);
+        }
+      );
+  }, [session.data?.user.id]);
   return (
     <Dialog
       open={showNewOrganizationDialog}
@@ -91,7 +103,7 @@ export function OrganizationSwitcher({ className }: OrganizationSwitcherProps) {
               <CommandEmpty>No organization found.</CommandEmpty>
               {groups.map((group) => (
                 <CommandGroup key={group.label} heading={group.label}>
-                  {group.organizations.map((organization) => (
+                  {memberOrganizations.map((organization) => (
                     <CommandItem
                       key={organization.value}
                       onSelect={() => {

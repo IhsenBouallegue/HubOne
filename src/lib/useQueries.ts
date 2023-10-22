@@ -98,8 +98,6 @@ export function usePost<T>(QUERY_NAME: string) {
         method: "POST",
         body: JSON.stringify(newItem),
       });
-      console.log(API_URL + QUERY_NAME);
-
       if (!res.ok) {
         const { error } = await res.json();
         throw new Error(error);
