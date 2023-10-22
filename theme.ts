@@ -1,5 +1,6 @@
 "use client";
 
+import { mainFont } from "@/lib/fonts";
 import { createTheme } from "@mantine/core";
 
 const theme = createTheme({
@@ -33,8 +34,8 @@ const theme = createTheme({
   defaultRadius: "md",
   black: "#050315",
   primaryShade: 4,
-  fontFamily: "Poppins",
-  headings: { fontFamily: "Poppins", fontWeight: "bold" },
+  fontFamily: mainFont.style.fontFamily,
+  headings: { fontFamily: mainFont.style.fontFamily, fontWeight: "bold" },
   defaultGradient: { to: "primary.4", from: "secondary.4" },
   // https://www.joshwcomeau.com/shadow-palette/
   shadows: {

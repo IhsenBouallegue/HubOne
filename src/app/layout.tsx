@@ -2,22 +2,16 @@ import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
 import "./globals.css";
 
+import { mainFont } from "@/lib/fonts";
 import { Toaster } from "@/ui/toaster";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 import { Analytics } from "@vercel/analytics/react";
 import { SessionProvider } from "next-auth/react";
-import { Poppins } from "next/font/google";
 import { ReactNode } from "react";
 import theme from "../../theme";
 import Providers from "./providers";
 
-// If loading a variable font, you don't need to specify the font weight
-const poppins = Poppins({
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
-  display: "swap",
-  subsets: ["latin"],
-});
 export const metadata = {
   title: "HubOne",
   description: "HubOne",
@@ -25,7 +19,7 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode[] }) {
   return (
-    <html lang="en" className={poppins.className}>
+    <html lang="en" className={mainFont.variable}>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <ColorSchemeScript forceColorScheme="light" />
