@@ -1,7 +1,5 @@
 "use client";
 
-import * as React from "react";
-
 import { cn } from "@/lib/utils";
 
 import { Organization } from "@/lib/schema/orgaizations";
@@ -20,7 +18,7 @@ import {
 import { Dialog, DialogTrigger } from "@/ui/dialog";
 import { Popover, PopoverContent, PopoverTrigger } from "@/ui/popover";
 import { useSession } from "next-auth/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Icons } from "../icons";
 import OrganizationForm from "./organization-form";
 
@@ -50,7 +48,7 @@ export function OrganizationSwitcher({ className }: OrganizationSwitcherProps) {
   const [selectedOrganization, setSelectedOrganization] =
     useState<OrganizationCommand>({ label: "", value: "" });
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!session.data?.user.id) return;
     fetch(
       `${API_URL}/usersOrganizations?${new URLSearchParams({

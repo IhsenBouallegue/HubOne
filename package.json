@@ -50,7 +50,7 @@
     "lucide-react": "^0.290.0",
     "mysql2": "3.6.2",
     "next": "13.5.6",
-    "next-auth": "0.0.0-pr.8775.a98a849e",
+    "next-auth": "0.0.0-manual.ffd05533",
     "postgres": "^3.3.5",
     "react": "18.2.0",
     "react-day-picker": "^8.8.2",
