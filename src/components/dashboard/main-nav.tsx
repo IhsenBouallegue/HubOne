@@ -27,13 +27,13 @@ export function MainNav({
         href="/dashboard"
         className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
       >
-        Organization Settings
+        Organization
       </Link>
       <Link
-        href="/plans"
+        href="/plan"
         className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
       >
-        Plans
+        Plan
       </Link>
       <Link
         href="/billing"

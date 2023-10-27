@@ -2,8 +2,6 @@
 
 import { cn } from "@/lib/utils";
 
-import { Organization } from "@/lib/schema/orgaizations";
-import { API_URL } from "@/lib/useQueries";
 import { Avatar, AvatarFallback, AvatarImage } from "@/ui/avatar";
 import { Button } from "@/ui/button";
 import {
@@ -17,8 +15,7 @@ import {
 } from "@/ui/command";
 import { Dialog, DialogTrigger } from "@/ui/dialog";
 import { Popover, PopoverContent, PopoverTrigger } from "@/ui/popover";
-import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Icons } from "../../icons";
 import OrganizationForm from "../organization-form";
 
@@ -35,46 +32,16 @@ type PopoverTriggerProps = React.ComponentPropsWithoutRef<
   typeof PopoverTrigger
 >;
 
-type OrganizationSwitcherProps = PopoverTriggerProps;
-
-export function OrganizationSwitcher({ className }: OrganizationSwitcherProps) {
-  const session = useSession();
+export function OrganizationSwitcher({
+  className,
+  memberOrganizations,
+}: PopoverTriggerProps & { memberOrganizations: OrganizationCommand[] }) {
   const [open, setOpen] = useState(false);
-  const [memberOrganizations, setMemberOrganizations] = useState<
-    OrganizationCommand[]
-  >([]);
   const [showNewOrganizationDialog, setShowNewOrganizationDialog] =
     useState(false);
   const [selectedOrganization, setSelectedOrganization] =
-    useState<OrganizationCommand>({ label: "", value: "" });
+    useState<OrganizationCommand>(memberOrganizations[0]);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
-  useEffect(() => {
-    if (!session.data?.user.id) return;
-    fetch(
-      `${API_URL}/usersOrganizations?${new URLSearchParams({
-        userId: session.data?.user.id || "",
-      })}`
-    )
-      .then((res) => res.json())
-      .then(
-        ({ memberOrganizations }: { memberOrganizations: Organization[] }) => {
-          const memberOrganizationsCommand: OrganizationCommand[] =
-            memberOrganizations.map((org) => ({
-              label: org.name,
-              value: org.id,
-            }));
-          setMemberOrganizations(memberOrganizationsCommand);
-          if (selectedOrganization.value === "")
-            setSelectedOrganization(memberOrganizationsCommand[0]);
-        }
-      );
-  }, [
-    session,
-    selectedOrganization,
-    setSelectedOrganization,
-    memberOrganizations,
-  ]);
   return (
     <Dialog
       open={showNewOrganizationDialog}
@@ -89,14 +56,16 @@ export function OrganizationSwitcher({ className }: OrganizationSwitcherProps) {
             aria-label="Select an organization"
             className={cn("w-[200px] justify-between", className)}
           >
-            <Avatar className="mr-2 h-5 w-5">
-              <AvatarImage
-                src={`https://avatar.vercel.sh/${selectedOrganization.value}.png`}
-                alt={selectedOrganization.label}
-              />
-              <AvatarFallback>SC</AvatarFallback>
-            </Avatar>
-            {selectedOrganization.label}
+            {selectedOrganization && (
+              <Avatar className="mr-2 h-5 w-5">
+                <AvatarImage
+                  src={`https://avatar.vercel.sh/${selectedOrganization.value}.png`}
+                  alt={selectedOrganization.label}
+                />
+                <AvatarFallback>SC</AvatarFallback>
+              </Avatar>
+            )}
+            {selectedOrganization?.label || "Nothing selected"}
             <Icons.sort className="ml-auto h-4 w-4 shrink-0 opacity-50" />
           </Button>
         </PopoverTrigger>

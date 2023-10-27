@@ -1,3 +1,5 @@
+"use client";
+
 import { CalendarDateRangePicker } from "@/components/dashboard/date-range-picker";
 import { Overview } from "@/components/dashboard/overview";
 import { RecentSales } from "@/components/dashboard/recent-sales";
@@ -10,12 +12,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/ui/card";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Dashboard",
-  description: "Example dashboard app built using the components.",
-};
+import { toast } from "@/ui/use-toast";
 
 export default function DashboardPage() {
   return (
@@ -24,7 +21,16 @@ export default function DashboardPage() {
         <h2 className="text-3xl font-bold">Dashboard</h2>
         <div className="flex items-center space-x-2">
           <CalendarDateRangePicker />
-          <Button>Download</Button>
+          <Button
+            onClick={() => {
+              toast({
+                title: "Organization created",
+                description: "You can now create HubSpaces and Hubs.",
+              });
+            }}
+          >
+            Download
+          </Button>
         </div>
       </div>
 

@@ -1,5 +1,4 @@
-import { API_URL } from "@/lib/useQueries";
-import { organizationSchema } from "@/lib/validations/organization";
+import { organizationSchemaWithoutAdmin } from "@/lib/validations/organization";
 import { Avatar, AvatarFallback, AvatarImage } from "@/ui/avatar";
 import { Button } from "@/ui/button";
 import {
@@ -22,58 +21,51 @@ import { Input } from "@/ui/input";
 import { toast } from "@/ui/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSession } from "next-auth/react";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Icons } from "../icons";
+import SubmitButton from "../common/submit-button";
+import { createOrganization } from "./organization-switcher/organization-switcher.action";
 
 export default function OrganizationForm({
   setShowNewOrganizationDialog,
 }: { setShowNewOrganizationDialog: (shown: boolean) => void }) {
   const session = useSession();
-
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const form = useForm<z.infer<typeof organizationSchema>>({
-    resolver: zodResolver(organizationSchema),
-    values: { admin: session.data?.user.id || "" } as z.infer<
-      typeof organizationSchema
-    >,
+  const form = useForm<z.infer<typeof organizationSchemaWithoutAdmin>>({
+    resolver: zodResolver(organizationSchemaWithoutAdmin),
+    defaultValues: { name: "" },
   });
-
-  async function onSubmit(values: z.infer<typeof organizationSchema>) {
-    setIsLoading(true);
-
-    const res = await fetch(`${API_URL}/organizations`, {
-      method: "POST",
-      body: JSON.stringify(values),
-    });
-
-    setIsLoading(false);
-
-    if (!res.ok) {
-      return toast({
+  const callAction = async (formData: FormData) => {
+    await form.trigger();
+    if (!form.formState.isValid) return;
+    const { ok, error } = await createOrganization(formData);
+    if (ok) {
+      toast({
+        title: "Organization created",
+        description: "You can now create HubSpaces and Hubs.",
+      });
+      form.reset();
+      setShowNewOrganizationDialog(false);
+    }
+    if (error || !ok) {
+      toast({
         title: "Something went wrong.",
-        description:
-          "Your organization creation request failed. Please try again.",
+        description: error,
         variant: "destructive",
       });
     }
+  };
 
-    return toast({
-      title: "Organization created",
-      description: "You can now create HubSpaces and Hubs.",
-    });
-  }
   return (
     <DialogContent>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <form action={callAction} className="space-y-8">
           <DialogHeader>
             <DialogTitle>Create organization</DialogTitle>
             <DialogDescription>
               Add a new organization to manage HubSpaces and Hubs.
             </DialogDescription>
           </DialogHeader>
+
           <FormField
             control={form.control}
             name="name"
@@ -83,39 +75,34 @@ export default function OrganizationForm({
                 <FormControl>
                   <Input placeholder="name" {...field} />
                 </FormControl>
-                <FormDescription>This is your public name.</FormDescription>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            name="admin"
-            render={() => (
-              <FormItem>
-                <FormLabel>Creator</FormLabel>
-                <div
-                  aria-label="Select an organization"
-                  className={
-                    "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-                  }
-                >
-                  <Avatar className="mr-2 h-5 w-5">
-                    <AvatarImage
-                      src={session.data?.user.image || ""}
-                      alt={session.data?.user.name || ""}
-                    />
-                    <AvatarFallback>SC</AvatarFallback>
-                  </Avatar>
-                  {session.data?.user.name || ""}
-                </div>
                 <FormDescription>
-                  You will be able to invite members and delete organization.
+                  This is the orgaization's public name.
                 </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
           />
-
+          <FormItem>
+            <FormLabel>Creator</FormLabel>
+            <div
+              className={
+                "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+              }
+            >
+              <Avatar className="mr-2 h-5 w-5">
+                <AvatarImage
+                  src={session.data?.user.image || ""}
+                  alt={session.data?.user.name || ""}
+                />
+                <AvatarFallback>SC</AvatarFallback>
+              </Avatar>
+              {session.data?.user.name || ""}
+            </div>
+            <FormDescription>
+              You will be able to invite members and delete organization.
+            </FormDescription>
+            <FormMessage />
+          </FormItem>
           <DialogFooter>
             <Button
               variant="outline"
@@ -123,12 +110,7 @@ export default function OrganizationForm({
             >
               Cancel
             </Button>
-            <Button type="submit" disabled={isLoading}>
-              {isLoading && (
-                <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-              )}
-              Continue
-            </Button>
+            <SubmitButton />
           </DialogFooter>
         </form>
       </Form>

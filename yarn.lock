@@ -5459,6 +5459,7 @@ __metadata:
     ts-node: "npm:^10.9.1"
     typescript: "npm:5.2.2"
     zod: "npm:^3.22.4"
+    zod-validation-error: "npm:2.0.0"
     zustand: "npm:^4.3.7"
   languageName: unknown
   linkType: soft
@@ -8802,6 +8803,15 @@ __metadata:
   version: 0.1.0
   resolution: "yocto-queue@npm:0.1.0"
   checksum: dceb44c28578b31641e13695d200d34ec4ab3966a5729814d5445b194933c096b7ced71494ce53a0e8820685d1d010df8b2422e5bf2cdea7e469d97ffbea306f
+  languageName: node
+  linkType: hard
+
+"zod-validation-error@npm:2.0.0":
+  version: 2.0.0
+  resolution: "zod-validation-error@npm:2.0.0"
+  peerDependencies:
+    zod: ^3.18.0
+  checksum: 0a78c0d2bb00102ba547cb8f73f5d8abe4d888def7037c361821caa1b08217939b6f6a2bd3031dddf3868210391ee037127f8a5897b3699f8aa74dc07c8c9251
   languageName: node
   linkType: hard
 
