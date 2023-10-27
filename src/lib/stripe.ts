@@ -22,14 +22,14 @@ export const getProducts = async () => {
   // Create a map of products and their prices
   const productMap: Products = {};
 
-  products.data.reverse().forEach((product) => {
+  for (const product of products.data) {
     productMap[product.id] = {
       name: product.name,
       description: product.description,
       color: product.metadata.color,
       prices: prices.data.filter((price) => price.product === product.id),
     };
-  });
+  }
   return productMap;
 };
 

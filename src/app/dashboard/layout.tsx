@@ -1,5 +1,5 @@
 import { MainNav } from "@/components/dashboard/main-nav";
-import { OrganizationSwitcher } from "@/components/dashboard/organization-switcher";
+import { OrganizationSwitcher } from "@/components/dashboard/organization-switcher/organization-switcher";
 import { Search } from "@/components/dashboard/search";
 import { UserNav } from "@/components/dashboard/user-nav";
 import { ReactNode } from "react";

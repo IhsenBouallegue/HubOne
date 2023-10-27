@@ -19,8 +19,8 @@ import { Dialog, DialogTrigger } from "@/ui/dialog";
 import { Popover, PopoverContent, PopoverTrigger } from "@/ui/popover";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
-import { Icons } from "../icons";
-import OrganizationForm from "./organization-form";
+import { Icons } from "../../icons";
+import OrganizationForm from "../organization-form";
 
 const groups = [
   {
@@ -48,6 +48,7 @@ export function OrganizationSwitcher({ className }: OrganizationSwitcherProps) {
   const [selectedOrganization, setSelectedOrganization] =
     useState<OrganizationCommand>({ label: "", value: "" });
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
     if (!session.data?.user.id) return;
     fetch(
@@ -68,7 +69,12 @@ export function OrganizationSwitcher({ className }: OrganizationSwitcherProps) {
             setSelectedOrganization(memberOrganizationsCommand[0]);
         }
       );
-  }, [session.data?.user.id]);
+  }, [
+    session,
+    selectedOrganization,
+    setSelectedOrganization,
+    memberOrganizations,
+  ]);
   return (
     <Dialog
       open={showNewOrganizationDialog}

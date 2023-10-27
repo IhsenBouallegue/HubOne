@@ -16,6 +16,7 @@
     "stripe:listen": "stripe listen --forward-to localhost:3000/api/stripe/webhook"
   },
   "dependencies": {
+    "@auth/core": "^0.18.0",
     "@auth/drizzle-adapter": "^0.3.3",
     "@clerk/nextjs": "4.26.1",
     "@hookform/resolvers": "^3.3.1",
@@ -50,7 +51,7 @@
     "lucide-react": "^0.290.0",
     "mysql2": "3.6.2",
     "next": "14.0.0",
-    "next-auth": "0.0.0-manual.ffd05533",
+    "next-auth": "beta",
     "postgres": "^3.3.5",
     "react": "18.2.0",
     "react-day-picker": "^8.8.2",

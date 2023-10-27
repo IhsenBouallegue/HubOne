@@ -14,6 +14,7 @@ export function HeaderLinks({
         <Link
           href={linkGroup.link}
           className={cn(buttonVariants({ variant: "link" }))}
+          key={linkGroup.link}
           onClick={() => {
             toggleOpened(false);
           }}
