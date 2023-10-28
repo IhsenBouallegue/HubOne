@@ -4,6 +4,7 @@ import {
   ArrowRight,
   Check,
   CheckIcon,
+  ChevronDown,
   ChevronLeft,
   ChevronRight,
   ChevronsUpDown,
@@ -52,6 +53,7 @@ export const Icons = {
   laptop: Laptop,
   checkIcon: CheckIcon,
   chevronsUpDown: ChevronsUpDown,
+  chevronDown: ChevronDown,
   gitHub: ({ ...props }: LucideProps) => (
     // biome-ignore lint/a11y/noSvgWithoutTitle: <explanation>
     <svg

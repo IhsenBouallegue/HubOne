@@ -57,3 +57,4 @@ export const usersToOrganizationsRelations = relations(
 );
 
 export type Organization = InferSelectModel<typeof organizations>;
+export type UsersToOrganization = InferSelectModel<typeof usersToOrganizations>;

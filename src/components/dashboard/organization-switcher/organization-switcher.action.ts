@@ -1,8 +1,9 @@
 "use server";
 
 import db from "@/lib/db";
-import { organizations } from "@/lib/schema/orgaizations";
+import { organizations, usersToOrganizations } from "@/lib/schema/orgaizations";
 import { insertOrganizationSchema } from "@/lib/validations/organization";
+import { createId } from "@paralleldrive/cuid2";
 import { and, eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { ZodError } from "zod";
@@ -13,11 +14,18 @@ export async function createOrganization(formData: FormData) {
   try {
     const session = await auth();
     if (!session) throw new Error("Not authenticated");
+
+    const newOrganizationId = `org_${createId()}`;
     const organization = insertOrganizationSchema.parse({
+      id: newOrganizationId,
       name: formData.get("name"),
-      admin: session?.user.id,
+      admin: session.user.id,
     });
     await db.insert(organizations).values(organization);
+    await db.insert(usersToOrganizations).values({
+      userId: session.user.id,
+      organizationId: newOrganizationId,
+    });
 
     revalidatePath("/dashboard");
     return { ok: true };
