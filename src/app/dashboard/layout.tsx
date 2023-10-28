@@ -11,10 +11,6 @@ import { ReactNode } from "react";
 export default async function layout({
   children,
 }: { children: ReactNode | ReactNode[] }) {
-  // const dbUser = await db.query.users.findFirst({
-  // where: eq(users.id, user?.id ?? ""),
-  // });
-  // console.log(dbUser);
   const session = await auth();
   const memberOrganizations = await db.query.organizations.findMany({
     where: eq(organizations.admin, session?.user.id ?? ""),

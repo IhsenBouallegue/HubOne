@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 
+import { useDashboardStore } from "@/lib/Store/dashboard";
 import { Avatar, AvatarFallback, AvatarImage } from "@/ui/avatar";
 import { Button } from "@/ui/button";
 import {
@@ -15,7 +16,7 @@ import {
 } from "@/ui/command";
 import { Dialog, DialogTrigger } from "@/ui/dialog";
 import { Popover, PopoverContent, PopoverTrigger } from "@/ui/popover";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Icons } from "../../icons";
 import OrganizationForm from "../organization-form";
 
@@ -39,8 +40,15 @@ export function OrganizationSwitcher({
   const [open, setOpen] = useState(false);
   const [showNewOrganizationDialog, setShowNewOrganizationDialog] =
     useState(false);
-  const [selectedOrganization, setSelectedOrganization] =
-    useState<OrganizationCommand>(memberOrganizations[0]);
+  const selectedOrganizationId = useDashboardStore(
+    (state) => state.selectedOrganizationId
+  );
+  const selectedOrganization = useMemo(
+    () =>
+      memberOrganizations.find((org) => org.value === selectedOrganizationId) ??
+      memberOrganizations[0],
+    [memberOrganizations, selectedOrganizationId]
+  );
 
   return (
     <Dialog
@@ -50,11 +58,11 @@ export function OrganizationSwitcher({
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button
-            variant="outline"
+            variant="ghost"
             role="combobox"
             aria-expanded={open}
-            aria-label="Select an organization"
-            className={cn("w-[200px] justify-between", className)}
+            aria-label="Select an Organization"
+            className={cn("w-[220px] justify-between shadow-md", className)}
           >
             {selectedOrganization && (
               <Avatar className="mr-2 h-5 w-5">
@@ -65,11 +73,11 @@ export function OrganizationSwitcher({
                 <AvatarFallback>SC</AvatarFallback>
               </Avatar>
             )}
-            {selectedOrganization?.label || "Nothing selected"}
-            <Icons.sort className="ml-auto h-4 w-4 shrink-0 opacity-50" />
+            {selectedOrganization?.label || "Nothing Selected"}
+            <Icons.chevronsUpDown className="ml-auto h-4 w-4 shrink-0 opacity-50" />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-[200px] p-0">
+        <PopoverContent className="w-[220px] p-1">
           <Command>
             <CommandList>
               <CommandInput placeholder="Search organization..." />
@@ -80,7 +88,9 @@ export function OrganizationSwitcher({
                     <CommandItem
                       key={organization.value}
                       onSelect={() => {
-                        setSelectedOrganization(organization);
+                        useDashboardStore.setState({
+                          selectedOrganizationId: organization.value,
+                        });
                         setOpen(false);
                       }}
                       className="text-sm"

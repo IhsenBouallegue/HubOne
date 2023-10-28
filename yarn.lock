@@ -5460,7 +5460,7 @@ __metadata:
     typescript: "npm:5.2.2"
     zod: "npm:^3.22.4"
     zod-validation-error: "npm:2.0.0"
-    zustand: "npm:^4.3.7"
+    zustand: "npm:4.4.4"
   languageName: unknown
   linkType: soft
 
@@ -8829,7 +8829,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zustand@npm:^4.3.7":
+"zustand@npm:4.4.4":
   version: 4.4.4
   resolution: "zustand@npm:4.4.4"
   dependencies:
