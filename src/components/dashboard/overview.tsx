@@ -69,9 +69,9 @@ export function Overview() {
           fontSize={12}
           tickLine={false}
           axisLine={false}
-          tickFormatter={(value: string) => `$${value}`}
+          tickFormatter={(value: string) => `${value}`}
         />
-        <Bar dataKey="total" fill="#adfa1d" radius={[4, 4, 0, 0]} />
+        <Bar dataKey="total" fill="#ffa538" radius={[4, 4, 0, 0]} />
       </BarChart>
     </ResponsiveContainer>
   );

@@ -2,7 +2,7 @@
 
 import { CalendarDateRangePicker } from "@/components/dashboard/date-range-picker";
 import { Overview } from "@/components/dashboard/overview";
-import { RecentSales } from "@/components/dashboard/recent-sales";
+import { RecentClicks } from "@/components/dashboard/recent-clicks";
 import { Icons } from "@/components/icons";
 import { Button } from "@/ui/button";
 import {
@@ -14,18 +14,18 @@ import {
 } from "@/ui/card";
 import { toast } from "@/ui/use-toast";
 
-export default function DashboardPage() {
+export default function Page() {
   return (
     <div className="max-w-screen-2xl m-auto flex-1 space-y-4">
       <div className="flex items-center justify-between space-y-2">
-        <h2 className="text-3xl font-bold">Dashboard</h2>
+        <h2 className="text-3xl font-bold">Overview</h2>
         <div className="flex items-center space-x-2">
           <CalendarDateRangePicker />
           <Button
             onClick={() => {
               toast({
-                title: "Organization created",
-                description: "You can now create HubSpaces and Hubs.",
+                title: "Download is not available yet.",
+                description: "We are working hard on this feature!",
               });
             }}
           >
@@ -37,11 +37,11 @@ export default function DashboardPage() {
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
+            <CardTitle className="text-sm font-medium">Total Visits</CardTitle>
             <Icons.billing />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">$45,231.89</div>
+            <div className="text-2xl font-bold">23189</div>
             <p className="text-xs text-muted-foreground">
               +20.1% from last month
             </p>
@@ -49,11 +49,11 @@ export default function DashboardPage() {
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Subscriptions</CardTitle>
+            <CardTitle className="text-sm font-medium">Total Clicks</CardTitle>
             <Icons.billing />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">+2350</div>
+            <div className="text-2xl font-bold">15650</div>
             <p className="text-xs text-muted-foreground">
               +180.1% from last month
             </p>
@@ -61,11 +61,11 @@ export default function DashboardPage() {
         </Card>
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Sales</CardTitle>
+            <CardTitle className="text-sm font-medium">Link Created</CardTitle>
             <Icons.billing />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">+12,234</div>
+            <div className="text-2xl font-bold">2234</div>
             <p className="text-xs text-muted-foreground">
               +19% from last month
             </p>
@@ -77,7 +77,7 @@ export default function DashboardPage() {
             <Icons.billing />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">+573</div>
+            <div className="text-2xl font-bold">273</div>
             <p className="text-xs text-muted-foreground">
               +201 since last hour
             </p>
@@ -87,7 +87,7 @@ export default function DashboardPage() {
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
         <Card className="col-span-4">
           <CardHeader>
-            <CardTitle>Overview</CardTitle>
+            <CardTitle>Link Clicks</CardTitle>
           </CardHeader>
           <CardContent className="pl-2">
             <Overview />
@@ -95,11 +95,11 @@ export default function DashboardPage() {
         </Card>
         <Card className="col-span-3">
           <CardHeader>
-            <CardTitle>Recent Sales</CardTitle>
-            <CardDescription>You made 265 sales this month.</CardDescription>
+            <CardTitle>Recent Clicks</CardTitle>
+            <CardDescription>265 clicks happened today.</CardDescription>
           </CardHeader>
           <CardContent>
-            <RecentSales />
+            <RecentClicks />
           </CardContent>
         </Card>
       </div>

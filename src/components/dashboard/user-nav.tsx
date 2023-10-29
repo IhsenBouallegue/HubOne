@@ -47,16 +47,18 @@ export async function UserNav() {
           <DropdownMenuItem>New Organization</DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          <form
-            action={async () => {
-              "use server";
-              await signOut({ redirect: true, redirectTo: "/" });
-            }}
-          >
-            <button type="submit">Log out</button>
-          </form>
-        </DropdownMenuItem>
+        <form
+          action={async () => {
+            "use server";
+            await signOut({ redirect: true, redirectTo: "/" });
+          }}
+        >
+          <DropdownMenuItem>
+            <button type="submit" className="w-full text-left">
+              Log out
+            </button>
+          </DropdownMenuItem>
+        </form>
       </DropdownMenuContent>
     </DropdownMenu>
   );
