@@ -24,7 +24,7 @@ import { useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import SubmitButton from "../common/submit-button";
-import { createOrganization } from "./organization-switcher/organization-switcher.action";
+import { createOrganization } from "./organization-switcher/organization-switcher.actions";
 
 export default function OrganizationForm({
   setShowNewOrganizationDialog,

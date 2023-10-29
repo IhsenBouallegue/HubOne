@@ -1,22 +1,18 @@
 "use client";
 
-import { useDelete } from "@/lib/useQueries";
-import { Button } from "@mantine/core";
-import { IconTrash } from "@tabler/icons-react";
+import { deleteHubSpace } from "@/modals/hubspace-modals/hubspace-create-modal/hubspace.actions";
+import { Button } from "@/ui/button";
 
-export default function HubSpaceCardDeleteButton({ id }: { id: number }) {
-  const deleteItem = useDelete("hubspaces");
+export default function HubSpaceCardDeleteButton({
+  id,
+  ownerId,
+}: { id: string; ownerId: string }) {
+  const deleteHubSpaceWithId = deleteHubSpace.bind(null, id, ownerId);
   return (
-    <Button
-      leftSection={<IconTrash />}
-      variant="outline"
-      color="secondary"
-      onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        e.preventDefault();
-        deleteItem(id);
-      }}
-    >
-      Delete
-    </Button>
+    <form action={deleteHubSpaceWithId}>
+      <Button type="submit" variant="destructive">
+        Delete
+      </Button>
+    </form>
   );
 }

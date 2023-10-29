@@ -17,7 +17,7 @@ export const organizations = mysqlTable(
   "organization",
   {
     id: varchar("id", { length: 128 })
-      .$defaultFn(() => createId())
+      .$defaultFn(() => `org_${createId()}`)
       .primaryKey(),
     name: varchar("name", { length: 255 }).notNull(),
     slug: varchar("slug", { length: 255 }).notNull(),
@@ -25,7 +25,6 @@ export const organizations = mysqlTable(
     isPersonalOrganization: boolean("is_personal_organization")
       .default(false)
       .notNull(),
-    //   image: varchar("image", { length: 255 }),
   },
   (table) => ({
     domainKey: uniqueIndex("slug_key").on(table.slug),

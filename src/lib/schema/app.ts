@@ -1,3 +1,4 @@
+import { createId } from "@paralleldrive/cuid2";
 import { InferSelectModel, relations } from "drizzle-orm";
 import {
   boolean,
@@ -10,12 +11,31 @@ import {
   varchar,
 } from "drizzle-orm/mysql-core";
 
+export const hubSpaces = mysqlTable(
+  "hubspaces",
+  {
+    id: varchar("id", { length: 128 })
+      .$defaultFn(() => `hs_${createId()}`)
+      .primaryKey(),
+    name: varchar("name", { length: 256 }).notNull(),
+    domain: varchar("domain", { length: 256 }).notNull(),
+    ownerId: varchar("owner_id", { length: 256 }).notNull(),
+    isPublic: boolean("is_public").default(false).notNull(),
+    createdAt: timestamp("created_at").defaultNow(),
+  },
+  (table) => ({
+    domainKey: uniqueIndex("hubspaces_domain_key").on(table.domain),
+  })
+);
+
 export const hubs = mysqlTable(
   "hubs",
   {
-    id: serial("id").primaryKey().notNull(),
+    id: varchar("id", { length: 128 })
+      .$defaultFn(() => `hub_${createId()}`)
+      .primaryKey(),
     hubName: varchar("hub_name", { length: 256 }).notNull(),
-    hubLogo: varchar("hub_logo", { length: 256 }).notNull(),
+    hubLogo: varchar("hub_logo", { length: 256 }).default(""),
     hubPath: varchar("hub_path", { length: 256 }).default("/").notNull(),
     primaryColor: varchar("primary_color", { length: 256 })
       .default("#ff008c")
@@ -28,7 +48,7 @@ export const hubs = mysqlTable(
         "Tired of keeping track of new websites? Tired of having to update your bookmarks every few weeks? Access all sites from this one page. Everything is up to date. No need to clutter your life anymore!"
       )
       .notNull(),
-    hubSpaceId: int("hubspace_id").notNull(),
+    hubSpaceId: varchar("hubspace_id", { length: 256 }).notNull(),
   },
   (table) => ({
     hubPathKey: uniqueIndex("hub_hub_path_key").on(
@@ -61,20 +81,6 @@ export const linkGroups = mysqlTable("link_groups", {
   title: varchar("title", { length: 256 }).notNull(),
   hubId: int("hub_id").notNull(),
 });
-
-export const hubSpaces = mysqlTable(
-  "hubspaces",
-  {
-    id: serial("id").primaryKey().notNull(),
-    domain: varchar("domain", { length: 256 }).notNull(),
-    ownerId: varchar("owner_id", { length: 256 }).notNull(),
-    isPublic: boolean("is_public").default(false).notNull(),
-    createdAt: timestamp("created_at").defaultNow(),
-  },
-  (table) => ({
-    domainKey: uniqueIndex("hubspaces_domain_key").on(table.domain),
-  })
-);
 
 export const hubsRelations = relations(hubs, ({ one, many }) => ({
   hubSpace: one(hubSpaces, {

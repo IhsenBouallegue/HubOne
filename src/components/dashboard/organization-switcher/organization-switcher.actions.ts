@@ -6,6 +6,7 @@ import { insertOrganizationSchema } from "@/lib/validations/organization";
 import { createId } from "@paralleldrive/cuid2";
 import { and, eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import { ZodError } from "zod";
 import { fromZodError } from "zod-validation-error";
 import { auth } from "../../../../auth";
@@ -41,28 +42,24 @@ export async function createOrganization(formData: FormData) {
   }
 }
 
-export async function deleteOrganization(formData: FormData) {
-  try {
-    const session = await auth();
-    if (!session) throw new Error("Not authenticated");
-    const id = formData.get("id") as string;
-    if (!id) throw new Error("No id provided");
-    await db
-      .delete(organizations)
-      .where(
-        and(eq(organizations.id, id), eq(organizations.admin, session.user.id))
-      );
-
-    revalidatePath("/dashboard");
-    return { ok: true };
-  } catch (error: unknown) {
-    if (error instanceof Error)
-      return {
-        error: error.message,
-      };
-
-    return {
-      error: "Your organization deletion request failed. Please try again.",
-    };
-  }
+export async function deleteOrganization(selectedOrganizationSlug: string) {
+  const session = await auth();
+  if (!session) return;
+  await db
+    .delete(organizations)
+    .where(
+      and(
+        eq(organizations.slug, selectedOrganizationSlug),
+        eq(organizations.admin, session.user.id)
+      )
+    )
+    .then(
+      async () =>
+        await db
+          .delete(usersToOrganizations)
+          .where(
+            eq(usersToOrganizations.organizationId, selectedOrganizationSlug)
+          )
+    );
+  redirect("/dashboard");
 }

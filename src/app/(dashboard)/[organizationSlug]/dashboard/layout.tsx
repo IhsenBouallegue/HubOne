@@ -11,7 +11,10 @@ import { ReactNode } from "react";
 export default async function layout({
   children,
   params,
-}: { children: ReactNode | ReactNode[]; params: { organizationId: string } }) {
+}: {
+  children: ReactNode | ReactNode[];
+  params: { organizationSlug: string };
+}) {
   const session = await auth();
   const memberOrganizations = await db.query.organizations.findMany({
     where: eq(organizations.admin, session?.user.id ?? ""),
@@ -24,7 +27,7 @@ export default async function layout({
             <OrganizationSwitcher memberOrganizations={memberOrganizations} />
             <MainNav
               className="mx-6"
-              selectedOrganization={params.organizationId}
+              selectedOrganization={params.organizationSlug}
             />
             <div className="ml-auto flex items-center space-x-4">
               <Search />

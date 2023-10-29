@@ -1,35 +1,30 @@
 "use client";
 
+import { Icons } from "@/components/icons";
+import { Organization } from "@/lib/schema/orgaizations";
 import HubSpaceCreateModal from "@/modals/hubspace-modals/hubspace-create-modal";
-import { Paper, Stack, Text } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
-import { IconPlus } from "@tabler/icons-react";
+import { Dialog } from "@/ui/dialog";
+import { useState } from "react";
 
-export function HubSpaceAddCard() {
-  const [opened, { open, close }] = useDisclosure(false);
+export function HubSpaceAddCard({
+  organization,
+}: { organization: Organization }) {
+  const [showDialog, setShowDialog] = useState(false);
 
   return (
-    <>
-      <Paper
-        w={292}
-        h={364}
-        radius="lg"
-        shadow="medium"
-        onClick={open}
-        withBorder
-        styles={{
-          root: {
-            borderStyle: "dashed",
-            borderWidth: "2px",
-          },
-        }}
+    <Dialog open={showDialog} onOpenChange={setShowDialog}>
+      {/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
+      <div
+        className="w-72 h-96 border-dashed rounded-md border-2 border-gray-300 flex gap-2 place-items-center place-content-center cursor-pointer"
+        onClick={() => setShowDialog(true)}
       >
-        <Stack align="center" justify="center" h="inherit">
-          <IconPlus size={36} strokeWidth={2} />
-          <Text ta="center">Add HubSpace</Text>
-        </Stack>
-      </Paper>
-      <HubSpaceCreateModal opened={opened} setOpened={close} />
-    </>
+        <Icons.plus />
+        <p>Create HubSpace</p>
+      </div>
+      <HubSpaceCreateModal
+        setShowDialog={setShowDialog}
+        organization={organization}
+      />
+    </Dialog>
   );
 }

@@ -7,7 +7,7 @@ import { useSelectedLayoutSegment } from "next/navigation";
 
 const segments = [
   { label: "Overview", value: "dashboard" },
-  { label: "Hubspaces", value: "dashboard/hubspaces" },
+  { label: "HubSpaces", value: "dashboard/hubspaces" },
   { label: "Organization", value: "dashboard/organization" },
   { label: "Plan", value: "dashboard/plan" },
   { label: "Billing", value: "dashboard/billing" },
