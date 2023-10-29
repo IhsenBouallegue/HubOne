@@ -13,13 +13,13 @@ export function AddLinkGroupModal({
 }: {
   opened: boolean;
   setOpened: (open: boolean) => void;
-  hubId: number;
+  hubId: string;
 }) {
   const form = useForm<LinkGroup>({
     initialValues: {
       title: "",
       hubId,
-    } as LinkGroup,
+    } as unknown as LinkGroup,
   });
   const mutate = usePost<LinkGroup>("linkgroups");
   const handleSubmit = (values: LinkGroup) => {

@@ -3,14 +3,14 @@ import { create } from "zustand";
 type Settings = {
   editMode: boolean;
   compactMode: boolean;
-  hubId: number | null;
-  hubSpaceId: number | null;
+  hubId: string | null;
+  hubSpaceId: string | null;
   createModalOpened: boolean;
 };
 type Actions = {
   setEditMode: (editMode: boolean) => void;
   setCompactMode: (compactMode: boolean) => void;
-  setHubId: (hubId: number) => void;
+  setHubId: (hubId: string) => void;
   setCreateModalOpened: (createModalOpened: boolean) => void;
 };
 export const useHubOneStore = create<Settings & Actions>((set) => ({

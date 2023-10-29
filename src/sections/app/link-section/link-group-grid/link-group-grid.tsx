@@ -16,7 +16,7 @@ export function LinkGroupGrid({
   linkGroupId,
 }: {
   links: Link[];
-  hubId: number;
+  hubId: string;
   linkGroupId: number;
 }) {
   const editMode = useHubOneStore((state) => state.editMode);

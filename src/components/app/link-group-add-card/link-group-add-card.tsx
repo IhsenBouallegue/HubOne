@@ -6,7 +6,7 @@ import { IconPlus } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
-export function LinkGroupAddCard({ hubId }: { hubId: number }) {
+export function LinkGroupAddCard({ hubId }: { hubId: string }) {
   const [opened, setOpened] = useState(false);
 
   return (

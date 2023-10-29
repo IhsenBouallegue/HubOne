@@ -11,7 +11,7 @@ export function LinkAddCard({
   hubId,
   linkGroupId,
 }: {
-  hubId: number;
+  hubId: string;
   linkGroupId: number;
 }) {
   const [opened, setOpened] = useState(false);

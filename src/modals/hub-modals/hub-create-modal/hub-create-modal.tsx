@@ -21,7 +21,7 @@ export function HubCreateModal({
       description:
         "Tired of keeping track of new websites? Tired of having to update your bookmarks every few weeks? Access all sites from this one page. Everything is up to date. No need to clutter your life anymore!",
       hubSpaceId,
-    } as Hub,
+    } as unknown as Hub,
   });
 
   const mutate = usePost<Hub>("hubs");

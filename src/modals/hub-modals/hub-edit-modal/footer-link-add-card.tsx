@@ -7,7 +7,7 @@ import { IconPlus } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 import classes from "./footer-link-add-card.module.css";
 
-export function FooterLinkAddCard({ hubId }: { hubId: number }) {
+export function FooterLinkAddCard({ hubId }: { hubId: string }) {
   const mutate = usePost<FooterLink>("footerlinks");
   const handleSubmit = () => {
     mutate({ hubId, title: "change me", link: "/" } as FooterLink);

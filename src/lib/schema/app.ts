@@ -66,20 +66,20 @@ export const links = mysqlTable("links", {
   link: varchar("link", { length: 256 }).notNull(),
   isInternal: boolean("is_internal").default(false).notNull(),
   linkGroupId: int("link_group_id"),
-  hubId: int("hub_id").notNull(),
+  hubId: varchar("hub_id", { length: 128 }).notNull(),
 });
 
 export const footerLinks = mysqlTable("footer_links", {
   id: serial("id").primaryKey().notNull(),
   title: varchar("title", { length: 256 }).notNull(),
   link: varchar("link", { length: 256 }).notNull(),
-  hubId: int("hub_id").notNull(),
+  hubId: varchar("hub_id", { length: 128 }).notNull(),
 });
 
 export const linkGroups = mysqlTable("link_groups", {
   id: serial("id").primaryKey().notNull(),
   title: varchar("title", { length: 256 }).notNull(),
-  hubId: int("hub_id").notNull(),
+  hubId: varchar("hub_id", { length: 128 }).notNull(),
 });
 
 export const hubsRelations = relations(hubs, ({ one, many }) => ({

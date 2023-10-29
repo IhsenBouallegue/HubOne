@@ -7,9 +7,9 @@ export async function GET(req: NextRequest) {
   const hubId = req.nextUrl.searchParams.get("hubId");
   try {
     let items;
-    if (hubId && !Number.isNaN(hubId)) {
+    if (hubId) {
       items = await db.query.linkGroups.findMany({
-        where: eq(linkGroups.hubId, Number(hubId)),
+        where: eq(linkGroups.hubId, hubId),
       });
     } else {
       items = await db.query.linkGroups.findMany();

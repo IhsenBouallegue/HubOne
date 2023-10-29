@@ -81,7 +81,7 @@ export function HubEditModal({
                 hubId={footerLink.hubId}
               />
             ))}
-            <FooterLinkAddCard hubId={id as number} />
+            <FooterLinkAddCard hubId={id} />
           </Stack>
         </Tabs.Panel>
       </Tabs>
