@@ -6,19 +6,21 @@ import { cn } from "@/lib/utils";
 import { useSelectedLayoutSegment } from "next/navigation";
 
 const segments = [
-  { label: "Overview", value: null },
-  { label: "Hubspaces", value: "hubspaces" },
-  { label: "Organization", value: "organization" },
-  { label: "Plan", value: "plan" },
-  { label: "Billing", value: "billing" },
+  { label: "Overview", value: "dashboard" },
+  { label: "Hubspaces", value: "dashboard/hubspaces" },
+  { label: "Organization", value: "dashboard/organization" },
+  { label: "Plan", value: "dashboard/plan" },
+  { label: "Billing", value: "dashboard/billing" },
 ];
 
 export function MainNav({
   className,
+  selectedOrganization,
   ...props
-}: React.HTMLAttributes<HTMLElement>) {
+}: React.HTMLAttributes<HTMLElement> & {
+  selectedOrganization: string;
+}) {
   const layoutSegment = useSelectedLayoutSegment();
-
   return (
     <nav
       className={cn("flex items-center space-x-4 lg:space-x-6", className)}
@@ -26,7 +28,7 @@ export function MainNav({
     >
       {segments.map((segment) => (
         <Link
-          href={`/dashboard/${segment.value ?? ""}`}
+          href={`/${selectedOrganization}/${segment.value}`}
           key={segment.value}
           className={cn(
             "text-sm font-medium transition-colors hover:text-primary",

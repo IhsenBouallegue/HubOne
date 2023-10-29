@@ -3,6 +3,7 @@
 import { cn } from "@/lib/utils";
 
 import { useDashboardStore } from "@/lib/Store/dashboard";
+import { Organization } from "@/lib/schema/orgaizations";
 import { Avatar, AvatarFallback, AvatarImage } from "@/ui/avatar";
 import { Button } from "@/ui/button";
 import {
@@ -16,6 +17,7 @@ import {
 } from "@/ui/command";
 import { Dialog, DialogTrigger } from "@/ui/dialog";
 import { Popover, PopoverContent, PopoverTrigger } from "@/ui/popover";
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import { Icons } from "../../icons";
 import OrganizationForm from "../organization-form";
@@ -27,8 +29,6 @@ const groups = [
   },
 ];
 
-type OrganizationCommand = { label: string; value: string };
-
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<
   typeof PopoverTrigger
 >;
@@ -36,7 +36,7 @@ type PopoverTriggerProps = React.ComponentPropsWithoutRef<
 export function OrganizationSwitcher({
   className,
   memberOrganizations,
-}: PopoverTriggerProps & { memberOrganizations: OrganizationCommand[] }) {
+}: PopoverTriggerProps & { memberOrganizations: Organization[] }) {
   const [open, setOpen] = useState(false);
   const [showNewOrganizationDialog, setShowNewOrganizationDialog] =
     useState(false);
@@ -45,7 +45,7 @@ export function OrganizationSwitcher({
   );
   const selectedOrganization = useMemo(
     () =>
-      memberOrganizations.find((org) => org.value === selectedOrganizationId) ??
+      memberOrganizations.find((org) => org.id === selectedOrganizationId) ??
       memberOrganizations[0],
     [memberOrganizations, selectedOrganizationId]
   );
@@ -62,22 +62,16 @@ export function OrganizationSwitcher({
             role="combobox"
             aria-expanded={open}
             aria-label="Select an Organization"
-            className={cn("w-[220px] justify-between shadow-md", className)}
+            className={cn("w-[240px] justify-between shadow-md", className)}
           >
             {selectedOrganization && (
-              <Avatar className="mr-2 h-5 w-5">
-                <AvatarImage
-                  src={`https://avatar.vercel.sh/${selectedOrganization.value}.png`}
-                  alt={selectedOrganization.label}
-                />
-                <AvatarFallback>SC</AvatarFallback>
-              </Avatar>
+              <OrganizationAvatar organization={selectedOrganization} />
             )}
-            {selectedOrganization?.label || "Nothing Selected"}
+            {selectedOrganization?.name || "Nothing Selected"}
             <Icons.chevronsUpDown className="ml-auto h-4 w-4 shrink-0 opacity-50" />
           </Button>
         </PopoverTrigger>
-        <PopoverContent className="w-[220px] p-1">
+        <PopoverContent className="w-[240px] p-1">
           <Command>
             <CommandList>
               <CommandInput placeholder="Search organization..." />
@@ -85,34 +79,31 @@ export function OrganizationSwitcher({
               {groups.map((group) => (
                 <CommandGroup key={group.label} heading={group.label}>
                   {memberOrganizations.map((organization) => (
-                    <CommandItem
-                      key={organization.value}
-                      onSelect={() => {
-                        useDashboardStore.setState({
-                          selectedOrganizationId: organization.value,
-                        });
-                        setOpen(false);
-                      }}
-                      className="text-sm"
+                    <Link
+                      href={`/${organization.slug}/dashboard`}
+                      key={organization.id}
                     >
-                      <Avatar className="mr-2 h-5 w-5">
-                        <AvatarImage
-                          src={`https://avatar.vercel.sh/${organization.value}.png`}
-                          alt={organization.label}
-                          className="grayscale"
+                      <CommandItem
+                        onSelect={() => {
+                          useDashboardStore.setState({
+                            selectedOrganizationId: organization.id,
+                          });
+                          setOpen(false);
+                        }}
+                        className="text-sm"
+                      >
+                        <OrganizationAvatar organization={organization} />
+                        {organization.name}
+                        <Icons.checkIcon
+                          className={cn(
+                            "ml-auto h-4 w-4",
+                            selectedOrganization.id === organization.id
+                              ? "opacity-100"
+                              : "opacity-0"
+                          )}
                         />
-                        <AvatarFallback>SC</AvatarFallback>
-                      </Avatar>
-                      {organization.label}
-                      <Icons.checkIcon
-                        className={cn(
-                          "ml-auto h-4 w-4",
-                          selectedOrganization.value === organization.value
-                            ? "opacity-100"
-                            : "opacity-0"
-                        )}
-                      />
-                    </CommandItem>
+                      </CommandItem>
+                    </Link>
                   ))}
                 </CommandGroup>
               ))}
@@ -140,5 +131,17 @@ export function OrganizationSwitcher({
         setShowNewOrganizationDialog={setShowNewOrganizationDialog}
       />
     </Dialog>
+  );
+}
+
+function OrganizationAvatar({ organization }: { organization: Organization }) {
+  return (
+    <Avatar className="mr-2 h-5 w-5">
+      <AvatarImage
+        src={`https://avatar.vercel.sh/${organization.slug}.png`}
+        alt={organization.name}
+      />
+      <AvatarFallback>SC</AvatarFallback>
+    </Avatar>
   );
 }

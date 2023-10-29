@@ -10,7 +10,8 @@ import { ReactNode } from "react";
 
 export default async function layout({
   children,
-}: { children: ReactNode | ReactNode[] }) {
+  params,
+}: { children: ReactNode | ReactNode[]; params: { organizationId: string } }) {
   const session = await auth();
   const memberOrganizations = await db.query.organizations.findMany({
     where: eq(organizations.admin, session?.user.id ?? ""),
@@ -20,13 +21,11 @@ export default async function layout({
       <div className="hidden flex-col md:flex">
         <div className="border-b">
           <div className="flex h-16 items-center px-8">
-            <OrganizationSwitcher
-              memberOrganizations={memberOrganizations?.map((org) => ({
-                label: org.name,
-                value: org.id,
-              }))}
+            <OrganizationSwitcher memberOrganizations={memberOrganizations} />
+            <MainNav
+              className="mx-6"
+              selectedOrganization={params.organizationId}
             />
-            <MainNav className="mx-6" />
             <div className="ml-auto flex items-center space-x-4">
               <Search />
               <UserNav />

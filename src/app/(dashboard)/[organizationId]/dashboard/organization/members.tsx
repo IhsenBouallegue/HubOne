@@ -1,10 +1,6 @@
-"use client";
-
 import { Icons } from "@/components/icons";
-import { useDashboardStore } from "@/lib/Store/dashboard";
-import { User } from "@/lib/schema/auth";
-import { UsersToOrganization } from "@/lib/schema/orgaizations";
-import { API_URL } from "@/lib/useQueries";
+import db from "@/lib/db";
+import { organizations, usersToOrganizations } from "@/lib/schema/orgaizations";
 import { Avatar, AvatarFallback, AvatarImage } from "@/ui/avatar";
 import { Button } from "@/ui/button";
 import {
@@ -15,27 +11,22 @@ import {
   CardTitle,
 } from "@/ui/card";
 import { Popover, PopoverContent, PopoverTrigger } from "@/ui/popover";
-import { useEffect, useState } from "react";
+import { eq } from "drizzle-orm";
 import RoleCommand from "./role-command";
 
-export default function Members() {
-  const selectedOrganizationId = useDashboardStore(
-    (state) => state.selectedOrganizationId
-  );
-  const [members, setMembers] = useState<User[]>([]);
-
-  useEffect(() => {
-    fetch(
-      `${API_URL}/organization-members/?organizationId=${selectedOrganizationId}`
-    )
-      .then((res) => res.json())
-      .then(
-        ({
-          organizationMembers,
-        }: { organizationMembers: (UsersToOrganization & { user: User })[] }) =>
-          setMembers(organizationMembers?.map((member) => member.user) ?? [])
-      );
-  }, [selectedOrganizationId]);
+export default async function Members({
+  selectedOrganizationSlug,
+}: { selectedOrganizationSlug: string }) {
+  const selectedOrgaization = await db.query.organizations.findFirst({
+    where: eq(organizations.slug, selectedOrganizationSlug),
+  });
+  if (!selectedOrgaization) return null;
+  const organizationMembers = await db.query.usersToOrganizations
+    .findMany({
+      where: eq(usersToOrganizations.organizationId, selectedOrgaization.id),
+      with: { user: true },
+    })
+    .then((res) => res.map((usersToOrganization) => usersToOrganization.user));
 
   return (
     <div className="space-y-6">
@@ -48,8 +39,8 @@ export default function Members() {
         </CardHeader>
         <CardContent className="grid gap-6">
           <div className="flex items-center justify-between space-x-4">
-            {members.map((member) => (
-              <>
+            {organizationMembers.map((member) => (
+              <div key={member.id} className="w-full flex">
                 <div className="flex items-center space-x-4">
                   <Avatar>
                     <AvatarImage src={member.image ?? undefined} />
@@ -75,7 +66,7 @@ export default function Members() {
                     <RoleCommand />
                   </PopoverContent>
                 </Popover>
-              </>
+              </div>
             ))}
           </div>
         </CardContent>
