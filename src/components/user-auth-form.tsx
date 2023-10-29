@@ -30,14 +30,16 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [isGoogleLoading, setIsGoogleLoading] = React.useState<boolean>(false);
   const searchParams = useSearchParams();
-
+  const redirectOptions = {
+    redirect: true,
+    callbackUrl: searchParams?.get("from") || "/dashboard",
+  };
   async function onSubmit(data: FormData) {
     setIsLoading(true);
 
     const signInResult = await signIn("email", {
       email: data.email.toLowerCase(),
-      redirect: false,
-      callbackUrl: searchParams?.get("from") || "/dashboard",
+      ...redirectOptions,
     });
 
     setIsLoading(false);
@@ -63,7 +65,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         className={cn(buttonVariants({ variant: "outline" }))}
         onClick={() => {
           setIsGoogleLoading(true);
-          signIn("google");
+          signIn("google", redirectOptions);
         }}
         disabled={isLoading || isGoogleLoading}
       >

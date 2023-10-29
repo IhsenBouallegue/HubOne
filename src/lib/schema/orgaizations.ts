@@ -1,20 +1,36 @@
 import { createId } from "@paralleldrive/cuid2";
 import { InferSelectModel, relations } from "drizzle-orm";
-import { mysqlTable, primaryKey, varchar } from "drizzle-orm/mysql-core";
+import {
+  boolean,
+  mysqlTable,
+  primaryKey,
+  uniqueIndex,
+  varchar,
+} from "drizzle-orm/mysql-core";
 import { users } from "./auth";
 
 export const usersRelations = relations(users, ({ many }) => ({
   usersToOrganizations: many(usersToOrganizations),
 }));
 
-export const organizations = mysqlTable("organization", {
-  id: varchar("id", { length: 128 })
-    .$defaultFn(() => createId())
-    .primaryKey(),
-  name: varchar("name", { length: 255 }).notNull(),
-  admin: varchar("admin", { length: 128 }).notNull(),
-  //   image: varchar("image", { length: 255 }),
-});
+export const organizations = mysqlTable(
+  "organization",
+  {
+    id: varchar("id", { length: 128 })
+      .$defaultFn(() => createId())
+      .primaryKey(),
+    name: varchar("name", { length: 255 }).notNull(),
+    slug: varchar("slug", { length: 255 }).notNull(),
+    admin: varchar("admin", { length: 128 }).notNull(),
+    isPersonalOrganization: boolean("is_personal_organization")
+      .default(false)
+      .notNull(),
+    //   image: varchar("image", { length: 255 }),
+  },
+  (table) => ({
+    domainKey: uniqueIndex("slug_key").on(table.slug),
+  })
+);
 
 export const organizationsRelations = relations(
   organizations,

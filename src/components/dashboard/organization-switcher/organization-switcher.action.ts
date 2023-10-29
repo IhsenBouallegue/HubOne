@@ -20,6 +20,7 @@ export async function createOrganization(formData: FormData) {
       id: newOrganizationId,
       name: formData.get("name"),
       admin: session.user.id,
+      slug: formData.get("slug"),
     });
     await db.insert(organizations).values(organization);
     await db.insert(usersToOrganizations).values({

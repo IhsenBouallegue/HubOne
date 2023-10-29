@@ -9,7 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/ui/dropdown-menu";
-import { auth } from "../../../auth";
+import { auth, signOut } from "../../../auth";
 
 export async function UserNav() {
   const session = await auth();
@@ -47,7 +47,16 @@ export async function UserNav() {
           <DropdownMenuItem>New Organization</DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>Log out</DropdownMenuItem>
+        <DropdownMenuItem>
+          <form
+            action={async () => {
+              "use server";
+              await signOut({ redirect: true, redirectTo: "/" });
+            }}
+          >
+            <button type="submit">Log out</button>
+          </form>
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

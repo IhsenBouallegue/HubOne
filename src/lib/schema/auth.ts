@@ -48,7 +48,7 @@ export const sessions = mysqlTable("session", {
   expires: timestamp("expires", { mode: "date" }).notNull(),
 });
 
-// accounts and sessions shouuld be deleted manually when a user is deleted
+// accounts and sessions should be deleted manually when a user is deleted
 // (planetscale doesn't support cascading deletes)
 export const usersRelations = relations(users, ({ many }) => ({
   sessions: many(sessions),

@@ -32,7 +32,7 @@ export default function OrganizationForm({
   const session = useSession();
   const form = useForm<z.infer<typeof organizationSchemaWithoutAdmin>>({
     resolver: zodResolver(organizationSchemaWithoutAdmin),
-    defaultValues: { name: "" },
+    defaultValues: { name: "", slug: "" },
   });
   const callAction = async (formData: FormData) => {
     await form.trigger();
@@ -77,6 +77,22 @@ export default function OrganizationForm({
                 </FormControl>
                 <FormDescription>
                   This is the orgaization's public name.
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="slug"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Slug</FormLabel>
+                <FormControl>
+                  <Input placeholder="slug" {...field} />
+                </FormControl>
+                <FormDescription>
+                  This is the orgaization's public slug.
                 </FormDescription>
                 <FormMessage />
               </FormItem>
