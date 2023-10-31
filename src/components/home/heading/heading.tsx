@@ -1,7 +1,3 @@
-import { Stack, Text, Title } from "@mantine/core";
-
-import classes from "./heading.module.css";
-
 export function Heading({
   title,
   description,
@@ -10,12 +6,9 @@ export function Heading({
   description: string;
 }) {
   return (
-    <Stack align="center" mb="6em" gap="xl">
-      <Title className={classes.heading} size="4em" ta="center" mt="sm">
-        {title}
-      </Title>
-      <Text>{description}</Text>
-      {/* <Description>{description}</Description> */}
-    </Stack>
+    <div className="place-items-center flex flex-col gap-6 mb-20">
+      <h2 className="text-xl sm:text-6xl font-bold">{title}</h2>
+      <p>{description}</p>
+    </div>
   );
 }

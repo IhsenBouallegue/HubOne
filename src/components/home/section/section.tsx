@@ -1,24 +1,16 @@
-import { Container } from "@mantine/core";
-
 export function Section({
   id,
   children,
 }: {
   id: string;
-  children: React.ReactNode[];
+  children: React.ReactNode[] | React.ReactNode;
 }) {
   return (
-    <Container
+    <div
       id={id}
-      size="lg"
-      mt="16em"
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
+      className="max-w-7xl mx-auto mt-48 px-4 sm:px-6 lg:px-8 flex flex-col place-items-center"
     >
       {children}
-    </Container>
+    </div>
   );
 }

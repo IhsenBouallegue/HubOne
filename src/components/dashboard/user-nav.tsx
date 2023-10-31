@@ -43,8 +43,7 @@ export async function UserNav() {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem>Settings</DropdownMenuItem>
-          <DropdownMenuItem>New Organization</DropdownMenuItem>
+          <DropdownMenuItem disabled>Settings (coming soon)</DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <form

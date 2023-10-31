@@ -1,22 +1,18 @@
-"use client";
-
-import { Anchor, Group } from "@mantine/core";
+import Link from "next/link";
 
 export function FooterLinks() {
   return (
-    <Group>
+    <div className="flex gap-4">
       {footerLinks?.map(({ title, link }) => (
-        <Anchor<"a">
-          c="dimmed"
+        <Link
+          className="text-muted leading-loose text-sm"
           key={`footer_link_${title}`}
           href={link}
-          style={{ lineHeight: 1 }}
-          size="sm"
         >
           {title}
-        </Anchor>
+        </Link>
       ))}
-    </Group>
+    </div>
   );
 }
 

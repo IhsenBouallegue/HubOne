@@ -1,52 +1,20 @@
 "use client";
 
-import { Box, Image, Stack, Text, Title } from "@mantine/core";
+import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/ui/button";
+import Link from "next/link";
 
 export function Mission() {
   return (
-    <Box h="30vh">
-      <Stack
-        style={(theme) => ({
-          width: "100%",
-          height: "inherit",
-          backgroundColor: theme.colors.primary[4],
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundImage: `linear-gradient(250deg, ${theme.colors.secondary[4]} 0%, ${theme.colors.primary[4]} 100%)`,
-          position: "absolute",
-        })}
+    <div className="h-[30vh] w-full shadow-xl bg-primary relative place-content-center place-items-center gap-4 flex-col flex">
+      <p className="text-white text-xl">You like it so far?</p>
+      <h2 className="text-white text-6xl font-bold">Join for free!</h2>
+      <Link
+        href="/sign-in"
+        className={cn(buttonVariants({ variant: "secondary" }), "mt-6")}
       >
-        <Stack my="auto" align="center">
-          <Text c="white" size="xl">
-            We help you
-          </Text>
-          <Title c="white" size="3em">
-            work smarter not harder.
-          </Title>
-        </Stack>
-        <Image
-          styles={{
-            root: {
-              position: "absolute",
-              left: "10%",
-              top: "5%",
-            },
-          }}
-          src="dotted-2.png"
-          w={150}
-        />
-        <Image
-          styles={{
-            root: {
-              position: "absolute",
-              right: "5%",
-              bottom: "5%",
-            },
-          }}
-          src="dotted-1.png"
-          w={150}
-        />
-      </Stack>
-    </Box>
+        Sign up
+      </Link>
+    </div>
   );
 }

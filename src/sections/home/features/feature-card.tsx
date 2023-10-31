@@ -1,43 +1,23 @@
-// import { Card, Text, useMantineTheme } from "@mantine/core";
-// import { Icon as IconType } from "@tabler/icons-react";
+import { cn } from "@/lib/utils";
 
-// export function FeatureCard({
-//   title,
-//   description,
-//   Icon,
-// }: {
-//   title: string;
-//   description: string;
-//   Icon: IconType;
-// }) {
-//   const theme = useMantineTheme();
-//   return (
-//     <Card
-//       shadow="lg"
-//       radius="lg"
-//       style={{ border: `1px solid ${theme.colors.gray[1]}` }}
-//       p="xl"
-//     >
-//       <Icon size={50} stroke={2} color={theme.colors.primary[4]} />
-//       <Text
-//         size="lg"
-//         sx={{
-//           "&::after": {
-//             content: '""',
-//             display: "block",
-//             backgroundColor: theme.colors.primary[4],
-//             width: 45,
-//             height: 2,
-//             marginTop: theme.spacing.sm,
-//           },
-//         }}
-//         mt="md"
-//       >
-//         {title}
-//       </Text>
-//       <Text size="sm" c="dimmed" mt="sm">
-//         {description}
-//       </Text>
-//     </Card>
-//   );
-// }
+export default function FeatureCard({ invert = false }: { invert?: boolean }) {
+  return (
+    <div
+      className={cn(
+        "h-96 flex w-full px-20 gap-6 bg-secondary rounded-xl place-items-center",
+        invert && "flex-row-reverse bg-transparent"
+      )}
+    >
+      <div className="w-3/5 space-y-4 ">
+        <h3 className="text-xl sm:text-4xl font-bold">Title</h3>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem
+          nesciunt beatae, perspiciatis, distinctio vel itaque illum ut
+          excepturi eius a ad repellendus! Laboriosam quod aliquid atque
+          provident ullam inventore vitae.
+        </p>
+      </div>
+      <div className=" w-2/5">Diagram</div>
+    </div>
+  );
+}

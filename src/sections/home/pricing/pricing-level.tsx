@@ -1,17 +1,8 @@
-"use client";
-
-import {
-  Box,
-  Button,
-  Card,
-  Group,
-  Stack,
-  Text,
-  Title,
-  useMantineTheme,
-} from "@mantine/core";
+import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/ui/button";
+import { Card, CardContent } from "@/ui/card";
 import { IconArrowLeft, IconCheck } from "@tabler/icons-react";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export function PricingLevel({
   color,
@@ -37,93 +28,61 @@ export function PricingLevel({
   features: string[];
   button: string;
 }) {
-  const theme = useMantineTheme();
-  const router = useRouter();
-
   return (
-    <Card
-      w={320}
-      shadow="lg"
-      radius="lg"
-      p="xl"
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        border: `1px solid ${theme.colors.gray[1]}`,
-        gap: theme.spacing.xl,
-        overflow: "visible",
-      }}
-    >
+    <Card className="w-72 min-h-full shadow-lg flex flex-col relative">
       {specialOffer && (
-        <Box
+        <div
+          className="w-full h-[50px] pt-2 m-auto absolute -top-[40px] left-0 -z-10 rounded-t-lg"
           style={{
-            width: "100%",
-            margin: "auto",
-            position: "absolute",
-            top: "-40px",
-            left: "0",
             backgroundColor: color,
-            height: "100px",
-            zIndex: -1,
-            paddingTop: "10px",
-            borderRadius: theme.radius.lg,
           }}
         >
-          <Title order={2} size="1em" ta="center" c="white">
-            {specialOffer}
-          </Title>
-        </Box>
+          <h2 className="text-center font-bold text-white">{specialOffer}</h2>
+        </div>
       )}
+      <CardContent>
+        <div className="flex flex-col place-items-center mb-6">
+          <h2 className="text-lg mb-4 font-bold" style={{ color }}>
+            {title}
+          </h2>
+          <div className="flex gap-2">
+            <h2 className="text-3xl font-bold">
+              {price} {currency === "eur" ? "€" : ""}
+            </h2>
+            <h2 className="text-sm text-muted">{frequency}</h2>
+          </div>
+        </div>
 
-      <Box>
-        <Title order={2} size="1em" mb="1em" ta="center" c={color}>
-          {title}
-        </Title>
-        <Group align="center" gap="xs" justify="center">
-          <Title order={2} size="3em">
-            {price} {currency === "eur" ? "€" : ""}
-          </Title>
-          <Title order={2} size="0.6em" c="dimmed">
-            {frequency}
-          </Title>
-        </Group>
-      </Box>
+        <p className="text-sm text-muted">{description}</p>
 
-      <Text size="sm" c="dimmed">
-        {description}
-      </Text>
+        <div className="flex flex-col gap-4 my-6">
+          {lastLevel && (
+            <div>
+              <IconArrowLeft color={color} />
+              <p>Everything in {lastLevel}</p>
+            </div>
+          )}
+          {features.map((feature) => (
+            <div className="flex gap-2" key={feature}>
+              <IconCheck color={color} />
+              <p>{feature}</p>
+            </div>
+          ))}
+        </div>
 
-      <Stack gap="xs">
-        {lastLevel && (
-          <Group>
-            <IconArrowLeft color={color} />
-            <Text>Everything in {lastLevel}</Text>
-          </Group>
-        )}
-        {features.map((feature) => (
-          <Group key={feature}>
-            <IconCheck color={color} />
-            <Text>{feature}</Text>
-          </Group>
-        ))}
-      </Stack>
-
-      <Button
-        mt="auto"
-        styles={{
-          root: {
+        <Link
+          href="/dashboard/plans"
+          className={cn(
+            buttonVariants({ variant: "secondary" }),
+            "mt-auto px-2 h-[42px] w-full text-white"
+          )}
+          style={{
             backgroundColor: color,
-            border: 0,
-            height: 42,
-            paddingLeft: 20,
-            paddingRight: 20,
-          },
-        }}
-        fullWidth
-        onClick={() => router.push("/dashboard/plans")}
-      >
-        {button}
-      </Button>
+          }}
+        >
+          {button}
+        </Link>
+      </CardContent>
     </Card>
   );
 }
