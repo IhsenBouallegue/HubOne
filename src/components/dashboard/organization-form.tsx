@@ -73,7 +73,7 @@ export default function OrganizationForm({
               <FormItem>
                 <FormLabel>Name</FormLabel>
                 <FormControl>
-                  <Input placeholder="name" {...field} />
+                  <Input placeholder="My Favourite Organization" {...field} />
                 </FormControl>
                 <FormDescription>
                   This is the orgaization's public name.
@@ -89,7 +89,7 @@ export default function OrganizationForm({
               <FormItem>
                 <FormLabel>Slug</FormLabel>
                 <FormControl>
-                  <Input placeholder="slug" {...field} />
+                  <Input placeholder="my-fav-org" {...field} />
                 </FormControl>
                 <FormDescription>
                   This is the orgaization's public slug.
