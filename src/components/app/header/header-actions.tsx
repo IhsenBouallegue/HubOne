@@ -2,23 +2,12 @@
 
 import { useHubOneStore } from "@/lib/Store";
 import HubEditModal from "@/modals/hub-modals/hub-edit-modal";
-import {
-  ActionIcon,
-  Button,
-  Group,
-  Switch,
-  useMantineTheme,
-} from "@mantine/core";
-import {
-  IconArrowsMaximize,
-  IconArrowsMinimize,
-  IconSettings,
-} from "@tabler/icons-react";
+import { Button } from "@/ui/button";
+import { Toggle } from "@/ui/toggle";
+import { IconArrowsMaximize, IconSettings } from "@tabler/icons-react";
 import { useState } from "react";
 
 export function HeaderActions() {
-  const theme = useMantineTheme();
-
   const editMode = useHubOneStore((state) => state.editMode);
   const compactMode = useHubOneStore((state) => state.compactMode);
   const setCompactMode = useHubOneStore((state) => state.setCompactMode);
@@ -26,54 +15,27 @@ export function HeaderActions() {
   const [editModalOpened, setEditModalOpened] = useState(false);
 
   return (
-    <Group>
-      <Switch
-        checked={compactMode}
-        aria-label="Enable compact mode"
-        onChange={(event) => setCompactMode(event.target.checked)}
-        onLabel={
-          <IconArrowsMaximize size={20} stroke={2.5} color={theme.white} />
-        }
-        offLabel={
-          <IconArrowsMinimize
-            size={20}
-            stroke={2.5}
-            color={theme.colors.primary[4]}
-          />
-        }
-        size="lg"
-        styles={{
-          track: {
-            ...(compactMode ? {} : { background: theme.colors.primary[0] }),
-            borderWidth: 0,
-          },
-        }}
-      />
+    <div className="flex items-center gap-4">
+      <Toggle
+        variant={compactMode ? "default" : "outline"}
+        pressed={compactMode}
+        onPressedChange={(pressed) => setCompactMode(pressed)}
+      >
+        <IconArrowsMaximize size={20} stroke={2.5} />
+      </Toggle>
+
       {editMode ? (
-        <Group ml="auto" mr="12px">
-          <ActionIcon
-            variant="light"
-            color="primary"
-            onClick={() => setEditModalOpened(true)}
-          >
+        <div className="ml-auto mr-12">
+          <Button onClick={() => setEditModalOpened(true)}>
             <IconSettings />
-          </ActionIcon>
-        </Group>
-      ) : (
-        <Group hiddenFrom="sm">
-          <Button
-            variant="gradient"
-            gradient={{
-              from: theme.colors.primary[4],
-              to: theme.colors.secondary[4],
-            }}
-            style={{ height: 30 }}
-          >
-            Browse Links
           </Button>
-        </Group>
+        </div>
+      ) : (
+        <div className="hidden sm:flex">
+          <Button>Browse Links</Button>
+        </div>
       )}
       <HubEditModal opened={editModalOpened} setOpened={setEditModalOpened} />
-    </Group>
+    </div>
   );
 }

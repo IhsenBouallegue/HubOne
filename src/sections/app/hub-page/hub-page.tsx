@@ -2,13 +2,13 @@
 
 import { useHubOneStore } from "@/lib/Store";
 import { useFetchByHubId, useFetchItem } from "@/lib/useQueries";
-import { Box, Image, Stack } from "@mantine/core";
 
 import FooterBar from "@/components/app/footer-bar";
 import HubCreateModal from "@/modals/hub-modals/hub-create-modal";
 
 import Header from "@/components/app/header";
 import { FooterLink, Hub, Link, LinkGroup } from "@/lib/schema/app";
+import Image from "next/image";
 import Hero from "../hero";
 import HubMenu from "../hub-menu";
 import LinkSection from "../link-section";
@@ -40,24 +40,25 @@ export default function HubPage({
   );
 
   return (
-    <Stack mih="100vh" gap={0}>
+    <div className="min-h-screen">
       {/* https://app.haikei.app/ */}
       <Image
         src="/bg.svg"
-        h="100vh"
-        style={{ position: "absolute", filter: "blur(4px)", zIndex: -1 }}
+        className="absolute h-screen blur-md -z-10 "
+        alt="background"
+        fill
       />
       <Header />
       <Hero />
       <LinkSection />
-      <Box mt="auto">
+      <div className="mt-auto">
         <FooterBar />
-      </Box>
+      </div>
       {hubs && <HubMenu hubs={hubs} />}
       <HubCreateModal
         opened={createModalOpened}
         setOpened={setCreateModalOpened}
       />
-    </Stack>
+    </div>
   );
 }
