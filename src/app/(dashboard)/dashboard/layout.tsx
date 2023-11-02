@@ -20,7 +20,7 @@ export default async function layout({
     <div>
       <div className="hidden flex-col md:flex">
         <div className="border-b">
-          <div className="flex h-16 items-center px-8">
+          <div className="flex h-16 items-center max-w-screen-2xl px-8 m-auto">
             <OrganizationSwitcher memberOrganizations={memberOrganizations} />
             <div className="ml-auto flex items-center space-x-4">
               <Search />
@@ -29,7 +29,7 @@ export default async function layout({
           </div>
         </div>
       </div>
-      <div className="p-8 pt-6">{children}</div>
+      <div className="p-8 pt-6 max-w-screen-2xl m-auto">{children}</div>
     </div>
   );
 }
