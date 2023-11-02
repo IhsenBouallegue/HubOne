@@ -3,13 +3,18 @@
   "extends": ["config:base"],
   "baseBranches": ["main"],
   "labels": ["dependencies"],
+  "rebaseWhen": "behind-base-branch",
+  "prHourlyLimit": 2,
+  "prConcurrentLimit": 5,
+  "schedule": [
+    "after 10pm and before 5am on every weekend"
+  ],
   "packageRules": [
     {
       "matchPackagePatterns": ["*"],
       "matchUpdateTypes": ["minor", "patch"],
       "groupName": "all non-major dependencies",
-      "groupSlug": "all-minor-patch",
-      "schedule": ["every weekend"]
+      "groupSlug": "all-minor-patch"
     }
   ]
 }
