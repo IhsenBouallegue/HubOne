@@ -1,43 +1,29 @@
 "use client";
 
 import { Hub } from "@/lib/schema/app";
-import {
-  Button,
-  ColorInput,
-  Group,
-  Stack,
-  TextInput,
-  Textarea,
-} from "@mantine/core";
+import { Input } from "@/ui/input";
+import { Textarea } from "@/ui/textarea";
 import type { UseFormReturnType } from "@mantine/form";
 
 export function HubFormFields({ form }: { form: UseFormReturnType<Hub> }) {
   return (
-    <Stack gap="md">
-      <TextInput
+    <div className="flex flex-col gap-4">
+      <Input
         required
-        label="Hub Name"
         placeholder="Hub Name"
         {...form.getInputProps("hubName")}
       />
-      <TextInput
+      <Input
         required
-        label="Hub Path"
         placeholder="Hub Path"
         {...form.getInputProps("hubPath")}
       />
-      <TextInput
-        label="Hub Logo"
-        placeholder="Hub Logo"
-        {...form.getInputProps("hubLogo")}
-      />
+      <Input placeholder="Hub Logo" {...form.getInputProps("hubLogo")} />
       <Textarea
         placeholder="Hub Description"
-        label="Hub Description"
-        autosize
         {...form.getInputProps("description")}
       />
-      <ColorInput
+      {/* <ColorInput
         placeholder="Pick color"
         label="Hub Primary Color"
         {...form.getInputProps("primaryColor")}
@@ -46,11 +32,7 @@ export function HubFormFields({ form }: { form: UseFormReturnType<Hub> }) {
         placeholder="Pick color"
         label="Hub Secondary Color"
         {...form.getInputProps("secondaryColor")}
-      />
-
-      <Group align="center" mt="xl">
-        <Button type="submit">Save</Button>
-      </Group>
-    </Stack>
+      /> */}
+    </div>
   );
 }

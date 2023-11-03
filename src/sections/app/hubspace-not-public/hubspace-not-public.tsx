@@ -1,16 +1,23 @@
-import { Center, Image, Stack, Text, Title } from "@mantine/core";
+import Image from "next/image";
 
 export function HubSpaceNotPublic() {
   return (
-    <Center h="100vh" w="inherit">
-      <Stack align="center">
-        <Image src="/logo/hubone_logo.svg" w={126} />
-        <Title ta="center">HubSpace is not public.</Title>
-        <Text ta="center">
+    <div className="flex items-center justify-center h-screen w-full">
+      <div className="flex flex-col items-center justify-center">
+        <Image
+          src="/logo/hubone_logo.svg"
+          width={126}
+          height={126}
+          alt="logo"
+        />
+        <h1 className="text-3xl font-bold text-center">
+          HubSpace is not public.
+        </h1>
+        <p className="text-center">
           You don&apos;t have access to this HubSpace. Please ask the admin for
           permission.
-        </Text>
-      </Stack>
-    </Center>
+        </p>
+      </div>
+    </div>
   );
 }

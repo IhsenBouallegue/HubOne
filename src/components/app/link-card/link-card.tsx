@@ -1,7 +1,9 @@
 "use client";
 
 import { useHubOneStore } from "@/lib/Store";
+import { Link } from "@/lib/schema/app";
 import LinkEditModal from "@/modals/link-modals/link-edit-modal";
+import { Dialog } from "@/ui/dialog";
 import { useState } from "react";
 import { CompactLinkCard } from "./compact-link-card";
 import { FullLinkCard } from "./full-link-card";
@@ -13,26 +15,18 @@ export function LinkCard({
   image,
   link,
   isInternal = false,
-}: {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  link: string;
-  isInternal: boolean;
-}) {
+}: Omit<Link, "linkGroupId" | "hubId">) {
   const [opened, setOpened] = useState(false);
   const compactMode = useHubOneStore((state) => state.compactMode);
 
   return (
-    <>
+    <Dialog open={opened} onOpenChange={setOpened}>
       {compactMode ? (
         <CompactLinkCard
           title={title}
           description={description}
           image={image}
           link={link}
-          setOpened={setOpened}
         />
       ) : (
         <FullLinkCard
@@ -40,7 +34,6 @@ export function LinkCard({
           description={description}
           image={image}
           link={link}
-          setOpened={setOpened}
         />
       )}
       <LinkEditModal
@@ -53,6 +46,6 @@ export function LinkCard({
         link={link}
         isInternal={isInternal}
       />
-    </>
+    </Dialog>
   );
 }

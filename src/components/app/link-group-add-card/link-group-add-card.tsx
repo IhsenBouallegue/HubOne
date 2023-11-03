@@ -1,13 +1,13 @@
 "use client";
 
+import { Icons } from "@/components/icons";
 import AddLinkGroupModal from "@/modals/link-group-modal";
-import { Center, Paper, Text } from "@mantine/core";
-import { IconPlus } from "@tabler/icons-react";
+import { Dialog, DialogTrigger } from "@/ui/dialog";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
 export function LinkGroupAddCard({ hubId }: { hubId: string }) {
-  const [opened, setOpened] = useState(false);
+  const [open, setOpened] = useState(false);
 
   return (
     <motion.div
@@ -19,24 +19,25 @@ export function LinkGroupAddCard({ hubId }: { hubId: string }) {
       }}
       whileTap={{ scale: 0.94 }}
     >
-      <Paper
-        w="100%"
-        h="6rem"
-        radius="lg"
-        shadow="md"
-        style={{
-          justifyContent: "center",
-          alignItems: "center",
-          display: "flex",
-        }}
-        onClick={() => setOpened(true)}
-      >
-        <Center>
-          <IconPlus size={36} strokeWidth={2} color="black" />
-          <Text ta="center">Add Link Group</Text>
-        </Center>
-      </Paper>
-      <AddLinkGroupModal opened={opened} setOpened={setOpened} hubId={hubId} />
+      <Dialog open={open} onOpenChange={setOpened}>
+        <DialogTrigger asChild>
+          <div
+            className="cursor-pointer w-full h-24 flex items-center justify-center shadow-md rounded-md"
+            onClick={() => setOpened(true)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                setOpened(true);
+              }
+            }}
+          >
+            <div className="flex justify-center items-center gap-4">
+              <Icons.plus size={32} />
+              <p className="text-center">Add Link Group</p>
+            </div>
+          </div>
+        </DialogTrigger>
+        <AddLinkGroupModal setOpened={setOpened} hubId={hubId} />
+      </Dialog>
     </motion.div>
   );
 }

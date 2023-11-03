@@ -1,77 +1,68 @@
 "use client";
 
-import HubLogo from "@/components/app/hub-logo";
-import { useHubOneStore } from "@/lib/Store";
+import { DefaultHubLogo } from "@/components/app/hub-logo/default-hub-logo";
+import { Icons } from "@/components/icons";
 import { Hub } from "@/lib/schema/app";
+import HubCreateModal from "@/modals/hub-modals/hub-create-modal";
+import { Button } from "@/ui/button";
+import { Dialog, DialogTrigger } from "@/ui/dialog";
 import {
-  Affix,
-  Center,
-  Menu,
-  SimpleGrid,
-  Stack,
-  Text,
-  ThemeIcon,
-  Title,
-  rem,
-} from "@mantine/core";
-import { IconAppsFilled, IconPlus } from "@tabler/icons-react";
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/ui/dropdown-menu";
 import Link from "next/link";
 import { useState } from "react";
 
 export function HubMenu({ hubs }: { hubs: Hub[] }) {
-  const [opened, setOpened] = useState(false);
-  const setCreateModalOpened = useHubOneStore(
-    (state) => state.setCreateModalOpened
-  );
+  const [createModalOpened, setCreateModalOpened] = useState(false);
 
   return (
-    <Menu
-      opened={opened}
-      onChange={setOpened}
-      trigger="hover"
-      position="top-end"
-      shadow="md"
-      radius="md"
-    >
-      <Menu.Target>
-        <Affix position={{ bottom: rem(32), right: rem(32) }}>
-          <ThemeIcon radius="xl" size={rem(48)}>
-            <IconAppsFilled />
-          </ThemeIcon>
-        </Affix>
-      </Menu.Target>
-      <Menu.Dropdown>
-        <Title p="sm" order={3}>
-          Hub Menu
-        </Title>
-        <SimpleGrid p="sm" cols={3} spacing="sm">
-          {hubs.map((hub) => (
-            <Menu.Item key={`hub_menu_item_${hub.id}`}>
-              <Link href={hub.hubPath}>
-                <Stack w={rem(64)} h={rem(148)} justify="flex-start">
-                  <Center w="100%" h="50%">
-                    <HubLogo />
-                  </Center>
-                  <Text
-                    style={{ wordWrap: "break-word", hyphens: "auto" }}
-                    ta="center"
-                    lineClamp={3}
-                  >
-                    {hub.hubName}
-                  </Text>
-                </Stack>
-              </Link>
-            </Menu.Item>
-          ))}
-        </SimpleGrid>
-        <Menu.Divider />
-        <Menu.Item
-          onClick={() => setCreateModalOpened(true)}
-          leftSection={<IconPlus size={14} />}
-        >
-          Create New Hub
-        </Menu.Item>
-      </Menu.Dropdown>
-    </Menu>
+    <Dialog open={createModalOpened} onOpenChange={setCreateModalOpened}>
+      <DropdownMenu>
+        <div className="fixed bottom-6 right-6">
+          <DropdownMenuTrigger asChild>
+            <Button size="icon" variant="default">
+              <Icons.hubs />
+            </Button>
+          </DropdownMenuTrigger>
+        </div>
+        <DropdownMenuContent collisionPadding={{ right: 24 }} sideOffset={16}>
+          <DropdownMenuLabel className="text-lg mb-4">
+            Hub Menu
+          </DropdownMenuLabel>
+          <div className="grid grid-cols-3 gap-4">
+            {hubs.map((hub) => (
+              <DropdownMenuItem className="p-2" key={`hub_menu_item_${hub.id}`}>
+                <Link href={hub.hubPath}>
+                  <div className="flex flex-col h-32 w-16">
+                    <div className="w-full h-1/2 p-1">
+                      <DefaultHubLogo hubName={hub.hubName} />
+                    </div>
+                    <div className="w-full h-1/2">
+                      <p className="text-sm text-center line-clamp-3">
+                        {hub.hubName}
+                      </p>
+                    </div>
+                  </div>
+                </Link>
+              </DropdownMenuItem>
+            ))}
+          </div>
+          <DropdownMenuSeparator className="bg-black/50" />
+          <DialogTrigger asChild>
+            <DropdownMenuItem className="flex gap-2">
+              <Icons.plus size={14} />
+              Create New Hub
+            </DropdownMenuItem>
+          </DialogTrigger>
+        </DropdownMenuContent>
+      </DropdownMenu>
+
+      <HubCreateModal setOpened={setCreateModalOpened} />
+    </Dialog>
   );
 }

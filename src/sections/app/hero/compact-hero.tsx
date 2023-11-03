@@ -1,50 +1,25 @@
 import { useHubOneStore } from "@/lib/Store";
-import { useFetchItem } from "@/lib/useQueries";
-import { Container, Text, Title, useMantineTheme } from "@mantine/core";
-
 import { Hub } from "@/lib/schema/app";
-import classes from "./compact-hero.module.css";
+import { useFetchItem } from "@/lib/useQueries";
 
 export function CompactHero() {
   const hubId = useHubOneStore((state) => state.hubId);
   const { data: hub } = useFetchItem<Hub>("hubs", hubId!);
-  const { hubName, description, primaryColor, secondaryColor } = hub!;
-  const theme = useMantineTheme();
+  const { hubName, description, primaryColor } = hub!;
 
   return (
-    <Container size={800} className={classes.container}>
-      <Title fz={32}>
-        The{" "}
-        <Text
-          component="span"
-          variant="gradient"
-          gradient={{
-            from: theme.colors.primary[4],
-            to: theme.colors.secondary[4],
-          }}
-          inherit
-        >
-          one hub
-        </Text>{" "}
-        for
-      </Title>
-      <Title order={1} fz={48}>
-        <Text
-          component="span"
-          variant="gradient"
-          gradient={{
-            from: primaryColor,
-            to: secondaryColor,
-          }}
-          inherit
-        >
-          {hubName}
-        </Text>
-        .
-      </Title>
-      <Text mt="xl" c="dimmed" fz="lg">
-        {description}
-      </Text>
-    </Container>
+    <div className=" max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="text-center py-16">
+        <h1 className="text-xl font-semibold tracking-tight sm:text-2xl md:text-4xl">
+          The one hub for
+        </h1>
+        <h2 className="mt-4 text-2xl font-extrabold tracking-tight sm:text-6xl">
+          <span style={{ color: primaryColor }}>{hubName}</span>.
+        </h2>
+        <p className="max-w-xl m-auto mt-8 text-lg text-muted-foreground">
+          {description}
+        </p>
+      </div>
+    </div>
   );
 }

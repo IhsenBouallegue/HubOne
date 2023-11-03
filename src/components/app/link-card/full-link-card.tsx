@@ -1,23 +1,20 @@
+import { Icons } from "@/components/icons";
 import { useHubOneStore } from "@/lib/Store";
-import { ActionIcon, Box, Paper, Stack, Text } from "@mantine/core";
-import { IconEdit } from "@tabler/icons-react";
+import { Link as ILink } from "@/lib/schema/app";
+import { Button } from "@/ui/button";
+import { Card } from "@/ui/card";
+import { DialogTrigger } from "@radix-ui/react-dialog";
 import { motion, useAnimationControls } from "framer-motion";
 import Image from "next/image";
-import { Dispatch, SetStateAction, useEffect } from "react";
+import Link from "next/link";
+import { useEffect } from "react";
 
 export function FullLinkCard({
   title,
   description,
   image,
   link,
-  setOpened,
-}: {
-  title: string;
-  description: string;
-  image: string;
-  link: string;
-  setOpened: Dispatch<SetStateAction<boolean>>;
-}) {
+}: Pick<ILink, "title" | "description" | "image" | "link">) {
   const editMode = useHubOneStore((state) => state.editMode);
   const controls = useAnimationControls();
 
@@ -47,46 +44,32 @@ export function FullLinkCard({
       animate={controls}
       style={{ height: "100%" }}
     >
-      <Paper
-        h="100%"
-        shadow="md"
-        radius="lg"
-        p="lg"
-        component="a"
-        href={link}
-        target="_blank"
-        onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-          if (editMode) {
-            e.preventDefault();
-            setOpened(true);
-          }
-        }}
-      >
-        {editMode && (
-          <Box top="10%" right="5%" pos="absolute">
-            <ActionIcon size="sm" color="primary" variant="light">
-              <IconEdit strokeWidth={2} />
-            </ActionIcon>
-          </Box>
-        )}
-        <Stack p="sm" style={{ flex: 1, alignItems: "center" }}>
-          <Image
-            src={!image || image === "" ? "./logo/hubone_logo.svg" : image}
-            width={64}
-            height={64}
-            alt={title}
-          />
-        </Stack>
-        <Stack style={{ flex: 1 }}>
-          <Text c="black" my="sm" fw={600} size="lg">
-            {title}
-          </Text>
+      <Link href={link} target="_blank">
+        <DialogTrigger asChild>
+          <Card className="cursor-pointer w-56 p-4 relative flex flex-col gap-4">
+            {editMode && (
+              <div className="absolute top-2 right-2">
+                <Button variant="ghost" size="icon">
+                  <Icons.edit strokeWidth={2} />
+                </Button>
+              </div>
+            )}
 
-          <Text c="dimmed" lh="1.5" size="sm">
-            {description}
-          </Text>
-        </Stack>
-      </Paper>
+            <div className="h-32 relative">
+              <Image
+                className="p-4"
+                fill
+                src={!image || image === "" ? "./logo/hubone_logo.svg" : image}
+                alt={title}
+              />
+            </div>
+            <div className="flex h-32 flex-col gap-2">
+              <p className="text-lg font-semibold leading-5">{title}</p>
+              <p className=" text-muted-foreground">{description}</p>
+            </div>
+          </Card>
+        </DialogTrigger>
+      </Link>
     </motion.div>
   );
 }

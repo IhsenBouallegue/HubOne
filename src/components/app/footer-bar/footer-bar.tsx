@@ -1,21 +1,19 @@
-import { Group, Image, Paper } from "@mantine/core";
+import Image from "next/image";
 import { FooterLinks } from "./footer-links";
-
-import classes from "./footer-bar.module.css";
 
 export function FooterBar() {
   return (
-    <Paper radius="lg" className={classes.container}>
+    <div className="mt-[120px] flex border-t-2 flex-col border-slate-200 relative place-items-center px-6 py-8 sm:flex-row">
       <Image
         src="/logo/hubone_logo_full.svg"
-        fit="contain"
-        h={36}
-        w={150}
-        className={classes.logo}
+        height={36}
+        width={150}
+        alt="hubone logo"
+        className="static sm:absolute object-contain"
       />
-      <Group className={classes.footerLinks}>
+      <div className="my-0 mx-auto relative sm:static">
         <FooterLinks />
-      </Group>
-    </Paper>
+      </div>
+    </div>
   );
 }

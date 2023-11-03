@@ -1,11 +1,10 @@
 "use client";
 
+import { Icons } from "@/components/icons";
 import { FooterLink } from "@/lib/schema/app";
 import { usePost } from "@/lib/useQueries";
-import { Card, Group, Text } from "@mantine/core";
-import { IconPlus } from "@tabler/icons-react";
+import { Card } from "@/ui/card";
 import { motion } from "framer-motion";
-import classes from "./footer-link-add-card.module.css";
 
 export function FooterLinkAddCard({ hubId }: { hubId: string }) {
   const mutate = usePost<FooterLink>("footerlinks");
@@ -19,14 +18,11 @@ export function FooterLinkAddCard({ hubId }: { hubId: string }) {
         transition: { duration: 0.2 },
       }}
       whileTap={{ scale: 0.98 }}
-      className={classes.card}
       onClick={handleSubmit}
     >
-      <Card className={classes.card} shadow="sm" p="lg" onClick={() => {}}>
-        <Group my="auto" align="center">
-          <IconPlus size={24} strokeWidth={2} color="black" />
-          <Text ta="center">Add Footer Link</Text>
-        </Group>
+      <Card className="p-3 h-14 flex gap-4 items-center">
+        <Icons.plus />
+        <p>Add Footer Link</p>
       </Card>
     </motion.div>
   );

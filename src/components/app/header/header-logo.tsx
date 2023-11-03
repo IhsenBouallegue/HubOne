@@ -1,17 +1,13 @@
-import { Center, Group, rem } from "@mantine/core";
-import { IconX } from "@tabler/icons-react";
-
 import HubLogo from "@/components/app/hub-logo";
 import ResponsiveLogo from "@/components/common/responsive-logo";
+import { Icons } from "@/components/icons";
 
 export function HeaderLogo() {
   return (
-    <Group wrap="nowrap">
+    <div className="flex flex-nowrap items-center gap-2">
       <ResponsiveLogo />
-      <IconX size={20} strokeWidth={1} color="black" />
-      <Center h={rem(28)} w={rem(28)}>
-        <HubLogo />
-      </Center>
-    </Group>
+      <Icons.close size={20} strokeWidth={2} />
+      <HubLogo />
+    </div>
   );
 }

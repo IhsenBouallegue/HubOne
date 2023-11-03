@@ -2,16 +2,8 @@ import BackgroundImg from "@/components/app/background-img";
 import { useHubOneStore } from "@/lib/Store";
 import { Hub } from "@/lib/schema/app";
 import { useFetchItem } from "@/lib/useQueries";
-import {
-  Button,
-  Container,
-  Group,
-  Text,
-  Title,
-  useMantineTheme,
-} from "@mantine/core";
 
-import classes from "./full-hero.module.css";
+import { Button } from "@/ui/button";
 
 export function FullHero() {
   const hubId = useHubOneStore((state) => state.hubId);
@@ -20,78 +12,40 @@ export function FullHero() {
 
   const editMode = useHubOneStore((state) => state.editMode);
   const setEditMode = useHubOneStore((state) => state.setEditMode);
-  const theme = useMantineTheme();
+
   const name = () => (
-    <Text component="span" inherit>
+    <span>
       {" for "}
-      <Text
-        component="span"
-        variant="gradient"
-        gradient={{
-          from: primaryColor,
-          to: secondaryColor,
-        }}
-        inherit
-      >
-        {hubName}
-      </Text>
-      .
-    </Text>
+      <span style={{ color: primaryColor }}>{hubName}</span>.
+    </span>
   );
   return (
-    <div className={classes.wrapper}>
+    <div className="my-36 relative max-w-screen-lg mx-auto">
       <BackgroundImg
-        className={classes.background}
+        className="absolute -z-10 w-1/3 max-h-[35vh] object-contain sm:left-[52%] left-[42%] sm:-bottom-28 -bottom-[150rem]"
         primaryColor={primaryColor}
         secondaryColor={secondaryColor}
       />
-      <Container size={800} className={classes.inner}>
-        <Title order={1} className={classes.title}>
-          The{" "}
-          <Text
-            component="span"
-            variant="gradient"
-            gradient={{
-              from: theme.colors.primary[4],
-              to: theme.colors.secondary[4],
-            }}
-            inherit
-          >
-            one hub
-          </Text>{" "}
-          you will ever need
+      <div className="px-4 sm:px-6 lg:px-8">
+        <h1 className="text-4xl font-extrabold sm:text-5xl md:text-6xl">
+          The one hub you will ever need
           {hubName ? name() : "."}
-        </Title>
-
-        <Text className={classes.description} c="dimmed">
+        </h1>
+        <p className="mt-3 max-w-lg text-lg text-muted-foreground sm:text-xl sm:mt-5">
           {description}
-        </Text>
+        </p>
 
-        <Group className={classes.controls}>
+        <div className="mt-10 flex gap-4">
+          <Button size="lg">Browse Links</Button>
           <Button
-            size="xl"
-            className={classes.cta}
-            variant="gradient"
-            gradient={{
-              from: theme.colors.primary[4],
-              to: theme.colors.secondary[4],
-            }}
-          >
-            Browse Links
-          </Button>
-
-          <Button
-            component="a"
-            size="xl"
             variant="outline"
-            className={classes.cta}
-            color="dark"
+            size="lg"
             onClick={() => setEditMode(!editMode)}
           >
             {editMode ? "View Mode" : "Edit Mode"}
           </Button>
-        </Group>
-      </Container>
+        </div>
+      </div>
     </div>
   );
 }

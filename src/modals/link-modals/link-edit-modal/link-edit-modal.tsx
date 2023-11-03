@@ -1,14 +1,21 @@
-"use client";
-
+import { Icons } from "@/components/icons";
 import { Link } from "@/lib/schema/app";
 import { useDelete, useUpdate } from "@/lib/useQueries";
-import { Button, Group, Modal, Title } from "@mantine/core";
-import { useForm } from "@mantine/form";
-import { IconTrash } from "@tabler/icons-react";
+import { insertLinksSchema } from "@/lib/validations/link";
+import { Button } from "@/ui/button";
+import {
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/ui/dialog";
+import { Form } from "@/ui/form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 import { LinkFormFields } from "../link-form-fields";
 
 export function LinkEditModal({
-  opened,
   setOpened,
   id,
   title,
@@ -20,48 +27,51 @@ export function LinkEditModal({
   opened: boolean;
   setOpened: (open: boolean) => void;
 } & Partial<Link>) {
-  const form = useForm<Link>({
-    initialValues: {
+  const form = useForm<z.infer<typeof insertLinksSchema>>({
+    resolver: zodResolver(insertLinksSchema),
+    defaultValues: {
       id,
       title,
       description,
       image,
-      isInternal,
       link,
-    } as Link,
+      isInternal,
+    },
   });
-  const update = useUpdate<Link>("links");
+  const update = useUpdate<z.infer<typeof insertLinksSchema>>("links");
   const deleteItem = useDelete("links");
-  const handleSubmit = (values: Link) => {
-    if (form.isTouched()) update(values);
+  const onSubmit = (values: z.infer<typeof insertLinksSchema>) => {
+    console.log(values);
+
+    update(values);
     setOpened(false);
   };
 
   return (
-    <Modal
-      opened={opened}
-      onClose={() => setOpened(false)}
-      title={<Title size="2rem">Edit Link</Title>}
-    >
-      <form onSubmit={form.onSubmit(handleSubmit)}>
-        <LinkFormFields form={form} />
-        <Group justify="center" mt="xl">
-          <Button
-            leftSection={<IconTrash />}
-            variant="outline"
-            color="secondary"
-            onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-              e.preventDefault();
-              deleteItem(id as number);
-            }}
-          >
-            Delete
-          </Button>
-          <Button variant="filled" type="submit" data-autofocus>
-            Save
-          </Button>
-        </Group>
-      </form>
-    </Modal>
+    <DialogContent>
+      <DialogHeader>
+        <DialogTitle>Edit Link</DialogTitle>
+      </DialogHeader>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <LinkFormFields form={form} />
+          <DialogFooter className="space-x-4">
+            <Button
+              variant="outline"
+              onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+                e.preventDefault();
+                deleteItem(id as number);
+              }}
+            >
+              <Icons.trash strokeWidth={2} />
+              Delete
+            </Button>
+            <Button type="submit" data-autofocus>
+              Edit
+            </Button>
+          </DialogFooter>
+        </form>
+      </Form>
+    </DialogContent>
   );
 }

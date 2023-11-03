@@ -1,50 +1,57 @@
 import { Link } from "@/lib/schema/app";
 import { usePost } from "@/lib/useQueries";
-import { Button, Group, Modal } from "@mantine/core";
-import { useForm } from "@mantine/form";
+import { linksSchema } from "@/lib/validations/link";
+import { Button } from "@/ui/button";
+import {
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/ui/dialog";
+import { Form } from "@/ui/form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 import { LinkFormFields } from "../link-form-fields";
 
 export function LinkCreateModal({
-  opened,
   setOpened,
   hubId,
   linkGroupId,
 }: {
-  opened: boolean;
   setOpened: (open: boolean) => void;
 } & Partial<Link>) {
-  const form = useForm<Link>({
-    initialValues: {
+  const form = useForm<z.infer<typeof linksSchema>>({
+    resolver: zodResolver(linksSchema),
+    defaultValues: {
       title: "",
       description: "",
       image: "",
-      isInternal: false,
       link: "",
       hubId,
       linkGroupId,
-    } as Link,
+    },
   });
-  const mutate = usePost<Link>("links");
-  const handleSubmit = (values: Link) => {
+  const mutate = usePost<z.infer<typeof linksSchema>>("links");
+  const onSubmit = (values: z.infer<typeof linksSchema>) => {
     mutate(values);
     form.reset();
     setOpened(false);
   };
 
   return (
-    <Modal
-      opened={opened}
-      onClose={() => setOpened(false)}
-      title="Add new link"
-    >
-      <form onSubmit={form.onSubmit(handleSubmit)}>
-        <LinkFormFields form={form} />
-        <Group justify="center" mt="xl">
-          <Button variant="filled" type="submit">
-            Save
-          </Button>
-        </Group>
-      </form>
-    </Modal>
+    <DialogContent>
+      <DialogHeader>
+        <DialogTitle>Create New Link</DialogTitle>
+      </DialogHeader>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <LinkFormFields form={form} />
+          <DialogFooter>
+            <Button type="submit">Save</Button>
+          </DialogFooter>
+        </form>
+      </Form>
+    </DialogContent>
   );
 }

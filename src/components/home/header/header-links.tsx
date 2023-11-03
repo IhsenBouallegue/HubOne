@@ -4,9 +4,9 @@ import Link from "next/link";
 import { SetStateAction } from "react";
 
 export function HeaderLinks({
-  toggleOpened,
+  toggleMenu,
 }: {
-  toggleOpened: (value?: SetStateAction<boolean> | undefined) => void;
+  toggleMenu: (value?: SetStateAction<boolean> | undefined) => void;
 }) {
   return (
     <>
@@ -16,7 +16,7 @@ export function HeaderLinks({
           className={cn(buttonVariants({ variant: "link" }))}
           key={linkGroup.link}
           onClick={() => {
-            toggleOpened(false);
+            toggleMenu(false);
           }}
         >
           {linkGroup.label}

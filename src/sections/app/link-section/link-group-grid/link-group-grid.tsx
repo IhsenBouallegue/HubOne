@@ -2,13 +2,12 @@
 
 import { useHubOneStore } from "@/lib/Store";
 import { Link } from "@/lib/schema/app";
-import { Grid, Text } from "@mantine/core";
 import { AnimatePresence } from "framer-motion";
 
 import LinkAddCard from "@/components/app/link-add-card";
 import LinkCard from "@/components/app/link-card";
 
-import classes from "./link-group-grid.module.css";
+import { cn } from "@/lib/utils";
 
 export function LinkGroupGrid({
   links,
@@ -23,21 +22,19 @@ export function LinkGroupGrid({
   const compactMode = useHubOneStore((state) => state.compactMode);
 
   return (
-    <Grid
-      columns={12}
-      gutter={{ base: "sm", md: "lg" }}
-      className={classes.container}
+    <div
+      className={cn(
+        "grid gap-4 w-full grid-cols-4 pb-12",
+        compactMode && "grid-cols-4"
+      )}
     >
       {links.length === 0 && !editMode && (
-        <Text c="dimmed" m="auto">
+        <p className="text-foreground-muted m-auto">
           This Link Group is empty.
-        </Text>
+        </p>
       )}
       {links.map((link) => (
-        <Grid.Col
-          key={`link_${link.id}`}
-          span={{ base: 6, sm: compactMode ? 4 : 3 }}
-        >
+        <div key={`link_${link.id}`}>
           <LinkCard
             id={link.id}
             title={link.title}
@@ -46,15 +43,15 @@ export function LinkGroupGrid({
             link={link.link}
             isInternal={link.isInternal}
           />
-        </Grid.Col>
+        </div>
       ))}
       {editMode && (
-        <Grid.Col span={{ base: 6, sm: compactMode ? 4 : 3 }}>
+        <div>
           <AnimatePresence>
             <LinkAddCard hubId={hubId} linkGroupId={linkGroupId} />
           </AnimatePresence>
-        </Grid.Col>
+        </div>
       )}
-    </Grid>
+    </div>
   );
 }

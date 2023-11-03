@@ -1,11 +1,12 @@
 "use client";
 
-import { Paper, Stack, Text, rem } from "@mantine/core";
-import { IconPlus } from "@tabler/icons-react";
+import { Icons } from "@/components/icons";
+import LinkCreateModal from "@/modals/link-modals/link-create-modal";
+import { Card } from "@/ui/card";
+import { Dialog } from "@/ui/dialog";
+import { DialogTrigger } from "@radix-ui/react-dialog";
 import { motion } from "framer-motion";
 import { useState } from "react";
-
-import LinkCreateModal from "@/modals/link-modals/link-create-modal";
 
 export function LinkAddCard({
   hubId,
@@ -28,28 +29,21 @@ export function LinkAddCard({
       whileTap={{ scale: 0.94 }}
       style={{ height: "100%" }}
     >
-      <Paper
-        h="100%"
-        mih={rem(250)}
-        radius="lg"
-        shadow="md"
-        onClick={() => setOpened(true)}
-      >
-        <Stack
-          align="center"
-          justify="center"
-          style={() => ({ height: "inherit" })}
-        >
-          <IconPlus size={36} strokeWidth={2} color="black" />
-          <Text ta="center">Add Link</Text>
-        </Stack>
-      </Paper>
-      <LinkCreateModal
-        opened={opened}
-        setOpened={setOpened}
-        hubId={hubId}
-        linkGroupId={linkGroupId}
-      />
+      <Dialog open={opened} onOpenChange={setOpened}>
+        <DialogTrigger asChild>
+          <Card className="cursor-pointer h-full min-h-[250px]">
+            <div className="flex flex-col h-full w-full gap-4 justify-center items-center">
+              <Icons.plus size={36} />
+              <p className="text-center">Add Link</p>
+            </div>
+          </Card>
+        </DialogTrigger>
+        <LinkCreateModal
+          setOpened={setOpened}
+          hubId={hubId}
+          linkGroupId={linkGroupId}
+        />
+      </Dialog>
     </motion.div>
   );
 }

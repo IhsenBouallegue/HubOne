@@ -1,28 +1,37 @@
 "use client";
 
-import { LinkGroup } from "@/lib/schema/app";
-import { Button, Group, TextInput } from "@mantine/core";
-import type { UseFormReturnType } from "@mantine/form";
+import { linkGroupsSchema } from "@/lib/validations/linkGroup";
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/ui/form";
+import { Input } from "@/ui/input";
+import { UseFormReturn } from "react-hook-form";
+import { z } from "zod";
 
 export function LinkGroupFormFields({
   form,
 }: {
-  form: UseFormReturnType<LinkGroup>;
+  form: UseFormReturn<z.infer<typeof linkGroupsSchema>>;
 }) {
   return (
     <>
-      <TextInput
-        required
-        label="Title"
-        placeholder="Title"
-        {...form.getInputProps("title")}
+      <FormField
+        control={form.control}
+        name="title"
+        render={({ field }) => (
+          <FormItem aria-required>
+            <FormLabel>Title</FormLabel>
+            <FormControl>
+              <Input placeholder="Documentation" {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
       />
-
-      <Group justify="center" mt="xl">
-        <Button variant="outline" type="submit">
-          Save
-        </Button>
-      </Group>
     </>
   );
 }

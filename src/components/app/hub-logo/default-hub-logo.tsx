@@ -1,38 +1,21 @@
-import { Box, Title, getGradient } from "@mantine/core";
-
 export function DefaultHubLogo({
   hubName = "X",
-  primaryColor = "#ff008c",
-  secondaryColor = "#0cd4f7",
+  ...props
 }: {
   hubName: string;
-  primaryColor: string;
-  secondaryColor: string;
 }) {
   return (
-    <Box
-      style={(theme) => ({
-        minWidth: "32px",
-        width: "100%",
-        padding: "6px",
-        borderRadius: theme.radius.md,
-        backgroundImage: getGradient(
-          { deg: 135, from: primaryColor, to: secondaryColor },
-          theme
-        ),
-        color: theme.white,
-        justifyContent: "center",
-        alignItems: "center",
-        display: "flex",
-        webkitUserSelect: "none",
-        mozUserSelect: "none",
+    <div
+      className="rounded-md from-[#ff008c] to-[#0cd4f7] bg-gradient-to-br text-white p-1 flex justify-center items-center"
+      style={{
         msUserSelect: "none",
         userSelect: "none",
         aspectRatio: "1/1",
-      })}
+      }}
+      {...props}
     >
-      <Title size={16}>{shorten(hubName)}</Title>
-    </Box>
+      <p className="font-bold">{shorten(hubName)}</p>
+    </div>
   );
 }
 

@@ -3,7 +3,7 @@
 import { useHubOneStore } from "@/lib/Store";
 import { FooterLink } from "@/lib/schema/app";
 import { useFetchByHubId } from "@/lib/useQueries";
-import { Anchor, Group } from "@mantine/core";
+import Link from "next/link";
 
 export function FooterLinks() {
   const { data: footerLinks } = useFetchByHubId<FooterLink>(
@@ -12,19 +12,16 @@ export function FooterLinks() {
   );
 
   return (
-    <Group>
+    <div className="flex gap-4">
       {footerLinks?.map(({ title, link }) => (
-        <Anchor<"a">
-          c="dimmed"
+        <Link
+          className="text-muted leading-loose text-sm"
           key={`footer_link_${title}`}
           href={link}
-          style={{ lineHeight: 1 }}
-          onClick={(event) => event.preventDefault()}
-          size="sm"
         >
           {title}
-        </Anchor>
+        </Link>
       ))}
-    </Group>
+    </div>
   );
 }

@@ -1,16 +1,20 @@
 import { usePost } from "@/lib/useQueries";
-import { Modal, Title } from "@mantine/core";
 import { useForm } from "@mantine/form";
 
 import { useHubOneStore } from "@/lib/Store";
 import { Hub } from "@/lib/schema/app";
+import { Button } from "@/ui/button";
+import {
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/ui/dialog";
 import { HubFormFields } from "../hub-form-fields";
 
 export function HubCreateModal({
-  opened,
   setOpened,
 }: {
-  opened: boolean;
   setOpened: (open: boolean) => void;
 }) {
   const hubSpaceId = useHubOneStore((state) => state.hubSpaceId);
@@ -32,15 +36,16 @@ export function HubCreateModal({
   };
 
   return (
-    <Modal
-      opened={opened}
-      onClose={() => setOpened(false)}
-      title={<Title size="2rem">Create New Hub</Title>}
-      size="lg"
-    >
+    <DialogContent>
+      <DialogHeader>
+        <DialogTitle>Create New Hub</DialogTitle>
+      </DialogHeader>
       <form onSubmit={form.onSubmit(handleSubmit)}>
         <HubFormFields form={form} />
+        <DialogFooter>
+          <Button type="submit">Create</Button>
+        </DialogFooter>
       </form>
-    </Modal>
+    </DialogContent>
   );
 }

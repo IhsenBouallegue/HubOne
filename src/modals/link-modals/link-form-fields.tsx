@@ -1,38 +1,90 @@
 "use client";
 
-import { Link } from "@/lib/schema/app";
-import { Switch, TextInput } from "@mantine/core";
-import type { UseFormReturnType } from "@mantine/form";
+import { insertLinksSchema, linksSchema } from "@/lib/validations/link";
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/ui/form";
+import { Input } from "@/ui/input";
+import { Switch } from "@/ui/switch";
+import { UseFormReturn } from "react-hook-form";
+import { z } from "zod";
 
-export function LinkFormFields({ form }: { form: UseFormReturnType<Link> }) {
+export function LinkFormFields({
+  form,
+}: {
+  form: UseFormReturn<z.infer<typeof linksSchema | typeof insertLinksSchema>>;
+}) {
   return (
-    <>
-      <TextInput
-        required
-        label="Title"
-        placeholder="Title"
-        {...form.getInputProps("title")}
+    <div className="space-y-8">
+      <FormField
+        control={form.control}
+        name="title"
+        render={({ field }) => (
+          <FormItem aria-required>
+            <FormLabel>Title</FormLabel>
+            <FormControl>
+              <Input placeholder="Wikipedia" {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
       />
-      <TextInput
-        required
-        mt="md"
-        label="Description"
-        placeholder="Description"
-        {...form.getInputProps("description")}
+      <FormField
+        control={form.control}
+        name="description"
+        render={({ field }) => (
+          <FormItem aria-required>
+            <FormLabel>Title</FormLabel>
+            <FormControl>
+              <Input placeholder="Wikipedia for all" {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
       />
-      <TextInput
-        mt="md"
-        label="Image"
-        placeholder="Image"
-        {...form.getInputProps("image")}
+      <FormField
+        control={form.control}
+        name="image"
+        render={({ field }) => (
+          <FormItem aria-required>
+            <FormLabel>Image</FormLabel>
+            <FormControl>
+              <Input placeholder="" {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
       />
-      <TextInput
-        mt="md"
-        label="Link"
-        placeholder="Link"
-        {...form.getInputProps("link")}
+      <FormField
+        control={form.control}
+        name="link"
+        render={({ field }) => (
+          <FormItem aria-required>
+            <FormLabel>Link</FormLabel>
+            <FormControl>
+              <Input placeholder="www.wikipedia.com" {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
       />
-      <Switch mt="md" label="Internal" {...form.getInputProps("isInternal")} />
-    </>
+      <FormField
+        control={form.control}
+        name="isInternal"
+        render={({ field }) => (
+          <FormItem aria-required className="space-x-2">
+            <FormControl>
+              <Switch checked={field.value} onCheckedChange={field.onChange} />
+            </FormControl>
+            <FormLabel>Is Internal</FormLabel>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+    </div>
   );
 }

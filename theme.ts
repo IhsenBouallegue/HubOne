@@ -1,7 +1,6 @@
 "use client";
 
 import { mainFont } from "@/lib/fonts";
-import { createTheme } from "@mantine/core";
 
 const theme = createTheme({
   colors: {
@@ -57,3 +56,17 @@ const theme = createTheme({
 });
 
 export default theme;
+function createTheme(_arg0: {
+  colors: { primary: string[]; secondary: string[] };
+  primaryColor: string;
+  defaultRadius: string;
+  black: string;
+  primaryShade: number;
+  fontFamily: string;
+  headings: { fontFamily: string; fontWeight: string };
+  defaultGradient: { to: string; from: string };
+  // https://www.joshwcomeau.com/shadow-palette/
+  shadows: { sm: string; md: string; lg: string };
+}) {
+  throw new Error("Function not implemented.");
+}

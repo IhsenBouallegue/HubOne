@@ -1,13 +1,10 @@
 "use client";
 
-import { useHubOneStore } from "@/lib/Store";
-import { useFetchByHubId, useFetchItem } from "@/lib/useQueries";
-
 import FooterBar from "@/components/app/footer-bar";
-import HubCreateModal from "@/modals/hub-modals/hub-create-modal";
-
 import Header from "@/components/app/header";
+import { useHubOneStore } from "@/lib/Store";
 import { FooterLink, Hub, Link, LinkGroup } from "@/lib/schema/app";
+import { useFetchByHubId, useFetchItem } from "@/lib/useQueries";
 import Image from "next/image";
 import Hero from "../hero";
 import HubMenu from "../hub-menu";
@@ -34,10 +31,6 @@ export default function HubPage({
   });
   useHubOneStore.setState({ hubId: hub.id });
   useHubOneStore.setState({ hubSpaceId: hub.hubSpaceId });
-  const createModalOpened = useHubOneStore((state) => state.createModalOpened);
-  const setCreateModalOpened = useHubOneStore(
-    (state) => state.setCreateModalOpened
-  );
 
   return (
     <div className="min-h-screen">
@@ -55,10 +48,6 @@ export default function HubPage({
         <FooterBar />
       </div>
       {hubs && <HubMenu hubs={hubs} />}
-      <HubCreateModal
-        opened={createModalOpened}
-        setOpened={setCreateModalOpened}
-      />
     </div>
   );
 }

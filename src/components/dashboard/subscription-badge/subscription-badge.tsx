@@ -1,9 +1,5 @@
-import { Badge } from "@mantine/core";
+import { Badge } from "@/ui/badge";
 
 export function SubscriptionBadge() {
-  return (
-    <Badge color="blue" variant="light">
-      "Free"
-    </Badge>
-  );
+  return <Badge color="blue">"Free"</Badge>;
 }

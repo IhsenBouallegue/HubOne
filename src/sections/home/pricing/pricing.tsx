@@ -1,5 +1,3 @@
-import { Group } from "@mantine/core";
-
 import Heading from "@/components/home/heading";
 import Section from "@/components/home/section";
 
@@ -16,7 +14,7 @@ export async function Pricing() {
         description=" For your personal use or for your business. We got you covered!"
       />
 
-      <Group style={{ overflow: "visible" }}>
+      <div className="flex gap-6 overflow-visible">
         {Object.keys(products).map((productId) => {
           const { name, color, description, prices } = products[productId];
           return (
@@ -40,7 +38,7 @@ export async function Pricing() {
             />
           );
         })}
-      </Group>
+      </div>
     </Section>
   );
 }

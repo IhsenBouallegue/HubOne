@@ -1,9 +1,9 @@
-"use client";
-
 import { useHubOneStore } from "@/lib/Store";
 import { FooterLink, Hub } from "@/lib/schema/app";
 import { useFetchByHubId, useFetchItem, useUpdate } from "@/lib/useQueries";
-import { Modal, Stack, Tabs, Title } from "@mantine/core";
+import { Button } from "@/ui/button";
+import { DialogContent, DialogHeader, DialogTitle } from "@/ui/dialog";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/ui/tabs";
 import { useForm } from "@mantine/form";
 import { useEffect } from "react";
 import { HubFormFields } from "../hub-form-fields";
@@ -11,10 +11,8 @@ import { FooterLinkAddCard } from "./footer-link-add-card";
 import { FooterLinkCard } from "./footer-link-card";
 
 export function HubEditModal({
-  opened,
   setOpened,
 }: {
-  opened: boolean;
   setOpened: (open: boolean) => void;
 }) {
   const hubId = useHubOneStore((state) => state.hubId);
@@ -52,26 +50,25 @@ export function HubEditModal({
   }, [form, hub, hubPath]);
 
   return (
-    <Modal
-      opened={opened}
-      onClose={() => setOpened(false)}
-      title={<Title size="2rem">Edit Current Hub</Title>}
-      size="lg"
-    >
-      <Tabs defaultValue="Hub" variant="pills">
-        <Tabs.List mb="xl">
-          <Tabs.Tab value="Hub">Hub</Tabs.Tab>
-          <Tabs.Tab value="Footer Links">Footer Links</Tabs.Tab>
-        </Tabs.List>
+    <DialogContent>
+      <DialogHeader>
+        <DialogTitle>Edit Current Hub </DialogTitle>
+      </DialogHeader>
+      <Tabs defaultValue="Hub">
+        <TabsList className="mb-2 grid w-full grid-cols-2">
+          <TabsTrigger value="Hub">Hub</TabsTrigger>
+          <TabsTrigger value="Footer Links">Footer Links</TabsTrigger>
+        </TabsList>
 
-        <Tabs.Panel value="Hub">
+        <TabsContent value="Hub">
           <form onSubmit={form.onSubmit(handleSubmit)}>
             <HubFormFields form={form} />
+            <Button type="submit">Create</Button>
           </form>
-        </Tabs.Panel>
+        </TabsContent>
 
-        <Tabs.Panel value="Footer Links">
-          <Stack>
+        <TabsContent value="Footer Links">
+          <div className="space-y-4">
             {footerLinks?.map((footerLink) => (
               <FooterLinkCard
                 key={`footerlink_edit_${footerLink.id}`}
@@ -82,9 +79,9 @@ export function HubEditModal({
               />
             ))}
             <FooterLinkAddCard hubId={id} />
-          </Stack>
-        </Tabs.Panel>
+          </div>
+        </TabsContent>
       </Tabs>
-    </Modal>
+    </DialogContent>
   );
 }

@@ -1,4 +1,4 @@
-import { IconBrandGoogle } from "@tabler/icons-react";
+import { IconAppsFilled, IconBrandGoogle } from "@tabler/icons-react";
 import {
   AlertTriangle,
   ArrowRight,
@@ -9,6 +9,7 @@ import {
   ChevronRight,
   ChevronsUpDown,
   CreditCard,
+  Edit,
   File,
   FileText,
   HelpCircle,
@@ -36,6 +37,7 @@ export const Icons = {
   chevronLeft: ChevronLeft,
   chevronRight: ChevronRight,
   trash: Trash,
+  edit: Edit,
   post: FileText,
   page: File,
   media: Image,
@@ -56,6 +58,7 @@ export const Icons = {
   checkIcon: CheckIcon,
   chevronsUpDown: ChevronsUpDown,
   chevronDown: ChevronDown,
+  hubs: IconAppsFilled,
   gitHub: ({ ...props }: LucideProps) => (
     // biome-ignore lint/a11y/noSvgWithoutTitle: <explanation>
     <svg

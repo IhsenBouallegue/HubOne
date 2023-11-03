@@ -2,7 +2,6 @@ import LinkGroupAddCard from "@/components/app/link-group-add-card";
 import { useHubOneStore } from "@/lib/Store";
 import { LinkGroup } from "@/lib/schema/app";
 import { useFetchByHubId } from "@/lib/useQueries";
-import { Container, Text } from "@mantine/core";
 
 import LinkSectionAccordion from "./accordion";
 
@@ -12,24 +11,22 @@ function LinkSection() {
   const { data: linkGroups } = useFetchByHubId<LinkGroup>("linkgroups", hubId!);
 
   return (
-    <div id="linkSection">
-      <Container
-        size={800}
-        px={0}
-        style={{ gap: "2em", display: "flex", flexDirection: "column" }}
-      >
-        {linkGroups && linkGroups?.length > 0 ? (
-          <LinkSectionAccordion />
-        ) : (
-          !editMode && (
-            <Text ta="center">
-              This Hub is empty. Jump into Edit Mode and start adding your
-              Links!
-            </Text>
-          )
-        )}
-        {editMode && <LinkGroupAddCard hubId={hubId!} />}
-      </Container>
+    <div
+      id="linkSection"
+      className="max-w-screen-lg mx-auto"
+      style={{ gap: "2em", display: "flex", flexDirection: "column" }}
+    >
+      {linkGroups && linkGroups?.length > 0 ? (
+        <LinkSectionAccordion />
+      ) : (
+        !editMode && (
+          <p className="text-center">
+            This Hub is empty. Jump into <strong>Edit Mode</strong> and start
+            adding your Links!
+          </p>
+        )
+      )}
+      {editMode && <LinkGroupAddCard hubId={hubId!} />}
     </div>
   );
 }

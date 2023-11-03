@@ -1,16 +1,23 @@
-import { Image, rem } from "@mantine/core";
+import Image from "next/image";
 import Link from "next/link";
 
 export function ResponsiveLogo() {
   return (
     <Link href="/">
       <Image
-        hiddenFrom="md"
+        alt="hubone logo"
+        className="block md:hidden"
         src="/logo/hubone_logo.svg"
-        h={rem(28)}
-        w={rem(28)}
+        height={28}
+        width={28}
       />
-      <Image visibleFrom="md" src="/logo/hubone_logo_full.svg" w={rem(126)} />
+      <Image
+        alt="hubone logo"
+        className="hidden md:block"
+        src="/logo/hubone_logo_full.svg"
+        height={28}
+        width={128}
+      />
     </Link>
   );
 }

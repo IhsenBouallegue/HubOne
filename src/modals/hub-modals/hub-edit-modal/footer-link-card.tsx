@@ -1,9 +1,11 @@
 "use client";
 
+import { Icons } from "@/components/icons";
 import { FooterLink } from "@/lib/schema/app";
 import { useDelete, useUpdate } from "@/lib/useQueries";
-import { ActionIcon, Card, Group, Stack, Text, TextInput } from "@mantine/core";
-import { IconTrash } from "@tabler/icons-react";
+import { Button } from "@/ui/button";
+import { Card } from "@/ui/card";
+import { Input } from "@/ui/input";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
@@ -22,12 +24,8 @@ export function FooterLinkCard({ id, title, link, hubId }: FooterLink) {
       whileTap={{ scale: 0.98 }}
     >
       <Card
-        shadow="sm"
-        p="lg"
-        w="100%"
-        mih="5rem"
-        component="a"
-        onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+        className="cursor-pointer p-6 w-full h-32"
+        onClick={(e) => {
           e.preventDefault();
           setIsEditing(true);
         }}
@@ -36,10 +34,10 @@ export function FooterLinkCard({ id, title, link, hubId }: FooterLink) {
           setIsEditing(false);
         }}
       >
-        <Group align="apart">
+        <div className="flex w-full justify-between">
           {isEditing ? (
-            <Stack gap="xs">
-              <TextInput
+            <div className="space-y-2">
+              <Input
                 defaultValue={title}
                 id="title"
                 onChange={(event) =>
@@ -51,7 +49,7 @@ export function FooterLinkCard({ id, title, link, hubId }: FooterLink) {
                   e.stopPropagation();
                 }}
               />
-              <TextInput
+              <Input
                 defaultValue={link}
                 id="link"
                 onChange={(event) =>
@@ -63,30 +61,25 @@ export function FooterLinkCard({ id, title, link, hubId }: FooterLink) {
                   e.stopPropagation();
                 }}
               />
-            </Stack>
+            </div>
           ) : (
-            <Stack gap="sm">
-              <Text mt="sm" fw={600} size="lg">
-                {title}
-              </Text>
-              <Text size="sm" color="dimmed">
-                {link}
-              </Text>
-            </Stack>
+            <div className="space-y-2">
+              <p className="font-semibold text-lg">{title}</p>
+              <p className="text-muted-foreground">{link}</p>
+            </div>
           )}
-          <ActionIcon
-            size={24}
-            color="secondary"
-            variant="light"
+          <Button
+            size="icon"
+            variant="destructive"
             onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
               e.preventDefault();
               e.stopPropagation();
               deleteItem(id);
             }}
           >
-            <IconTrash strokeWidth={2} />
-          </ActionIcon>
-        </Group>
+            <Icons.trash strokeWidth={2} />
+          </Button>
+        </div>
       </Card>
     </motion.div>
   );
