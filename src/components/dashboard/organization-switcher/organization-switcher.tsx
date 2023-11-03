@@ -2,9 +2,7 @@
 
 import { cn } from "@/lib/utils";
 
-import { useDashboardStore } from "@/lib/Store/dashboard";
 import { Organization } from "@/lib/schema/orgaizations";
-import { Avatar, AvatarFallback, AvatarImage } from "@/ui/avatar";
 import { Button } from "@/ui/button";
 import {
   Command,
@@ -18,16 +16,10 @@ import {
 import { Dialog, DialogTrigger } from "@/ui/dialog";
 import { Popover, PopoverContent, PopoverTrigger } from "@/ui/popover";
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { Icons } from "../../icons";
 import OrganizationForm from "../organization-form";
-
-const groups = [
-  {
-    label: "Organizations",
-    organizations: [],
-  },
-];
+import { OrganizationAvatar } from "./organization-avatar";
 
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<
   typeof PopoverTrigger
@@ -35,26 +27,17 @@ type PopoverTriggerProps = React.ComponentPropsWithoutRef<
 
 export function OrganizationSwitcher({
   className,
+  selectedOrganization,
   memberOrganizations,
-}: PopoverTriggerProps & { memberOrganizations: Organization[] }) {
+}: PopoverTriggerProps & {
+  selectedOrganization: Organization | undefined;
+  memberOrganizations: Organization[];
+}) {
   const [open, setOpen] = useState(false);
-  const [showNewOrganizationDialog, setShowNewOrganizationDialog] =
-    useState(false);
-  const selectedOrganizationId = useDashboardStore(
-    (state) => state.selectedOrganizationId
-  );
-  const selectedOrganization = useMemo(
-    () =>
-      memberOrganizations.find((org) => org.id === selectedOrganizationId) ??
-      memberOrganizations[0],
-    [memberOrganizations, selectedOrganizationId]
-  );
+  const [openCreateDialog, setOpenCreateDialog] = useState(false);
 
   return (
-    <Dialog
-      open={showNewOrganizationDialog}
-      onOpenChange={setShowNewOrganizationDialog}
-    >
+    <Dialog open={openCreateDialog} onOpenChange={setOpenCreateDialog}>
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button
@@ -76,37 +59,30 @@ export function OrganizationSwitcher({
             <CommandList>
               <CommandInput placeholder="Search organization..." />
               <CommandEmpty>No organization found.</CommandEmpty>
-              {groups.map((group) => (
-                <CommandGroup key={group.label} heading={group.label}>
-                  {memberOrganizations.map((organization) => (
-                    <Link
-                      href={`/${organization.slug}/dashboard`}
+              <CommandGroup heading="Private">
+                {memberOrganizations
+                  .filter((org) => org.isPersonalOrganization)
+                  .map((organization) => (
+                    <OrganizationCommanndItem
                       key={organization.id}
-                    >
-                      <CommandItem
-                        onSelect={() => {
-                          useDashboardStore.setState({
-                            selectedOrganizationId: organization.id,
-                          });
-                          setOpen(false);
-                        }}
-                        className="text-sm"
-                      >
-                        <OrganizationAvatar organization={organization} />
-                        {organization.name}
-                        <Icons.checkIcon
-                          className={cn(
-                            "ml-auto h-4 w-4",
-                            selectedOrganization.id === organization.id
-                              ? "opacity-100"
-                              : "opacity-0"
-                          )}
-                        />
-                      </CommandItem>
-                    </Link>
+                      organization={organization}
+                      selectedOrganizationSlug={selectedOrganization?.slug}
+                      setOpen={setOpen}
+                    />
                   ))}
-                </CommandGroup>
-              ))}
+              </CommandGroup>
+              <CommandGroup heading="Public">
+                {memberOrganizations
+                  .filter((org) => !org.isPersonalOrganization)
+                  .map((organization) => (
+                    <OrganizationCommanndItem
+                      key={organization.id}
+                      organization={organization}
+                      selectedOrganizationSlug={selectedOrganization?.slug}
+                      setOpen={setOpen}
+                    />
+                  ))}
+              </CommandGroup>
             </CommandList>
             <CommandSeparator />
             <CommandList>
@@ -115,7 +91,7 @@ export function OrganizationSwitcher({
                   <CommandItem
                     onSelect={() => {
                       setOpen(false);
-                      setShowNewOrganizationDialog(true);
+                      setOpenCreateDialog(true);
                     }}
                   >
                     <Icons.plus className="mr-2 h-5 w-5" />
@@ -127,23 +103,40 @@ export function OrganizationSwitcher({
           </Command>
         </PopoverContent>
       </Popover>
-      <OrganizationForm
-        setShowNewOrganizationDialog={setShowNewOrganizationDialog}
-      />
+      <OrganizationForm setOpenCreateDialog={setOpenCreateDialog} />
     </Dialog>
   );
 }
 
-export function OrganizationAvatar({
+function OrganizationCommanndItem({
   organization,
-}: { organization: Organization }) {
+  selectedOrganizationSlug,
+  setOpen,
+}: {
+  organization: Organization;
+  selectedOrganizationSlug: string | undefined;
+  setOpen: (open: boolean) => void;
+}) {
   return (
-    <Avatar className="mr-2 h-5 w-5">
-      <AvatarImage
-        src={`https://avatar.vercel.sh/${organization.slug}.png`}
-        alt={organization.name}
-      />
-      <AvatarFallback>SC</AvatarFallback>
-    </Avatar>
+    <Link href={`/${organization.slug}/dashboard`}>
+      <CommandItem
+        onSelect={() => {
+          setOpen(false);
+        }}
+        className="text-sm truncate"
+        title={`${organization.name} (${organization.slug})`}
+      >
+        <OrganizationAvatar organization={organization} />
+        {organization.name} ({organization.slug})
+        <Icons.checkIcon
+          className={cn(
+            "ml-auto h-4 w-4",
+            selectedOrganizationSlug === organization.slug
+              ? "opacity-100"
+              : "opacity-0"
+          )}
+        />
+      </CommandItem>
+    </Link>
   );
 }

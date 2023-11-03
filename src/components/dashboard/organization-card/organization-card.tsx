@@ -2,7 +2,7 @@ import { Organization } from "@/lib/schema/orgaizations";
 import { Badge } from "@/ui/badge";
 import { Card, CardContent, CardHeader } from "@/ui/card";
 import Link from "next/link";
-import { OrganizationAvatar } from "../organization-switcher/organization-switcher";
+import { OrganizationAvatar } from "../organization-switcher/organization-avatar";
 
 export default function OrganizationCard(organization: Organization) {
   return (

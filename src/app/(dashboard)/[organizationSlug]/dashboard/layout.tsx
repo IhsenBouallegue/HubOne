@@ -19,12 +19,25 @@ export default async function layout({
   const memberOrganizations = await db.query.organizations.findMany({
     where: eq(organizations.admin, session?.user.id ?? ""),
   });
+  // unautherized access
+  const selectedOrganization = memberOrganizations.find(
+    (org) => org.slug === params.organizationSlug
+  );
+  if (!selectedOrganization) {
+    return (
+      <p className="p-4">organization not found or unautherized access.</p>
+    );
+  }
+
   return (
     <div>
       <div className="hidden flex-col md:flex">
         <div className="border-b">
           <div className="flex h-16 items-center px-8 max-w-screen-2xl m-auto">
-            <OrganizationSwitcher memberOrganizations={memberOrganizations} />
+            <OrganizationSwitcher
+              selectedOrganization={selectedOrganization}
+              memberOrganizations={memberOrganizations}
+            />
             <MainNav
               className="mx-6"
               selectedOrganization={params.organizationSlug}

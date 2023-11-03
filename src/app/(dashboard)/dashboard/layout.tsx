@@ -21,7 +21,10 @@ export default async function layout({
       <div className="hidden flex-col md:flex">
         <div className="border-b">
           <div className="flex h-16 items-center max-w-screen-2xl px-8 m-auto">
-            <OrganizationSwitcher memberOrganizations={memberOrganizations} />
+            <OrganizationSwitcher
+              selectedOrganization={undefined}
+              memberOrganizations={memberOrganizations}
+            />
             <div className="ml-auto flex items-center space-x-4">
               <Search />
               <UserNav />

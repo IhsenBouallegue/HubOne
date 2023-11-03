@@ -27,8 +27,8 @@ import SubmitButton from "../common/submit-button";
 import { createOrganization } from "./organization-switcher/organization-switcher.actions";
 
 export default function OrganizationForm({
-  setShowNewOrganizationDialog,
-}: { setShowNewOrganizationDialog: (shown: boolean) => void }) {
+  setOpenCreateDialog,
+}: { setOpenCreateDialog: (shown: boolean) => void }) {
   const session = useSession();
   const form = useForm<z.infer<typeof organizationSchemaWithoutAdmin>>({
     resolver: zodResolver(organizationSchemaWithoutAdmin),
@@ -44,7 +44,7 @@ export default function OrganizationForm({
         description: "You can now create HubSpaces and Hubs.",
       });
       form.reset();
-      setShowNewOrganizationDialog(false);
+      setOpenCreateDialog(false);
     }
     if (error || !ok) {
       toast({
@@ -122,7 +122,7 @@ export default function OrganizationForm({
           <DialogFooter>
             <Button
               variant="outline"
-              onClick={() => setShowNewOrganizationDialog(false)}
+              onClick={() => setOpenCreateDialog(false)}
             >
               Cancel
             </Button>

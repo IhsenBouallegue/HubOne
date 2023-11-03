@@ -1,5 +1,5 @@
 import SubmitButton from "@/components/common/submit-button";
-import { OrganizationAvatar } from "@/components/dashboard/organization-switcher/organization-switcher";
+import { OrganizationAvatar } from "@/components/dashboard/organization-switcher/organization-avatar";
 import { Organization } from "@/lib/schema/orgaizations";
 import { hubSpaceSchema } from "@/lib/validations/hubSpaces";
 import { Button } from "@/ui/button";
