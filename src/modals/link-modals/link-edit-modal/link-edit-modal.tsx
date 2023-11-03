@@ -17,32 +17,20 @@ import { LinkFormFields } from "../link-form-fields";
 
 export function LinkEditModal({
   setOpened,
-  id,
-  title,
-  description,
-  image,
-  link,
-  isInternal,
+  ...link
 }: {
   opened: boolean;
   setOpened: (open: boolean) => void;
-} & Partial<Link>) {
+} & Link) {
   const form = useForm<z.infer<typeof insertLinksSchema>>({
     resolver: zodResolver(insertLinksSchema),
     defaultValues: {
-      id,
-      title,
-      description,
-      image,
-      link,
-      isInternal,
+      ...link,
     },
   });
   const update = useUpdate<z.infer<typeof insertLinksSchema>>("links");
   const deleteItem = useDelete("links");
   const onSubmit = (values: z.infer<typeof insertLinksSchema>) => {
-    console.log(values);
-
     update(values);
     setOpened(false);
   };
@@ -57,18 +45,18 @@ export function LinkEditModal({
           <LinkFormFields form={form} />
           <DialogFooter className="space-x-4">
             <Button
-              variant="outline"
+              variant="destructive"
               onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
                 e.preventDefault();
-                deleteItem(id as number);
+                deleteItem(link.id as number);
+                setOpened(false);
               }}
+              className="flex gap-2"
             >
-              <Icons.trash strokeWidth={2} />
+              <Icons.trash />
               Delete
             </Button>
-            <Button type="submit" data-autofocus>
-              Edit
-            </Button>
+            <Button type="submit">Edit</Button>
           </DialogFooter>
         </form>
       </Form>

@@ -1,11 +1,11 @@
 "use client";
 
+import { Icons } from "@/components/icons";
 import { useHubOneStore } from "@/lib/Store";
 import HubEditModal from "@/modals/hub-modals/hub-edit-modal";
 import { Button } from "@/ui/button";
 import { Dialog, DialogTrigger } from "@/ui/dialog";
 import { Toggle } from "@/ui/toggle";
-import { IconArrowsMaximize, IconSettings } from "@tabler/icons-react";
 import { useState } from "react";
 
 export function HeaderActions() {
@@ -19,25 +19,27 @@ export function HeaderActions() {
     <div className="flex items-center gap-4">
       <Dialog open={editModalOpened} onOpenChange={setEditModalOpened}>
         <Toggle
-          variant={compactMode ? "default" : "outline"}
+          variant={compactMode ? "default" : "ghost"}
           pressed={compactMode}
+          title="Compact Mode"
           onPressedChange={(pressed) => setCompactMode(pressed)}
         >
-          <IconArrowsMaximize size={20} stroke={2.5} />
+          {compactMode ? (
+            <Icons.maximise size={20} stroke={2.5} />
+          ) : (
+            <Icons.minimise size={20} stroke={2.5} />
+          )}
         </Toggle>
 
         {editMode ? (
-          <div className="ml-auto mr-12">
-            <DialogTrigger asChild>
-              <Button>
-                <IconSettings />
-              </Button>
-            </DialogTrigger>
-          </div>
+          <DialogTrigger asChild>
+            <Button className="flex gap-2">
+              <Icons.settings size={20} />
+              Settings
+            </Button>
+          </DialogTrigger>
         ) : (
-          <div className="hidden sm:flex">
-            <Button>Browse Links</Button>
-          </div>
+          <Button className="hidden sm:flex">Browse Links</Button>
         )}
         <HubEditModal setOpened={setEditModalOpened} />
       </Dialog>

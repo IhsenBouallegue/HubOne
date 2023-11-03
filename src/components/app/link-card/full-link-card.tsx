@@ -1,20 +1,19 @@
 import { Icons } from "@/components/icons";
 import { useHubOneStore } from "@/lib/Store";
-import { Link as ILink } from "@/lib/schema/app";
+import { Link } from "@/lib/schema/app";
 import { Button } from "@/ui/button";
 import { Card } from "@/ui/card";
-import { DialogTrigger } from "@radix-ui/react-dialog";
 import { motion, useAnimationControls } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect } from "react";
+import { NormalOrEditInjector } from "./link-card";
 
 export function FullLinkCard({
   title,
   description,
   image,
   link,
-}: Pick<ILink, "title" | "description" | "image" | "link">) {
+}: Pick<Link, "title" | "description" | "image" | "link">) {
   const editMode = useHubOneStore((state) => state.editMode);
   const controls = useAnimationControls();
 
@@ -44,32 +43,30 @@ export function FullLinkCard({
       animate={controls}
       style={{ height: "100%" }}
     >
-      <Link href={link} target="_blank">
-        <DialogTrigger asChild>
-          <Card className="cursor-pointer w-56 p-4 relative flex flex-col gap-4">
-            {editMode && (
-              <div className="absolute top-2 right-2">
-                <Button variant="ghost" size="icon">
-                  <Icons.edit strokeWidth={2} />
-                </Button>
-              </div>
-            )}
+      <NormalOrEditInjector link={link}>
+        <Card className="cursor-pointer w-52 h-64 p-4 relative flex flex-col gap-4">
+          {editMode && (
+            <div className="absolute top-2 right-2">
+              <Button variant="ghost" size="icon">
+                <Icons.edit strokeWidth={2} />
+              </Button>
+            </div>
+          )}
 
-            <div className="h-32 relative">
-              <Image
-                className="p-4"
-                fill
-                src={!image || image === "" ? "./logo/hubone_logo.svg" : image}
-                alt={title}
-              />
-            </div>
-            <div className="flex h-32 flex-col gap-2">
-              <p className="text-lg font-semibold leading-5">{title}</p>
-              <p className=" text-muted-foreground">{description}</p>
-            </div>
-          </Card>
-        </DialogTrigger>
-      </Link>
+          <div className="h-1/2 relative">
+            <Image
+              className="p-4"
+              fill
+              src={!image || image === "" ? "./logo/hubone_logo.svg" : image}
+              alt={title}
+            />
+          </div>
+          <div className="h-1/2 flex flex-col gap-2">
+            <p className="text-lg font-semibold leading-5">{title}</p>
+            <p className=" text-muted-foreground">{description}</p>
+          </div>
+        </Card>
+      </NormalOrEditInjector>
     </motion.div>
   );
 }

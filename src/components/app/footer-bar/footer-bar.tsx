@@ -9,7 +9,7 @@ export function FooterBar() {
         height={36}
         width={150}
         alt="hubone logo"
-        className="static sm:absolute object-contain"
+        className="static sm:absolute"
       />
       <div className="my-0 mx-auto relative sm:static">
         <FooterLinks />

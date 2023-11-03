@@ -20,14 +20,14 @@ export function FullHero() {
     </span>
   );
   return (
-    <div className="my-36 relative max-w-screen-lg mx-auto">
+    <div className="my-36 relative max-w-screen-lg mx-auto w-full">
       <BackgroundImg
-        className="absolute -z-10 w-1/3 max-h-[35vh] object-contain sm:left-[52%] left-[42%] sm:-bottom-28 -bottom-[150rem]"
+        className="absolute -z-10 w-1/3 max-h-[35vh] sm:right-12 right-[42%]"
         primaryColor={primaryColor}
         secondaryColor={secondaryColor}
       />
       <div className="px-4 sm:px-6 lg:px-8">
-        <h1 className="text-4xl font-extrabold sm:text-5xl md:text-6xl">
+        <h1 className="text-4xl font-extrabold sm:text-5xl md:text-6xl ">
           The one hub you will ever need
           {hubName ? name() : "."}
         </h1>

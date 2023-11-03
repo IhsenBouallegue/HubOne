@@ -7,7 +7,9 @@ export function HeaderLogo() {
     <div className="flex flex-nowrap items-center gap-2">
       <ResponsiveLogo />
       <Icons.close size={20} strokeWidth={2} />
-      <HubLogo />
+      <div className="h-10 w-10">
+        <HubLogo />
+      </div>
     </div>
   );
 }

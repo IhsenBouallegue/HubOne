@@ -1,9 +1,10 @@
 "use client";
 
 import { useHubOneStore } from "@/lib/Store";
-import { Link } from "@/lib/schema/app";
+import { Link as ILink } from "@/lib/schema/app";
 import LinkEditModal from "@/modals/link-modals/link-edit-modal";
-import { Dialog } from "@/ui/dialog";
+import { Dialog, DialogTrigger } from "@/ui/dialog";
+import Link from "next/link";
 import { useState } from "react";
 import { CompactLinkCard } from "./compact-link-card";
 import { FullLinkCard } from "./full-link-card";
@@ -15,7 +16,9 @@ export function LinkCard({
   image,
   link,
   isInternal = false,
-}: Omit<Link, "linkGroupId" | "hubId">) {
+  linkGroupId,
+  hubId,
+}: ILink) {
   const [opened, setOpened] = useState(false);
   const compactMode = useHubOneStore((state) => state.compactMode);
 
@@ -45,7 +48,23 @@ export function LinkCard({
         image={image}
         link={link}
         isInternal={isInternal}
+        linkGroupId={linkGroupId}
+        hubId={hubId}
       />
     </Dialog>
   );
+}
+
+export function NormalOrEditInjector({
+  children,
+  link,
+}: { children: React.ReactNode[] | React.ReactNode; link: string }) {
+  const editMode = useHubOneStore((state) => state.editMode);
+  if (editMode) return <DialogTrigger asChild>{children}</DialogTrigger>;
+  else
+    return (
+      <Link href={link} target="_blank">
+        {children}
+      </Link>
+    );
 }

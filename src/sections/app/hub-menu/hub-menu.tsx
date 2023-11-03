@@ -1,6 +1,6 @@
 "use client";
 
-import { DefaultHubLogo } from "@/components/app/hub-logo/default-hub-logo";
+import HubLogo from "@/components/app/hub-logo";
 import { Icons } from "@/components/icons";
 import { Hub } from "@/lib/schema/app";
 import HubCreateModal from "@/modals/hub-modals/hub-create-modal";
@@ -40,7 +40,7 @@ export function HubMenu({ hubs }: { hubs: Hub[] }) {
                 <Link href={hub.hubPath}>
                   <div className="flex flex-col h-32 w-16">
                     <div className="w-full h-1/2 p-1">
-                      <DefaultHubLogo hubName={hub.hubName} />
+                      <HubLogo hubName={hub.hubName} />
                     </div>
                     <div className="w-full h-1/2">
                       <p className="text-sm text-center line-clamp-3">

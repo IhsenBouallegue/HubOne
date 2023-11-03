@@ -21,30 +21,16 @@ export function HubEditModal({
 }) {
   const hubId = useHubOneStore((state) => state.hubId);
   const { data: hub } = useFetchItem<Hub>("hubs", hubId!);
-  const {
-    id,
-    hubName,
-    hubLogo,
-    hubPath,
-    description,
-    primaryColor,
-    secondaryColor,
-    hubSpaceId,
-  } = hub!;
 
-  const { data: footerLinks } = useFetchByHubId<FooterLink>("footerlinks", id);
+  const { data: footerLinks } = useFetchByHubId<FooterLink>(
+    "footerlinks",
+    hub!.id
+  );
 
   const form = useForm<z.infer<typeof insertHubsSchema>>({
     resolver: zodResolver(insertHubsSchema),
     defaultValues: {
-      id,
-      hubName,
-      hubLogo,
-      hubPath,
-      description,
-      primaryColor,
-      secondaryColor,
-      hubSpaceId,
+      ...hub,
     },
   });
   const update = useUpdate<z.infer<typeof insertHubsSchema>>("hubs");
@@ -54,8 +40,8 @@ export function HubEditModal({
   };
 
   useEffect(() => {
-    if (hubPath !== form.getValues("hubPath")) form.reset(hub);
-  }, [form, hub, hubPath]);
+    if (hub!.hubPath !== form.getValues("hubPath")) form.reset(hub);
+  }, [form, hub, hub!.hubPath]);
 
   return (
     <DialogContent>
@@ -88,7 +74,7 @@ export function HubEditModal({
                 hubId={footerLink.hubId}
               />
             ))}
-            <FooterLinkAddCard hubId={id} />
+            <FooterLinkAddCard hubId={hub!.id} />
           </div>
         </TabsContent>
       </Tabs>

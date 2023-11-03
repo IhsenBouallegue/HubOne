@@ -1,7 +1,7 @@
 import { useHubOneStore } from "@/lib/Store";
 import { LinkGroup } from "@/lib/schema/app";
 import { useFetchByHubId } from "@/lib/useQueries";
-import { Button } from "@/ui/button";
+import { buttonVariants } from "@/ui/button";
 import Link from "next/link";
 
 export function HeaderLinks({
@@ -18,13 +18,14 @@ export function HeaderLinks({
   return (
     <div className="justify-center items-center space-y-8 space-x-4 md:flex md:space-x-6 md:space-y-0">
       {linkGroups?.map((linkGroup) => (
-        <Button
-          variant="outline"
+        <Link
+          href={`#${linkGroup.id.toString()}`}
+          className={buttonVariants({ variant: "link" })}
           key={`header_link_${linkGroup.id}`}
           onClick={toggleMenu}
         >
-          <Link href={linkGroup.id.toString()}>{linkGroup.title}</Link>
-        </Button>
+          {linkGroup.title}
+        </Link>
       ))}
     </div>
   );

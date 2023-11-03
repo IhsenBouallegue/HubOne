@@ -33,7 +33,7 @@ export default function HubPage({
   useHubOneStore.setState({ hubSpaceId: hub.hubSpaceId });
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col relative">
       {/* https://app.haikei.app/ */}
       <Image
         src="/bg.svg"

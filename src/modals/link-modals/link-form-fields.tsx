@@ -38,7 +38,7 @@ export function LinkFormFields({
         name="description"
         render={({ field }) => (
           <FormItem aria-required>
-            <FormLabel>Title</FormLabel>
+            <FormLabel>Description</FormLabel>
             <FormControl>
               <Input placeholder="Wikipedia for all" {...field} />
             </FormControl>

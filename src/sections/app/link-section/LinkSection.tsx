@@ -13,7 +13,7 @@ function LinkSection() {
   return (
     <div
       id="linkSection"
-      className="max-w-screen-lg mx-auto"
+      className="max-w-screen-lg mx-auto w-full px-4 sm:px-6 lg:px-8"
       style={{ gap: "2em", display: "flex", flexDirection: "column" }}
     >
       {linkGroups && linkGroups?.length > 0 ? (

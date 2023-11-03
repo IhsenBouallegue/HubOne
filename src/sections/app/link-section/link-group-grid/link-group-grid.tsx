@@ -42,6 +42,8 @@ export function LinkGroupGrid({
             image={link.image}
             link={link.link}
             isInternal={link.isInternal}
+            hubId={hubId}
+            linkGroupId={linkGroupId}
           />
         </div>
       ))}

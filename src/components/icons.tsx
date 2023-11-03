@@ -1,4 +1,9 @@
-import { IconAppsFilled, IconBrandGoogle } from "@tabler/icons-react";
+import {
+  IconAppsFilled,
+  IconArrowsMaximize,
+  IconArrowsMinimize,
+  IconBrandGoogle,
+} from "@tabler/icons-react";
 import {
   AlertTriangle,
   ArrowRight,
@@ -55,6 +60,8 @@ export const Icons = {
   moon: Moon,
   sort: SortAsc,
   laptop: Laptop,
+  maximise: IconArrowsMaximize,
+  minimise: IconArrowsMinimize,
   checkIcon: CheckIcon,
   chevronsUpDown: ChevronsUpDown,
   chevronDown: ChevronDown,

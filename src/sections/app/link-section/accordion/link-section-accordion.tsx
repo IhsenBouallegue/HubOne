@@ -30,6 +30,7 @@ export function LinkSectionAccordion() {
         <AccordionItem
           value={linkGroup.title}
           key={`linkGroup_${linkGroup.id}`}
+          id={linkGroup.id.toString()}
         >
           <AccordionTrigger className="flex gap-4 mb-4">
             <div className="w-full h-12 text-left">
