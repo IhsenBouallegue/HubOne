@@ -1,8 +1,7 @@
 import { usePost } from "@/lib/useQueries";
-import { useForm } from "@mantine/form";
 
 import { useHubOneStore } from "@/lib/Store";
-import { Hub } from "@/lib/schema/app";
+import { hubsSchema } from "@/lib/validations/hubs";
 import { Button } from "@/ui/button";
 import {
   DialogContent,
@@ -10,6 +9,10 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/ui/dialog";
+import { Form } from "@/ui/form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 import { HubFormFields } from "../hub-form-fields";
 
 export function HubCreateModal({
@@ -18,18 +21,21 @@ export function HubCreateModal({
   setOpened: (open: boolean) => void;
 }) {
   const hubSpaceId = useHubOneStore((state) => state.hubSpaceId);
-  const form = useForm<Hub>({
-    initialValues: {
+  const form = useForm<z.infer<typeof hubsSchema>>({
+    resolver: zodResolver(hubsSchema),
+    defaultValues: {
       hubName: "",
+      hubPath: "",
       hubLogo: "",
-      description:
-        "Tired of keeping track of new websites? Tired of having to update your bookmarks every few weeks? Access all sites from this one page. Everything is up to date. No need to clutter your life anymore!",
+      description: "",
+      secondaryColor: undefined,
+      primaryColor: undefined,
       hubSpaceId,
-    } as unknown as Hub,
+    },
   });
 
-  const mutate = usePost<Hub>("hubs");
-  const handleSubmit = (values: Hub) => {
+  const mutate = usePost<z.infer<typeof hubsSchema>>("hubs");
+  const onSubmit = (values: z.infer<typeof hubsSchema>) => {
     mutate(values);
     form.reset();
     setOpened(false);
@@ -40,12 +46,14 @@ export function HubCreateModal({
       <DialogHeader>
         <DialogTitle>Create New Hub</DialogTitle>
       </DialogHeader>
-      <form onSubmit={form.onSubmit(handleSubmit)}>
-        <HubFormFields form={form} />
-        <DialogFooter>
-          <Button type="submit">Create</Button>
-        </DialogFooter>
-      </form>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <HubFormFields form={form} />
+          <DialogFooter>
+            <Button type="submit">Create</Button>
+          </DialogFooter>
+        </form>
+      </Form>
     </DialogContent>
   );
 }

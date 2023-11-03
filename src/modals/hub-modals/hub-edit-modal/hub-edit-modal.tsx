@@ -1,11 +1,15 @@
 import { useHubOneStore } from "@/lib/Store";
 import { FooterLink, Hub } from "@/lib/schema/app";
 import { useFetchByHubId, useFetchItem, useUpdate } from "@/lib/useQueries";
+import { insertHubsSchema } from "@/lib/validations/hubs";
 import { Button } from "@/ui/button";
 import { DialogContent, DialogHeader, DialogTitle } from "@/ui/dialog";
+import { Form } from "@/ui/form";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/ui/tabs";
-import { useForm } from "@mantine/form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 import { HubFormFields } from "../hub-form-fields";
 import { FooterLinkAddCard } from "./footer-link-add-card";
 import { FooterLinkCard } from "./footer-link-card";
@@ -25,12 +29,14 @@ export function HubEditModal({
     description,
     primaryColor,
     secondaryColor,
+    hubSpaceId,
   } = hub!;
 
   const { data: footerLinks } = useFetchByHubId<FooterLink>("footerlinks", id);
 
-  const form = useForm<Hub>({
-    initialValues: {
+  const form = useForm<z.infer<typeof insertHubsSchema>>({
+    resolver: zodResolver(insertHubsSchema),
+    defaultValues: {
       id,
       hubName,
       hubLogo,
@@ -38,15 +44,17 @@ export function HubEditModal({
       description,
       primaryColor,
       secondaryColor,
-    } as Hub,
+      hubSpaceId,
+    },
   });
-  const update = useUpdate<Hub>("hubs");
-  const handleSubmit = (values: Hub) => {
+  const update = useUpdate<z.infer<typeof insertHubsSchema>>("hubs");
+  const onSubmit = (values: z.infer<typeof insertHubsSchema>) => {
     update(values);
     setOpened(false);
   };
+
   useEffect(() => {
-    if (hubPath !== form.getInputProps("hubPath").value) form.setValues(hub!);
+    if (hubPath !== form.getValues("hubPath")) form.reset(hub);
   }, [form, hub, hubPath]);
 
   return (
@@ -61,10 +69,12 @@ export function HubEditModal({
         </TabsList>
 
         <TabsContent value="Hub">
-          <form onSubmit={form.onSubmit(handleSubmit)}>
-            <HubFormFields form={form} />
-            <Button type="submit">Create</Button>
-          </form>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)}>
+              <HubFormFields form={form} />
+              <Button type="submit">Create</Button>
+            </form>
+          </Form>
         </TabsContent>
 
         <TabsContent value="Footer Links">

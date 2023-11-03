@@ -48,7 +48,7 @@ export function LinkCreateModal({
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <LinkFormFields form={form} />
           <DialogFooter>
-            <Button type="submit">Save</Button>
+            <Button type="submit">Create</Button>
           </DialogFooter>
         </form>
       </Form>

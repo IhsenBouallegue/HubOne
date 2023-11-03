@@ -35,13 +35,13 @@ export function AddLinkGroupModal({
   return (
     <DialogContent>
       <DialogHeader>
-        <DialogTitle>Add a new link group</DialogTitle>
+        <DialogTitle>Create New Link Group</DialogTitle>
       </DialogHeader>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <LinkGroupFormFields form={form} />
           <DialogFooter>
-            <Button type="submit">Save</Button>
+            <Button type="submit">Create</Button>
           </DialogFooter>
         </form>
       </Form>

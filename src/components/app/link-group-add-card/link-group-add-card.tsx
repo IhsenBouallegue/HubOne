@@ -2,6 +2,7 @@
 
 import { Icons } from "@/components/icons";
 import AddLinkGroupModal from "@/modals/link-group-modal";
+import { Card } from "@/ui/card";
 import { Dialog, DialogTrigger } from "@/ui/dialog";
 import { motion } from "framer-motion";
 import { useState } from "react";
@@ -14,15 +15,15 @@ export function LinkGroupAddCard({ hubId }: { hubId: string }) {
       initial={{ scale: 0.8 }}
       animate={{ scale: 1, transition: { duration: 0.2 } }}
       whileHover={{
-        scale: 1.08,
+        scale: 1.02,
         transition: { duration: 0.2 },
       }}
       whileTap={{ scale: 0.94 }}
     >
       <Dialog open={open} onOpenChange={setOpened}>
         <DialogTrigger asChild>
-          <div
-            className="cursor-pointer w-full h-24 flex items-center justify-center shadow-md rounded-md"
+          <Card
+            className="cursor-pointer w-full h-24 flex items-center justify-center"
             onClick={() => setOpened(true)}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
@@ -32,9 +33,9 @@ export function LinkGroupAddCard({ hubId }: { hubId: string }) {
           >
             <div className="flex justify-center items-center gap-4">
               <Icons.plus size={32} />
-              <p className="text-center">Add Link Group</p>
+              <p className="text-center">Create Link Group</p>
             </div>
-          </div>
+          </Card>
         </DialogTrigger>
         <AddLinkGroupModal setOpened={setOpened} hubId={hubId} />
       </Dialog>

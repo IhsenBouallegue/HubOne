@@ -35,7 +35,7 @@ export const hubs = mysqlTable(
       .$defaultFn(() => `hub_${createId()}`)
       .primaryKey(),
     hubName: varchar("hub_name", { length: 256 }).notNull(),
-    hubLogo: varchar("hub_logo", { length: 256 }).default(""),
+    hubLogo: varchar("hub_logo", { length: 256 }).default("").notNull(),
     hubPath: varchar("hub_path", { length: 256 }).default("/").notNull(),
     primaryColor: varchar("primary_color", { length: 256 })
       .default("#ff008c")

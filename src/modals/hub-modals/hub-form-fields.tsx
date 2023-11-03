@@ -1,38 +1,77 @@
 "use client";
 
-import { Hub } from "@/lib/schema/app";
+import { hubsSchema, insertHubsSchema } from "@/lib/validations/hubs";
+import {
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/ui/form";
 import { Input } from "@/ui/input";
 import { Textarea } from "@/ui/textarea";
-import type { UseFormReturnType } from "@mantine/form";
+import { UseFormReturn } from "react-hook-form";
+import { z } from "zod";
 
-export function HubFormFields({ form }: { form: UseFormReturnType<Hub> }) {
+export function HubFormFields({
+  form,
+}: {
+  form: UseFormReturn<z.infer<typeof hubsSchema | typeof insertHubsSchema>>;
+}) {
   return (
     <div className="flex flex-col gap-4">
-      <Input
-        required
-        placeholder="Hub Name"
-        {...form.getInputProps("hubName")}
+      <FormField
+        control={form.control}
+        name="hubName"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Name</FormLabel>
+            <FormControl>
+              <Input placeholder="My Favourite Hub" {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
       />
-      <Input
-        required
-        placeholder="Hub Path"
-        {...form.getInputProps("hubPath")}
+      <FormField
+        control={form.control}
+        name="hubPath"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Path</FormLabel>
+            <FormControl>
+              <Input placeholder="my-fav-hub" {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
       />
-      <Input placeholder="Hub Logo" {...form.getInputProps("hubLogo")} />
-      <Textarea
-        placeholder="Hub Description"
-        {...form.getInputProps("description")}
+      <FormField
+        control={form.control}
+        name="hubLogo"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Logo</FormLabel>
+            <FormControl>
+              <Input placeholder="My Favourite Hub" {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
       />
-      {/* <ColorInput
-        placeholder="Pick color"
-        label="Hub Primary Color"
-        {...form.getInputProps("primaryColor")}
+      <FormField
+        control={form.control}
+        name="description"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Name</FormLabel>
+            <FormControl>
+              <Textarea placeholder="My Favourite Hub" {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
       />
-      <ColorInput
-        placeholder="Pick color"
-        label="Hub Secondary Color"
-        {...form.getInputProps("secondaryColor")}
-      /> */}
     </div>
   );
 }
