@@ -36,7 +36,7 @@ export const {
   },
   cookies: {
     sessionToken: {
-      name: `${useSecureCookies ? "__Secure-" : ""}next-auth.session-tokenss`,
+      name: `${useSecureCookies ? "__Secure-" : ""}next-auth.session-tokens`,
       options: {
         hostOnly: false,
         httpOnly: true,
