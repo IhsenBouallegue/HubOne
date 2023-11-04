@@ -1,4 +1,5 @@
 import { Button } from "@/ui/button";
+import Image from "next/image";
 
 export function Hero() {
   return (
@@ -31,6 +32,13 @@ export function Hero() {
           </div>
         </div>
       </div>
+      <Image
+        alt="background image"
+        src="/hero.png"
+        width={512}
+        height={512}
+        className="absolute inset-x-0 right-0  left-[60%] top-[30%]"
+      />
       <div
         className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
         aria-hidden="true"

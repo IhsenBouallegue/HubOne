@@ -1,32 +1,25 @@
-import {
-  Icon,
-  IconBrandOpenSource,
-  IconSquareRounded,
-  IconUsers,
-} from "@tabler/icons-react";
-
 export const featuresData: {
   title: string;
   description: string;
-  icon: Icon;
+  image: string;
 }[] = [
   {
-    title: "Simplicity",
+    title: "Collaborate with your team.",
     description:
-      "HubOne is simple by design. We make sure you can access your links asap, and see everything at a glance. This is not a dashboard to launch a rocket.",
-    icon: IconSquareRounded,
+      "HubOne elevates the power of the team. Join different organizations and contribute to their hubs. Work together to build the best hub possible.",
+    image: "/org.png",
   },
   {
-    title: "Open Source",
+    title: "Organize to your liking.",
     description:
-      "It is available to everyone! HubOne solves a problem we personally struggled with. So it is crucial to us to help everyone we can.",
-    icon: IconBrandOpenSource,
+      "HubOne allows you to have multiple HubSpaces. Organize your hubs into different spaces to keep things organized. Every HubSpace has its own domain like hubspace.hubooneapp.com.",
+    image: "/hubspace.png",
   },
   {
-    title: "Team Managed",
+    title: "Customize your hub.",
     description:
-      "HubOne differes from the alternatives by elevating the power of the team. Every update to the Hub benefits everyone in the whole team.",
-    icon: IconUsers,
+      "HubOne allows you to customize your hub to your liking. Add links, link groups, and more to your hub. You can even customize the colors of your hub.",
+    image: "/hub.png",
   },
 ];
 export default featuresData;
