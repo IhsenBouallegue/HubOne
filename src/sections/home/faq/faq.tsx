@@ -8,6 +8,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/ui/accordion";
+import faqData from "./faqData";
 
 export function Faq() {
   return (
@@ -15,12 +16,16 @@ export function Faq() {
       <Heading title="Frequently Asked Questions" description="" />
       <div className="w-9/12 p-8">
         <Accordion type="single" className="w-[100%] max-w-4xl" collapsible>
-          <AccordionItem value="item-1">
-            <AccordionTrigger>Is it accessible?</AccordionTrigger>
-            <AccordionContent>
-              Yes. It adheres to the WAI-ARIA design pattern.
-            </AccordionContent>
-          </AccordionItem>
+          {faqData.map((faq) => (
+            <AccordionItem value={faq.id} id={faq.id}>
+              <AccordionTrigger className="text-xl">
+                {faq.question}
+              </AccordionTrigger>
+              <AccordionContent className="p-4 text-md">
+                {faq.answer}
+              </AccordionContent>
+            </AccordionItem>
+          ))}
         </Accordion>
       </div>
     </Section>
