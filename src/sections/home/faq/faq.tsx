@@ -17,12 +17,12 @@ export function Faq() {
       <div className="w-9/12 p-8">
         <Accordion type="single" className="w-[100%] max-w-4xl" collapsible>
           {faqData.map((faq) => (
-            <AccordionItem value={faq.id} id={faq.id}>
+            <AccordionItem key={faq.id} value={faq.id} id={faq.id}>
               <AccordionTrigger className="text-xl">
-                {faq.question}
+                <h2 className="text-xl">{faq.question}</h2>
               </AccordionTrigger>
-              <AccordionContent className="p-4 text-md">
-                {faq.answer}
+              <AccordionContent>
+                <p className="m-4 text-md">{faq.answer}</p>
               </AccordionContent>
             </AccordionItem>
           ))}

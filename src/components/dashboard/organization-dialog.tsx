@@ -1,6 +1,5 @@
 import { organizationSchemaWithoutAdmin } from "@/lib/validations/organization";
 import { Avatar, AvatarFallback, AvatarImage } from "@/ui/avatar";
-import { Button } from "@/ui/button";
 import {
   DialogContent,
   DialogDescription,
@@ -26,7 +25,7 @@ import { z } from "zod";
 import SubmitButton from "../common/submit-button";
 import { createOrganization } from "./organization-switcher/organization-switcher.actions";
 
-export default function OrganizationForm({
+export default function OrganizationDialog({
   setOpenCreateDialog,
 }: { setOpenCreateDialog: (shown: boolean) => void }) {
   const session = useSession();
@@ -120,12 +119,6 @@ export default function OrganizationForm({
             <FormMessage />
           </FormItem>
           <DialogFooter>
-            <Button
-              variant="outline"
-              onClick={() => setOpenCreateDialog(false)}
-            >
-              Cancel
-            </Button>
             <SubmitButton />
           </DialogFooter>
         </form>

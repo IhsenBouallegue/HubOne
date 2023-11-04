@@ -1,8 +1,6 @@
-import { Icons } from "@/components/icons";
 import db from "@/lib/db";
 import { organizations, usersToOrganizations } from "@/lib/schema/orgaizations";
 import { Avatar, AvatarFallback, AvatarImage } from "@/ui/avatar";
-import { Button } from "@/ui/button";
 import {
   Card,
   CardContent,
@@ -10,9 +8,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/ui/card";
-import { Popover, PopoverContent, PopoverTrigger } from "@/ui/popover";
 import { eq } from "drizzle-orm";
-import RoleCommand from "./role-command";
+import InviteMemberButton from "./invite-member-button";
+import RemoveMemberButton from "./remove-member-buttons";
+import { RolePopover } from "./role-popover";
 
 export default async function Members({
   selectedOrganizationSlug,
@@ -38,7 +37,7 @@ export default async function Members({
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-6">
-          <div className="flex items-center justify-between space-x-4">
+          <div className="flex flex-col gap-6 items-center justify-between ">
             {organizationMembers.map((member) => (
               <div key={member.id} className="w-full flex">
                 <div className="flex items-center space-x-4">
@@ -55,19 +54,18 @@ export default async function Members({
                     </p>
                   </div>
                 </div>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <Button variant="outline" className="ml-auto">
-                      Owner{" "}
-                      <Icons.chevronDown className="ml-2 h-4 w-4 text-muted-foreground" />
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="p-0" align="end">
-                    <RoleCommand />
-                  </PopoverContent>
-                </Popover>
+                <div className="ml-auto flex items-center gap-4">
+                  <RolePopover />
+                  <RemoveMemberButton
+                    organizationId={selectedOrgaization.id}
+                    userId={member.id}
+                  />
+                </div>
               </div>
             ))}
+          </div>
+          <div className="w-full flex mt-6">
+            <InviteMemberButton organizationId={selectedOrgaization.id} />
           </div>
         </CardContent>
       </Card>

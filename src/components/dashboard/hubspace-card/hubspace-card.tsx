@@ -2,7 +2,7 @@
 
 import { HubSpace } from "@/lib/schema/app";
 import { Badge } from "@/ui/badge";
-import { Card, CardContent, CardHeader } from "@/ui/card";
+import { Card, CardContent, CardFooter, CardHeader } from "@/ui/card";
 import Link from "next/link";
 import HubSpaceCardDeleteButton from "./hubspace-card-delete-button";
 
@@ -33,8 +33,10 @@ export default function HubSpaceCard({
           <div className="h-3 w-3 bg-green-600 rounded-full" />
           <p className="text-sm text-green-600">is active</p>
         </div>
-        <HubSpaceCardDeleteButton id={id} ownerId={ownerId} />
       </CardContent>
+      <CardFooter className="flex justify-end mt-auto">
+        <HubSpaceCardDeleteButton id={id} ownerId={ownerId} />
+      </CardFooter>
     </Card>
   );
 }

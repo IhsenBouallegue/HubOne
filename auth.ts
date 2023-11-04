@@ -12,6 +12,8 @@ declare module "next-auth" {
   }
 }
 
+const useSecureCookies = !!process.env.VERCEL_URL;
+
 export const {
   handlers: { GET, POST },
   auth,
@@ -30,6 +32,19 @@ export const {
         ...session,
         user: { ...session.user, id: user.id },
       };
+    },
+  },
+  cookies: {
+    sessionToken: {
+      name: `${useSecureCookies ? "__Secure-" : ""}next-auth.session-tokenss`,
+      options: {
+        hostOnly: false,
+        httpOnly: true,
+        sameSite: "lax",
+        path: "/",
+        domain: ".huboneapp.com",
+        secure: useSecureCookies,
+      },
     },
   },
 });

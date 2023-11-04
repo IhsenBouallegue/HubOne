@@ -1,9 +1,12 @@
 import db, { getHubSpacesPaths } from "@/lib/db";
 import { hubSpaces, hubs } from "@/lib/schema/app";
+import { usersToOrganizations } from "@/lib/schema/orgaizations";
 import HubNotFound from "@/sections/app/hub-not-found";
 import HubPage from "@/sections/app/hub-page/hub-page";
 import HubSpaceNotFound from "@/sections/app/hubspace-not-found";
+import HubSpaceNotPublic from "@/sections/app/hubspace-not-public";
 import { and, eq } from "drizzle-orm";
+import { auth } from "../../../../../auth";
 
 export const revalidate = 0;
 
@@ -26,20 +29,19 @@ export default async function Page({
 
   if (!hubSpace) return <HubSpaceNotFound />;
 
-  // if (!hubSpace.isPublic) {
-  //   const { user } = await auth();
+  if (!hubSpace.isPublic) {
+    const session = await auth();
+    console.log(session);
 
-  //   if (!user) return redirect("/login");
-
-  //   let isMember = false;
-  //   if (isOwnerAnOrganisation(hubSpace.ownerId)) {
-  //     const orgIds = Object.keys(sessionClaims?.organizations ?? {});
-  //     isMember = orgIds.some((orgId) => orgId === hubSpace.ownerId);
-  //   }
-
-  //   const isOwner = hubSpace.ownerId === user;
-  //   if (!(isMember || isOwner)) return <HubSpaceNotPublic />;
-  // }
+    if (!session) return <HubSpaceNotPublic />;
+    const isMember = await db.query.usersToOrganizations.findFirst({
+      where: and(
+        eq(usersToOrganizations.organizationId, hubSpace.ownerId),
+        eq(usersToOrganizations.userId, session.user.id)
+      ),
+    });
+    if (!isMember) return <HubSpaceNotPublic />;
+  }
 
   const hub = await db.query.hubs.findFirst({
     where: and(eq(hubs.hubSpaceId, hubSpace.id), eq(hubs.hubPath, hubPath)),

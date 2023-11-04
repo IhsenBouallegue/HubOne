@@ -18,7 +18,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/ui/popover";
 import Link from "next/link";
 import { useState } from "react";
 import { Icons } from "../../icons";
-import OrganizationForm from "../organization-form";
+import OrganizationDialog from "../organization-dialog";
 import { OrganizationAvatar } from "./organization-avatar";
 
 type PopoverTriggerProps = React.ComponentPropsWithoutRef<
@@ -103,7 +103,7 @@ export function OrganizationSwitcher({
           </Command>
         </PopoverContent>
       </Popover>
-      <OrganizationForm setOpenCreateDialog={setOpenCreateDialog} />
+      <OrganizationDialog setOpenCreateDialog={setOpenCreateDialog} />
     </Dialog>
   );
 }
