@@ -13,11 +13,11 @@ export function FooterLinks() {
 
   return (
     <div className="flex gap-4">
-      {footerLinks?.map(({ title, link }) => (
+      {footerLinks?.map(({ title, url }) => (
         <Link
           className="text-muted leading-loose text-sm"
           key={`footer_link_${title}`}
-          href={link}
+          href={url}
         >
           {title}
         </Link>

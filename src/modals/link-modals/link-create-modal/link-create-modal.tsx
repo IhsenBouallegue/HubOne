@@ -27,7 +27,7 @@ export function LinkCreateModal({
       title: "",
       description: "",
       image: "",
-      link: "",
+      url: "",
       hubId,
       linkGroupId,
     },

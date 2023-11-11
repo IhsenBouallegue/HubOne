@@ -8,4 +8,7 @@ export const insertLinkGroupsSchema = createInsertSchema(linkGroups, {
       .max(30, "Title is too long."),
 });
 
-export const linkGroupsSchema = insertLinkGroupsSchema.omit({ id: true });
+export const linkGroupsSchema = insertLinkGroupsSchema.omit({
+  id: true,
+  createdAt: true,
+});

@@ -1,4 +1,3 @@
-import { LinkGroup } from "@/lib/schema/app";
 import { usePost } from "@/lib/useQueries";
 import { linkGroupsSchema } from "@/lib/validations/linkGroup";
 import { Button } from "@/ui/button";
@@ -25,7 +24,7 @@ export function AddLinkGroupModal({
     resolver: zodResolver(linkGroupsSchema),
     defaultValues: { title: "", hubId },
   });
-  const mutate = usePost<LinkGroup>("linkgroups");
+  const mutate = usePost<z.infer<typeof linkGroupsSchema>>("linkgroups");
   const onSubmit = (values: z.infer<typeof linkGroupsSchema>) => {
     mutate(values);
     form.reset();

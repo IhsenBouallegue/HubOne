@@ -70,7 +70,7 @@ export function HubEditModal({
                 key={`footerlink_edit_${footerLink.id}`}
                 id={footerLink.id}
                 title={footerLink.title}
-                link={footerLink.link}
+                url={footerLink.url}
                 hubId={footerLink.hubId}
               />
             ))}

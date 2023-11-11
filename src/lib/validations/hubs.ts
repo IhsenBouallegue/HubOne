@@ -14,4 +14,4 @@ export const insertHubsSchema = createInsertSchema(hubs, {
       ),
 });
 
-export const hubsSchema = insertHubsSchema.omit({ id: true });
+export const hubsSchema = insertHubsSchema.omit({ id: true, createdAt: true });

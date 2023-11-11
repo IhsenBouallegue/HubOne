@@ -9,7 +9,7 @@ export async function GET(
 ) {
   try {
     const item = await db.query.linkGroups.findFirst({
-      where: eq(linkGroups.id, Number(context.params.id)),
+      where: eq(linkGroups.id, context.params.id),
     });
     return NextResponse.json(item);
   } catch (error) {
@@ -26,7 +26,7 @@ export async function PATCH(
     const item = await db
       .update(linkGroups)
       .set(body)
-      .where(eq(linkGroups.id, Number(context.params.id)));
+      .where(eq(linkGroups.id, context.params.id));
     return NextResponse.json(item);
   } catch (error) {
     return NextResponse.json({ error });
@@ -40,7 +40,7 @@ export async function DELETE(
   try {
     const item = await db
       .delete(linkGroups)
-      .where(eq(linkGroups.id, Number(context.params.id)));
+      .where(eq(linkGroups.id, context.params.id));
     return NextResponse.json(item);
   } catch (error) {
     return NextResponse.json({ error });

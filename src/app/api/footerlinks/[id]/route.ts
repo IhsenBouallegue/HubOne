@@ -9,7 +9,7 @@ export async function GET(
 ) {
   try {
     const item = await db.query.footerLinks.findFirst({
-      where: eq(footerLinks.id, Number(context.params.id)),
+      where: eq(footerLinks.id, context.params.id),
     });
     return NextResponse.json(item);
   } catch (error) {
@@ -26,7 +26,7 @@ export async function PATCH(
     const item = await db
       .update(footerLinks)
       .set(body)
-      .where(eq(footerLinks.id, Number(context.params.id)));
+      .where(eq(footerLinks.id, context.params.id));
     return NextResponse.json(item);
   } catch (error) {
     return NextResponse.json({ error });
@@ -40,7 +40,7 @@ export async function DELETE(
   try {
     const item = await db
       .delete(footerLinks)
-      .where(eq(footerLinks.id, Number(context.params.id)));
+      .where(eq(footerLinks.id, context.params.id));
     return NextResponse.json(item);
   } catch (error) {
     return NextResponse.json({ error });

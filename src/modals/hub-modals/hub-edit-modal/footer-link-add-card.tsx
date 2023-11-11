@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 export function FooterLinkAddCard({ hubId }: { hubId: string }) {
   const mutate = usePost<FooterLink>("footerlinks");
   const handleSubmit = () => {
-    mutate({ hubId, title: "change me", link: "/" } as FooterLink);
+    mutate({ hubId, title: "change me", url: "/" } as FooterLink);
   };
   return (
     <motion.div

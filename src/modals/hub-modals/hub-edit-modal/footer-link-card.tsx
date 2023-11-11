@@ -9,11 +9,16 @@ import { Input } from "@/ui/input";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
-export function FooterLinkCard({ id, title, link, hubId }: FooterLink) {
+export function FooterLinkCard({
+  id,
+  title,
+  url,
+  hubId,
+}: Omit<FooterLink, "createdAt">) {
   const deleteItem = useDelete("footerlinks");
-  const updateItem = useUpdate<FooterLink>("footerlinks");
+  const updateItem = useUpdate<Partial<FooterLink>>("footerlinks");
   const [isEditing, setIsEditing] = useState(false);
-  const [state, setState] = useState({ title, link });
+  const [state, setState] = useState({ title, url });
 
   return (
     <motion.div
@@ -50,10 +55,10 @@ export function FooterLinkCard({ id, title, link, hubId }: FooterLink) {
                 }}
               />
               <Input
-                defaultValue={link}
+                defaultValue={url}
                 id="link"
                 onChange={(event) =>
-                  setState({ ...state, link: event.currentTarget.value })
+                  setState({ ...state, url: event.currentTarget.value })
                 }
                 onClick={(
                   e: React.MouseEvent<HTMLInputElement, MouseEvent>
@@ -65,7 +70,7 @@ export function FooterLinkCard({ id, title, link, hubId }: FooterLink) {
           ) : (
             <div className="space-y-2">
               <p className="font-semibold text-lg">{title}</p>
-              <p className="text-muted-foreground">{link}</p>
+              <p className="text-muted-foreground">{url}</p>
             </div>
           )}
           <Button

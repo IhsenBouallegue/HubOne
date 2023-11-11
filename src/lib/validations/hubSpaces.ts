@@ -15,4 +15,7 @@ export const insertHubSpaceSchema = createInsertSchema(hubSpaces, {
       ),
 });
 
-export const hubSpaceSchema = insertHubSpaceSchema.omit({ id: true });
+export const hubSpaceSchema = insertHubSpaceSchema.omit({
+  id: true,
+  createdAt: true,
+});

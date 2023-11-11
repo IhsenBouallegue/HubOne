@@ -11,4 +11,7 @@ export const insertLinksSchema = createInsertSchema(links, {
   url: (schema) => schema.url.url("Please enter a valid URL."),
 });
 
-export const linksSchema = insertLinksSchema.omit({ id: true });
+export const linksSchema = insertLinksSchema.omit({
+  id: true,
+  createdAt: true,
+});
