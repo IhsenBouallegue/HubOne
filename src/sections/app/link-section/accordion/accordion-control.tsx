@@ -6,7 +6,7 @@ import { useDelete } from "@/lib/useQueries";
 import { Button } from "@/ui/button";
 import { AnimatePresence, motion } from "framer-motion";
 
-export default function AccordionControl({ itemId }: { itemId: number }) {
+export default function AccordionControl({ itemId }: { itemId: string }) {
   const editMode = useHubOneStore((state) => state.editMode);
   const deleteItem = useDelete("linkgroups");
   return (

@@ -1,8 +1,8 @@
 export function DefaultHubLogo({
-  hubName,
+  name,
   ...props
 }: {
-  hubName: string;
+  name: string;
 }) {
   return (
     <div
@@ -14,7 +14,7 @@ export function DefaultHubLogo({
       }}
       {...props}
     >
-      <p className="font-bold">{shorten(hubName)}</p>
+      <p className="font-bold">{shorten(name)}</p>
     </div>
   );
 }

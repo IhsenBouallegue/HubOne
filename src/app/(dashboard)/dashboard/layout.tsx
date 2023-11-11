@@ -1,3 +1,5 @@
+import Background from "@/components/common/background";
+import ResponsiveLogo from "@/components/common/responsive-logo";
 import { OrganizationSwitcher } from "@/components/dashboard/organization-switcher/organization-switcher";
 import { Search } from "@/components/dashboard/search";
 import { UserNav } from "@/components/dashboard/user-nav";
@@ -18,9 +20,11 @@ export default async function layout({
   });
   return (
     <div>
+      <Background />
       <div className="hidden flex-col md:flex">
-        <div className="border-b">
-          <div className="flex h-16 items-center max-w-screen-2xl px-8 m-auto">
+        <div className="mt-4 mb-6">
+          <div className="flex h-16 items-center px-8 max-w-screen-2xl m-auto gap-6">
+            <ResponsiveLogo />
             <OrganizationSwitcher
               selectedOrganization={undefined}
               memberOrganizations={memberOrganizations}

@@ -6,11 +6,11 @@ import { cn } from "@/lib/utils";
 import { useSelectedLayoutSegment } from "next/navigation";
 
 const segments = [
-  { label: "Overview", value: "dashboard" },
-  { label: "HubSpaces", value: "dashboard/hubspaces" },
-  { label: "Organization", value: "dashboard/organization" },
-  { label: "Plan", value: "dashboard/plan" },
-  { label: "Billing", value: "dashboard/billing" },
+  { label: "Overview", value: "" },
+  { label: "HubSpaces", value: "hubspaces" },
+  { label: "Organization", value: "organization" },
+  { label: "Plan", value: "plan" },
+  { label: "Billing", value: "billing" },
 ];
 
 export function MainNav({

@@ -6,14 +6,14 @@ import { useFetchItem } from "@/lib/useQueries";
 import Image from "next/image";
 import { DefaultHubLogo } from "./default-hub-logo";
 
-export function HubLogo({ hubName }: { hubName?: string }) {
+export function HubLogo({ name }: { name?: string }) {
   const hubId = useHubOneStore((state) => state.hubId);
   const { data: hub } = useFetchItem<Hub>("hubs", hubId!);
-  const { hubName: currentHubName, hubLogo } = hub!;
+  const { name: currentname, logo } = hub!;
 
-  return hubLogo ? (
-    <Image height={28} width={28} alt="hub logo" src={hubLogo} />
+  return logo ? (
+    <Image height={28} width={28} alt="hub logo" src={logo} />
   ) : (
-    <DefaultHubLogo hubName={hubName || currentHubName} />
+    <DefaultHubLogo name={name || currentname} />
   );
 }

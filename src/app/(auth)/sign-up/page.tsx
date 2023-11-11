@@ -1,18 +1,18 @@
-import { Metadata } from "next";
-import Link from "next/link";
-
+import UserAuthForm from "@/components/home/user-auth-form";
 import { Icons } from "@/components/icons";
-import { UserAuthForm } from "@/components/user-auth-form";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/ui/button";
+import { Card } from "@/ui/card";
+import { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Login",
-  description: "Login to your account",
+  title: "Sign Up",
+  description: "Sign up to HubOne",
 };
 
-export default function LoginPage() {
+export default function SignUp() {
   return (
     <div className="container flex h-screen w-screen flex-col items-center justify-center">
       <Link
@@ -27,8 +27,8 @@ export default function LoginPage() {
           Back
         </>
       </Link>
-      <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
-        <div className="flex flex-col space-y-2 text-center">
+      <Card className="mx-auto flex flex-col justify-center space-y-6 px-4 py-8 sm:px-16">
+        <div className="flex flex-col space-y-2 text-center w-80">
           <Image
             src="/logo/hubone_logo.svg"
             height={56}
@@ -36,23 +36,23 @@ export default function LoginPage() {
             className="mx-auto m-4"
             alt={"HubOne Logo"}
           />
-          <h1 className="text-2xl font-semibold tracking-tight">
-            Welcome back
+          <h1 className="text-xl font-semibold tracking-tight">
+            Create your HubOne account
           </h1>
           <p className="text-sm text-muted-foreground">
-            Enter your email to sign in to your account
+            Get started for free. No credit card required.
           </p>
         </div>
         <UserAuthForm />
         <p className="px-8 text-center text-sm text-muted-foreground">
           <Link
-            href="/register"
+            href="/sign-in"
             className="hover:text-brand underline underline-offset-4"
           >
-            Don&apos;t have an account? Sign Up
+            Already have an account? Sign In
           </Link>
         </p>
-      </div>
+      </Card>
     </div>
   );
 }

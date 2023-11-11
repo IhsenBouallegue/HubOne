@@ -40,8 +40,8 @@ export function HubEditModal({
   };
 
   useEffect(() => {
-    if (hub!.hubPath !== form.getValues("hubPath")) form.reset(hub);
-  }, [form, hub, hub!.hubPath]);
+    if (hub!.slug !== form.getValues("slug")) form.reset(hub);
+  }, [form, hub, hub!.slug]);
 
   return (
     <DialogContent>

@@ -9,7 +9,6 @@ import {
   FormMessage,
 } from "@/ui/form";
 import { Input } from "@/ui/input";
-import { Switch } from "@/ui/switch";
 import { UseFormReturn } from "react-hook-form";
 import { z } from "zod";
 
@@ -61,26 +60,13 @@ export function LinkFormFields({
       />
       <FormField
         control={form.control}
-        name="link"
+        name="url"
         render={({ field }) => (
           <FormItem aria-required>
             <FormLabel>Link</FormLabel>
             <FormControl>
               <Input placeholder="www.wikipedia.com" {...field} />
             </FormControl>
-            <FormMessage />
-          </FormItem>
-        )}
-      />
-      <FormField
-        control={form.control}
-        name="isInternal"
-        render={({ field }) => (
-          <FormItem aria-required className="space-x-2">
-            <FormControl>
-              <Switch checked={field.value} onCheckedChange={field.onChange} />
-            </FormControl>
-            <FormLabel>Is Internal</FormLabel>
             <FormMessage />
           </FormItem>
         )}

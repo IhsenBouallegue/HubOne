@@ -12,8 +12,8 @@ export function FullLinkCard({
   title,
   description,
   image,
-  link,
-}: Pick<Link, "title" | "description" | "image" | "link">) {
+  url,
+}: Pick<Link, "title" | "description" | "image" | "url">) {
   const editMode = useHubOneStore((state) => state.editMode);
   const controls = useAnimationControls();
 
@@ -43,7 +43,7 @@ export function FullLinkCard({
       animate={controls}
       style={{ height: "100%" }}
     >
-      <NormalOrEditInjector link={link}>
+      <NormalOrEditInjector url={url}>
         <Card className="cursor-pointer w-52 h-64 p-4 relative flex flex-col gap-4">
           {editMode && (
             <div className="absolute top-2 right-2">

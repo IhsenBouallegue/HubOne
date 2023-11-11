@@ -1,4 +1,3 @@
-import { createId } from "@paralleldrive/cuid2";
 import { InferSelectModel, relations } from "drizzle-orm";
 import {
   boolean,
@@ -7,6 +6,7 @@ import {
   uniqueIndex,
   varchar,
 } from "drizzle-orm/mysql-core";
+import { ORGANIZATION_KEY } from "../constants";
 import { users } from "./auth";
 
 export const usersRelations = relations(users, ({ many }) => ({
@@ -17,7 +17,7 @@ export const organizations = mysqlTable(
   "organization",
   {
     id: varchar("id", { length: 128 })
-      .$defaultFn(() => `org_${createId()}`)
+      .$defaultFn(() => ORGANIZATION_KEY)
       .primaryKey(),
     name: varchar("name", { length: 255 }).notNull(),
     slug: varchar("slug", { length: 255 }).notNull(),
@@ -45,12 +45,8 @@ export const organizationsRelations = relations(
 export const usersToOrganizations = mysqlTable(
   "users_to_organizations",
   {
-    userId: varchar("user_id", { length: 128 })
-      .notNull()
-      .$defaultFn(() => createId()),
-    organizationId: varchar("organization_id", { length: 128 })
-      .notNull()
-      .$defaultFn(() => createId()),
+    userId: varchar("user_id", { length: 128 }).notNull(),
+    organizationId: varchar("organization_id", { length: 128 }).notNull(),
   },
   (t) => ({
     pk: primaryKey(t.userId, t.organizationId),

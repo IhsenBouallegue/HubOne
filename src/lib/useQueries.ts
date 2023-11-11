@@ -40,7 +40,7 @@ export function useFetchByHubId<T>(
 
 export function useFetchItem<T>(
   QUERY_NAME: string,
-  itemId: number | string,
+  itemId: string,
   config?: Partial<{ onSuccess: (data: T) => void; initialData: T }>
 ) {
   return useQuery<T>(
@@ -128,9 +128,7 @@ export function usePost<T>(QUERY_NAME: string) {
   return mutate;
 }
 
-export function useUpdate<T extends { id?: string | number }>(
-  QUERY_NAME: string
-) {
+export function useUpdate<T extends { id?: string }>(QUERY_NAME: string) {
   const queryClient = useQueryClient();
   const { mutate } = useMutation(
     (newItem: T) =>
@@ -164,7 +162,7 @@ export function useUpdate<T extends { id?: string | number }>(
 export function useDelete(QUERY_NAME: string) {
   const queryClient = useQueryClient();
   const { mutate } = useMutation(
-    (itemId: number) =>
+    (itemId: string) =>
       fetch(`${API_URL}${QUERY_NAME}/${itemId}`, {
         method: "DELETE",
       }),

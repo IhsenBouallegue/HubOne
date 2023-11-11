@@ -118,16 +118,17 @@ function OrganizationCommanndItem({
   setOpen: (open: boolean) => void;
 }) {
   return (
-    <Link href={`/${organization.slug}/dashboard`}>
+    <Link href={`/${organization.slug}`}>
       <CommandItem
         onSelect={() => {
           setOpen(false);
         }}
-        className="text-sm truncate"
         title={`${organization.name} (${organization.slug})`}
       >
         <OrganizationAvatar organization={organization} />
-        {organization.name} ({organization.slug})
+        <p className="text-sm truncate">
+          {organization.name} ({organization.slug})
+        </p>
         <Icons.checkIcon
           className={cn(
             "ml-auto h-4 w-4",

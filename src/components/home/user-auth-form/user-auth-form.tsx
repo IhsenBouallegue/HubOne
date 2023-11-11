@@ -10,7 +10,7 @@ import * as z from "zod";
 import { Icons } from "@/components/icons";
 import { cn } from "@/lib/utils";
 import { userAuthSchema } from "@/lib/validations/auth";
-import { buttonVariants } from "@/ui/button";
+import { Button } from "@/ui/button";
 import { Input } from "@/ui/input";
 import { Label } from "@/ui/label";
 import { toast } from "@/ui/use-toast";
@@ -27,22 +27,23 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   } = useForm<FormData>({
     resolver: zodResolver(userAuthSchema),
   });
-  const [isLoading, setIsLoading] = React.useState<boolean>(false);
-  const [isGoogleLoading, setIsGoogleLoading] = React.useState<boolean>(false);
+  const [isLoading, setIsLoading] = React.useState<
+    "google" | "github" | "email" | undefined
+  >(undefined);
   const searchParams = useSearchParams();
   const redirectOptions = {
     redirect: true,
     callbackUrl: searchParams?.get("from") || "/dashboard",
   };
   async function onSubmit(data: FormData) {
-    setIsLoading(true);
+    setIsLoading("email");
 
     const signInResult = await signIn("email", {
       email: data.email.toLowerCase(),
       ...redirectOptions,
     });
 
-    setIsLoading(false);
+    setIsLoading(undefined);
 
     if (!signInResult?.ok) {
       return toast({
@@ -60,22 +61,40 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 
   return (
     <div className={cn("grid gap-6", className)} {...props}>
-      <button
-        type="button"
-        className={cn(buttonVariants({ variant: "outline" }))}
-        onClick={() => {
-          setIsGoogleLoading(true);
-          signIn("google", redirectOptions);
-        }}
-        disabled={isLoading || isGoogleLoading}
-      >
-        {isGoogleLoading ? (
-          <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-        ) : (
-          <Icons.google className="mr-2 h-4 w-4" />
-        )}{" "}
-        Google
-      </button>
+      <div className="flex flex-col gap-4">
+        <Button
+          variant="outline"
+          onClick={() => {
+            setIsLoading("google");
+            signIn("google", redirectOptions);
+          }}
+          disabled={isLoading === "google"}
+        >
+          {isLoading === "google" ? (
+            <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+          ) : (
+            <Icons.google className="mr-2 h-4 w-4" />
+          )}{" "}
+          Google
+        </Button>
+        <Button
+          variant="outline"
+          onClick={() => {
+            setIsLoading("github");
+            signIn("github", redirectOptions);
+          }}
+          // disabled={isLoading === "github"}
+          title="Coming soon"
+          disabled
+        >
+          {isLoading === "github" ? (
+            <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
+          ) : (
+            <Icons.gitHub className="mr-2 h-4 w-4" />
+          )}{" "}
+          Github
+        </Button>
+      </div>
       <div className="relative">
         <div className="absolute inset-0 flex items-center">
           <span className="w-full border-t" />
@@ -87,7 +106,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
         </div>
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="grid gap-2">
+        <div className="grid gap-4">
           <div className="grid gap-1">
             <Label className="sr-only" htmlFor="email">
               Email
@@ -99,7 +118,9 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
               autoCapitalize="none"
               autoComplete="email"
               autoCorrect="off"
-              disabled={isLoading || isGoogleLoading}
+              // disabled={!!isLoading}
+              title="Coming soon"
+              disabled
               {...register("email")}
             />
             {errors?.email && (
@@ -108,16 +129,17 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
               </p>
             )}
           </div>
-          <button
+          <Button
             type="submit"
-            className={cn(buttonVariants())}
-            disabled={isLoading}
+            // disabled={!!isLoading}
+            title="Coming soon"
+            disabled
           >
-            {isLoading && (
+            {isLoading === "email" && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}
-            Sign In with Email
-          </button>
+            Continue with Email
+          </Button>
         </div>
       </form>
     </div>

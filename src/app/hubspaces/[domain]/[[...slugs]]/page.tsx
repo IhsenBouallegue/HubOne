@@ -18,9 +18,9 @@ export async function generateStaticParams() {
 export default async function Page({
   params,
 }: {
-  params: { domain: string; hubPaths: string[] };
+  params: { domain: string; slugs: string[] };
 }) {
-  const hubPath = params.hubPaths?.[0] || "/";
+  const slug = params.slugs?.[0] || "/";
   const { domain } = params;
 
   const hubSpace = await db.query.hubSpaces.findFirst({
@@ -31,7 +31,6 @@ export default async function Page({
 
   if (!hubSpace.isPublic) {
     const session = await auth();
-    console.log(session);
 
     if (!session) return <HubSpaceNotPublic />;
     const isMember = await db.query.usersToOrganizations.findFirst({
@@ -44,7 +43,7 @@ export default async function Page({
   }
 
   const hub = await db.query.hubs.findFirst({
-    where: and(eq(hubs.hubSpaceId, hubSpace.id), eq(hubs.hubPath, hubPath)),
+    where: and(eq(hubs.hubSpaceId, hubSpace.id), eq(hubs.slug, slug)),
     with: { links: true, linkGroups: true, footerLinks: true },
   });
 

@@ -2,7 +2,7 @@ import {
   IconAppsFilled,
   IconArrowsMaximize,
   IconArrowsMinimize,
-  IconBrandGoogle,
+  IconBrandGoogleFilled,
 } from "@tabler/icons-react";
 import {
   AlertTriangle,
@@ -84,7 +84,7 @@ export const Icons = {
       />
     </svg>
   ),
-  google: IconBrandGoogle,
+  google: IconBrandGoogleFilled,
   twitter: Twitter,
   check: Check,
 };

@@ -12,8 +12,8 @@ export function CompactLinkCard({
   title,
   description,
   image,
-  link,
-}: Pick<Link, "title" | "description" | "image" | "link">) {
+  url,
+}: Pick<Link, "title" | "description" | "image" | "url">) {
   const editMode = useHubOneStore((state) => state.editMode);
   const controls = useAnimationControls();
 
@@ -38,7 +38,7 @@ export function CompactLinkCard({
       animate={controls}
       style={{ height: "100%" }}
     >
-      <NormalOrEditInjector link={link}>
+      <NormalOrEditInjector url={url}>
         <Card className="cursor-pointer h-20 p-4 relative flex gap-4">
           {editMode && (
             <div className="absolute top-2 right-2">

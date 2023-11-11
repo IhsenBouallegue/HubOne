@@ -21,7 +21,7 @@ export function LinkEditModal({
 }: {
   opened: boolean;
   setOpened: (open: boolean) => void;
-} & Link) {
+} & Omit<Link, "createdAt">) {
   const form = useForm<z.infer<typeof insertLinksSchema>>({
     resolver: zodResolver(insertLinksSchema),
     defaultValues: {
@@ -48,7 +48,7 @@ export function LinkEditModal({
               variant="destructive"
               onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
                 e.preventDefault();
-                deleteItem(link.id as number);
+                deleteItem(link.id);
                 setOpened(false);
               }}
               className="flex gap-2"

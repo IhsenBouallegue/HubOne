@@ -1,26 +1,30 @@
-import { createId } from "@paralleldrive/cuid2";
 import { InferSelectModel, relations } from "drizzle-orm";
 import {
   boolean,
-  int,
   mysqlTable,
-  serial,
   text,
   timestamp,
   uniqueIndex,
   varchar,
 } from "drizzle-orm/mysql-core";
+import {
+  FOOTERLINK_KEY,
+  HUBSPACE_KEY,
+  HUB_KEY,
+  LINKGROUP_KEY,
+  LINK_KEY,
+} from "../constants";
 
 export const hubSpaces = mysqlTable(
   "hubspaces",
   {
-    id: varchar("id", { length: 128 })
-      .$defaultFn(() => `hs_${createId()}`)
+    id: varchar("id", { length: 256 })
+      .$defaultFn(() => HUBSPACE_KEY)
       .primaryKey(),
     name: varchar("name", { length: 256 }).notNull(),
     domain: varchar("domain", { length: 256 }).notNull(),
     ownerId: varchar("owner_id", { length: 256 }).notNull(),
-    isPublic: boolean("is_public").default(false).notNull(),
+    isPublic: boolean("is_public").notNull(),
     createdAt: timestamp("created_at").defaultNow(),
   },
   (table) => ({
@@ -31,12 +35,12 @@ export const hubSpaces = mysqlTable(
 export const hubs = mysqlTable(
   "hubs",
   {
-    id: varchar("id", { length: 128 })
-      .$defaultFn(() => `hub_${createId()}`)
+    id: varchar("id", { length: 256 })
+      .$defaultFn(() => HUB_KEY)
       .primaryKey(),
-    hubName: varchar("hub_name", { length: 256 }).notNull(),
-    hubLogo: varchar("hub_logo", { length: 256 }).default("").notNull(),
-    hubPath: varchar("hub_path", { length: 256 }).default("/").notNull(),
+    name: varchar("name", { length: 256 }).notNull(),
+    logo: varchar("logo", { length: 256 }).default("").notNull(),
+    slug: varchar("slug", { length: 256 }).default("/").notNull(),
     primaryColor: varchar("primary_color", { length: 256 })
       .default("#ff008c")
       .notNull(),
@@ -48,38 +52,47 @@ export const hubs = mysqlTable(
         "Tired of keeping track of new websites? Tired of having to update your bookmarks every few weeks? Access all sites from this one page. Everything is up to date. No need to clutter your life anymore!"
       )
       .notNull(),
+    createdAt: timestamp("created_at").defaultNow(),
     hubSpaceId: varchar("hubspace_id", { length: 256 }).notNull(),
   },
   (table) => ({
-    hubPathKey: uniqueIndex("hub_hub_path_key").on(
-      table.hubPath,
-      table.hubSpaceId
-    ),
+    slugKey: uniqueIndex("hub_slug_key").on(table.slug, table.hubSpaceId),
   })
 );
 
 export const links = mysqlTable("links", {
-  id: serial("id").primaryKey().notNull(),
+  id: varchar("id", { length: 256 })
+    .$defaultFn(() => LINK_KEY)
+    .primaryKey()
+    .notNull(),
   title: varchar("title", { length: 256 }).notNull(),
   description: text("description").notNull(),
   image: varchar("image", { length: 256 }).default("").notNull(),
-  link: varchar("link", { length: 256 }).notNull(),
-  isInternal: boolean("is_internal").default(false).notNull(),
-  linkGroupId: int("link_group_id"),
-  hubId: varchar("hub_id", { length: 128 }).notNull(),
+  url: varchar("url", { length: 256 }).notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+  linkGroupId: varchar("link_group_id", { length: 256 }).notNull(),
+  hubId: varchar("hub_id", { length: 256 }).notNull(),
 });
 
 export const footerLinks = mysqlTable("footer_links", {
-  id: serial("id").primaryKey().notNull(),
+  id: varchar("id", { length: 256 })
+    .$defaultFn(() => FOOTERLINK_KEY)
+    .primaryKey()
+    .notNull(),
   title: varchar("title", { length: 256 }).notNull(),
-  link: varchar("link", { length: 256 }).notNull(),
-  hubId: varchar("hub_id", { length: 128 }).notNull(),
+  url: varchar("url", { length: 256 }).notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+  hubId: varchar("hub_id", { length: 256 }).notNull(),
 });
 
 export const linkGroups = mysqlTable("link_groups", {
-  id: serial("id").primaryKey().notNull(),
+  id: varchar("id", { length: 256 })
+    .primaryKey()
+    .$defaultFn(() => LINKGROUP_KEY)
+    .notNull(),
   title: varchar("title", { length: 256 }).notNull(),
-  hubId: varchar("hub_id", { length: 128 }).notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+  hubId: varchar("hub_id", { length: 256 }).notNull(),
 });
 
 export const hubsRelations = relations(hubs, ({ one, many }) => ({
@@ -96,6 +109,10 @@ export const linksRelations = relations(links, ({ one }) => ({
   hub: one(hubs, {
     fields: [links.hubId],
     references: [hubs.id],
+  }),
+  linkGroup: one(linkGroups, {
+    fields: [links.linkGroupId],
+    references: [linkGroups.id],
   }),
 }));
 

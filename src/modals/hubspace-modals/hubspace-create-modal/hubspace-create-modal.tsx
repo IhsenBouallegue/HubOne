@@ -20,19 +20,26 @@ import {
   FormMessage,
 } from "@/ui/form";
 import { Input } from "@/ui/input";
+import { Switch } from "@/ui/switch";
 import { toast } from "@/ui/use-toast";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { createHubSpace } from "./hubspace.actions";
-
+const formSchema = hubSpaceSchema.extend({ hubName: z.string() });
 export function HubSpaceCreateModal({
   setShowDialog,
   organization,
 }: { setShowDialog: (shown: boolean) => void; organization: Organization }) {
-  const form = useForm<z.infer<typeof hubSpaceSchema>>({
-    resolver: zodResolver(hubSpaceSchema),
-    defaultValues: { name: "", domain: "", ownerId: "" },
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      domain: "",
+      ownerId: "",
+      isPublic: true,
+      hubName: "Home",
+    },
   });
 
   const callAction = async (formData: FormData) => {
@@ -93,17 +100,15 @@ export function HubSpaceCreateModal({
                 <FormControl>
                   <Input placeholder="domain" {...field} />
                 </FormControl>
-                <FormDescription>
-                  This is the HubSpace's public slug.
-                </FormDescription>
+                {field.value !== "" && (
+                  <FormDescription>
+                    Your HubSpace will be available under {field.value}
+                    .huboneapp.com.
+                  </FormDescription>
+                )}
                 <FormMessage />
               </FormItem>
             )}
-          />
-          <Input
-            type="hidden"
-            {...form.register("ownerId")}
-            value={organization.id}
           />
           <FormItem>
             <FormLabel>Creator</FormLabel>
@@ -120,6 +125,51 @@ export function HubSpaceCreateModal({
             </FormDescription>
             <FormMessage />
           </FormItem>
+
+          <FormField
+            control={form.control}
+            name="isPublic"
+            render={({ field }) => (
+              <FormItem className="flex flex-row items-center justify-between rounded-lg">
+                <div className="space-y-0.5">
+                  <FormLabel>Public</FormLabel>
+                  <FormDescription>
+                    People without an account can view this HubSpace.
+                  </FormDescription>
+                </div>
+                <FormControl>
+                  <Switch
+                    checked={field.value}
+                    onCheckedChange={field.onChange}
+                    {...form.register("isPublic")}
+                  />
+                </FormControl>
+              </FormItem>
+            )}
+          />
+
+          <Input
+            type="hidden"
+            {...form.register("ownerId")}
+            value={organization.id}
+          />
+
+          <FormField
+            control={form.control}
+            name="hubName"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Default Hub Name</FormLabel>
+                <FormControl>
+                  <Input placeholder="Hub Name" {...field} />
+                </FormControl>
+                <FormDescription>
+                  This can also be changed later.
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           <DialogFooter>
             <Button variant="outline" onClick={() => setShowDialog(false)}>
               Cancel

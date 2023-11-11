@@ -16,12 +16,20 @@ export function HeaderActions() {
           Dashboard
         </Link>
       ) : (
-        <Link
-          href="/sign-in"
-          className={cn(buttonVariants({ variant: "default" }))}
-        >
-          Sign In
-        </Link>
+        <div className="space-x-4">
+          <Link
+            href="/sign-up"
+            className={cn(buttonVariants({ variant: "light" }))}
+          >
+            Sign up
+          </Link>
+          <Link
+            href="/sign-in"
+            className={cn(buttonVariants({ variant: "default" }))}
+          >
+            Sign In
+          </Link>
+        </div>
       )}
     </>
   );

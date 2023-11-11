@@ -8,7 +8,7 @@ import { AnimatePresence, motion } from "framer-motion";
 
 export default function AccordionLabel({ id, title, hubId }: LinkGroup) {
   const editMode = useHubOneStore((state) => state.editMode);
-  const updateLinkGroup = useUpdate<LinkGroup>("linkgroups");
+  const updateLinkGroup = useUpdate<Partial<LinkGroup>>("linkgroups");
   return (
     <div style={{ height: "3em", alignItems: "center" }}>
       <AnimatePresence>

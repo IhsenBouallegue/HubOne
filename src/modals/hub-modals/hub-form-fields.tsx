@@ -22,7 +22,7 @@ export function HubFormFields({
     <div className="flex flex-col gap-4">
       <FormField
         control={form.control}
-        name="hubName"
+        name="name"
         render={({ field }) => (
           <FormItem>
             <FormLabel>Name</FormLabel>
@@ -35,7 +35,7 @@ export function HubFormFields({
       />
       <FormField
         control={form.control}
-        name="hubPath"
+        name="slug"
         render={({ field }) => (
           <FormItem>
             <FormLabel>Path</FormLabel>
@@ -48,12 +48,12 @@ export function HubFormFields({
       />
       <FormField
         control={form.control}
-        name="hubLogo"
+        name="logo"
         render={({ field }) => (
           <FormItem>
             <FormLabel>Logo</FormLabel>
             <FormControl>
-              <Input placeholder="My Favourite Hub" {...field} />
+              <Input placeholder="URL to an image" {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -64,9 +64,9 @@ export function HubFormFields({
         name="description"
         render={({ field }) => (
           <FormItem>
-            <FormLabel>Name</FormLabel>
+            <FormLabel>Description</FormLabel>
             <FormControl>
-              <Textarea placeholder="My Favourite Hub" {...field} />
+              <Textarea {...field} />
             </FormControl>
             <FormMessage />
           </FormItem>

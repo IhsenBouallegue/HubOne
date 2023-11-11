@@ -6,10 +6,9 @@ import * as organizations from "./schema/orgaizations";
 
 export async function getHubSpacesPaths() {
   const hubs = await db.query.hubs.findMany({ with: { hubSpace: true } });
-
   return hubs.map((hub) => ({
     domain: hub.hubSpace.domain,
-    hubPath: [hub.hubPath],
+    slug: [hub.slug],
   }));
 }
 

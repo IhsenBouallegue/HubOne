@@ -5,7 +5,7 @@ import { useFetchItem } from "@/lib/useQueries";
 export function CompactHero() {
   const hubId = useHubOneStore((state) => state.hubId);
   const { data: hub } = useFetchItem<Hub>("hubs", hubId!);
-  const { hubName, description, primaryColor } = hub!;
+  const { name, description, primaryColor } = hub!;
 
   return (
     <div className=" max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8">
@@ -14,7 +14,7 @@ export function CompactHero() {
           The one hub for
         </h1>
         <h2 className="mt-4 text-2xl font-extrabold tracking-tight sm:text-6xl">
-          <span style={{ color: primaryColor }}>{hubName}</span>.
+          <span style={{ color: primaryColor }}>{name}</span>.
         </h2>
         <p className="max-w-xl m-auto mt-8 text-lg text-muted-foreground">
           {description}

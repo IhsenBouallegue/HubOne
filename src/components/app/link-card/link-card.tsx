@@ -14,8 +14,7 @@ export function LinkCard({
   title,
   description,
   image,
-  link,
-  isInternal = false,
+  url,
   linkGroupId,
   hubId,
 }: ILink) {
@@ -29,14 +28,14 @@ export function LinkCard({
           title={title}
           description={description}
           image={image}
-          link={link}
+          url={url}
         />
       ) : (
         <FullLinkCard
           title={title}
           description={description}
           image={image}
-          link={link}
+          url={url}
         />
       )}
       <LinkEditModal
@@ -46,8 +45,7 @@ export function LinkCard({
         title={title}
         description={description}
         image={image}
-        link={link}
-        isInternal={isInternal}
+        url={url}
         linkGroupId={linkGroupId}
         hubId={hubId}
       />
@@ -57,13 +55,13 @@ export function LinkCard({
 
 export function NormalOrEditInjector({
   children,
-  link,
-}: { children: React.ReactNode[] | React.ReactNode; link: string }) {
+  url,
+}: { children: React.ReactNode[] | React.ReactNode; url: string }) {
   const editMode = useHubOneStore((state) => state.editMode);
   if (editMode) return <DialogTrigger asChild>{children}</DialogTrigger>;
   else
     return (
-      <Link href={link} target="_blank">
+      <Link href={url} target="_blank">
         {children}
       </Link>
     );

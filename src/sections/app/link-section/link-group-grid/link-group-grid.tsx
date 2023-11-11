@@ -16,7 +16,7 @@ export function LinkGroupGrid({
 }: {
   links: Link[];
   hubId: string;
-  linkGroupId: number;
+  linkGroupId: string;
 }) {
   const editMode = useHubOneStore((state) => state.editMode);
   const compactMode = useHubOneStore((state) => state.compactMode);
@@ -35,16 +35,7 @@ export function LinkGroupGrid({
       )}
       {links.map((link) => (
         <div key={`link_${link.id}`}>
-          <LinkCard
-            id={link.id}
-            title={link.title}
-            description={link.description}
-            image={link.image}
-            link={link.link}
-            isInternal={link.isInternal}
-            hubId={hubId}
-            linkGroupId={linkGroupId}
-          />
+          <LinkCard {...link} hubId={hubId} linkGroupId={linkGroupId} />
         </div>
       ))}
       {editMode && (

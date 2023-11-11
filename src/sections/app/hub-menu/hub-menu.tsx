@@ -37,14 +37,14 @@ export function HubMenu({ hubs }: { hubs: Hub[] }) {
           <div className="grid grid-cols-3 gap-4">
             {hubs.map((hub) => (
               <DropdownMenuItem className="p-2" key={`hub_menu_item_${hub.id}`}>
-                <Link href={hub.hubPath}>
+                <Link href={hub.slug}>
                   <div className="flex flex-col h-32 w-16">
                     <div className="w-full h-1/2 p-1">
-                      <HubLogo hubName={hub.hubName} />
+                      <HubLogo name={hub.name} />
                     </div>
                     <div className="w-full h-1/2">
                       <p className="text-sm text-center line-clamp-3">
-                        {hub.hubName}
+                        {hub.name}
                       </p>
                     </div>
                   </div>

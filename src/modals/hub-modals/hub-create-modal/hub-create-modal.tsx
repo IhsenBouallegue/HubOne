@@ -24,9 +24,9 @@ export function HubCreateModal({
   const form = useForm<z.infer<typeof hubsSchema>>({
     resolver: zodResolver(hubsSchema),
     defaultValues: {
-      hubName: "",
-      hubPath: "",
-      hubLogo: "",
+      name: "",
+      slug: "",
+      logo: "",
       description: "",
       secondaryColor: undefined,
       primaryColor: undefined,
@@ -43,11 +43,11 @@ export function HubCreateModal({
 
   return (
     <DialogContent>
-      <DialogHeader>
-        <DialogTitle>Create New Hub</DialogTitle>
-      </DialogHeader>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          <DialogHeader>
+            <DialogTitle>Create New Hub</DialogTitle>
+          </DialogHeader>
           <HubFormFields form={form} />
           <DialogFooter>
             <Button type="submit">Create</Button>

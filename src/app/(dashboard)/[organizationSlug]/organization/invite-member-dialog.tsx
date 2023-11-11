@@ -50,8 +50,6 @@ export default function InviteMemberDialog({
       setOpen(false);
     }
     if (error || !ok) {
-      console.log(error);
-
       toast({
         title: "Something went wrong.",
         description: error,

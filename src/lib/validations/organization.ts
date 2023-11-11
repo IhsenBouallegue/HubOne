@@ -3,10 +3,11 @@ import { organizations } from "../schema/orgaizations";
 
 export const insertOrganizationSchema = createInsertSchema(organizations, {
   name: (schema) =>
-    schema.name.min(2, "Name must be at least 2 characters long"),
+    schema.name.min(1, "Name must not be empty.").max(30, "Name is too long."),
   slug: (schema) =>
     schema.slug
-      .min(2, "Slug must be at least 2 characters long")
+      .min(2, "Slug must not be empty.")
+      .max(30, "Slug is too long.")
       .regex(
         /^[a-z0-9-]+$/,
         "Slugs can only contain alphanumeric characters and hyphens."

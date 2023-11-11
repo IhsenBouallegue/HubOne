@@ -8,15 +8,15 @@ import { Button } from "@/ui/button";
 export function FullHero() {
   const hubId = useHubOneStore((state) => state.hubId);
   const { data: hub } = useFetchItem<Hub>("hubs", hubId!);
-  const { hubName, description, primaryColor, secondaryColor } = hub!;
+  const { name, description, primaryColor, secondaryColor } = hub!;
 
   const editMode = useHubOneStore((state) => state.editMode);
   const setEditMode = useHubOneStore((state) => state.setEditMode);
 
-  const name = () => (
+  const title = () => (
     <span>
       {" for "}
-      <span style={{ color: primaryColor }}>{hubName}</span>.
+      <span style={{ color: primaryColor }}>{name}</span>.
     </span>
   );
   return (
@@ -29,7 +29,7 @@ export function FullHero() {
       <div className="px-4 sm:px-6 lg:px-8">
         <h1 className="text-4xl font-extrabold sm:text-5xl md:text-6xl ">
           The one hub you will ever need
-          {hubName ? name() : "."}
+          {name ? title() : "."}
         </h1>
         <p className="mt-3 max-w-lg text-lg text-muted-foreground sm:text-xl sm:mt-5">
           {description}
