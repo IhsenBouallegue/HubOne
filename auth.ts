@@ -29,13 +29,15 @@ export const {
   },
   cookies: {
     sessionToken: {
-      name: `${useSecureCookies ? "__Secure-" : ""}next-auth.session-tokenss`,
+      name: `${useSecureCookies ? "__Secure-" : ""}next-auth.session-token`,
       options: {
         hostOnly: false,
         httpOnly: true,
         sameSite: "lax",
         path: "/",
-        domain: ".huboneapp.com",
+        ...(useSecureCookies
+          ? { domain: ".huboneapp.com" }
+          : { domain: ".localtest.me" }),
         secure: useSecureCookies,
       },
     },
