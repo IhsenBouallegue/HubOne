@@ -1,10 +1,8 @@
 import { ORGANIZATION_KEY } from "@/lib/constants";
 import db from "@/lib/db";
-import { users } from "@/lib/schema/auth";
 import { organizations, usersToOrganizations } from "@/lib/schema/orgaizations";
 import { insertOrganizationSchema } from "@/lib/validations/organization";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
-import { eq } from "drizzle-orm";
 import type { User } from "next-auth";
 import NextAuth from "next-auth";
 import Github from "next-auth/providers/github";
@@ -29,7 +27,6 @@ export const {
       await createPersonalOrganization(user);
     },
   },
-  session: { strategy: "jwt" },
   cookies: {
     sessionToken: {
       name: `${VERCEL_DEPLOYMENT ? "__Secure-" : ""}next-auth.session-token`,
@@ -46,37 +43,11 @@ export const {
     },
   },
   callbacks: {
-    jwt: async ({ token, user, trigger }) => {
-      // force log out banned users
-      if (!token.email) {
-        return {};
-      }
-
-      if (user) {
-        token.user = user;
-      }
-
-      // refresh the user's data if they update their name / email
-      if (trigger === "update") {
-        const refreshedUser = await db.query.users.findFirst({
-          where: eq(users.id, token.sub as string),
-        });
-        if (refreshedUser) {
-          token.user = refreshedUser;
-        } else {
-          return {};
-        }
-      }
-
-      return token;
-    },
-    session: async ({ session, token }) => {
-      session.user = {
-        id: token.sub,
-        // @ts-ignore
-        ...(token || session).user,
+    async session({ session, user }) {
+      return {
+        ...session,
+        user: { ...session.user, id: user.id },
       };
-      return session;
     },
   },
 });
