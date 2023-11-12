@@ -28,7 +28,7 @@ export function MainNav({
     >
       {segments.map((segment) => (
         <Link
-          href={`/${selectedOrganization}/${segment.value}`}
+          href={`/dashboard/${selectedOrganization}/${segment.value}`}
           key={segment.value}
           className={cn(
             "text-sm font-medium transition-colors hover:text-primary",

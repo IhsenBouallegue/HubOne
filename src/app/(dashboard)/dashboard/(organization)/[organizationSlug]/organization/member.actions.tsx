@@ -7,7 +7,7 @@ import { and, eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
 import { ZodError } from "zod";
 import { fromZodError } from "zod-validation-error";
-import { auth } from "../../../../../auth";
+import { auth } from "../../../../../../../auth";
 
 export async function inviteMember(organizationId: string, formData: FormData) {
   try {

@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function OrganizationCard(organization: Organization) {
   return (
-    <Link href={`/${organization.slug}`}>
+    <Link href={`/dashboard/${organization.slug}`}>
       <Card className="w-72 h-96 shadow-md flex flex-col overflow-hidden">
         <CardHeader
           className="bg-slate-600 h-1/2 mb-2 place-content-center place-items-center relative shadow-md"

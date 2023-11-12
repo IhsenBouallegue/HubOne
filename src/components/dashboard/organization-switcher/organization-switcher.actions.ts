@@ -15,6 +15,13 @@ export async function createOrganization(formData: FormData) {
   try {
     const session = await auth();
     if (!session) throw new Error("Not authenticated");
+    // if 3 organizations already exist, don't allow creation of new ones
+    const organizationsCounts = await db
+      .select({ id: organizations.id })
+      .from(organizations)
+      .where(eq(organizations.admin, session.user.id));
+    if (organizationsCounts.length === 3)
+      throw new Error("You can't have more than 3 organizations.");
 
     const newOrganizationId = ORGANIZATION_KEY;
     const organization = insertOrganizationSchema.parse({
@@ -35,6 +42,9 @@ export async function createOrganization(formData: FormData) {
     if (error instanceof ZodError) {
       const validationError = fromZodError(error);
       return { error: validationError.message };
+    }
+    if (error instanceof Error) {
+      return { error: error.message };
     }
     return {
       error: "Your organization creation request failed. Please try again.",

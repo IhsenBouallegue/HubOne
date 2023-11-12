@@ -6,7 +6,7 @@ export const insertOrganizationSchema = createInsertSchema(organizations, {
     schema.name.min(1, "Name must not be empty.").max(30, "Name is too long."),
   slug: (schema) =>
     schema.slug
-      .min(2, "Slug must not be empty.")
+      .min(1, "Slug must not be empty.")
       .max(30, "Slug is too long.")
       .regex(
         /^[a-z0-9-]+$/,

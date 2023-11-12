@@ -121,7 +121,7 @@ function OrganizationCommanndItem({
   setOpen: (open: boolean) => void;
 }) {
   return (
-    <Link href={`/${organization.slug}`}>
+    <Link href={`/dashboard/${organization.slug}`}>
       <CommandItem
         onSelect={() => {
           setOpen(false);

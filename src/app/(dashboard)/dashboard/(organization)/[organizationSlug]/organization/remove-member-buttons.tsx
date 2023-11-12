@@ -1,5 +1,5 @@
 import { Button } from "@/ui/button";
-import { auth } from "../../../../../auth";
+import { auth } from "../../../../../../../auth";
 import { removeMember } from "./member.actions";
 
 export default async function RemoveMemberButton({
