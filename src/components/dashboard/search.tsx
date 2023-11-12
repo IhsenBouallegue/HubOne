@@ -7,6 +7,8 @@ export function Search() {
         type="search"
         placeholder="Search..."
         className="md:w-[100px] lg:w-[300px]"
+        disabled
+        title="Search is coming soon!"
       />
     </div>
   );

@@ -101,7 +101,7 @@ export default function OrganizationDialog({
             <FormLabel>Creator</FormLabel>
             <div
               className={
-                "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
+                "flex h-10 w-full rounded-md shadow-sm border-input bg-zinc-200/40 px-3 py-2 text-sm cursor-not-allowed opacity-50"
               }
             >
               <Avatar className="mr-2 h-5 w-5">

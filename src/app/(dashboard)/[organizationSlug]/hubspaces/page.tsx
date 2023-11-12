@@ -20,7 +20,10 @@ export default async function Page({
 
   return (
     <div className="max-w-screen-2xl m-auto space-y-12">
-      <h2 className="text-3xl font-bold">HubSpaces</h2>
+      <div className="space-y-4">
+        <h2 className="text-3xl font-bold">HubSpaces</h2>
+        <h3>Create and access all of your HubSpaces.</h3>
+      </div>
       <div className="flex gap-6">
         {ownHubSpaces.map((hubSpace) => (
           <HubSpaceCard key={`hubspace_card_${hubSpace.id}`} {...hubSpace} />

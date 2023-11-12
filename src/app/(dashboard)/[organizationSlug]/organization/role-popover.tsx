@@ -7,7 +7,7 @@ export function RolePopover() {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button variant="outline">
+        <Button variant="outline" disabled>
           Owner{" "}
           <Icons.chevronDown className="ml-2 h-4 w-4 text-muted-foreground" />
         </Button>

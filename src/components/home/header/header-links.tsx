@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/ui/button";
 import Link from "next/link";
@@ -6,17 +8,17 @@ import { SetStateAction } from "react";
 export function HeaderLinks({
   toggleMenu,
 }: {
-  toggleMenu: (value?: SetStateAction<boolean> | undefined) => void;
+  toggleMenu?: (value?: SetStateAction<boolean> | undefined) => void;
 }) {
   return (
     <>
       {headerLinks.map((linkGroup) => (
         <Link
           href={linkGroup.link}
-          className={cn(buttonVariants({ variant: "link" }))}
+          className={cn(buttonVariants({ variant: "light" }))}
           key={linkGroup.link}
           onClick={() => {
-            toggleMenu(false);
+            if (toggleMenu) toggleMenu(false);
           }}
         >
           {linkGroup.label}

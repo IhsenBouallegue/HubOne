@@ -45,7 +45,10 @@ export function OrganizationSwitcher({
             role="combobox"
             aria-expanded={open}
             aria-label="Select an Organization"
-            className={cn("w-[240px] justify-between shadow-md", className)}
+            className={cn(
+              "w-[240px] justify-between shadow-md bg-white",
+              className
+            )}
           >
             {selectedOrganization && (
               <OrganizationAvatar organization={selectedOrganization} />

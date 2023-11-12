@@ -9,7 +9,7 @@ const segments = [
   { label: "Overview", value: "" },
   { label: "HubSpaces", value: "hubspaces" },
   { label: "Organization", value: "organization" },
-  { label: "Plan", value: "plan" },
+  { label: "Plans", value: "plans" },
   { label: "Billing", value: "billing" },
 ];
 

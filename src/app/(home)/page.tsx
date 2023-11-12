@@ -1,3 +1,4 @@
+import Background from "@/components/common/background";
 import FooterBar from "@/components/home/footer-bar";
 import HeaderBar from "@/components/home/header";
 import Faq from "@/sections/home/faq";
@@ -9,6 +10,7 @@ import Pricing from "@/sections/home/pricing";
 export default function page() {
   return (
     <>
+      <Background />
       <HeaderBar />
       <Hero />
       <Features />

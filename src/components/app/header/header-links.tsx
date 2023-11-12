@@ -20,7 +20,7 @@ export function HeaderLinks({
       {linkGroups?.map((linkGroup) => (
         <Link
           href={`#${linkGroup.id.toString()}`}
-          className={buttonVariants({ variant: "link" })}
+          className={buttonVariants({ variant: "light" })}
           key={`header_link_${linkGroup.id}`}
           onClick={toggleMenu}
         >

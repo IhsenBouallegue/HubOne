@@ -1,20 +1,23 @@
+import { UserSelect } from "@/components/common/user-select/user-select";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/ui/button";
-import { useSession } from "next-auth/react";
 import Link from "next/link";
+import { auth } from "../../../../auth";
 
-export function HeaderActions() {
-  const session = useSession();
-
+export async function HeaderActions() {
+  const session = await auth();
   return (
-    <>
-      {session?.data ? (
-        <Link
-          href="/dashboard"
-          className={cn(buttonVariants({ variant: "secondary" }))}
-        >
-          Dashboard
-        </Link>
+    <div className="flex justify-center gap-4 items-center">
+      {session?.user ? (
+        <>
+          <Link
+            href="/dashboard"
+            className={cn(buttonVariants({ variant: "secondary" }))}
+          >
+            Dashboard
+          </Link>
+          <UserSelect />
+        </>
       ) : (
         <div className="space-x-4">
           <Link
@@ -31,6 +34,6 @@ export function HeaderActions() {
           </Link>
         </div>
       )}
-    </>
+    </div>
   );
 }
