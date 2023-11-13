@@ -91,15 +91,26 @@ export function HubSpaceCreateModal({
               </FormItem>
             )}
           />
+
           <FormField
             control={form.control}
             name="domain"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Domain</FormLabel>
-                <FormControl>
-                  <Input placeholder="domain" {...field} />
-                </FormControl>
+                <div className="flex bg-zinc-200/30 font-mono rounded-md">
+                  <FormControl className="w-3/5">
+                    <Input
+                      placeholder="domain"
+                      className="text-right"
+                      {...field}
+                    />
+                  </FormControl>
+                  <div className="w-2/5 items-center flex p-2 tracking-wide">
+                    .huboneapp.com
+                  </div>
+                </div>
+
                 {field.value !== "" && (
                   <FormDescription>
                     Your HubSpace will be available under {field.value}
@@ -110,21 +121,6 @@ export function HubSpaceCreateModal({
               </FormItem>
             )}
           />
-          <FormItem>
-            <FormLabel>Creator</FormLabel>
-            <div
-              className={
-                "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm"
-              }
-            >
-              <OrganizationAvatar organization={organization} />
-              {organization.name}
-            </div>
-            <FormDescription>
-              This organization will own the HubSpace.
-            </FormDescription>
-            <FormMessage />
-          </FormItem>
 
           <FormField
             control={form.control}
@@ -148,12 +144,6 @@ export function HubSpaceCreateModal({
             )}
           />
 
-          <Input
-            type="hidden"
-            {...form.register("ownerId")}
-            value={organization.id}
-          />
-
           <FormField
             control={form.control}
             name="hubName"
@@ -170,6 +160,29 @@ export function HubSpaceCreateModal({
               </FormItem>
             )}
           />
+
+          <FormItem>
+            <FormLabel>Creator</FormLabel>
+            <div
+              className={
+                "flex h-10 w-full rounded-md shadow-sm border-input bg-zinc-200/40 px-3 py-2 text-sm cursor-not-allowed opacity-50"
+              }
+            >
+              <OrganizationAvatar organization={organization} />
+              {organization.name}
+            </div>
+            <FormDescription>
+              This organization will own the HubSpace.
+            </FormDescription>
+            <FormMessage />
+          </FormItem>
+
+          <Input
+            type="hidden"
+            {...form.register("ownerId")}
+            value={organization.id}
+          />
+
           <DialogFooter>
             <Button variant="outline" onClick={() => setShowDialog(false)}>
               Cancel

@@ -39,13 +39,19 @@ export function HubFormFields({
         render={({ field }) => (
           <FormItem>
             <FormLabel>Path</FormLabel>
-            <FormControl>
-              <Input placeholder="my-fav-hub" {...field} />
-            </FormControl>
+            <div className="flex bg-zinc-200/30 font-mono rounded-md">
+              <div className="w-3/5 items-center flex p-2 tracking-wide text-right justify-end">
+                yourdomain.huboneapp.com/
+              </div>
+              <FormControl className="w-2/5">
+                <Input placeholder="my-fav-hub" {...field} />
+              </FormControl>
+            </div>
             <FormMessage />
           </FormItem>
         )}
       />
+
       <FormField
         control={form.control}
         name="logo"
