@@ -1,11 +1,8 @@
 import Heading from "@/components/home/heading";
 import Section from "@/components/home/section";
 
-import { getProducts } from "@/lib/stripe";
-import { PricingLevel } from "./pricing-level";
-
 export async function Pricing() {
-  const products = await getProducts();
+  // const products = await getProducts();
 
   return (
     <Section id="pricing">
@@ -14,7 +11,7 @@ export async function Pricing() {
         description=" For your personal use or for your business. We got you covered!"
       />
 
-      <div className="flex gap-6 overflow-visible">
+      {/* <div className="flex gap-6 overflow-visible">
         {Object.keys(products).map((productId) => {
           const { name, color, description, prices } = products[productId];
           return (
@@ -38,7 +35,7 @@ export async function Pricing() {
             />
           );
         })}
-      </div>
+      </div> */}
     </Section>
   );
 }

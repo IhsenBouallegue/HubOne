@@ -5,7 +5,6 @@ import Faq from "@/sections/home/faq";
 import { Features } from "@/sections/home/features/features";
 import Hero from "@/sections/home/hero";
 import Mission from "@/sections/home/mission";
-import Pricing from "@/sections/home/pricing";
 
 export default function page() {
   return (
@@ -15,7 +14,7 @@ export default function page() {
       <Hero />
       <Features />
       <Mission />
-      <Pricing />
+      {/* <Pricing /> */}
       <Faq />
       {/* <Features /> */}
       {/* <Contact /> */}
