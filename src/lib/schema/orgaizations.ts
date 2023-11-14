@@ -3,6 +3,7 @@ import {
   boolean,
   mysqlTable,
   primaryKey,
+  timestamp,
   uniqueIndex,
   varchar,
 } from "drizzle-orm/mysql-core";
@@ -22,6 +23,7 @@ export const organizations = mysqlTable(
     name: varchar("name", { length: 255 }).notNull(),
     slug: varchar("slug", { length: 255 }).notNull(),
     admin: varchar("admin", { length: 128 }).notNull(),
+    createdAt: timestamp("created_at").defaultNow(),
     isPersonalOrganization: boolean("is_personal_organization")
       .default(false)
       .notNull(),
@@ -49,7 +51,7 @@ export const usersToOrganizations = mysqlTable(
     organizationId: varchar("organization_id", { length: 128 }).notNull(),
   },
   (t) => ({
-    pk: primaryKey(t.userId, t.organizationId),
+    pk: primaryKey({ columns: [t.userId, t.organizationId] }),
   })
 );
 

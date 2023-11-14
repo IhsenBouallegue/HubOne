@@ -18,4 +18,5 @@ export const organizationSchema = insertOrganizationSchema.omit({ id: true });
 export const organizationSchemaWithoutAdmin = insertOrganizationSchema.omit({
   id: true,
   admin: true,
+  createdAt: true,
 });

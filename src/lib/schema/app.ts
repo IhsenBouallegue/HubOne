@@ -19,8 +19,8 @@ export const hubSpaces = mysqlTable(
   "hubspaces",
   {
     id: varchar("id", { length: 256 })
-      .$defaultFn(() => HUBSPACE_KEY)
-      .primaryKey(),
+      .primaryKey()
+      .$defaultFn(() => HUBSPACE_KEY),
     name: varchar("name", { length: 256 }).notNull(),
     domain: varchar("domain", { length: 256 }).notNull(),
     ownerId: varchar("owner_id", { length: 256 }).notNull(),
@@ -36,10 +36,10 @@ export const hubs = mysqlTable(
   "hubs",
   {
     id: varchar("id", { length: 256 })
-      .$defaultFn(() => HUB_KEY)
-      .primaryKey(),
+      .primaryKey()
+      .$defaultFn(() => HUB_KEY),
     name: varchar("name", { length: 256 }).notNull(),
-    logo: varchar("logo", { length: 256 }).default("").notNull(),
+    logo: varchar("logo", { length: 1024 }).default("").notNull(),
     slug: varchar("slug", { length: 256 }).default("/").notNull(),
     primaryColor: varchar("primary_color", { length: 256 })
       .default("#ff008c")
@@ -62,12 +62,12 @@ export const hubs = mysqlTable(
 
 export const links = mysqlTable("links", {
   id: varchar("id", { length: 256 })
-    .$defaultFn(() => LINK_KEY)
     .primaryKey()
+    .$defaultFn(() => LINK_KEY)
     .notNull(),
   title: varchar("title", { length: 256 }).notNull(),
   description: text("description").notNull(),
-  image: varchar("image", { length: 256 }).default("").notNull(),
+  image: varchar("image", { length: 1024 }).default("").notNull(),
   url: varchar("url", { length: 256 }).notNull(),
   createdAt: timestamp("created_at").defaultNow(),
   linkGroupId: varchar("link_group_id", { length: 256 }).notNull(),
@@ -76,8 +76,8 @@ export const links = mysqlTable("links", {
 
 export const footerLinks = mysqlTable("footer_links", {
   id: varchar("id", { length: 256 })
-    .$defaultFn(() => FOOTERLINK_KEY)
     .primaryKey()
+    .$defaultFn(() => FOOTERLINK_KEY)
     .notNull(),
   title: varchar("title", { length: 256 }).notNull(),
   url: varchar("url", { length: 256 }).notNull(),
