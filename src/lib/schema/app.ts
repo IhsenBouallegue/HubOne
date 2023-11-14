@@ -18,9 +18,7 @@ import {
 export const hubSpaces = mysqlTable(
   "hubspaces",
   {
-    id: varchar("id", { length: 256 })
-      .primaryKey()
-      .$defaultFn(() => HUBSPACE_KEY),
+    id: varchar("id", { length: 256 }).primaryKey().$defaultFn(HUBSPACE_KEY),
     name: varchar("name", { length: 256 }).notNull(),
     domain: varchar("domain", { length: 256 }).notNull(),
     ownerId: varchar("owner_id", { length: 256 }).notNull(),
@@ -35,9 +33,7 @@ export const hubSpaces = mysqlTable(
 export const hubs = mysqlTable(
   "hubs",
   {
-    id: varchar("id", { length: 256 })
-      .primaryKey()
-      .$defaultFn(() => HUB_KEY),
+    id: varchar("id", { length: 256 }).primaryKey().$defaultFn(HUB_KEY),
     name: varchar("name", { length: 256 }).notNull(),
     logo: varchar("logo", { length: 1024 }).default("").notNull(),
     slug: varchar("slug", { length: 256 }).default("/").notNull(),
@@ -63,7 +59,7 @@ export const hubs = mysqlTable(
 export const links = mysqlTable("links", {
   id: varchar("id", { length: 256 })
     .primaryKey()
-    .$defaultFn(() => LINK_KEY)
+    .$defaultFn(LINK_KEY)
     .notNull(),
   title: varchar("title", { length: 256 }).notNull(),
   description: text("description").notNull(),
@@ -77,7 +73,7 @@ export const links = mysqlTable("links", {
 export const footerLinks = mysqlTable("footer_links", {
   id: varchar("id", { length: 256 })
     .primaryKey()
-    .$defaultFn(() => FOOTERLINK_KEY)
+    .$defaultFn(FOOTERLINK_KEY)
     .notNull(),
   title: varchar("title", { length: 256 }).notNull(),
   url: varchar("url", { length: 256 }).notNull(),
@@ -88,7 +84,7 @@ export const footerLinks = mysqlTable("footer_links", {
 export const linkGroups = mysqlTable("link_groups", {
   id: varchar("id", { length: 256 })
     .primaryKey()
-    .$defaultFn(() => LINKGROUP_KEY)
+    .$defaultFn(LINKGROUP_KEY)
     .notNull(),
   title: varchar("title", { length: 256 }).notNull(),
   createdAt: timestamp("created_at").defaultNow(),

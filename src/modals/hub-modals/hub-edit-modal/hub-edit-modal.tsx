@@ -30,7 +30,14 @@ export function HubEditModal({
   const form = useForm<z.infer<typeof insertHubsSchema>>({
     resolver: zodResolver(insertHubsSchema),
     defaultValues: {
-      ...hub,
+      id: hub!.id,
+      hubSpaceId: hub!.hubSpaceId,
+      name: hub!.name,
+      slug: hub!.slug,
+      logo: hub!.logo,
+      description: hub!.description,
+      secondaryColor: hub!.secondaryColor,
+      primaryColor: hub!.primaryColor,
     },
   });
   const update = useUpdate<z.infer<typeof insertHubsSchema>>("hubs");
@@ -56,9 +63,14 @@ export function HubEditModal({
 
         <TabsContent value="Hub">
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)}>
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="space-y-8 flex flex-col"
+            >
               <HubFormFields form={form} />
-              <Button type="submit">Create</Button>
+              <Button type="submit" className="ml-auto">
+                Confirm
+              </Button>
             </form>
           </Form>
         </TabsContent>

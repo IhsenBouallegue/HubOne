@@ -23,7 +23,7 @@ export async function createOrganization(formData: FormData) {
     if (organizationsCounts.length === 3)
       throw new Error("You can't have more than 3 organizations.");
 
-    const newOrganizationId = ORGANIZATION_KEY;
+    const newOrganizationId = ORGANIZATION_KEY();
     const organization = insertOrganizationSchema.parse({
       id: newOrganizationId,
       name: formData.get("name"),

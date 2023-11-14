@@ -18,7 +18,7 @@ export const organizations = mysqlTable(
   "organization",
   {
     id: varchar("id", { length: 128 })
-      .$defaultFn(() => ORGANIZATION_KEY)
+      .$defaultFn(ORGANIZATION_KEY)
       .primaryKey(),
     name: varchar("name", { length: 255 }).notNull(),
     slug: varchar("slug", { length: 255 }).notNull(),

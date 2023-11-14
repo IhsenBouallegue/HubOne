@@ -53,7 +53,7 @@ export const {
 });
 
 async function createPersonalOrganization(user: User) {
-  const newOrganizationId = ORGANIZATION_KEY;
+  const newOrganizationId = ORGANIZATION_KEY();
   const organization = insertOrganizationSchema.parse({
     id: newOrganizationId,
     name: "Personal Organization",

@@ -40,7 +40,9 @@ export function HubMenu({ hubs }: { hubs: Hub[] }) {
                 <Link href={hub.slug}>
                   <div className="flex flex-col h-32 w-16">
                     <div className="w-full h-1/2 p-1">
-                      <HubLogo name={hub.name} />
+                      <div className="absolute h-14 w-14 overflow-hidden rounded-md">
+                        <HubLogo hub={hub} />
+                      </div>
                     </div>
                     <div className="w-full h-1/2">
                       <p className="text-sm text-center line-clamp-3">

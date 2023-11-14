@@ -34,9 +34,9 @@ export function HubCreateModal({
     },
   });
 
-  const mutate = usePost<z.infer<typeof hubsSchema>>("hubs");
+  const post = usePost<z.infer<typeof hubsSchema>>("hubs");
   const onSubmit = (values: z.infer<typeof hubsSchema>) => {
-    mutate(values);
+    post(values);
     form.reset();
     setOpened(false);
   };

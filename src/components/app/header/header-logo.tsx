@@ -8,7 +8,9 @@ export function HeaderLogo() {
       <ResponsiveLogo />
       <Icons.close size={20} strokeWidth={2} />
       <div className="h-10 w-10">
-        <HubLogo />
+        <div className="h-10 w-10 absolute rounded-md overflow-hidden">
+          <HubLogo />
+        </div>
       </div>
     </div>
   );

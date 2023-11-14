@@ -16,7 +16,7 @@ export async function createHubSpace(formData: FormData) {
     const session = await auth();
     if (!session) throw new Error("Not authenticated");
 
-    const newHubSpaceId = HUBSPACE_KEY;
+    const newHubSpaceId = HUBSPACE_KEY();
     const hubSpace = insertHubSpaceSchema.parse({
       id: newHubSpaceId,
       name: formData.get("name"),

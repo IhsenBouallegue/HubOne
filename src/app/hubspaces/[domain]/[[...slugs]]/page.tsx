@@ -47,9 +47,11 @@ export default async function Page({
     with: { links: true, linkGroups: true, footerLinks: true },
   });
 
-  const hubSpaceHubs = await db.query.hubs.findMany({
-    where: eq(hubs.hubSpaceId, hubSpace.id),
-  });
+  const hubSpaceHubs = await db
+    .select()
+    .from(hubs)
+    .where(eq(hubs.hubSpaceId, hubSpace.id))
+    .orderBy(hubs.createdAt);
 
   if (!hub) return <HubNotFound />;
 
