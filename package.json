@@ -48,7 +48,7 @@
     "drizzle-zod": "0.5.1",
     "framer-motion": "^10.0.0",
     "lucide-react": "^0.290.0",
-    "mysql2": "3.6.2",
+    "mysql2": "3.6.3",
     "next": "14.0.0",
     "next-auth": "beta",
     "postgres": "^3.3.5",
