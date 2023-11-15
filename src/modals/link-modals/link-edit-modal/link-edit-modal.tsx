@@ -56,7 +56,9 @@ export function LinkEditModal({
               <Icons.trash />
               Delete
             </Button>
-            <Button type="submit">Edit</Button>
+            <Button autoFocus type="submit">
+              Edit
+            </Button>
           </DialogFooter>
         </form>
       </Form>

@@ -63,7 +63,7 @@ export function FullLinkCard({
           </div>
           <div className="h-1/2 flex flex-col gap-2">
             <p className="text-lg font-semibold leading-5">{title}</p>
-            <p className=" text-muted-foreground">{description}</p>
+            <p className="text-muted-foreground line-clamp-4">{description}</p>
           </div>
         </Card>
       </NormalOrEditInjector>

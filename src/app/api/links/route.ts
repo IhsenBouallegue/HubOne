@@ -8,9 +8,11 @@ export async function GET(req: NextRequest) {
   try {
     let items;
     if (hubId) {
-      items = await db.query.links.findMany({
-        where: eq(links.hubId, hubId),
-      });
+      items = await db
+        .select()
+        .from(links)
+        .where(eq(links.hubId, hubId))
+        .orderBy(links.createdAt);
     } else {
       items = await db.query.links.findMany();
     }
