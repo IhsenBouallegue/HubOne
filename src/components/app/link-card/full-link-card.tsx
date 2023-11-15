@@ -55,7 +55,7 @@ export function FullLinkCard({
 
           <div className="h-1/2 relative">
             <Image
-              className="p-4"
+              className="p-4 object-contain"
               fill
               src={!image || image === "" ? "./logo/hubone_logo.svg" : image}
               alt={title}
