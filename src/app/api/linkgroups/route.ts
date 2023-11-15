@@ -10,9 +10,11 @@ export async function GET(req: NextRequest) {
   try {
     let items;
     if (hubId) {
-      items = await db.query.linkGroups.findMany({
-        where: eq(linkGroups.hubId, hubId),
-      });
+      items = await db
+        .select()
+        .from(linkGroups)
+        .where(eq(linkGroups.hubId, hubId))
+        .orderBy(linkGroups.createdAt);
     } else {
       items = await db.query.linkGroups.findMany();
     }
