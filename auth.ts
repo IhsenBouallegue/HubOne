@@ -27,21 +27,6 @@ export const {
       await createPersonalOrganization(user);
     },
   },
-  cookies: {
-    sessionToken: {
-      name: `${useSecureCookies ? "__Secure-" : ""}next-auth.session-token`,
-      options: {
-        hostOnly: false,
-        httpOnly: true,
-        sameSite: "lax",
-        path: "/",
-        ...(useSecureCookies
-          ? { domain: ".huboneapp.com" }
-          : { domain: ".localtest.me" }),
-        secure: useSecureCookies,
-      },
-    },
-  },
   callbacks: {
     async session({ session, user }) {
       return {

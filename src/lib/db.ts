@@ -1,5 +1,5 @@
-import { connect } from "@planetscale/database";
-import { drizzle } from "drizzle-orm/planetscale-serverless";
+import { sql } from "@vercel/postgres";
+import { drizzle } from "drizzle-orm/vercel-postgres";
 import * as app from "./schema/app";
 import * as auth from "./schema/auth";
 import * as organizations from "./schema/orgaizations";
@@ -12,11 +12,7 @@ export async function getHubSpacesPaths() {
   }));
 }
 
-const connection = connect({
-  url: process.env.DATABASE_URL,
-});
-
-const db = drizzle(connection, {
+const db = drizzle(sql, {
   schema: { ...auth, ...app, ...organizations },
 });
 

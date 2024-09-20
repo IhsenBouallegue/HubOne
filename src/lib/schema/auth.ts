@@ -1,26 +1,25 @@
 import type { AdapterAccount } from "@auth/core/adapters";
 import { InferSelectModel, relations } from "drizzle-orm";
 import {
-  int,
-  mysqlTable,
+  integer as int,
+  pgTable,
   primaryKey,
   text,
   timestamp,
   varchar,
-} from "drizzle-orm/mysql-core";
+} from "drizzle-orm/pg-core";
 
-export const users = mysqlTable("user", {
+export const users = pgTable("user", {
   id: varchar("id", { length: 255 }).notNull().primaryKey(),
   name: varchar("name", { length: 255 }),
   email: varchar("email", { length: 255 }).notNull(),
   emailVerified: timestamp("emailVerified", {
     mode: "date",
-    fsp: 3,
   }).defaultNow(),
   image: varchar("image", { length: 255 }),
 });
 
-export const accounts = mysqlTable(
+export const accounts = pgTable(
   "account",
   {
     userId: varchar("userId", { length: 255 }).notNull(),
@@ -42,14 +41,13 @@ export const accounts = mysqlTable(
   })
 );
 
-export const sessions = mysqlTable("session", {
+export const sessions = pgTable("session", {
   sessionToken: varchar("sessionToken", { length: 255 }).notNull().primaryKey(),
   userId: varchar("userId", { length: 255 }).notNull(),
   expires: timestamp("expires", { mode: "date" }).notNull(),
 });
 
-// accounts and sessions should be deleted manually when a user is deleted
-// (planetscale doesn't support cascading deletes)
+// Define the relationships based on the foreign key constraints
 export const usersRelations = relations(users, ({ many }) => ({
   sessions: many(sessions),
   accounts: many(accounts),
@@ -69,7 +67,7 @@ export const accountsRelations = relations(accounts, ({ one }) => ({
   }),
 }));
 
-export const verificationTokens = mysqlTable(
+export const verificationTokens = pgTable(
   "verificationToken",
   {
     identifier: varchar("identifier", { length: 255 }).notNull(),
@@ -77,7 +75,7 @@ export const verificationTokens = mysqlTable(
     expires: timestamp("expires", { mode: "date" }).notNull(),
   },
   (vt) => ({
-    compoundKey: primaryKey({ columns: [vt.identifier, vt.token] }),
+    compoundKey: primaryKey(vt.identifier, vt.token),
   })
 );
 

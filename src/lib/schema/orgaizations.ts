@@ -1,12 +1,12 @@
 import { InferSelectModel, relations } from "drizzle-orm";
 import {
   boolean,
-  mysqlTable,
+  pgTable,
   primaryKey,
   timestamp,
   uniqueIndex,
   varchar,
-} from "drizzle-orm/mysql-core";
+} from "drizzle-orm/pg-core";
 import { ORGANIZATION_KEY } from "../constants";
 import { users } from "./auth";
 
@@ -14,7 +14,7 @@ export const usersRelations = relations(users, ({ many }) => ({
   usersToOrganizations: many(usersToOrganizations),
 }));
 
-export const organizations = mysqlTable(
+export const organizations = pgTable(
   "organization",
   {
     id: varchar("id", { length: 128 })
@@ -44,7 +44,7 @@ export const organizationsRelations = relations(
   })
 );
 
-export const usersToOrganizations = mysqlTable(
+export const usersToOrganizations = pgTable(
   "users_to_organizations",
   {
     userId: varchar("user_id", { length: 128 }).notNull(),

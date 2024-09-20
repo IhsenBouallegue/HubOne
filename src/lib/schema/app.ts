@@ -1,12 +1,12 @@
 import { InferSelectModel, relations } from "drizzle-orm";
 import {
   boolean,
-  mysqlTable,
+  pgTable,
   text,
   timestamp,
   uniqueIndex,
   varchar,
-} from "drizzle-orm/mysql-core";
+} from "drizzle-orm/pg-core";
 import {
   FOOTERLINK_KEY,
   HUBSPACE_KEY,
@@ -15,7 +15,7 @@ import {
   LINK_KEY,
 } from "../constants";
 
-export const hubSpaces = mysqlTable(
+export const hubSpaces = pgTable(
   "hubspaces",
   {
     id: varchar("id", { length: 256 }).primaryKey().$defaultFn(HUBSPACE_KEY),
@@ -30,7 +30,7 @@ export const hubSpaces = mysqlTable(
   })
 );
 
-export const hubs = mysqlTable(
+export const hubs = pgTable(
   "hubs",
   {
     id: varchar("id", { length: 256 }).primaryKey().$defaultFn(HUB_KEY),
@@ -56,7 +56,7 @@ export const hubs = mysqlTable(
   })
 );
 
-export const links = mysqlTable("links", {
+export const links = pgTable("links", {
   id: varchar("id", { length: 256 })
     .primaryKey()
     .$defaultFn(LINK_KEY)
@@ -70,7 +70,7 @@ export const links = mysqlTable("links", {
   hubId: varchar("hub_id", { length: 256 }).notNull(),
 });
 
-export const footerLinks = mysqlTable("footer_links", {
+export const footerLinks = pgTable("footer_links", {
   id: varchar("id", { length: 256 })
     .primaryKey()
     .$defaultFn(FOOTERLINK_KEY)
@@ -81,7 +81,7 @@ export const footerLinks = mysqlTable("footer_links", {
   hubId: varchar("hub_id", { length: 256 }).notNull(),
 });
 
-export const linkGroups = mysqlTable("link_groups", {
+export const linkGroups = pgTable("link_groups", {
   id: varchar("id", { length: 256 })
     .primaryKey()
     .$defaultFn(LINKGROUP_KEY)
@@ -91,6 +91,7 @@ export const linkGroups = mysqlTable("link_groups", {
   hubId: varchar("hub_id", { length: 256 }).notNull(),
 });
 
+// Define the relationships based on the foreign key constraints
 export const hubsRelations = relations(hubs, ({ one, many }) => ({
   hubSpace: one(hubSpaces, {
     fields: [hubs.hubSpaceId],
