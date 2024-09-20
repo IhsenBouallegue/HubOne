@@ -13,8 +13,6 @@ declare module "next-auth" {
   }
 }
 
-const useSecureCookies = !!process.env.VERCEL_URL;
-
 export const {
   handlers: { GET, POST },
   auth,
@@ -39,6 +37,9 @@ export const {
 
 async function createPersonalOrganization(user: User) {
   const newOrganizationId = ORGANIZATION_KEY();
+  if (!user.id) {
+    throw new Error("User id not found");
+  }
   const organization = insertOrganizationSchema.parse({
     id: newOrganizationId,
     name: "Personal Organization",
