@@ -14,7 +14,7 @@ import { auth } from "../../../../auth";
 export async function createOrganization(formData: FormData) {
   try {
     const session = await auth();
-    if (!session) throw new Error("Not authenticated");
+    if (!session || !session.user.id) throw new Error("Not authenticated");
     // if 3 organizations already exist, don't allow creation of new ones
     const organizationsCounts = await db
       .select({ id: organizations.id })
@@ -54,7 +54,7 @@ export async function createOrganization(formData: FormData) {
 
 export async function deleteOrganization(selectedOrganizationSlug: string) {
   const session = await auth();
-  if (!session) return;
+  if (!session || !session.user.id) return;
   await db
     .delete(organizations)
     .where(

@@ -32,7 +32,7 @@ export default async function Page({
   if (!hubSpace.isPublic) {
     const session = await auth();
 
-    if (!session) return <HubSpaceNotPublic />;
+    if (!session || !session.user.id) return <HubSpaceNotPublic />;
     const isMember = await db.query.usersToOrganizations.findFirst({
       where: and(
         eq(usersToOrganizations.organizationId, hubSpace.ownerId),

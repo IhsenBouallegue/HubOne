@@ -18,6 +18,7 @@ export const {
   auth,
   signOut,
 } = NextAuth({
+  debug: process.env.NODE_ENV === "development",
   adapter: DrizzleAdapter(db),
   providers: [Google, Github],
   events: {
