@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@auth/core": "^0.18.0",
-    "@auth/drizzle-adapter": "^0.3.3",
+    "@auth/drizzle-adapter": "^1.0.0",
     "@hookform/resolvers": "^3.3.1",
     "@next/env": "^14.2.13",
     "@paralleldrive/cuid2": "2.2.2",
