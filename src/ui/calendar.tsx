@@ -52,10 +52,12 @@ function Calendar({
         ...classNames,
       }}
       components={{
-        // biome-ignore lint/correctness/noUnusedVariables: <explanation>
-        IconLeft: ({ ...props }) => <ChevronLeft className="h-4 w-4" />,
-        // biome-ignore lint/correctness/noUnusedVariables: <explanation>
-        IconRight: ({ ...props }) => <ChevronRight className="h-4 w-4" />,
+        Chevron: (props) => {
+          if (props.orientation === "left") {
+            return <ChevronLeft className="h-4 w-4" />;
+          }
+          return <ChevronRight className="h-4 w-4" />;
+        },
       }}
       {...props}
     />
