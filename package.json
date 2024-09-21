@@ -61,7 +61,7 @@
     "recharts": "^2.8.0",
     "sharp": "^0.32.6",
     "stripe": "13.11.0",
-    "tailwind-merge": "^1.14.0",
+    "tailwind-merge": "^2.0.0",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.22.4",
     "zod-validation-error": "2.0.0",
