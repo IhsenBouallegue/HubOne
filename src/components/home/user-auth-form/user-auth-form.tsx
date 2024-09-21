@@ -83,9 +83,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
             setIsLoading("github");
             signIn("github", redirectOptions);
           }}
-          // disabled={isLoading === "github"}
-          title="Coming soon"
-          disabled
+          disabled={isLoading === "github"}
         >
           {isLoading === "github" ? (
             <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
